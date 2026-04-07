@@ -8,10 +8,21 @@ package rpgame;
  *
  * @author HP
  */
+
+
 public class Archer extends PlayerClass {
     
     
-    Archer(){
+    Archer(){ //can 20, mana 5, attack 10
         super();
+        
+        maxHP = healthMulti * 14;
+        mana = manaMulti * 5;
+        attackPower = attackMulti * 10;
+        
+        HP = maxHP;
+
     }
+    
+    //dodge ability
 }

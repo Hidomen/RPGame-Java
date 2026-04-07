@@ -12,6 +12,10 @@ public class main {
     
     public static void main(){
         
+        
+        
+        Archer a = new Archer();
+        a.getDamage(100);
     }
     
 }
