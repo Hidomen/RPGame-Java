@@ -8,10 +8,10 @@ package rpgame;
  *
  * @author HP
  */
-public class main {
+public class Archer extends PlayerClass {
     
-    public static void main(){
-        
+    
+    Archer(){
+        super();
     }
-    
 }
