@@ -19,12 +19,14 @@ public abstract class PlayerClass {
     protected final int attackMulti = 1;
     protected final int manaMulti = 2;
     
-
-    PlayerClass(){
+    protected ClassAbilityList cal;
+    
+    PlayerClass(ClassAbilityList cal){
         xpCap = 100;
         level = 1;
         xp = 0;
         money = 0;
+        this.cal = cal;
     }
     
     private void levelUp(){
