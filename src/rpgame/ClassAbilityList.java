@@ -23,12 +23,15 @@ public class ClassAbilityList {
     public void ListAbilities()
     {
         for (Abilities abArr1 : classAbList) {
+            if (abArr1 == null) {
+                return;
+            }
             System.out.println("=====================");
             System.out.println("Ability Name");
-            System.out.println(abArr1.abilityName + "\n");
+            System.out.println(abArr1.name + "\n");
             System.out.println("Ability Description");
-            System.out.println(abArr1.abilityDescription + "\n");
-            System.out.println("Ability Cost : " + abArr1.abilityCost);
+            System.out.println(abArr1.description + "\n");
+            System.out.println("Ability Cost : " + abArr1.cost);
             System.out.println("=====================\n");            
         }
     }

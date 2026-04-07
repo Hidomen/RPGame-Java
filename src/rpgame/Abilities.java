@@ -1,14 +1,14 @@
 package rpgame;
 
 public class Abilities {
-    protected String abilityName;
-    protected String abilityDescription;
-    protected int abilityCost;
+    protected String name;
+    protected String description;
+    protected int cost;
 
-    public Abilities(String abilityName, String abilityDescription, int abilityCost) {
-        this.abilityName = abilityName;
-        this.abilityDescription = abilityDescription;
-        this.abilityCost = abilityCost;
+    public Abilities(String name, String description, int cost) {
+        this.name = name;
+        this.description = description;
+        this.cost = cost;
     }
 
 
