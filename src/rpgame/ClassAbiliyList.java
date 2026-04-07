@@ -1,28 +1,28 @@
 package rpgame;
 
-public class MageAbilities {
-    private Abilities []mageAbs;
+public class ClassAbiliyList {
+    private Abilities []classAbList;
     private int abilityNum;
     
-    public MageAbilities(int capacity)
+    public ClassAbiliyList(int capacity)
     {
-        mageAbs = new Abilities[capacity];
+        classAbList = new Abilities[capacity];
         abilityNum = 0;
     }
     
-    public void AddAbility(Abilities mAb)
+    public void AddAbility(Abilities Ab)
     {
-        if (abilityNum < mageAbs.length) {
-            mageAbs[abilityNum] = mAb;
+        if (abilityNum < classAbList.length) {
+            classAbList[abilityNum] = Ab;
             abilityNum++;
         }
         else
-            System.out.println("Mage Ability list is full. You can not add another abilitiy.");
+            System.out.println("Ability list is full. You can not add another abilitiy.");
     }
 
     public void ListAbilities()
     {
-        for (Abilities abArr1 : mageAbs) {
+        for (Abilities abArr1 : classAbList) {
             System.out.println("=====================");
             System.out.println("Ability Name");
             System.out.println(abArr1.abilityName + "\n");
@@ -37,6 +37,6 @@ public class MageAbilities {
     {
         //When you pick a ability to use maybe this can help to reach the ability easier with the return Abilities.
         //Maybe check for mana here ?
-        return mageAbs[usedIndex];
+        return classAbList[usedIndex];
     }
 }
