@@ -14,6 +14,7 @@ public abstract class PlayerClass {
     protected int xp;
     protected final int xpCap;
     
+    
     protected final int healthMulti = 3;
     protected final int attackMulti = 1;
     protected final int manaMulti = 2;
