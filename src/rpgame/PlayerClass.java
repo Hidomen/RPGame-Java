@@ -19,23 +19,33 @@ public abstract class PlayerClass {
     protected final int attackMulti = 1;
     protected final int manaMulti = 2;
     
-    protected ClassAbilityList cal;
     
-    PlayerClass(ClassAbilityList cal){
+    AbilityManager abilityManager;
+    
+    int abilityCap;
+    
+    PlayerClass(Ability[] abilityList, int abilityCap){
+        
         xpCap = 100;
         level = 1;
         xp = 0;
         money = 0;
-        this.cal = cal;
+        
+        this.abilityCap = abilityCap;
+        
+        abilityManager = new AbilityManager(abilityList, abilityCap);
     }
+    
     
     private void levelUp(){
         level++;
     }
     
+    
     public double attack(){
         return attackPower;
     }
+    
     
     private void die(){
         System.out.println("YOU DIED");
