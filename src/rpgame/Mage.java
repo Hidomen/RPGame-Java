@@ -5,9 +5,9 @@ public class Mage extends PlayerClass {
     Mage()
     {
         super();
-        maxHP = 70;
+        maxHP = healthMulti * 10;
+        mana = manaMulti * 10;
+        attackPower = attackMulti * 5;
         HP = maxHP;
-        mana = 15;
-        attackPower = 8;
     }
 }
