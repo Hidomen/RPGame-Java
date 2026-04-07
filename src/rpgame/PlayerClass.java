@@ -8,17 +8,17 @@ public abstract class PlayerClass {
     protected double mana;
     protected double attackPower;
     
+    protected int money;
+    
     protected int level;
     protected int xp;
     protected final int xpCap;
-    
-    protected int money;
-    
     
     protected final int healthMulti = 3;
     protected final int attackMulti = 1;
     protected final int manaMulti = 2;
     
+
     PlayerClass(){
         xpCap = 100;
         level = 1;
