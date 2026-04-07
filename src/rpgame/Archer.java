@@ -2,10 +2,10 @@ package rpgame;
 
 public class Archer extends PlayerClass {
     //Dodge ability, have a chance to dodge attack
-    Archer()
+    Archer(ClassAbilityList cal)
     {
         
-        super();
+        super(cal);
         
         maxHP = healthMulti * 14;
         mana = manaMulti * 5;

@@ -1,10 +1,10 @@
 package rpgame;
 
-public class ClassAbiliyList {
+public class ClassAbilityList {
     private Abilities []classAbList;
     private int abilityNum;
     
-    public ClassAbiliyList(int capacity)
+    public ClassAbilityList(int capacity)
     {
         classAbList = new Abilities[capacity];
         abilityNum = 0;

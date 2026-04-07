@@ -2,9 +2,9 @@ package rpgame;
 
 public class Healer extends PlayerClass{
     //Passively heal urself/urgroup every turn.
-    Healer()
+    Healer(ClassAbilityList cal)
     {
-        super();
+        super(cal);
         maxHP = healthMulti * 15;
         mana = manaMulti * 7;
         attackPower = attackMulti * 6;

@@ -2,9 +2,9 @@ package rpgame;
 
 public class Mage extends PlayerClass {
     //Bigger mana and skill pool.
-    Mage()
+    Mage(ClassAbilityList cal)
     {
-        super();
+        super(cal);
         maxHP = healthMulti * 10;
         mana = manaMulti * 10;
         attackPower = attackMulti * 5;
