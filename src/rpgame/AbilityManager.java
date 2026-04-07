@@ -12,7 +12,7 @@ public class AbilityManager {
     
     AbilityManager(Ability[] abilitylist, int abilityCap){
         
-        
+        this.abilityList = abilitylist;
         for(Ability a : abilityList){ //its FUCKIN' NULL
             System.out.println(a.name);
         }
@@ -20,21 +20,12 @@ public class AbilityManager {
         
         this.abilityCap = abilityCap;
         
-        
-        copyArr3(this.abilityList, abilityList, abilityCap);
+
 
     }
     
-    public void copyArr3(Ability[] ab1, Ability[] ab2, int length){
-        
-        
-        for(int i = 0; i < length; i++){
-            ab1[i] = ab2[i];
-        }
-        
-        
-    }
-        
+
+       
    public void addAbility(Ability a){
         if(abilityCap <= nextNull){
             System.out.println("Ability list is full. You can not add another abilitiy.");
