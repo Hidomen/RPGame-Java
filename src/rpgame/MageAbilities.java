@@ -1,13 +1,12 @@
 package rpgame;
 
-public class MageAbilities extends Abilities {
+public class MageAbilities {
     private Abilities []mageAbs;
-    private int abilityNum;  
+    private int abilityNum;
     
     public MageAbilities(int capacity)
     {
-        super();
-        mageAbs = new MageAbilities[capacity];
+        mageAbs = new Abilities[capacity];
         abilityNum = 0;
     }
     
@@ -15,7 +14,22 @@ public class MageAbilities extends Abilities {
     {
         if (abilityNum < mageAbs.length) {
             mageAbs[abilityNum] = mAb;
-            abilityNum++;            
+            abilityNum++;
+        }
+        else
+            System.out.println("Mage Ability list is full. You can not add another abilitiy.");
+    }
+
+    public void ListAbilities()
+    {
+        for (Abilities abArr1 : mageAbs) {
+            System.out.println("=====================");
+            System.out.println("Ability Name");
+            System.out.println(abArr1.abilityName + "\n");
+            System.out.println("Ability Description");
+            System.out.println(abArr1.abilityDescription + "\n");
+            System.out.println("Ability Cost : " + abArr1.abilityCost);
+            System.out.println("=====================\n");            
         }
     }
     
