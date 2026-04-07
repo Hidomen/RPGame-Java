@@ -13,15 +13,7 @@ public class AbilityManager {
     AbilityManager(Ability[] abilitylist, int abilityCap){
         
         this.abilityList = abilitylist;
-        for(Ability a : abilityList){ //its FUCKIN' NULL
-            System.out.println(a.name);
-        }
-        
-        
         this.abilityCap = abilityCap;
-        
-
-
     }
     
 
