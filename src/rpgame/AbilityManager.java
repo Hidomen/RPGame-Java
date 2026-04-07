@@ -5,27 +5,18 @@ public class AbilityManager {
     
     int nextNull;
     int abilityCap; //changes by class. for example mage can have 5 abilities, whereas warrior can only have 2
-    Ability[] abilityList = new Ability[5];
+    Ability[] abilityList;
     
-    
-    
-    
+
     AbilityManager(Ability[] abilitylist, int abilityCap){
+        abilityList = new Ability[abilityCap];
         
         this.abilityList = abilitylist;
-        for(Ability a : abilityList){ //its FUCKIN' NULL
-            System.out.println(a.name);
-        }
-        
-        
         this.abilityCap = abilityCap;
         
-
-
     }
-    
 
-       
+    
    public void addAbility(Ability a){
         if(abilityCap <= nextNull){
             System.out.println("Ability list is full. You can not add another abilitiy.");
@@ -55,6 +46,16 @@ public class AbilityManager {
             System.out.println("=====================\n");            
         }
     }
+    
+    public void fireball(){
+        System.out.println("YOUR BALLS IS ON FIRE. ");
+    }
+    
+    public void hitthem(PlayerClass a){
+        System.out.println("YOU STUNNED THE ENEMY SUCCESFULLY. BUT THEY FALL ON YOU. YOU TAKE 5 DAMAGE");
+        a.getDamage(5);
+    }
+   
     
     public Ability pickAbility(int index)
     {

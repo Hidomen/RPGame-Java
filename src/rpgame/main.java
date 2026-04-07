@@ -17,6 +17,15 @@ public class main {
         System.out.println("The chosen ability name is : " + p1.abilityManager.pickAbility(0).name);
         System.out.println("The chosen ability description is : " + p1.abilityManager.pickAbility(0).description);
         System.out.println("The chosen ability cost is : " + p1.abilityManager.pickAbility(0).cost);
+    
+        System.out.println(p1.HP);
+
+        
+        p1.useAbility(p1.abilityManager.pickAbility(0));
+        p1.useAbility(p1.abilityManager.pickAbility(1));
+        
+        System.out.println(p1.HP);
+        
     }
     
 }

@@ -37,6 +37,17 @@ public abstract class PlayerClass {
     }
     
     
+    public void useAbility(Ability a){
+        if(a.name == "Fireball"){
+            abilityManager.fireball();
+
+        }
+        if(a.name == "Stun'em"){
+            abilityManager.hitthem(this);
+        }
+    }
+    
+    
     private void levelUp(){
         level++;
     }
