@@ -1,7 +1,8 @@
 package rpgame;
 
+
 public abstract class PlayerClass {
-    protected double hp;
+    protected double HP;
     protected double maxHP;
     
     protected double mana;
@@ -13,10 +14,16 @@ public abstract class PlayerClass {
     
     protected int money;
     
+    
+    protected final int healthMulti = 3;
+    protected final int attackMulti = 1;
+    protected final int manaMulti = 2;
+    
     PlayerClass(){
         xpCap = 100;
         level = 1;
         xp = 0;
+        money = 0;
     }
     
     private void levelUp(){
@@ -32,18 +39,18 @@ public abstract class PlayerClass {
     }
     
     public void getDamage(int damage){
-        hp -= damage;
+        HP -= damage;
         
-        if(hp <= 0){
+        if(HP <= 0){
             die();
         }
     }
     
     public void heal(int heal){
 
-        hp += heal;
+        HP += heal;
 
-        if(hp > maxHP) {hp = maxHP;}
+        if(HP > maxHP) {HP = maxHP;}
     }
     
     public void gainXP(int xp){

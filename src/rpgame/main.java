@@ -14,8 +14,6 @@ public class main {
         
         
         
-        Archer a = new Archer();
-        a.getDamage(100);
     }
     
 }
