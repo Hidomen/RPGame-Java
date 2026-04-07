@@ -8,8 +8,8 @@ public class main {
         Abilities a2 = new Abilities("Stun'em" , "With using electric make your opponents studder" , 3);
         Abilities a3 = new Abilities("PlaceHolder" , "This place is being hold by this ability" , 1);
         
-        // Creating a mage here with empty or not filled ability list results with an arror. 
-        // Should convert our array ability lists to vectors.
+        // Creating a mage here with empty or not filled ability list results with an arror. //
+        // Should convert our array ability lists to vectors. //
         
         mageList.AddAbility(a1);
         mageList.AddAbility(a2);
