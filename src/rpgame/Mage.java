@@ -4,9 +4,9 @@ public class Mage extends PlayerClass {
     //Bigger mana and skill pool.
     
     static Ability[] abilityList = { //we can do this with sth called 'record'
-            new Ability("Fireball" , "Throw a huge fireball to the enemy. Be carefull you may hurt your loved ones." , 7),
-            new Ability("Stun'em" , "With using electric make your opponents studder" , 3),
-            new Ability("PlaceHolder" , "This place is being hold by this ability" , 1)
+            new Ability(1, "Fireball" , "Throw a huge fireball to the enemy. Be carefull you may hurt your loved ones." , 7),
+            new Ability(2, "Stun'em" , "With using electric make your opponents studder" , 3),
+            new Ability(3, "PlaceHolder" , "This place is being hold by this ability" , 1)
         };
     
     Mage()
@@ -20,30 +20,24 @@ public class Mage extends PlayerClass {
         abilityPower = mult.ability * 8;
         
     }
-    
 
     
-    public void useAbility(Ability a/*,ENEMY*/){
-        useAbilityManaControl(a);
-        
-        switch(a.name){
-            case "Fireball" -> fireball();
-            case "Stun'em" -> stunthem();
-        }
-    }
     
     
-    public void fireball(){
+    
+    public void ability1(){
         
         System.out.println("YOUR BALLS IS ON FIRE. ");
     }
     
     
-    public void stunthem(){
+    public void ability2(){
         System.out.println("YOU STUNNED THE ENEMY SUCCESFULLY. BUT THEY FALL ON YOU. YOU TAKE 5 DAMAGE");
-        getDamage(5);
+        takeDamage(5);
     }
-   
-    
+
+    public void ability3(){
+        
+    }
  
 }

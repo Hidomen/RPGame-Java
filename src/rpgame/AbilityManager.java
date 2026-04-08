@@ -56,8 +56,4 @@ public class AbilityManager {
         return abilityList[index];
     }
     
-    
-    public void abilityErrorMissingMana(String abilityName){
-        System.out.println("Your mana cannot enough for the " + abilityName);
-    }
 }

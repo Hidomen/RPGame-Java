@@ -1,6 +1,6 @@
 package rpgame;
 
-public abstract class Entity {
+public abstract class Entity implements EntityFeatures {
     
     protected double HP;
     protected double maxHP;
@@ -8,6 +8,24 @@ public abstract class Entity {
     protected double mana;
     protected double attackPower;
     protected double abilityPower;
+    
+    
+
+    public void useAbility(Ability a/*,ENEMY*/){
+        if(mana < a.cost){
+            System.out.println("Your mana cannot enough for the " + a.name);
+            return;
+        }
+
+        mana -= a.cost;
+        
+        
+        switch(a.ID){
+            case 1 -> ability1();
+            case 2 -> ability2();
+            case 3 -> ability3();
+        }
+    }
     
     public double attack(){
         return attackPower;
@@ -18,7 +36,7 @@ public abstract class Entity {
         System.out.println("YOU DIED");
     }
     
-    public void getDamage(int damage){
+    public void takeDamage(int damage){
         HP -= damage;
         
         if(HP <= 0){

@@ -4,9 +4,9 @@ public class Archer extends PlayerClass {
     //Dodge ability, have a chance to dodge attack
     
     static Ability[] abilityList = { //we can do this with sth called 'record'
-            new Ability("Ultimate Dodge","Next Attack will be definitely dodged",3),
-            new Ability("Headshot", "Next attack will be critic damage (%150)",5),
-            new Ability("ShadowMode", "For three turns you are completely invisible", 10) //meeh
+            new Ability(1,"Ultimate Dodge","Next Attack will be definitely dodged",3),
+            new Ability(2,"Headshot", "Next attack will be critic damage (%150)",5),
+            new Ability(3,"ShadowMode", "For three turns you are completely invisible", 10) //meeh
     };
     
     
@@ -28,26 +28,18 @@ public class Archer extends PlayerClass {
         abilityPower = mult.ability * 5;
 
     }
-    
 
-    public void useAbility(Ability a/*,ENEMY*/){
-        useAbilityManaControl(a);
-        
-        switch(a.name){
-        }
-    }
     
-    
-    private void ultimateDodge(){
+    public void ability1(){
         dodgePossibility = 1; //fix after attack
     }
     
-    private void headshot(){
+    public void ability2(){
         attackPower *= 1.5;
         
     }
     
-    private void shadowMode(){
+    public void ability3(){
         System.out.println("SHADOWWWW");
     }
 }

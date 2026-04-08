@@ -10,8 +10,8 @@ public class main {
         
         Enemy e = new Enemy(1);
         Combat c = new Combat(p1,e);
-        c.initCombat();
-        
+        c.combatLoop();
+                
         p1.abilityManager.ListAbilities();
 
         System.out.println("The chosen ability name is : " + p1.abilityManager.pickAbility(0).name);

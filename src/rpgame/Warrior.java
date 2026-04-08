@@ -4,9 +4,9 @@ public class Warrior extends PlayerClass {
     //More health and basic attack power
     
     static Ability[] abilityList = { //we can do this with sth called 'record'
-            new Ability("","",0),
-            new Ability("","",0),
-            new Ability("","",0)
+            new Ability(1,"","",0),
+            new Ability(2,"","",0),
+            new Ability(3,"","",0)
     };
     
     Warrior()
@@ -21,25 +21,17 @@ public class Warrior extends PlayerClass {
     }
     
     
-    public void useAbility(Ability a/*,ENEMY*/){
-        useAbilityManaControl(a);
-        
-        switch(a.name){
-        }
-        
-        ability1();
-    }
+
     
-    
-    private void ability1(){
+    public void ability1(){
         
     }
     
-    private void ability2(){
+    public void ability2(){
         
     }
     
-    private void ability3(){
+    public void ability3(){
         
     }
 }

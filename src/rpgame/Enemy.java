@@ -19,4 +19,17 @@ public class Enemy extends Entity {
     public void turn(){
         //different behaviours: only attack, attack and heal etc.
     }
+    
+    
+    public void ability1(){
+        
+    }
+
+    public void ability2(){
+        
+    }
+
+    public void ability3(){
+        
+    }
 }

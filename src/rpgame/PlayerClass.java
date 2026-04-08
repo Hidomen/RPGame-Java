@@ -1,7 +1,8 @@
 package rpgame;
 
+import java.util.Scanner;
 
-public abstract class PlayerClass extends Entity {
+public abstract class PlayerClass extends Entity{
 
     protected int money;
     
@@ -27,15 +28,22 @@ public abstract class PlayerClass extends Entity {
     }
 
     
-    public void useAbilityManaControl(Ability a){
+    public void turn(){
+        int input; //for console version
+        Scanner sc = new Scanner(System.in);
         
-        if(mana < a.cost){
-            abilityManager.abilityErrorMissingMana(a.name);
-            return;
+        System.out.println("1 for scream");
+        //print action options
+        input = sc.nextInt();
+        
+        switch(input){ //attack, defend, ability, run
+            case 1 -> {
+            }
+                
         }
-
-        mana -= a.cost;
     }
+    
+    
     
     
     private void levelUp(){
