@@ -16,5 +16,7 @@ public class Warrior extends PlayerClass {
         mana = manaMulti * 3;
         attackPower = attackMulti * 15;
         HP = maxHP;
+        abilityPower = abilityMulti * 3;
+
     }
 }

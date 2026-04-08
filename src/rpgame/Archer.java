@@ -17,6 +17,7 @@ public class Archer extends PlayerClass {
         attackPower = attackMulti * 10;
         
         HP = maxHP;
+        abilityPower = abilityMulti * 5;
 
     }
     

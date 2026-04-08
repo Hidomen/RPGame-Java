@@ -7,6 +7,7 @@ public abstract class PlayerClass {
     
     protected double mana;
     protected double attackPower;
+    protected double abilityPower;
     
     protected int money;
     
@@ -17,6 +18,7 @@ public abstract class PlayerClass {
     
     protected final int healthMulti = 3;
     protected final int attackMulti = 1;
+    protected final int abilityMulti = 1;
     protected final int manaMulti = 2;
     
     
