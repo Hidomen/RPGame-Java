@@ -22,8 +22,13 @@ public class Archer extends PlayerClass {
         attackPower = attackMulti * 10;
         
         HP = maxHP;
+<<<<<<< HEAD
         
         dodgePossibility = 0.1;
+=======
+        abilityPower = abilityMulti * 5;
+
+>>>>>>> bd5215431e40ea225801e7cc36536d4cb6d726b0
     }
     
 

@@ -17,7 +17,7 @@ public class Mage extends PlayerClass {
         mana = manaMulti * 10;
         attackPower = attackMulti * 5;
         HP = maxHP;
-        
+        abilityPower = abilityMulti * 8;
         
     }
     

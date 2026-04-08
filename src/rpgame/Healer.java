@@ -17,6 +17,8 @@ public class Healer extends PlayerClass{
         mana = manaMulti * 7;
         attackPower = attackMulti * 6;
         HP = maxHP;
+        abilityPower = abilityMulti * 6;
+        
     }
     
     public void useAbility(Ability a/*,ENEMY*/){

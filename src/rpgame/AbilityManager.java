@@ -10,7 +10,6 @@ public class AbilityManager {
 
     AbilityManager(Ability[] abilitylist, int abilityCap){
         abilityList = new Ability[abilityCap];
-        
         this.abilityList = abilitylist;
         this.abilityCap = abilityCap;
     }
