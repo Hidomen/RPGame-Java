@@ -13,11 +13,11 @@ public class Mage extends PlayerClass {
     {
         super(abilityList,5);
         
-        maxHP = healthMulti * 10;
-        mana = manaMulti * 10;
-        attackPower = attackMulti * 5;
+        maxHP = mult.health * 10;
+        mana = mult.mana * 10;
+        attackPower = mult.attack * 5;
         HP = maxHP;
-        abilityPower = abilityMulti * 8;
+        abilityPower = mult.ability * 8;
         
     }
     

@@ -3,27 +3,16 @@ package rpgame;
 
 public abstract class PlayerClass extends Entity {
 
-    
-    protected double mana;
-    protected double attackPower;
-    protected double abilityPower;
-    
     protected int money;
     
     protected int level;
     protected int xp;
     protected final int xpCap;
-    
-    
-    protected final int healthMulti = 3;
-    protected final int attackMulti = 1;
-    protected final int abilityMulti = 1;
-    protected final int manaMulti = 2;
-    
-    
+
     AbilityManager abilityManager;
     
     int abilityCap;
+    
     
     PlayerClass(Ability[] abilityList, int abilityCap){
         
@@ -36,8 +25,7 @@ public abstract class PlayerClass extends Entity {
         
         abilityManager = new AbilityManager(abilityList, abilityCap);
     }
-    
-    
+
     
     public void useAbilityManaControl(Ability a){
         
@@ -53,31 +41,7 @@ public abstract class PlayerClass extends Entity {
     private void levelUp(){
         level++;
     }
-    
-    
-    public double attack(){
-        return attackPower;
-    }
-    
-    
-    private void die(){
-        System.out.println("YOU DIED");
-    }
-    
-    public void getDamage(int damage){
-        HP -= damage;
-        
-        if(HP <= 0){
-            die();
-        }
-    }
-    
-    public void heal(int heal){
 
-        HP += heal;
-
-        if(HP > maxHP) {HP = maxHP;}
-    }
     
     public void gainXP(int xp){
         this.xp += xp;

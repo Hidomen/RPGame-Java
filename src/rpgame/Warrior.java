@@ -12,11 +12,11 @@ public class Warrior extends PlayerClass {
     Warrior()
     {
         super(abilityList,1);
-        maxHP = healthMulti * 20;
-        mana = manaMulti * 3;
-        attackPower = attackMulti * 15;
+        maxHP = mult.health * 20;
+        mana = mult.mana * 3;
+        attackPower = mult.attack * 15;
         HP = maxHP;
-        abilityPower = abilityMulti * 3;
+        abilityPower = mult.ability * 3;
 
     }
     

@@ -17,18 +17,16 @@ public class Archer extends PlayerClass {
         
         super(abilityList,1);
         
-        maxHP = healthMulti * 14;
-        mana = manaMulti * 5;
-        attackPower = attackMulti * 10;
+        maxHP = mult.health * 14;
+        mana = mult.mana * 5;
+        attackPower = mult.attack * 10;
         
         HP = maxHP;
-<<<<<<< HEAD
+
         
         dodgePossibility = 0.1;
-=======
-        abilityPower = abilityMulti * 5;
+        abilityPower = mult.ability * 5;
 
->>>>>>> bd5215431e40ea225801e7cc36536d4cb6d726b0
     }
     
 
