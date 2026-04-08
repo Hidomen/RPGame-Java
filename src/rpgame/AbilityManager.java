@@ -13,10 +13,6 @@ public class AbilityManager {
         
         this.abilityList = abilitylist;
         this.abilityCap = abilityCap;
-<<<<<<< HEAD
-        
-=======
->>>>>>> 09ed9b7f717e34c93485c5fcaba42bb84ed8984d
     }
 
     
@@ -50,15 +46,7 @@ public class AbilityManager {
         }
     }
     
-    public void fireball(){
-        System.out.println("YOUR BALLS IS ON FIRE. ");
-    }
-    
-    public void hitthem(PlayerClass a){
-        System.out.println("YOU STUNNED THE ENEMY SUCCESFULLY. BUT THEY FALL ON YOU. YOU TAKE 5 DAMAGE");
-        a.getDamage(5);
-    }
-   
+
     
     public Ability pickAbility(int index)
     {
@@ -67,5 +55,10 @@ public class AbilityManager {
         //When you pick a ability to use maybe this can help to reach the ability easier with the return Abilities.
         //Maybe check for mana here ?
         return abilityList[index];
+    }
+    
+    
+    public void abilityErrorMissingMana(String abilityName){
+        System.out.println("Your mana cannot enough for the " + abilityName);
     }
 }

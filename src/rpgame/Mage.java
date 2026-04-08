@@ -12,6 +12,7 @@ public class Mage extends PlayerClass {
     Mage()
     {
         super(abilityList,5);
+        
         maxHP = healthMulti * 10;
         mana = manaMulti * 10;
         attackPower = attackMulti * 5;
@@ -20,6 +21,29 @@ public class Mage extends PlayerClass {
         
     }
     
+
+    
+    public void useAbility(Ability a/*,ENEMY*/){
+        useAbilityManaControl(a);
+        
+        switch(a.name){
+            case "Fireball" -> fireball();
+            case "Stun'em" -> stunthem();
+        }
+    }
+    
+    
+    public void fireball(){
+        
+        System.out.println("YOUR BALLS IS ON FIRE. ");
+    }
+    
+    
+    public void stunthem(){
+        System.out.println("YOU STUNNED THE ENEMY SUCCESFULLY. BUT THEY FALL ON YOU. YOU TAKE 5 DAMAGE");
+        getDamage(5);
+    }
+   
     
  
 }

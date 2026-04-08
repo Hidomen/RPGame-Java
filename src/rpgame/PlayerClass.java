@@ -1,9 +1,8 @@
 package rpgame;
 
 
-public abstract class PlayerClass {
-    protected double HP;
-    protected double maxHP;
+public abstract class PlayerClass extends Entity {
+
     
     protected double mana;
     protected double attackPower;
@@ -37,14 +36,15 @@ public abstract class PlayerClass {
     }
     
     
-    public void useAbility(Ability a){
-        if(a.name == "Fireball"){
-            abilityManager.fireball();
+    
+    public void useAbilityManaControl(Ability a){
+        
+        if(mana < a.cost){
+            abilityManager.abilityErrorMissingMana(a.name);
+            return;
+        }
 
-        }
-        if(a.name == "Stun'em"){
-            abilityManager.hitthem(this);
-        }
+        mana -= a.cost;
     }
     
     

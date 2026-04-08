@@ -23,6 +23,12 @@ public class main {
         
         p1.useAbility(p1.abilityManager.pickAbility(0));
         p1.useAbility(p1.abilityManager.pickAbility(1));
+        p1.useAbility(p1.abilityManager.pickAbility(1));
+        p1.useAbility(p1.abilityManager.pickAbility(1));
+        p1.useAbility(p1.abilityManager.pickAbility(1));
+        p1.useAbility(p1.abilityManager.pickAbility(1));
+        p1.useAbility(p1.abilityManager.pickAbility(1));
+        p1.useAbility(p1.abilityManager.pickAbility(1));
         
         System.out.println(p1.HP);
         

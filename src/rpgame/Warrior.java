@@ -4,9 +4,9 @@ public class Warrior extends PlayerClass {
     //More health and basic attack power
     
     static Ability[] abilityList = { //we can do this with sth called 'record'
-            new Ability("Fireball" , "Throw a huge fireball to the enemy. Be carefull you may hurt your loved ones." , 7),
-            new Ability("Stun'em" , "With using electric make your opponents studder" , 3),
-            new Ability("PlaceHolder" , "This place is being hold by this ability" , 1)
+            new Ability("","",0),
+            new Ability("","",0),
+            new Ability("","",0)
     };
     
     Warrior()
@@ -16,5 +16,28 @@ public class Warrior extends PlayerClass {
         mana = manaMulti * 3;
         attackPower = attackMulti * 15;
         HP = maxHP;
+    }
+    
+    
+    public void useAbility(Ability a/*,ENEMY*/){
+        useAbilityManaControl(a);
+        
+        switch(a.name){
+        }
+        
+        ability1();
+    }
+    
+    
+    private void ability1(){
+        
+    }
+    
+    private void ability2(){
+        
+    }
+    
+    private void ability3(){
+        
     }
 }

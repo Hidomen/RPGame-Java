@@ -18,4 +18,11 @@ public class Healer extends PlayerClass{
         attackPower = attackMulti * 6;
         HP = maxHP;
     }
+    
+    public void useAbility(Ability a/*,ENEMY*/){
+        useAbilityManaControl(a);
+        
+        switch(a.name){
+        }
+    }
 }
