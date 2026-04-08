@@ -45,7 +45,9 @@ public class AbilityManager {
         }
     }
     
-
+    public Ability getAbility(int index){
+        return abilityList[index];
+    }
     
     public Ability pickAbility(int index)
     {

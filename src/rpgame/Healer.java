@@ -4,10 +4,10 @@ public class Healer extends PlayerClass{
     //Passively heal urself/urgroup every turn.
     
     static Ability[] abilityList = { //we can do this with sth called 'record'
-            new Ability(1,"Massive Heal" , "Pray the God for health." , 4),
-            new Ability(2,"Holy Sword" , "Infuse your sword with the holy of God" , 2),
-            new Ability(3,"Tiny Heal" , "Make your wounds hurt less" , 2),
-            new Ability(4,"Hand Of God" , "Grasp your enemies with the hand of God" , 6)
+            new Ability(0,"Massive Heal" , "Pray the God for health." , 4),
+            new Ability(1,"Holy Sword" , "Infuse your sword with the holy of God" , 2),
+            new Ability(2,"Tiny Heal" , "Make your wounds hurt less" , 2),
+            new Ability(3,"Hand Of God" , "Grasp your enemies with the hand of God" , 6)
     };
     
     Healer()
@@ -22,7 +22,6 @@ public class Healer extends PlayerClass{
     }
     
     public void ability1(){
-        
         
     }
     

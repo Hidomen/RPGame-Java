@@ -4,10 +4,11 @@ public class Warrior extends PlayerClass {
     //More health and basic attack power
     
     static Ability[] abilityList = { //we can do this with sth called 'record'
+            new Ability(0,"","",0),
             new Ability(1,"","",0),
-            new Ability(2,"","",0),
-            new Ability(3,"","",0)
+            new Ability(2,"","",0)
     };
+    
     
     Warrior()
     {

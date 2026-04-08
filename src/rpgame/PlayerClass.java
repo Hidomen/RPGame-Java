@@ -10,7 +10,6 @@ public abstract class PlayerClass extends Entity{
     protected int xp;
     protected final int xpCap;
 
-    AbilityManager abilityManager;
     
     int abilityCap;
     
@@ -29,18 +28,16 @@ public abstract class PlayerClass extends Entity{
 
     
     public void turn(){
+        
+        
         int input; //for console version
         Scanner sc = new Scanner(System.in);
         
-        System.out.println("1 for scream");
+        System.out.println("0 for ability 1, 1 for 2, 2 for 3");
         //print action options
         input = sc.nextInt();
-        
-        switch(input){ //attack, defend, ability, run
-            case 1 -> {
-            }
-                
-        }
+        System.out.println(input);
+        useAbility(indexToAbility(input));
     }
     
     

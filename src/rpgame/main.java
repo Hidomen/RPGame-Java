@@ -3,15 +3,24 @@ package rpgame;
 public class main {
     public static void main(){
         
-        Mage p1 = new Mage();
+        Mage p0 = new Mage();
         
         // Creating a mage here with empty or not filled ability list results with an arror. //
         // Should convert our array ability lists to vectors. //
         
         Enemy e = new Enemy(1);
-        Combat c = new Combat(p1,e);
+        Combat c = new Combat(p0,e);
         c.combatLoop();
                 
+        
+        
+        
+    }
+    
+    public static void test(){
+        
+        Mage p1 = new Mage();
+
         p1.abilityManager.ListAbilities();
 
         System.out.println("The chosen ability name is : " + p1.abilityManager.pickAbility(0).name);
@@ -46,8 +55,6 @@ public class main {
         merchant.AddItem(i5);
         
         merchant.ListItems();
-        
-        
     }
     
 }

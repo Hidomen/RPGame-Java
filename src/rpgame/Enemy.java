@@ -21,6 +21,10 @@ public class Enemy extends Entity {
     }
     
     
+    public void scream(){
+        
+    }
+    
     public void ability1(){
         
     }

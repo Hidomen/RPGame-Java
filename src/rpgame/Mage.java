@@ -4,9 +4,9 @@ public class Mage extends PlayerClass {
     //Bigger mana and skill pool.
     
     static Ability[] abilityList = { //we can do this with sth called 'record'
-            new Ability(1, "Fireball" , "Throw a huge fireball to the enemy. Be carefull you may hurt your loved ones." , 7),
-            new Ability(2, "Stun'em" , "With using electric make your opponents studder" , 3),
-            new Ability(3, "PlaceHolder" , "This place is being hold by this ability" , 1)
+            new Ability(0, "Fireball" , "Throw a huge fireball to the enemy. Be carefull you may hurt your loved ones." , 7),
+            new Ability(1, "Stun'em" , "With using electric make your opponents studder" , 3),
+            new Ability(2, "PlaceHolder" , "This place is being hold by this ability" , 1)
         };
     
     Mage()
@@ -22,9 +22,7 @@ public class Mage extends PlayerClass {
     }
 
     
-    
-    
-    
+    @Override
     public void ability1(){
         
         System.out.println("YOUR BALLS IS ON FIRE. ");

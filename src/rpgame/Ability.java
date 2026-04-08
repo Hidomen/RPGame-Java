@@ -7,6 +7,7 @@ public final class Ability {
     public int cost;
 
     public Ability(int ID, String name, String description, int cost) {
+        this.ID = ID;
         this.name = name;
         this.description = description;
         this.cost = cost;

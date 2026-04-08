@@ -4,9 +4,9 @@ public class Archer extends PlayerClass {
     //Dodge ability, have a chance to dodge attack
     
     static Ability[] abilityList = { //we can do this with sth called 'record'
-            new Ability(1,"Ultimate Dodge","Next Attack will be definitely dodged",3),
-            new Ability(2,"Headshot", "Next attack will be critic damage (%150)",5),
-            new Ability(3,"ShadowMode", "For three turns you are completely invisible", 10) //meeh
+            new Ability(0,"Ultimate Dodge","Next Attack will be definitely dodged",3),
+            new Ability(1,"Headshot", "Next attack will be critic damage (%150)",5),
+            new Ability(2,"ShadowMode", "For three turns you are completely invisible", 10) //meeh
     };
     
     
