@@ -1,20 +1,41 @@
 package rpgame;
 
+import java.util.Scanner;
+
 public class main {
     public static void main(){
         
-        Mage p0 = new Mage();
+        
+        //==============================================
+
+        PlayerClass p;
+        Scanner sc = new Scanner(System.in);
+        
+        
+        System.out.println("Pick your class");
+        System.out.println("1. Mage");
+        System.out.println("2. Archer");
+        System.out.println("3. Healer");
+        System.out.println("4. Warrior");
+        
+        int ci = sc.nextInt();
+        
+        switch(ci){
+            case 1 -> p = new Mage();
+            case 2 -> p = new Archer();
+            case 3 -> p = new Healer();
+            case 4 -> p = new Warrior();
+            default -> p = new Warrior();
+        }
+        //==============================================
         
         // Creating a mage here with empty or not filled ability list results with an arror. //
         // Should convert our array ability lists to vectors. //
         
         Enemy e = new Enemy(1);
-        Combat c = new Combat(p0,e);
+        Combat c = new Combat(p,e);
         c.combatLoop();
                 
-        
-        
-        
     }
     
     public static void test(){
