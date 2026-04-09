@@ -5,13 +5,17 @@ public class mainGUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(mainGUI.class.getName());
     static PlayerClass p;
-
+    
+    int difficulty;
     
     public mainGUI() {
+        difficulty = 0;
         initComponents();
         
         
         InfoPanel.setVisible(false);
+        
+        
     }
 
     /**
@@ -287,14 +291,33 @@ public class mainGUI extends javax.swing.JFrame {
         if(!InfoPanel.isVisible()) InfoPanel.setVisible(true);
         
         classIndicator.setText(hoveredClass.className);
-        ability1_name.setText(hoveredClass.getAbility(0).name);
-        ability2_name.setText(hoveredClass.getAbility(1).name);
-        ability3_name.setText(hoveredClass.getAbility(2).name);
+
+        Ability infoPanelAbilityLister; //used for list ability features
         
-        ability1_desc.setText(hoveredClass.getAbility(0).description);
-        ability2_desc.setText(hoveredClass.getAbility(1).description);
-        ability3_desc.setText(hoveredClass.getAbility(2).description);
+        javax.swing.JLabel[][] abilityLabels = {
+            {ability1_name, ability1_desc},
+            {ability2_name, ability2_desc},
+            {ability3_name, ability3_desc},
+        };
         
+        for(int i = 0; i < abilityLabels.length; i++){
+            
+            infoPanelAbilityLister = hoveredClass.getAbility(i);
+            
+            if(infoPanelAbilityLister != null){
+            
+                abilityLabels[i][0].setVisible(true);
+                abilityLabels[i][1].setVisible(true);
+                
+                abilityLabels[i][0].setText(infoPanelAbilityLister.name);
+                abilityLabels[i][1].setText(infoPanelAbilityLister.description);
+            } else {
+                
+                abilityLabels[i][0].setVisible(false);
+                abilityLabels[i][1].setVisible(false);
+            }
+        }
+
         attackLabel.setText("Attack: " + hoveredClass.attackPower);
         healthLabel.setText("Health: " + hoveredClass.HP);
         manaLabel.setText("Mana: " + hoveredClass.mana);
@@ -333,7 +356,23 @@ public class mainGUI extends javax.swing.JFrame {
         }
         System.out.println(p.className);
         //opens next window/frame
+        
+        
+        //=======================================================
+        while(p.HP > 0){
+            difficulty++;
 
+            System.out.println("DIFFICULTY: " + difficulty);
+            Enemy e = new Enemy(difficulty);
+        
+            Combat c = new Combat(p,e);
+            c.combatLoop();
+        
+        }
+        System.out.println(p.className + " took until the Difficulty: " + difficulty);
+        difficulty = 0;
+        
+        //=======================================================
     }//GEN-LAST:event_continueButtonActionPerformed
 
 

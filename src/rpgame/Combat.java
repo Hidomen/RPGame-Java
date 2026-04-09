@@ -25,18 +25,28 @@ public class Combat {
         while(p.HP > 0 && e.HP > 0){
             turn = EntityType.values()[(turn.ordinal() + 1) % 2];
             
+            System.out.println("=======================================");
+            
+            System.out.print("PLAYER'S HEALTH: " + p.HP);
+            System.out.println(" ENEMY'S HEALTH: " + e.HP);
+            
+            
             switch(turn){
                 case Player -> {
                     System.out.println("PLAYER TURN");
                     
-                    p.turn();
+                    p.turn(e);
                 }
                 case Enemy ->{
                     System.out.println("ENEMY TURN");
                     
-                    e.turn();
+                    e.turn(p);
                 }
             }        
+            
+            
+            System.out.println("=======================================");
         }
+        System.out.println("combat loop ended");
     }
 }

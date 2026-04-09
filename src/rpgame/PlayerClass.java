@@ -27,21 +27,32 @@ public abstract class PlayerClass extends Entity{
     }
 
     
-    public void turn(){
+    public void turn(Enemy e){
         
         
+        
+        //for debug
+        System.out.println("PLAYER ATTACKED THE ENEMY, gives " + attackPower + " damage.");
+        attack(e);
+        
+        
+        /*
         int input; //for console version
         Scanner sc = new Scanner(System.in);
         
         System.out.println("0 for ability 1, 1 for 2, 2 for 3");
         //print action options
+        
+        
+        
         input = sc.nextInt();
         System.out.println(input);
         useAbility(getAbility(input));
+        */
+        
+        
     }
-    
-    
-    
+
     
     private void levelUp(){
         level++;

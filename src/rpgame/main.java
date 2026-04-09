@@ -11,7 +11,7 @@ public class main {
         
         PlayerClass p = new Mage();
         p.abilityManager.addEquippedAbility(p.abilityManager.getAbility(1));
-        p.abilityManager.ListEqAbilities();                
+        p.abilityManager.ListAbilities(p.abilityManager.equippedAbilites);                
     }
 
     public static void test2() {
@@ -50,7 +50,7 @@ public class main {
         
         Mage p1 = new Mage();
 
-        p1.abilityManager.ListAbilities();
+        p1.abilityManager.ListAbilities(p1.abilityManager.abilityList);
 
         System.out.println("The chosen ability name is : " + p1.abilityManager.getAbility(0).name);
         System.out.println("The chosen ability description is : " + p1.abilityManager.getAbility(0).description);

@@ -37,16 +37,17 @@ public abstract class Entity implements EntityFeatures {
         }
     }
     
-    public double attack(){
-        return attackPower;
+    public void attack(Entity target){
+        target.takeDamage(attackPower);
     }
     
     
     private void die(){
+        System.out.println(className);
         System.out.println("YOU DIED");
     }
     
-    public void takeDamage(int damage){
+    public void takeDamage(double damage){
         HP -= damage;
         
         if(HP <= 0){

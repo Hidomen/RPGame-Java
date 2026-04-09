@@ -7,17 +7,22 @@ public class Enemy extends Entity {
     
     Enemy(int powerLevel){
         
-        maxHP = powerLevel * 10 * mult.health;
+        int constant = 3;
+        
+        maxHP           = powerLevel * constant * Config.health;
         HP = maxHP;
         
-        attackPower = powerLevel * 10 * mult.attack;
-        abilityPower = powerLevel * 10 * mult.ability;
-        mana = powerLevel * 10 * mult.mana;
+        attackPower     = powerLevel * constant * Config.attack;
+        abilityPower    = powerLevel * constant * Config.ability;
+        mana            = powerLevel * constant * Config.mana;
     }
     
     
-    public void turn(){
+    public void turn(PlayerClass p){
         //different behaviours: only attack, attack and heal etc.
+        
+        System.out.println("ENEMY ATTACKED THE PLAYER, gives " + attackPower + " damage.");
+        attack(p);
     }
     
     
