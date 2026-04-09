@@ -18,12 +18,12 @@ public abstract class Entity implements EntityFeatures {
         return abilityManager.getAbility(index);
     }
 
-    public void useAbility(Ability a/*,ENEMY*/){
+    public void useAbility(Ability a , Entity target){
         
         System.out.println(a.name);
         
         if(mana < a.cost){
-            System.out.println("Your mana cannot enough for the " + a.name);
+            System.out.println("Your mana is not enough for the " + a.name);
             return;
         }
 
@@ -31,9 +31,12 @@ public abstract class Entity implements EntityFeatures {
         
         
         switch(a.ID){
-            case 0 -> ability0();
-            case 1 -> ability1();
-            case 2 -> ability2();
+            case 0 -> ability0(target);
+            case 1 -> ability1(target);
+            case 2 -> ability2(target);
+            case 3 -> ability3(target);
+            case 4 -> ability4(target);
+            case 5 -> ability5(target);
         }
     }
     
@@ -60,6 +63,16 @@ public abstract class Entity implements EntityFeatures {
         HP += heal;
 
         if(HP > maxHP) {HP = maxHP;}
+    }
+    
+    public void damageAbility(double damage , Entity target)
+    {
+        target.takeDamage((int)damage); //Maybe floor cast
+    }
+    
+    public void statusAbility(String Status, int forTurns ,Entity target)
+    {
+        //Enum status yap , switcthlerle kontrol et.
     }
 }
 

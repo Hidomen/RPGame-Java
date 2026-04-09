@@ -15,7 +15,7 @@ public class Healer extends PlayerClass{
     
     Healer()
     {
-        super(abilityList,1);
+        super(abilityList,5);
         className = "Healer";
         
         maxHP = Config.health * 15;
@@ -26,15 +26,28 @@ public class Healer extends PlayerClass{
         
     }
     
-    public void ability0(){
+    public void ability0(Entity target){
         
     }
     
-    public void ability1(){
+    public void ability1(Entity target){
         
     }
     
-    public void ability2(){
+    public void ability2(Entity target){
         
     }
+    
+    public void ability3(Entity target){
+
+    }
+    
+    public void ability4(Entity target){
+
+    }
+    
+    public void ability5(Entity target){
+
+    }
+    
 }

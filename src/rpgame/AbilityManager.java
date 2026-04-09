@@ -17,7 +17,7 @@ public class AbilityManager {
     }
    
     
-   public void addEquippedAbility(Ability a){
+   public void addEqAbility(Ability a){
         if(equippedAbilites.length <= nextEqNull){
             System.out.println("Ability list is full. You can not add another abilitiy.");
             return;

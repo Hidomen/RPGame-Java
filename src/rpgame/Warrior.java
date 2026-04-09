@@ -13,7 +13,7 @@ public class Warrior extends PlayerClass {
     
     Warrior()
     {
-        super(abilityList,1);
+        super(abilityList,3);
         className = "Warrior";
 
         maxHP = Config.health * 20;
@@ -27,15 +27,28 @@ public class Warrior extends PlayerClass {
     
 
     
-    public void ability0(){
+    public void ability0(Entity target){
         
     }
     
-    public void ability1(){
+    public void ability1(Entity target){
         
     }
     
-    public void ability2(){
+    public void ability2(Entity target){
         
     }
+    
+    public void ability3(Entity target){
+
+    }
+    
+    public void ability4(Entity target){
+
+    }
+    
+    public void ability5(Entity target){
+
+    }
+    
 }

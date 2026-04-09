@@ -6,8 +6,11 @@ public interface EntityFeatures {
     
     public void attack(Entity target);
     
-    public void ability0();
-    public void ability1();
-    public void ability2();
+    public void ability0(Entity target);
+    public void ability1(Entity target);
+    public void ability2(Entity target);
+    public void ability3(Entity target);
+    public void ability4(Entity target);
+    public void ability5(Entity target);
     
 }

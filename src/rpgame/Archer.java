@@ -15,7 +15,7 @@ public class Archer extends PlayerClass {
 
     Archer()
     {
-        super(abilityList,1);
+        super(abilityList,4);
         className = "Archer";
         
         maxHP = Config.health * 14;
@@ -31,16 +31,29 @@ public class Archer extends PlayerClass {
     }
 
     
-    public void ability0(){
+    public void ability0(Entity target){
         dodgePossibility = 1; //fix after attack
     }
     
-    public void ability1(){
+    public void ability1(Entity target){
         attackPower *= 1.5;
         
     }
     
-    public void ability2(){
+    public void ability2(Entity target){
         System.out.println("SHADOWWWW");
     }
+    
+    public void ability3(Entity target){
+
+    }
+    
+    public void ability4(Entity target){
+
+    }
+    
+    public void ability5(Entity target){
+
+    }
+    
 }

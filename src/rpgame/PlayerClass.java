@@ -46,11 +46,13 @@ public abstract class PlayerClass extends Entity{
         
         
         input = sc.nextInt();
+        
+        Entity target = new Enemy(1); //TEMPORARY
         System.out.println(input);
+
         useAbility(getAbility(input));
         */
-        
-        
+
     }
 
     
