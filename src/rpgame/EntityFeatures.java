@@ -11,6 +11,4 @@ public interface EntityFeatures {
     public void ability2();
     public void ability3();
     
-    
-    //public Ability indexToAbility(int index);
 }

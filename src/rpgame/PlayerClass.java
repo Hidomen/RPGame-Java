@@ -37,7 +37,7 @@ public abstract class PlayerClass extends Entity{
         //print action options
         input = sc.nextInt();
         System.out.println(input);
-        useAbility(indexToAbility(input));
+        useAbility(getAbility(input));
     }
     
     

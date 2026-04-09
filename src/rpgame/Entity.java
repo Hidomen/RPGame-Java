@@ -2,6 +2,8 @@ package rpgame;
 
 public abstract class Entity implements EntityFeatures {
     
+    protected String className;
+        
     protected double HP;
     protected double maxHP;
     
@@ -16,7 +18,7 @@ public abstract class Entity implements EntityFeatures {
     }
     
     
-    public Ability indexToAbility(int index){
+    public Ability getAbility(int index){
         return abilityManager.getAbility(index);
     }
 

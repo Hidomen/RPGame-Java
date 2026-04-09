@@ -16,8 +16,8 @@ public class Archer extends PlayerClass {
 
     Archer()
     {
-        
         super(abilityList,1);
+        className = "Archer";
         
         maxHP = mult.health * 14;
         mana = mult.mana * 5;

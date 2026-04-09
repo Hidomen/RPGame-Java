@@ -3,6 +3,8 @@ package rpgame;
 public class Mage extends PlayerClass {
     //Bigger mana and skill pool.
     
+    
+    
     static Ability[] abilityList = { //we can do this with sth called 'record' 
             //6 skill (MAGE SKILLSET DONE)
             new Ability(0, "Fireball" , "Deal ability power * 1.5 and apply 3 burn to enemy" , 8), //Burn: Take damage equal to burn at the start of your turn.
@@ -16,12 +18,14 @@ public class Mage extends PlayerClass {
     Mage()
     {
         super(abilityList,5);
-        
+        className = "Mage";
+
         maxHP = mult.health * 10;
         mana = mult.mana * 10;
         attackPower = mult.attack * 5;
         HP = maxHP;
         abilityPower = mult.ability * 8;
+        
         
     }
 

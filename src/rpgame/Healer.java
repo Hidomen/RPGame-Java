@@ -16,6 +16,8 @@ public class Healer extends PlayerClass{
     Healer()
     {
         super(abilityList,1);
+        className = "Healer";
+        
         maxHP = mult.health * 15;
         mana = mult.mana * 7;
         attackPower = mult.attack * 6;
