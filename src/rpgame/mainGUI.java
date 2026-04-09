@@ -325,7 +325,15 @@ public class mainGUI extends javax.swing.JFrame {
     
     
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
+        
+        if(null == p){
+            //WARNING:: YOU DIDNT CHOOSE YOUR CLASS
+            System.out.println("Choose your class.");
+            return;
+        }
+        System.out.println(p.className);
         //opens next window/frame
+
     }//GEN-LAST:event_continueButtonActionPerformed
 
 

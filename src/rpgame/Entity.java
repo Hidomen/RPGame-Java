@@ -13,16 +13,11 @@ public abstract class Entity implements EntityFeatures {
     
     protected AbilityManager abilityManager;
     
-    public void chooseAbility(int id){
-        
-    }
-    
     
     public Ability getAbility(int index){
         return abilityManager.getAbility(index);
     }
 
-    
     public void useAbility(Ability a/*,ENEMY*/){
         
         System.out.println(a.name);

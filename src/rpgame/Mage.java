@@ -3,9 +3,7 @@ package rpgame;
 public class Mage extends PlayerClass {
     //Bigger mana and skill pool.
     
-    
-    
-    static Ability[] abilityList = { //we can do this with sth called 'record' 
+    static Ability[] abilityList = {
             //6 skill (MAGE SKILLSET DONE)
             new Ability(0, "Fireball" , "Deal ability power * 1.5 and apply 3 burn to enemy" , 8), //Burn: Take damage equal to burn at the start of your turn.
             new Ability(1, "Electrify" , "Make your enemy shocked for turns equal to ability power * 0.25" , 3), // Shocked: Deal half damage

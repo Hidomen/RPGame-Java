@@ -3,7 +3,7 @@ package rpgame;
 public class Healer extends PlayerClass{
     //Passively heal urself/urgroup every turn.
     
-    static Ability[] abilityList = { //we can do this with sth called 'record' 
+    static Ability[] abilityList = {
             // Total of 5 skill ( HEALER SKILL SET DONE)
             new Ability(0,"Massive Heal" , "Gain health equal to your ability power * 1.5 " , 5),
             new Ability(1,"Holy Sword" , "Increase your attack power by quarter of your ability power" , 3),

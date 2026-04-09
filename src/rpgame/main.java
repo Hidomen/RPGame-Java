@@ -29,16 +29,15 @@ public class main {
             case 2 -> p = new Archer();
             case 3 -> p = new Healer();
             case 4 -> p = new Warrior();
-            default -> p = new Warrior();
+            default -> p = new Mage();
         }
         //==============================================
-        
-        // Creating a mage here with empty or not filled ability list results with an arror. //
-        // Should convert our array ability lists to vectors. //
         
         Enemy e = new Enemy(1);
         Combat c = new Combat(p,e);
         c.combatLoop();
+        
+        test();
                 
     }
     

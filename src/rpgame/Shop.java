@@ -1,7 +1,7 @@
 package rpgame;
 
 public class Shop {
-    Item [] goodies;
+    Item [] goodies = {/*ITEMS ARE GOING TO BE SETTED HERE*/};
     int itemCount;
 
     public Shop(int itemCount) {
@@ -15,8 +15,9 @@ public class Shop {
             goodies[itemCount] = item;
             itemCount++;
         }
-        else
+        else {
             System.out.println("Shop is full. Can not add another item.");
+        }
     }
     
         public void ListItems()

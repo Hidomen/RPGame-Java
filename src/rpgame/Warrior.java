@@ -3,7 +3,7 @@ package rpgame;
 public class Warrior extends PlayerClass {
     //More health and basic attack power
     
-    static Ability[] abilityList = { //we can do this with sth called 'record' 
+    static Ability[] abilityList = {
             //3 skill (WARRIOR SKILLSET DONE)
             new Ability(0,"Rage","Empower your attack power by 0.25",3),
             new Ability(1,"Bleeding Cut","Apply 6 bleed", 4), //Bleed : At the start of the enemy's turn take damage equal to bleed. Then decrease bleed by one.
