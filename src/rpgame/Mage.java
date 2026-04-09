@@ -3,10 +3,14 @@ package rpgame;
 public class Mage extends PlayerClass {
     //Bigger mana and skill pool.
     
-    static Ability[] abilityList = { //we can do this with sth called 'record'
-            new Ability(0, "Fireball" , "Throw a huge fireball to the enemy. Be carefull you may hurt your loved ones." , 7),
-            new Ability(1, "Stun'em" , "With using electric make your opponents studder" , 3),
-            new Ability(2, "PlaceHolder" , "This place is being hold by this ability" , 1)
+    static Ability[] abilityList = { //we can do this with sth called 'record' 
+            //6 skill (MAGE SKILLSET DONE)
+            new Ability(0, "Fireball" , "Deal ability power * 1.5 and apply 3 burn to enemy" , 8), //Burn: Take damage equal to burn at the start of your turn.
+            new Ability(1, "Electrify" , "Make your enemy shocked for turns equal to ability power * 0.25" , 3), // Shocked: Deal half damage
+            new Ability(2, "Channel" , "Improve your ability power by 1" , 1),
+            new Ability(3, "Blinding Fog" , "Enemy strikes half of the damage to itself with the chance of %50" , 5), //If happens player take no damage
+            new Ability(4, "Unlearned Beams" , "Attack with light beams that deals ability power damage , ability power/2 times , Every beam has a %25 chance to hit", 5),
+            new Ability(5, "Blood Bending" , "Take 10 damage deal 20 damage", 10)            
         };
     
     Mage()
