@@ -66,12 +66,12 @@ public abstract class Entity implements EntityFeatures {
     
     public void damageAbility(double damage , Entity target)
     {
-        target.takeDamage((int)damage);
+        target.takeDamage((int)damage); //Maybe floor cast
     }
     
     public void statusAbility(String Status, int forTurns ,Entity target)
     {
-        
+        //Enum status yap , switcthlerle kontrol et.
     }
 }
 
