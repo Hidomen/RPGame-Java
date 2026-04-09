@@ -1,16 +1,17 @@
 package rpgame;
+import java.util.Random;
 
 public class Mage extends PlayerClass {
     //Bigger mana and skill pool.
     
     static Ability[] abilityList = {
             //6 skill (MAGE SKILLSET DONE)
-            new Ability(0, "Fireball" , "Deal ability power * 1.5 and apply 3 burn to enemy" , 8), //Burn: Take damage equal to burn at the start of your turn.
+            new Ability(0, "Fireball" , "Deal ability power * 1.5 damage and apply 3 burn to enemy" , 8), //Burn: Take damage equal to burn at the start of your turn.
             new Ability(1, "Electrify" , "Make your enemy shocked for turns equal to ability power * 0.25" , 3), // Shocked: Deal half damage
-            new Ability(2, "Channel" , "Improve your ability power by 1" , 1),
+            new Ability(2, "Channel" , "Improve your or an ally's ability power by 1" , 1), //Working
             new Ability(3, "Blinding Fog" , "Enemy strikes half of the damage to itself with the chance of %50" , 5), //If happens player take no damage
-            new Ability(4, "Unlearned Beams" , "Attack with light beams that deals ability power damage , ability power/2 times , Every beam has a %25 chance to hit", 5),
-            new Ability(5, "Blood Bending" , "Take 10 damage deal 20 damage", 10)            
+            new Ability(4, "Unlearned Beams" , "Attack with light beams that deals ability power damage , ability power/2 times , Every beam has a %25 chance to hit", 5),//Working but never seen 0 missed beam so I'm not sure.
+            new Ability(5, "Blood Bending" , "Take 10 damage deal 20 damage", 10)   //Working          
         };
     
 
@@ -18,7 +19,7 @@ public class Mage extends PlayerClass {
     
     Mage()
     {
-        super(abilityList,5);
+        super(abilityList,6);
         className = "Mage";
 
         maxHP = mult.health * 10;
@@ -31,20 +32,43 @@ public class Mage extends PlayerClass {
 
     
     @Override
-    public void ability0(){
-        
-        System.out.println("YOUR BALLS IS ON FIRE. ");
+    public void ability0(Entity enemy){
+        damageAbility(abilityPower * 1.5 , enemy);
+        statusAbility("Burn", 3 ,enemy);
     }
     
     
-    public void ability1(){
-        System.out.println("YOU STUNNED THE ENEMY SUCCESFULLY. BUT THEY FALL ON YOU. YOU TAKE 5 DAMAGE");
-        takeDamage(5);
-        
+    public void ability1(Entity enemy){
+        statusAbility("Shock" , (int) (abilityPower * 0.25) , enemy);
     }
 
-    public void ability2(){
-        
+    public void ability2(Entity player){
+        player.abilityPower += 1;
+    }
+    
+    public void ability3(Entity enemy)
+    {
+        statusAbility("Fogged" , 1 , enemy);
+    }
+    
+    public void ability4(Entity enemy)
+    {
+        int chance;
+        for (int i = 0; i < (int)(abilityPower/2); i++) {
+            Random rand = new Random();
+            chance = rand.nextInt(4) + 1;
+            if (chance == 2) { // 1/4 şans 2yi seçtim çünkü en sevdiğim asal.
+                damageAbility(abilityPower , enemy);
+            }
+            else
+                System.out.println("Missed one of the beams!");
+        }
+    }
+    
+    public void ability5(Entity enemy)
+    {
+        damageAbility(20 , enemy);
+        HP -= 10;
     }
  
 }

@@ -36,8 +36,10 @@ public abstract class PlayerClass extends Entity{
         System.out.println("0 for ability 1, 1 for 2, 2 for 3");
         //print action options
         input = sc.nextInt();
+        
+        Entity target = new Enemy(1); //TEMPORARY
         System.out.println(input);
-        useAbility(getAbility(input));
+        useAbility(getAbility(input) , target);
     }
     
     

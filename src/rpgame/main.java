@@ -1,6 +1,5 @@
 package rpgame;
 
-
 import java.util.Scanner;
 
 import static rpgame.Classes.*;
@@ -9,9 +8,29 @@ import static rpgame.Classes.*;
 public class main {
     public static void main(){
         
+        abilityTesting();
+    }
+
+    public static void abilityTesting() {
         PlayerClass p = new Mage();
-        p.abilityManager.addEquippedAbility(p.abilityManager.getAbility(1));
-        p.abilityManager.ListEqAbilities();                
+        p.abilityManager.addEqAbility(p.abilityManager.getAbility(2));
+        p.abilityManager.addEqAbility(p.abilityManager.getAbility(4));
+        p.abilityManager.addEqAbility(p.abilityManager.getAbility(5));
+        p.abilityManager.ListEqAbilities();
+        Entity e = new Enemy(2);
+        System.out.println("e hp: "+e.HP);
+        System.out.println("p hp: "+p.HP);
+        System.out.println("p ap: "+p.abilityPower);
+        System.out.println("e ap: "+e.abilityPower);
+        p.useAbility(p.getAbility(2), p); //Ability listten alıyor btw
+        p.useAbility(p.getAbility(2), e); //Ability listten alıyor btw
+        System.out.println("p ap: "+p.abilityPower);
+        System.out.println("e ap: "+e.abilityPower);        
+        p.useAbility(p.getAbility(4), e);
+        System.out.println("e hp: "+e.HP);
+        p.useAbility(p.getAbility(5), e);
+        System.out.println("e hp: "+e.HP);
+        System.out.println("p hp: "+p.HP);
     }
 
     public static void test2() {
@@ -58,16 +77,16 @@ public class main {
     
         System.out.println(p1.HP);
 
-        
-        p1.useAbility(p1.abilityManager.getAbility(0));
+        /*
+        p1.useAbility(p1.abilityManager.getAbility(0);
+        p1.useAbility(p1.abilityManager.getAbility(1));
+        p1.useAbility(p1.abilityManager.getAbility(1));
+        p1.useAbility(p1.abilityManager.getAbility(1));  USİNG ABİLİTY NEEDS A ENTİTY target SO I COMMENTED İT TO DODGE THE ERROR
         p1.useAbility(p1.abilityManager.getAbility(1));
         p1.useAbility(p1.abilityManager.getAbility(1));
         p1.useAbility(p1.abilityManager.getAbility(1));
         p1.useAbility(p1.abilityManager.getAbility(1));
-        p1.useAbility(p1.abilityManager.getAbility(1));
-        p1.useAbility(p1.abilityManager.getAbility(1));
-        p1.useAbility(p1.abilityManager.getAbility(1));
-        
+        */
         System.out.println(p1.HP);
 
         Shop merchant = new Shop(5);
