@@ -9,9 +9,14 @@ import static rpgame.Classes.*;
 public class main {
     public static void main(){
         
-        
-        //==============================================
+        PlayerClass p = new Mage();
+        p.abilityManager.addEquippedAbility(p.abilityManager.getAbility(1));
+        p.abilityManager.ListEqAbilities();                
+    }
 
+    public static void test2() {
+        //==============================================
+        
         PlayerClass p;
         Scanner sc = new Scanner(System.in);
         
@@ -39,7 +44,6 @@ public class main {
         Enemy e = new Enemy(1);
         Combat c = new Combat(p,e);
         c.combatLoop();
-                
     }
     
     public static void test(){
@@ -48,21 +52,21 @@ public class main {
 
         p1.abilityManager.ListAbilities();
 
-        System.out.println("The chosen ability name is : " + p1.abilityManager.pickAbility(0).name);
-        System.out.println("The chosen ability description is : " + p1.abilityManager.pickAbility(0).description);
-        System.out.println("The chosen ability cost is : " + p1.abilityManager.pickAbility(0).cost);
+        System.out.println("The chosen ability name is : " + p1.abilityManager.getAbility(0).name);
+        System.out.println("The chosen ability description is : " + p1.abilityManager.getAbility(0).description);
+        System.out.println("The chosen ability cost is : " + p1.abilityManager.getAbility(0).cost);
     
         System.out.println(p1.HP);
 
         
-        p1.useAbility(p1.abilityManager.pickAbility(0));
-        p1.useAbility(p1.abilityManager.pickAbility(1));
-        p1.useAbility(p1.abilityManager.pickAbility(1));
-        p1.useAbility(p1.abilityManager.pickAbility(1));
-        p1.useAbility(p1.abilityManager.pickAbility(1));
-        p1.useAbility(p1.abilityManager.pickAbility(1));
-        p1.useAbility(p1.abilityManager.pickAbility(1));
-        p1.useAbility(p1.abilityManager.pickAbility(1));
+        p1.useAbility(p1.abilityManager.getAbility(0));
+        p1.useAbility(p1.abilityManager.getAbility(1));
+        p1.useAbility(p1.abilityManager.getAbility(1));
+        p1.useAbility(p1.abilityManager.getAbility(1));
+        p1.useAbility(p1.abilityManager.getAbility(1));
+        p1.useAbility(p1.abilityManager.getAbility(1));
+        p1.useAbility(p1.abilityManager.getAbility(1));
+        p1.useAbility(p1.abilityManager.getAbility(1));
         
         System.out.println(p1.HP);
 

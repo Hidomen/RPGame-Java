@@ -36,9 +36,9 @@ public abstract class Entity implements EntityFeatures {
         
         
         switch(a.ID){
-            case 0 -> ability1();
-            case 1 -> ability2();
-            case 2 -> ability3();
+            case 0 -> ability0();
+            case 1 -> ability1();
+            case 2 -> ability2();
         }
     }
     

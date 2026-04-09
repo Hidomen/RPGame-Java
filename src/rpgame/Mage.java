@@ -15,6 +15,9 @@ public class Mage extends PlayerClass {
             new Ability(5, "Blood Bending" , "Take 10 damage deal 20 damage", 10)            
         };
     
+
+    
+    
     Mage()
     {
         super(abilityList,5);
@@ -25,24 +28,24 @@ public class Mage extends PlayerClass {
         attackPower = mult.attack * 5;
         HP = maxHP;
         abilityPower = mult.ability * 8;
-        
-        
+
     }
 
     
     @Override
-    public void ability1(){
+    public void ability0(){
         
         System.out.println("YOUR BALLS IS ON FIRE. ");
     }
     
     
-    public void ability2(){
+    public void ability1(){
         System.out.println("YOU STUNNED THE ENEMY SUCCESFULLY. BUT THEY FALL ON YOU. YOU TAKE 5 DAMAGE");
         takeDamage(5);
+        
     }
 
-    public void ability3(){
+    public void ability2(){
         
     }
  
