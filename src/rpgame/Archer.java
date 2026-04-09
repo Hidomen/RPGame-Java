@@ -31,16 +31,16 @@ public class Archer extends PlayerClass {
     }
 
     
-    public void ability1(){
+    public void ability0(){
         dodgePossibility = 1; //fix after attack
     }
     
-    public void ability2(){
+    public void ability1(){
         attackPower *= 1.5;
         
     }
     
-    public void ability3(){
+    public void ability2(){
         System.out.println("SHADOWWWW");
     }
 }

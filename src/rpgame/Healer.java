@@ -26,15 +26,15 @@ public class Healer extends PlayerClass{
         
     }
     
+    public void ability0(){
+        
+    }
+    
     public void ability1(){
         
     }
     
     public void ability2(){
-        
-    }
-    
-    public void ability3(){
         
     }
 }
