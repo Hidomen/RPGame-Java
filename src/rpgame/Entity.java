@@ -65,14 +65,23 @@ public abstract class Entity implements EntityFeatures {
         if(HP > maxHP) {HP = maxHP;}
     }
     
-    public void damageAbility(double damage , Entity target)
+    public void activateAbility(double damage , Entity target)
     {
         target.takeDamage((int)damage); //Maybe floor cast
     }
-    
-    public void statusAbility(String Status, int forTurns ,Entity target)
+
+    public void activateAbility(Status status, int forTurns ,Entity target)
     {
-        //Enum status yap , switcthlerle kontrol et.
+            switch(status)
+            {
+                case Bleed: System.out.println("");
+                case Burn: System.out.println("");
+                case Fog: System.out.println("");
+                case Poison: System.out.println("");
+                case Shock: System.out.println("");
+                case Stun: System.out.println("");
+                case TemporaryHealth: System.out.println("");
+            }
     }
 }
 
