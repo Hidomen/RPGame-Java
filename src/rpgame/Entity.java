@@ -13,7 +13,15 @@ public abstract class Entity implements EntityFeatures {
     
     protected AbilityManager abilityManager;
     
-    
+    protected int [] haveStatus = {0,0,0,0,0,0,0};
+    //Bleed index 0 -> TemporaryHealth index 6
+    //Bleed           : At the start of the enemy's turn take damage equal to bleed. Then decrease bleed by one. (Working)
+    //Burn            : Take damage equal to burn at the start of your turn.                                     (Working)
+    //Fog             : Enemy strikes half of the damage to itself with the chance of %50
+    //Poison          : Make your enemy take 2 damage for turns equal to your ability power                      (Working)
+    //Shocked         : Deal half damage
+    //Stun            : Pass turn                                                                                (Working)
+    //TemporaryHealth : Lasts until enemy's turn end.
     public Ability getAbility(int index){
         return abilityManager.getAbility(index);
     }
@@ -74,14 +82,35 @@ public abstract class Entity implements EntityFeatures {
     {
             switch(status)
             {
-                case Bleed: System.out.println("");
-                case Burn: System.out.println("");
-                case Fog: System.out.println("");
-                case Poison: System.out.println("");
-                case Shock: System.out.println("");
-                case Stun: System.out.println("");
-                case TemporaryHealth: System.out.println("");
+                case Bleed: target.haveStatus[0] += forTurns;break;
+                case Burn: target.haveStatus[1] += forTurns;break;
+                case Fog: target.haveStatus[2] += forTurns;break;
+                case Poison: target.haveStatus[3] += forTurns;break;
+                case Shock: target.haveStatus[4] += forTurns;break;
+                case Stun: target.haveStatus[5] += forTurns;break;
+                case TemporaryHealth: target.haveStatus[6] += forTurns;break;
             }
+    }
+    
+    public boolean checkStatus() //if true pass turn 
+    {
+        for (int i = 0; i < haveStatus.length; i++) {
+            System.out.println(haveStatus[i]);
+            if (haveStatus[i] != 0) {
+                switch(i)
+                {
+                    case 0: this.takeDamage(haveStatus[i]--); break;
+                    case 1: this.takeDamage(haveStatus[i]); haveStatus[i] = 0; break;
+                    case 2: break;
+                    case 3: this.takeDamage(2); haveStatus[i]--; break;
+                    case 4: break;
+                    case 5: System.out.println("STUNNED! Will pass : " + haveStatus[i] + " turn"); haveStatus[i]--; return true;
+                    case 6: break;
+                }
+
+            }
+        }
+        return false;
     }
 }
 

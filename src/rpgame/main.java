@@ -8,7 +8,12 @@ import static rpgame.Classes.*;
 public class main {
     public static void main(){
         
-        abilityTesting();
+        PlayerClass p = new Healer();
+        p.abilityManager.addEqAbility(p.abilityManager.getAbility(4));
+        Enemy e = new Enemy(3);
+        
+        Combat c = new Combat(p , e);
+        c.combatLoop();
     }
 
     public static void abilityTesting() {
