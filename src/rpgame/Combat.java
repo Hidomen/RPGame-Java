@@ -5,7 +5,7 @@ package rpgame;
 public class Combat {
     
     EntityType turn;
-    
+    boolean stunned = false;
     PlayerClass p;
     Enemy e;
     
@@ -34,13 +34,18 @@ public class Combat {
             switch(turn){
                 case Player -> {
                     System.out.println("PLAYER TURN");
-                    
-                    p.turn(e);
+                    System.out.println("Checking Status");
+                    p.useAbility(p.abilityManager.getAbility(4), e);
                 }
                 case Enemy ->{
                     System.out.println("ENEMY TURN");
-                    
-                    e.turn(p);
+                    System.out.println("Checking Status");
+                    stunned = e.checkStatus();
+                    System.out.println("Enemy hp after status check : " + e.HP);
+                    if (stunned == false) {
+                        e.turn(p); 
+                    }
+
                 }
             }        
             

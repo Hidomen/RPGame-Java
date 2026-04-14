@@ -1,4 +1,5 @@
 package rpgame;
+import static rpgame.Status.*;
 
 public class Healer extends PlayerClass{
     //Passively heal urself/urgroup every turn.
@@ -9,7 +10,7 @@ public class Healer extends PlayerClass{
             new Ability(1,"Holy Sword" , "Increase your attack power by quarter of your ability power" , 3),
             new Ability(2,"Tiny Heal" , "Gain health equal to your ability power * 0.5" , 3),
             new Ability(3,"Hand Of God" , "Attack with a mighty power of attack power + ability power" , 7),
-            new Ability(4, "Light Binding" , "Stun your enemy for 1 turn" , 5)
+            new Ability(4, "Light Binding" , "Stun your enemy for 1 turn" , 5)//Working
 
     };
     
@@ -27,27 +28,26 @@ public class Healer extends PlayerClass{
     }
     
     public void ability0(Entity target){
-        
+        target.heal((int)(abilityPower * 1.5));
     }
     
     public void ability1(Entity target){
-        
+        this.attackPower += (0.25 * abilityPower);
     }
     
     public void ability2(Entity target){
-        
+        target.heal((int)(abilityPower * 0.5));
     }
     
     public void ability3(Entity target){
-
+        target.takeDamage(abilityPower + attackPower);
     }
     
     public void ability4(Entity target){
-
+        activateAbility(Stun , 1 , target);
     }
     
     public void ability5(Entity target){
-
     }
     
 }
