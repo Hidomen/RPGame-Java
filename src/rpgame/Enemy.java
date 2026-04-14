@@ -4,32 +4,39 @@ package rpgame;
 
 public class Enemy extends Entity {
     
-    
+    private static final int constantMultiplier = 3;
+        
     Enemy(int powerLevel){
         
-        int constant = 3;
         
-        maxHP           = powerLevel * constant * Config.health;
+        maxHP           = powerLevel * constantMultiplier * Config.health;
+        attackPower     = powerLevel * constantMultiplier * Config.attack;
+        abilityPower    = powerLevel * constantMultiplier * Config.ability;
+        mana            = powerLevel * constantMultiplier * Config.mana;
+        
         HP = maxHP;
-        
-        attackPower     = powerLevel * constant * Config.attack;
-        abilityPower    = powerLevel * constant * Config.ability;
-        mana            = powerLevel * constant * Config.mana;
     }
     
     
     public void turn(PlayerClass p){
         //different behaviours: only attack, attack and heal etc.
         
+        
+        try {
+            Thread.sleep(1);
+        } catch (InterruptedException e) {
+            
+        }
+
+        
         System.out.println("Checking Status"); //debug
         
-        if(checkStatus()){
-            System.out.println("Enemy hp after status check : " + HP); //debug
-            return;
-        }
+        boolean isStunned = checkStatus();
+        System.out.println("Enemy hp after status check : " + HP); //debug
         
-        System.out.println("ENEMY ATTACKED THE PLAYER, gives " + attackPower + " damage.");
-        attack(p);
+     
+        if(!isStunned) {attack(p); }
+        
     }
 
     

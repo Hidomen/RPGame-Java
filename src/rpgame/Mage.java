@@ -36,21 +36,22 @@ public class Mage extends PlayerClass {
     @Override
     public void ability0(Entity enemy){
         activateAbility(abilityPower * 1.5 , enemy);
-        activateAbility(Burn, 3 ,enemy);
+        addStatus(Burn, 3 ,enemy);
     }
     
     
     public void ability1(Entity enemy){
-        activateAbility(Shock , (int) (abilityPower * 0.25) , enemy);
+        addStatus(Shock , (int) (abilityPower * 0.25) , enemy);
     }
 
     public void ability2(Entity player){
-        player.abilityPower += 1;
+        abilityPower += 1;
     }
     
     public void ability3(Entity enemy)
     {
-        activateAbility(Fog , 1 , enemy);
+        System.out.println("FOGGG!!!!");
+        addStatus(Fog, 1, enemy);
     }
     
     public void ability4(Entity enemy)

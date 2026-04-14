@@ -44,7 +44,7 @@ public class Healer extends PlayerClass{
     }
     
     public void ability4(Entity target){
-        activateAbility(Stun , 1 , target);
+        addStatus(Stun , 1 , target);
     }
     
     public void ability5(Entity target){

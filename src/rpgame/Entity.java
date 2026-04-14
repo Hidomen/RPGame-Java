@@ -9,7 +9,7 @@ public abstract class Entity implements EntityFeatures {
     protected double HP;
     protected double maxHP;
     
-    protected double mana;
+    protected int mana;
     protected double attackPower;
     protected double abilityPower;
     
@@ -25,7 +25,7 @@ public abstract class Entity implements EntityFeatures {
     public static final int POISON_INDEX    = 3; //Make your enemy take 2 damage for turns equal to your ability power                      (Working)
     public static final int SHOCK_INDEX     = 4; //Deal half damage                                                                         (Working)
     public static final int STUN_INDEX      = 5; //Pass turn                                                                                (Working)
-    public static final int TEMP_H_INDEX    = 6; //TemporaryHealth : Lasts until enemy's turn end     //add hp when added and remove hp after status check?
+    public static final int TEMP_H_INDEX    = 6; //TemporaryHealth : Lasts until enemy's turn end                                           (Working)
     
     
     public Ability getAbility(int index){
@@ -58,8 +58,9 @@ public abstract class Entity implements EntityFeatures {
         
         Random rand = new Random();
         
+        double damage = attackPower;
         
-        if(target.statusList[FOG_INDEX] > 0){ // %50 chance to attack urself instead
+        if(statusList[FOG_INDEX] > 0){ // %50 chance to attack urself instead
             
             if(rand.nextBoolean()){
                 System.out.println("AAAAHH!! I HIT MYSELF");
@@ -70,10 +71,18 @@ public abstract class Entity implements EntityFeatures {
         }
         
         if(statusList[SHOCK_INDEX] > 0){
-            target.takeDamage(attackPower / 2);
+            damage /= 2;
         }
         
-        target.takeDamage(attackPower);
+        int targetTempHealth = target.statusList[TEMP_H_INDEX];
+        if(targetTempHealth > 0){
+            
+            //target.statusList[TEMP_H_INDEX] -= damage; //if its gonna reset after one turn doesn't necessary
+            damage -= targetTempHealth;
+        }
+        
+        
+        target.takeDamage(damage);
     }
     
     
@@ -83,6 +92,9 @@ public abstract class Entity implements EntityFeatures {
     }
     
     public void takeDamage(double damage){
+        
+        if(damage <= 0) return;
+        
         HP -= damage;
         
         if(HP <= 0){
@@ -91,6 +103,8 @@ public abstract class Entity implements EntityFeatures {
     }
     
     public void heal(int heal){
+        
+        if(heal <= 0) return;
 
         HP += heal;
 
@@ -103,7 +117,7 @@ public abstract class Entity implements EntityFeatures {
         target.takeDamage((int)damage); //Maybe floor cast
     }
 
-    public void activateAbility(Status status, int forTurns, Entity target)
+    public void addStatus(Status status, int forTurns, Entity target)
     {
             switch(status)
             {
@@ -117,7 +131,10 @@ public abstract class Entity implements EntityFeatures {
             }
     }
     
-    public boolean checkStatus() //if true pass turn 
+    
+    //called in start of turn
+    //returns true if stunned
+    public boolean checkStatus()
     {
         for (int i = 0; i < statusList.length; i++) {
             
@@ -127,21 +144,46 @@ public abstract class Entity implements EntityFeatures {
                 
                 switch(i)
                 {
-                    case BLEED_INDEX -> {this.takeDamage(statusList[i]--);}
-                    case BURN_INDEX -> {this.takeDamage(statusList[i]); statusList[i] = 0;}
-                    case FOG_INDEX -> {statusList[i]--;}
-                    case POISON_INDEX -> {this.takeDamage(2); statusList[i]--;}
-                    case SHOCK_INDEX -> {statusList[i]--;}
-                    case STUN_INDEX -> {System.out.println("STUNNED! Will pass : " + statusList[i] + " turn"); statusList[i]--; return true;}
-                    case TEMP_H_INDEX -> {statusList[i] = 0;}
+                    case BLEED_INDEX -> {this.takeDamage(statusList[i]);}
+                    case BURN_INDEX -> {this.takeDamage(statusList[i]);}
+                    case FOG_INDEX -> {}
+                    case POISON_INDEX -> {this.takeDamage(2);}
+                    case SHOCK_INDEX -> {}
+                    case STUN_INDEX -> {System.out.println("STUNNED! Will pass : " + statusList[i] + " turn"); return true;}
+                    case TEMP_H_INDEX -> {}
 
                 }
                 
-                //haveStatus[i]--;
             }
         }
         return false;
     }
-}
+    
+    
+    public void statusFix(){
+        
+        for(int i = 0; i < statusList.length; i++){
+        
+            
+            switch(i){
+                
+                //special conditons
+                case BLEED_INDEX -> {}
+                //case BURN_INDEX -> {statusList[i] = 0;}
+                case FOG_INDEX -> {}
+                case POISON_INDEX -> {}
+                case SHOCK_INDEX -> {}
+                case STUN_INDEX -> {}
+                case TEMP_H_INDEX -> {}
+                
+                
+            }
+            
+            if(statusList[i] > 0){
+                statusList[i]--;
+            }
+        }
+    }
 
+}
 

@@ -33,11 +33,11 @@ public class Warrior extends PlayerClass {
     }
     
     public void ability1(Entity target){
-        activateAbility(Bleed , 6 , target);
+        addStatus(Bleed , 6 , target);
     }
     
     public void ability2(Entity target){
-        activateAbility(TemporaryHealth , (int)(4*abilityPower) , target);
+        addStatus(TemporaryHealth , (int)(4*abilityPower) , target);
     }
     
     public void ability3(Entity target){

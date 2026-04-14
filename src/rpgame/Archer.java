@@ -45,7 +45,7 @@ public class Archer extends PlayerClass {
     }
     
     public void ability3(Entity target){
-        activateAbility(Poison , (int)abilityPower , target);
+        addStatus(Poison , (int)abilityPower , target);
     }
     
     public void ability4(Entity target){
