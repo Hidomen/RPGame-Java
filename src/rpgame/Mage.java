@@ -15,6 +15,7 @@ public class Mage extends PlayerClass {
         };
     
 
+
     
     
     Mage()
@@ -68,7 +69,7 @@ public class Mage extends PlayerClass {
     public void ability5(Entity enemy)
     {
         damageAbility(20 , enemy);
-        HP -= 10;
+        takeDamage(10);
     }
  
 }

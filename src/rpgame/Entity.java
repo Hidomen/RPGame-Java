@@ -20,7 +20,7 @@ public abstract class Entity implements EntityFeatures {
 
     public void useAbility(Ability a , Entity target){
         
-        System.out.println(a.name);
+        //System.out.println(a.name);
         
         if(mana < a.cost){
             System.out.println("Your mana is not enough for the " + a.name);

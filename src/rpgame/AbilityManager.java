@@ -3,17 +3,17 @@ package rpgame;
 
 public class AbilityManager {
     
-    int nextNull;
-    int abilityCap; //changes by class. for example mage can have 5 abilities, whereas warrior can only have 2 //maxAbilitySize    
+    int abilityCapacity; //changes by class. for example mage can have 5 abilities, whereas warrior can only have 2
+    
     Ability[] abilityList;
     Ability[] equippedAbilites;
     int nextEqNull;
 
-    AbilityManager(Ability[] abilitylist, int abilityCap){
+    AbilityManager(Ability[] abilitylist, int abilityCapacity){
         abilityList = new Ability[Config.MAX_ABILITY_SIZE];
-        equippedAbilites = new Ability[abilityCap];
+        equippedAbilites = new Ability[abilityCapacity];
         this.abilityList = abilitylist;
-        this.abilityCap = abilityCap;
+        this.abilityCapacity = abilityCapacity;
     }
    
     
@@ -50,7 +50,7 @@ public class AbilityManager {
 
     public Ability getAbility(int index)
     {
-        if (index >= abilityCap){
+        if (index >= abilityCapacity){
             return null;
         }
 

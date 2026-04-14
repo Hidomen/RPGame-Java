@@ -11,9 +11,11 @@ public class main {
         abilityTesting();
     }
 
+    
+    
     public static void abilityTesting() {
         PlayerClass p = new Mage();
-
+        
         p.abilityManager.addEqAbility(p.abilityManager.getAbility(1));
         p.abilityManager.ListAbilities(p.abilityManager.equippedAbilites);                
         p.abilityManager.addEqAbility(p.abilityManager.getAbility(2));
@@ -34,6 +36,8 @@ public class main {
         p.useAbility(p.getAbility(5), e);
         System.out.println("e hp: "+e.HP);
         System.out.println("p hp: "+p.HP);
+        
+        
     }
 
     public static void test2() {
