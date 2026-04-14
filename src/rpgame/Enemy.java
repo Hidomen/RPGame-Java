@@ -21,14 +21,17 @@ public class Enemy extends Entity {
     public void turn(PlayerClass p){
         //different behaviours: only attack, attack and heal etc.
         
+        System.out.println("Checking Status"); //debug
+        
+        if(checkStatus()){
+            System.out.println("Enemy hp after status check : " + HP); //debug
+            return;
+        }
+        
         System.out.println("ENEMY ATTACKED THE PLAYER, gives " + attackPower + " damage.");
         attack(p);
     }
-    
-    
-    public void scream(){
-        
-    }
+
     
     public void ability0(Entity target){
         

@@ -29,7 +29,7 @@ public abstract class PlayerClass extends Entity{
     
     public void turn(Enemy e){
         
-        
+        if(checkStatus()) return;
         
         //for debug
         System.out.println("PLAYER ATTACKED THE ENEMY, gives " + attackPower + " damage.");

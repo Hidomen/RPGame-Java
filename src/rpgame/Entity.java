@@ -1,5 +1,7 @@
 package rpgame;
 
+import java.util.Random;
+
 public abstract class Entity implements EntityFeatures {
     
     protected String className;
@@ -13,15 +15,19 @@ public abstract class Entity implements EntityFeatures {
     
     protected AbilityManager abilityManager;
     
-    protected int [] haveStatus = {0,0,0,0,0,0,0};
-    //Bleed index 0 -> TemporaryHealth index 6
-    //Bleed           : At the start of the enemy's turn take damage equal to bleed. Then decrease bleed by one. (Working)
-    //Burn            : Take damage equal to burn at the start of your turn.                                     (Working)
-    //Fog             : Enemy strikes half of the damage to itself with the chance of %50
-    //Poison          : Make your enemy take 2 damage for turns equal to your ability power                      (Working)
-    //Shocked         : Deal half damage
-    //Stun            : Pass turn                                                                                (Working)
-    //TemporaryHealth : Lasts until enemy's turn end.
+    
+    
+    protected int [] statusList = {0,0,0,0,0,0,0};
+    
+    public static final int BLEED_INDEX     = 0; //At the start of the enemy's turn take damage equal to bleed. Then decrease bleed by one. (Working)
+    public static final int BURN_INDEX      = 1; //Take damage equal to burn at the start of your turn.                                     (Working)
+    public static final int FOG_INDEX       = 2; //Enemy strikes half of the damage to itself with the chance of %50                        (Working)
+    public static final int POISON_INDEX    = 3; //Make your enemy take 2 damage for turns equal to your ability power                      (Working)
+    public static final int SHOCK_INDEX     = 4; //Deal half damage                                                                         (Working)
+    public static final int STUN_INDEX      = 5; //Pass turn                                                                                (Working)
+    public static final int TEMP_H_INDEX    = 6; //TemporaryHealth : Lasts until enemy's turn end     //add hp when added and remove hp after status check?
+    
+    
     public Ability getAbility(int index){
         return abilityManager.getAbility(index);
     }
@@ -49,13 +55,31 @@ public abstract class Entity implements EntityFeatures {
     }
     
     public void attack(Entity target){
+        
+        Random rand = new Random();
+        
+        
+        if(target.statusList[FOG_INDEX] > 0){ // %50 chance to attack urself instead
+            
+            if(rand.nextBoolean()){
+                System.out.println("AAAAHH!! I HIT MYSELF");
+                takeDamage(attackPower);
+                return;
+            }
+            
+        }
+        
+        if(statusList[SHOCK_INDEX] > 0){
+            target.takeDamage(attackPower / 2);
+        }
+        
         target.takeDamage(attackPower);
     }
     
     
+    
     private void die(){
-        System.out.println(className);
-        System.out.println("YOU DIED");
+        System.out.println(className + "IS DIED");
     }
     
     public void takeDamage(double damage){
@@ -73,41 +97,47 @@ public abstract class Entity implements EntityFeatures {
         if(HP > maxHP) {HP = maxHP;}
     }
     
-    public void activateAbility(double damage , Entity target)
+    //need this? - almost same as attack function. One of them should to go
+    public void activateAbility(double damage, Entity target)
     {
         target.takeDamage((int)damage); //Maybe floor cast
     }
 
-    public void activateAbility(Status status, int forTurns ,Entity target)
+    public void activateAbility(Status status, int forTurns, Entity target)
     {
             switch(status)
             {
-                case Bleed: target.haveStatus[0] += forTurns;break;
-                case Burn: target.haveStatus[1] += forTurns;break;
-                case Fog: target.haveStatus[2] += forTurns;break;
-                case Poison: target.haveStatus[3] += forTurns;break;
-                case Shock: target.haveStatus[4] += forTurns;break;
-                case Stun: target.haveStatus[5] += forTurns;break;
-                case TemporaryHealth: target.haveStatus[6] += forTurns;break;
+                case Bleed ->           {target.statusList[BLEED_INDEX]     += forTurns;}
+                case Burn ->            {target.statusList[BURN_INDEX]      += forTurns;}
+                case Fog ->             {target.statusList[FOG_INDEX]       += forTurns;}
+                case Poison ->          {target.statusList[POISON_INDEX]    += forTurns;}
+                case Shock ->           {target.statusList[SHOCK_INDEX]     += forTurns;}
+                case Stun ->            {target.statusList[STUN_INDEX]      += forTurns;}
+                case TemporaryHealth -> {target.statusList[TEMP_H_INDEX]    += forTurns;}
             }
     }
     
     public boolean checkStatus() //if true pass turn 
     {
-        for (int i = 0; i < haveStatus.length; i++) {
-            System.out.println(haveStatus[i]);
-            if (haveStatus[i] != 0) {
+        for (int i = 0; i < statusList.length; i++) {
+            
+            System.out.println(statusList[i]); //debug
+            
+            if (statusList[i] != 0) {
+                
                 switch(i)
                 {
-                    case 0: this.takeDamage(haveStatus[i]--); break;
-                    case 1: this.takeDamage(haveStatus[i]); haveStatus[i] = 0; break;
-                    case 2: break;
-                    case 3: this.takeDamage(2); haveStatus[i]--; break;
-                    case 4: break;
-                    case 5: System.out.println("STUNNED! Will pass : " + haveStatus[i] + " turn"); haveStatus[i]--; return true;
-                    case 6: break;
-                }
+                    case BLEED_INDEX -> {this.takeDamage(statusList[i]--);}
+                    case BURN_INDEX -> {this.takeDamage(statusList[i]); statusList[i] = 0;}
+                    case FOG_INDEX -> {statusList[i]--;}
+                    case POISON_INDEX -> {this.takeDamage(2); statusList[i]--;}
+                    case SHOCK_INDEX -> {statusList[i]--;}
+                    case STUN_INDEX -> {System.out.println("STUNNED! Will pass : " + statusList[i] + " turn"); statusList[i]--; return true;}
+                    case TEMP_H_INDEX -> {statusList[i] = 0;}
 
+                }
+                
+                //haveStatus[i]--;
             }
         }
         return false;

@@ -39,12 +39,8 @@ public class Combat {
                 }
                 case Enemy ->{
                     System.out.println("ENEMY TURN");
-                    System.out.println("Checking Status");
-                    stunned = e.checkStatus();
-                    System.out.println("Enemy hp after status check : " + e.HP);
-                    if (stunned == false) {
-                        e.turn(p); 
-                    }
+                    
+                    e.turn(p); 
 
                 }
             }        
