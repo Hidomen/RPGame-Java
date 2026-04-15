@@ -1,24 +1,25 @@
 package rpgame;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public abstract class PlayerClass extends Entity{
 
     protected int money;
     
     protected int level;
-    protected int xp;
+    protected int XP;
     protected final int xpCap;
 
-    
-    int abilityCap;
+    protected int abilityCap;
     
     
     PlayerClass(Ability[] abilityList, int abilityCap){
         
+        super(); //necessary?
+        
         xpCap = 100;
         level = 1;
-        xp = 0;
+        XP = 0;
         money = 0;
         
         this.abilityCap = abilityCap;
@@ -26,7 +27,7 @@ public abstract class PlayerClass extends Entity{
         abilityManager = new AbilityManager(abilityList, abilityCap);
     }
 
-    
+    /*
     public void turn(Enemy e){
         
         if(checkStatus()) return;
@@ -34,26 +35,24 @@ public abstract class PlayerClass extends Entity{
         //for debug
         System.out.println("PLAYER ATTACKED THE ENEMY, gives " + attackPower + " damage.");
         attack(e);
-        
-        
-        /*
+    
         int input; //for console version
         Scanner sc = new Scanner(System.in);
         
         System.out.println("0 for ability 1, 1 for 2, 2 for 3");
         //print action options
         
-        
-        
+ 
         input = sc.nextInt();
         
         Entity target = new Enemy(1); //TEMPORARY
         System.out.println(input);
 
         useAbility(getAbility(input));
-        */
-
+        
     }
+    */
+
 
     
     private void levelUp(){
@@ -62,12 +61,12 @@ public abstract class PlayerClass extends Entity{
 
     
     public void gainXP(int xp){
-        this.xp += xp;
+        this.XP += xp;
         
-        if(this.xp >= xpCap){
+        if(this.XP >= xpCap){
             levelUp();
             
-            this.xp -= xpCap;
+            this.XP -= xpCap;
         }
         
     }

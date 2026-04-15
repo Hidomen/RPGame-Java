@@ -4,19 +4,20 @@ package rpgame;
 
 public class Combat {
     
-    EntityType turn;
-    boolean stunned = false;
-    PlayerClass p;
-    Enemy e;
+    private EntityType turn;
+    private boolean stunned = false;
     
-    Combat(PlayerClass p, Enemy e){
+    private PlayerClass[] players;
+    private Enemy[] enemies;
+    
+    
+    Combat(PlayerClass[] players, Enemy[] enemies){ //list of entities
         turn = EntityType.Player;
         
-        this.p = p;
-        this.e = e;
+        this.players = players;
+        this.enemies = enemies;
     }
-    
-    
+
     
     public EntityType getTurn(){
         return turn;
@@ -24,58 +25,26 @@ public class Combat {
     
     public void nextTurn(){
         
-        if(EntityType.Player == turn){
-            
-            p.mana++;
-        }
-
-        if(EntityType.Enemy == turn){
-            
-            e.mana++;
-        }
-        
         turn = EntityType.values()[(turn.ordinal() + 1) % 2];
     }
+
     
-    //every turn one member is focused and others will be entity vector.
-    //focused.turn(entityVector). Thus, focused can be attack or heal etc. any others
-    //visual stuff can show which member is targeted for that attack/sth
-    public void combatLoop(){
-        
-        //if(p.HP <= 0 || e.HP <= 0) return;
-        /*
-        System.out.println("=======================================");
-
-        System.out.print("PLAYER'S HEALTH: " + p.HP);
-        System.out.println(" ENEMY'S HEALTH: " + e.HP);
-        */
-
-        switch(turn){
-            
-            case Player -> {
-                System.out.println("PLAYER TURN");
+    public void playerTurn(int playerIndex){
+        System.out.println("PLAYER TURN");
                 
-                p.checkStatus();
-                p.turn(e);
-                p.statusFix();
+        players[playerIndex].checkStatus();
+        //p.turn(e);
+        players[playerIndex].endTurnEffects();
                 
-                nextTurn();
-            }
-
-            case Enemy ->{
-                System.out.println("ENEMY TURN");
+        nextTurn();
+    }
+    
+    public void enemyTurn(int enemyIndex){
+        System.out.println("ENEMY TURN");
                 
-                e.checkStatus();
-                e.turn(p); 
-                e.statusFix();
+        enemies[enemyIndex].checkStatus();
+        enemies[enemyIndex].turn(players[0]); 
+        enemies[enemyIndex].endTurnEffects();
                 
-                nextTurn();
-            }
-
-        }        
-
-        /*
-        System.out.println("=======================================");
-        */
     }
 }

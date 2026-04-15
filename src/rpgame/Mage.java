@@ -6,7 +6,7 @@ public class Mage extends PlayerClass {
     //Bigger mana and skill pool.
     
     static Ability[] abilityList = {
-            //6 skill (MAGE SKILLSET DONE)
+            
             new Ability(0, "Fireball" , "Deal ability power * 1.5 damage and apply 3 burn to enemy" , 8), //Working
             new Ability(1, "Electrify" , "Make your enemy shocked for turns equal to ability power * 0.25" , 3), 
             new Ability(2, "Channel" , "Improve your or an ally's ability power by 1" , 1), //Working
@@ -35,7 +35,7 @@ public class Mage extends PlayerClass {
     
     @Override
     public void ability0(Entity enemy){
-        activateAbility(abilityPower * 1.5 , enemy);
+        giveDamage(abilityPower * 1.5 , enemy);
         addStatus(Burn, 3 ,enemy);
     }
     
@@ -61,7 +61,7 @@ public class Mage extends PlayerClass {
             Random rand = new Random();
             chance = rand.nextInt(4) + 1;
             if (chance == 2) { // 1/4 şans 2yi seçtim çünkü en sevdiğim asal.
-                activateAbility(abilityPower , enemy);
+                giveDamage(abilityPower , enemy);
             }
             else
                 System.out.println("Missed one of the beams!");

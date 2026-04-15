@@ -5,7 +5,7 @@ public class Warrior extends PlayerClass {
     //More health and basic attack power
     
     static Ability[] abilityList = {
-            //3 skill (WARRIOR SKILLSET DONE)
+            
             new Ability(0,"Rage","Empower your attack power by 0.25",3),
             new Ability(1,"Bleeding Cut","Apply 6 bleed", 4), //Working
             new Ability(2,"Stand Proud","Gain 4 * ability power temporary health",2) 

@@ -1,7 +1,25 @@
 package rpgame;
 
+import static rpgame.Classes.*;
+
 public class Shop {
-    Item [] goodies = {/*ITEMS ARE GOING TO BE SETTED HERE*/};
+    
+    Item[] itemLib = {
+      
+        new WeaponItem(1.2 , 1 , "Sword" , 85 , new Classes[] {Warrior , Healer}),
+        new WeaponItem(1.5 , 1 , "Bow" , 80 , new Classes[] {Archer}),
+        new WeaponItem(1 , 1.4 , "Magic Staff" , 90 , new Classes[] {Mage}),
+        new ArmorItem(1.1 , "Leather Boots" , 25 , new Classes[] {Warrior , Healer , Archer , Mage}),
+        new ArmorItem(1.5 , "Steel Plate" , 105 , new Classes[] {Warrior , Healer})
+    };
+    
+    Item [] goodies = {/*ITEMS ARE GOING TO BE SETTED HERE*/
+    
+    
+    
+    
+    };
+    
     int itemCount;
 
     public Shop(int itemCount) {

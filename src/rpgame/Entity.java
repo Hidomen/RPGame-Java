@@ -14,8 +14,7 @@ public abstract class Entity implements EntityFeatures {
     protected double abilityPower;
     
     protected AbilityManager abilityManager;
-    
-    
+
     
     protected int [] statusList = {0,0,0,0,0,0,0};
     
@@ -26,8 +25,23 @@ public abstract class Entity implements EntityFeatures {
     public static final int SHOCK_INDEX     = 4; //Deal half damage                                                                         (Working)
     public static final int STUN_INDEX      = 5; //Pass turn                                                                                (Working)
     public static final int TEMP_H_INDEX    = 6; //TemporaryHealth : Lasts until enemy's turn end                                           (Working)
+
     
+    protected static int attackScale;
+    protected static int healthScale;
+    protected static int manaScale;
+    protected static int abilityScale;
     
+
+    public Entity(){
+        
+        attackScale = 1;
+        healthScale = 1;
+        manaScale = 1;
+        abilityScale = 1;
+    }
+    
+
     public Ability getAbility(int index){
         return abilityManager.getAbility(index);
     }
@@ -82,7 +96,7 @@ public abstract class Entity implements EntityFeatures {
         }
         
         
-        target.takeDamage(damage);
+        giveDamage(damage,target);
     }
     
     
@@ -110,10 +124,12 @@ public abstract class Entity implements EntityFeatures {
 
         if(HP > maxHP) {HP = maxHP;}
     }
+
     
-    //need this? - almost same as attack function. One of them should to go
-    public void activateAbility(double damage, Entity target)
+    public void giveDamage(double damage, Entity target)
     {
+        if(damage <= 0) return;
+        
         target.takeDamage((int)damage); //Maybe floor cast
     }
 
@@ -160,8 +176,10 @@ public abstract class Entity implements EntityFeatures {
     }
     
     
-    public void statusFix(){
+    public void endTurnEffects(){
         
+        
+        //update status
         for(int i = 0; i < statusList.length; i++){
         
             
@@ -169,12 +187,12 @@ public abstract class Entity implements EntityFeatures {
                 
                 //special conditons
                 case BLEED_INDEX -> {}
-                //case BURN_INDEX -> {statusList[i] = 0;}
+                case BURN_INDEX -> {statusList[i] = 0;}
                 case FOG_INDEX -> {}
                 case POISON_INDEX -> {}
                 case SHOCK_INDEX -> {}
                 case STUN_INDEX -> {}
-                case TEMP_H_INDEX -> {}
+                case TEMP_H_INDEX -> {statusList[i] = 0;}
                 
                 
             }
@@ -183,6 +201,9 @@ public abstract class Entity implements EntityFeatures {
                 statusList[i]--;
             }
         }
+        
+        
+        mana++;
     }
 
 }
