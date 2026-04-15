@@ -1,12 +1,9 @@
 package rpgame;
-
+import rpgame.PlayerClass.*;
 import java.util.Scanner;
 
 public class main {
     public static void main(){
-        
-        Game g = new Game(1);
-        
         
     }
 
