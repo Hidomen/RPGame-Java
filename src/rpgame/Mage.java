@@ -15,9 +15,6 @@ public class Mage extends PlayerClass {
             new Ability(5, "Blood Bending" , "Take 10 damage deal 20 damage", 10)   //Working          
         };
     
-
-
-    
     
     Mage()
     {
@@ -32,28 +29,30 @@ public class Mage extends PlayerClass {
 
     }
 
-    
     @Override
     public void ability0(Entity enemy){
         giveDamage(abilityPower * 1.5 , enemy);
         addStatus(Burn, 3 ,enemy);
     }
     
-    
+    @Override
     public void ability1(Entity enemy){
         addStatus(Shock , (int) (abilityPower * 0.25) , enemy);
     }
 
+    @Override
     public void ability2(Entity player){
         abilityPower += 1;
     }
     
+    @Override
     public void ability3(Entity enemy)
     {
         System.out.println("FOGGG!!!!");
         addStatus(Fog, 1, enemy);
     }
     
+    @Override
     public void ability4(Entity enemy)
     {
         int chance;
@@ -68,6 +67,7 @@ public class Mage extends PlayerClass {
         }
     }
     
+    @Override
     public void ability5(Entity enemy)
     {
 

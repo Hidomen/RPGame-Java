@@ -25,28 +25,34 @@ public class Warrior extends PlayerClass {
 
     }
     
-    
-
-    
+    @Override
     public void ability0(Entity target){
         this.attackPower *= 1.25;
     }
     
+    @Override
     public void ability1(Entity target){
         addStatus(Bleed , 6 , target);
     }
     
+    @Override
     public void ability2(Entity target){
         addStatus(TemporaryHealth , (int)(4*abilityPower) , target);
     }
     
+    @Override
     public void ability3(Entity target){
+        System.err.println("Warrior does not have ability3");
     }
     
+    @Override
     public void ability4(Entity target){
+        System.err.println("Warrior does not have ability4");
     }
     
+    @Override
     public void ability5(Entity target){
+        System.err.println("Warrior does not have ability5");
     }
     
 }

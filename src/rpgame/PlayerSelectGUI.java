@@ -1,23 +1,26 @@
 package rpgame;
 
 
-public class mainGUI extends javax.swing.JFrame {
+public class PlayerSelectGUI extends javax.swing.JFrame{
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(mainGUI.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PlayerSelectGUI.class.getName());
 
-    static Game game;
+    private int playerCount = 2;
     
-    int playerCount = 2;
     
-    public mainGUI() {
+    private static PlayerSelectGUICallback callback;
+    
+    private PlayerClass selectedClass;
+    
+    public PlayerSelectGUI(PlayerSelectGUICallback callback) {
+        
+        this.callback = callback;
+        
         initComponents();
         
-        game = new Game(playerCount);
+        //game = new Game(playerCount);
         
-        InfoPanel.setVisible(false);
-        
-        //CombatPrototypeGUI cu = new CombatPrototypeGUI();
-        
+        InfoPanel.setVisible(false);        
     }
 
     
@@ -271,22 +274,22 @@ public class mainGUI extends javax.swing.JFrame {
 
     private void mageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mageButtonActionPerformed
         
-        game.selectClass(Classes.Mage);
+        selectedClass = new Mage();
     }//GEN-LAST:event_mageButtonActionPerformed
 
     private void archerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archerButtonActionPerformed
         
-        game.selectClass(Classes.Archer);
+        selectedClass = new Archer();
     }//GEN-LAST:event_archerButtonActionPerformed
 
     private void healerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_healerButtonActionPerformed
         
-        game.selectClass(Classes.Healer);
+        selectedClass = new Healer();
     }//GEN-LAST:event_healerButtonActionPerformed
 
     private void warriorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warriorButtonActionPerformed
         
-        game.selectClass(Classes.Warrior);
+        selectedClass = new Warrior();
     }//GEN-LAST:event_warriorButtonActionPerformed
 
     
@@ -313,8 +316,8 @@ public class mainGUI extends javax.swing.JFrame {
                 abilityLabels[i][0].setVisible(true);
                 abilityLabels[i][1].setVisible(true);
                 
-                abilityLabels[i][0].setText(infoPanelAbilityLister.name);
-                abilityLabels[i][1].setText(infoPanelAbilityLister.description);
+                abilityLabels[i][0].setText(infoPanelAbilityLister.getName());
+                abilityLabels[i][1].setText(infoPanelAbilityLister.getDescription());
             } else {
                 
                 abilityLabels[i][0].setVisible(false);
@@ -350,43 +353,29 @@ public class mainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_warriorButtonMouseEntered
 
     
-    
+
     private void addPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPlayerButtonActionPerformed
         
-
-        game.confirmClassSelection();
-        
-        
-        /*
-        //=======================================================
-        while(p.HP > 0){
-            difficulty++;
-
-            System.out.println("DIFFICULTY: " + difficulty);
-            Enemy e = new Enemy(difficulty);
-        
-            Combat c = new Combat(p,e);
-            c.combatLoop();
-        
+        if(null == selectedClass){
+            
+            System.err.println("None of Classes Selected");
+            return;
         }
-        System.out.println(p.className + " took until the Difficulty: " + difficulty);
-        difficulty = 0;
         
-        //=======================================================
-        */
+        
+        callback.addPlayer(selectedClass);
     }//GEN-LAST:event_addPlayerButtonActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
+        System.out.println("continue button clicked");
         
-        
-        if(game.getPlayerCount() < playerCount){
+        if(callback.getPlayerCount() < playerCount){
             
             System.err.println("INSUFFICIENT PLAYER ADDED");
+            return;
         }
         
-
-        //open next window
-        
+        callback.combatGUI();
     }//GEN-LAST:event_continueButtonActionPerformed
 
 
@@ -409,9 +398,7 @@ public class mainGUI extends javax.swing.JFrame {
         //</editor-fold>
         
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new mainGUI().setVisible(true));
-        
-        
+        java.awt.EventQueue.invokeLater(() -> new PlayerSelectGUI(callback).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

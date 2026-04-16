@@ -26,27 +26,34 @@ public class Healer extends PlayerClass{
         
     }
     
+    @Override
     public void ability0(Entity target){
         target.heal((int)(abilityPower * 1.5));
     }
     
+    @Override
     public void ability1(Entity target){
         this.attackPower += (0.25 * abilityPower);
     }
     
+    @Override
     public void ability2(Entity target){
         target.heal((int)(abilityPower * 0.5));
     }
     
+    @Override
     public void ability3(Entity target){
         target.takeDamage(abilityPower + attackPower);
     }
     
+    @Override
     public void ability4(Entity target){
         addStatus(Stun , 1 , target);
     }
     
+    @Override
     public void ability5(Entity target){
+        System.err.println("Healer does not have ability5");
     }
     
 }

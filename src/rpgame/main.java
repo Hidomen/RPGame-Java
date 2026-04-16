@@ -1,77 +1,128 @@
 package rpgame;
-import rpgame.PlayerClass.*;
-import java.util.Scanner;
+//import rpgame.PlayerClass.*;
+import java.util.ArrayList;
 
-public class main {
+enum CombatState {PLAYER_TURN, ENEMY_TURN, ANIMATING, GAME_OVER};
+enum GUIState {PLAYER_SELECTION, COMBAT, SHOP, WIN};
+
+public class main implements PlayerSelectGUICallback, CombatGUICallback{
+
+    private static CombatState combatState;
+    
+    
+    private static ArrayList<PlayerClass> players;
+    private static ArrayList<Enemy> enemies;
+    
+    private static int maxEnemySize;
+    private static int playerCount;
+    
+    private PlayerClass selectedClass;
+    
+    private static int difficulty;
+    
+    private Combat combat;
+    
+    
+    private static PlayerSelectGUI gui;
+    private static CombatGUI gui2;
+
+    
     public static void main(){
+        System.out.println("constructor");
         
-    }
+        main m = new main();
+        
+        gui = new PlayerSelectGUI(m);
+        
+        
+        
+        gui.setVisible(true);
+        
+        difficulty = 1;
+        maxEnemySize = 5; 
+        playerCount = 2; //modifyable
 
-    
-    
-    public static void abilityTesting() {
-        PlayerClass p = new Mage();
         
-        p.abilityManager.addEqAbility(p.abilityManager.getAbility(1));
-        p.abilityManager.ListAbilities(p.abilityManager.equippedAbilites);                
-        p.abilityManager.addEqAbility(p.abilityManager.getAbility(2));
-        p.abilityManager.addEqAbility(p.abilityManager.getAbility(4));
-        p.abilityManager.addEqAbility(p.abilityManager.getAbility(5));
-        p.abilityManager.ListAbilities(p.abilityManager.equippedAbilites);
-        Entity e = new Enemy(2);
-        System.out.println("e hp: "+e.HP);
-        System.out.println("p hp: "+p.HP);
-        System.out.println("p ap: "+p.abilityPower);
-        System.out.println("e ap: "+e.abilityPower);
-        p.useAbility(p.getAbility(2), p); //Ability listten alıyor btw
-        p.useAbility(p.getAbility(2), e); //Ability listten alıyor btw
-        System.out.println("p ap: "+p.abilityPower);
-        System.out.println("e ap: "+e.abilityPower);        
-        p.useAbility(p.getAbility(4), e);
-        System.out.println("e hp: "+e.HP);
-        p.useAbility(p.getAbility(5), e);
-        System.out.println("e hp: "+e.HP);
-        System.out.println("p hp: "+p.HP);
-        
-        
+        players = new ArrayList<PlayerClass>();
+        enemies = new ArrayList<Enemy>();
     }
+    
+    //==========================================================================
+    //  Ability Functions
+    //==========================================================================
+    @Override
+    public void useAbility(PlayerClass player, int abilityIndex, Entity target){
+        
+        player.useAbility(player.getAbility(abilityIndex), target);
+    }
+    //==========================================================================
+    //  Getters, Setters
+    //==========================================================================
+    @Override
+    public CombatState getCombatState(){
+        return combatState;
+    }
+    
+    @Override
+    public void setCombatState(CombatState combatState){
+        this.combatState = combatState;
+    }
+    
+    @Override
+    public int getPlayerCount(){
+        return players.size();
+    }
+    //==========================================================================
+    //  GUI Callbacks
+    //==========================================================================
+    @Override
+    public void combatGUI(){
+        
+        initEnemy(3);
+        main m = new main();
 
-    public static void test2() {
-        //==============================================
+        gui2 = new CombatGUI(m, players, enemies);
         
-        PlayerClass p;
-        Scanner sc = new Scanner(System.in);
+        gui.setVisible(false);
+        gui2.setVisible(true);
+    }
+    
+    @Override
+    public void enemyTurn(int index){ //cbb
         
-        
-        System.out.println("Pick your class");
-        System.out.println("1. Mage");
-        System.out.println("2. Archer");
-        System.out.println("3. Healer");
-        System.out.println("4. Warrior");
-        
-        int ci = sc.nextInt();
-        
-        switch(ci){
-            case 1 -> p = new Mage();
-            case 2 -> p = new Archer();
-            case 3 -> p = new Healer();
-            case 4 -> p = new Warrior();
-            default -> p = new Mage();
+        if(combatState != CombatState.ENEMY_TURN){
+            System.err.println("Combat State is not in enemy turn");
+            return;
         }
-        //==============================================
-    }
-    
-    public static void test(){
         
-        Mage p1 = new Mage();
-
-        p1.abilityManager.ListAbilities(p1.abilityManager.abilityList);
-
-        System.out.println("The chosen ability name is : " + p1.abilityManager.getAbility(0).name);
-        System.out.println("The chosen ability description is : " + p1.abilityManager.getAbility(0).description);
-        System.out.println("The chosen ability cost is : " + p1.abilityManager.getAbility(0).cost);
-    
-        System.out.println(p1.HP);
+        combat.enemyTurn(index);
+        combatState = CombatState.PLAYER_TURN;
     }
     
+    @Override
+    public void addPlayer(PlayerClass player){
+
+        
+        if(playerCount <= players.size()){
+            System.err.println("PLAYERS ARE FULL");
+            return;
+        }
+        
+        
+        player.setEntityName("PLAYER1");
+        
+        System.out.println("Player added");
+        players.add(player);
+    }
+    //==========================================================================
+    //  Combat Functions
+    //==========================================================================
+    public void initEnemy(int enemySize){
+        
+        for(int i = 0; i < enemySize; i++){
+            
+            enemies.add(i, new Enemy(difficulty));
+        }
+    }
+
 }

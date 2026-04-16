@@ -12,5 +12,4 @@ public interface EntityFeatures {
     public void ability3(Entity target);
     public void ability4(Entity target);
     public void ability5(Entity target);
-    
 }

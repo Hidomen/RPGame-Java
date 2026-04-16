@@ -4,7 +4,8 @@ import java.util.Random;
 
 public abstract class Entity implements EntityFeatures {
     
-    protected String className;
+    
+    private String entityName;
         
     protected double HP;
     protected double maxHP;
@@ -31,7 +32,6 @@ public abstract class Entity implements EntityFeatures {
     protected static int healthScale;
     protected static int manaScale;
     protected static int abilityScale;
-    
 
     public Entity(){
         
@@ -40,25 +40,36 @@ public abstract class Entity implements EntityFeatures {
         manaScale = 1;
         abilityScale = 1;
     }
+    //==========================================================================
+    // Getters, Setters
+    //==========================================================================
+    public String getEntityName(){
+        return entityName;
+    }
     
-
-    public Ability getAbility(int index){
-        return abilityManager.getAbility(index);
+    public void setEntityName(String entityName){
+        this.entityName = entityName;
     }
 
+    public Ability getAbility(int index){
+        return abilityManager.getAbilityList(index);
+    }
+    //==========================================================================
+    // Ability function
+    //==========================================================================
     public void useAbility(Ability a , Entity target){
         
         //System.out.println(a.name);
         
-        if(mana < a.cost){
-            System.out.println("Your mana is not enough for the " + a.name);
+        if(mana < a.getCost()){
+            System.out.println("Your mana is not enough for the " + a.getName());
             return;
         }
 
-        mana -= a.cost;
+        mana -= a.getCost();
         
         
-        switch(a.ID){
+        switch(a.getID()){
             case 0 -> ability0(target);
             case 1 -> ability1(target);
             case 2 -> ability2(target);
@@ -67,30 +78,29 @@ public abstract class Entity implements EntityFeatures {
             case 5 -> ability5(target);
         }
     }
-    
+    //==========================================================================
+    // Combat functions
+    //==========================================================================
+    @Override
     public void attack(Entity target){
-        
-        Random rand = new Random();
-        
+
         double damage = attackPower;
         
         if(statusList[FOG_INDEX] > 0){ // %50 chance to attack urself instead
+            Random rand = new Random();
             
             if(rand.nextBoolean()){
                 System.out.println("AAAAHH!! I HIT MYSELF");
                 takeDamage(attackPower);
                 return;
             }
-            
         }
-        
         if(statusList[SHOCK_INDEX] > 0){
             damage /= 2;
         }
         
         int targetTempHealth = target.statusList[TEMP_H_INDEX];
         if(targetTempHealth > 0){
-            
             //target.statusList[TEMP_H_INDEX] -= damage; //if its gonna reset after one turn doesn't necessary
             damage -= targetTempHealth;
         }
@@ -100,10 +110,10 @@ public abstract class Entity implements EntityFeatures {
     }
     
     
-    
     private void die(){
-        System.out.println(className + "IS DIED");
+        System.out.println(entityName + "IS DIED");
     }
+    
     
     public void takeDamage(double damage){
         
@@ -115,6 +125,7 @@ public abstract class Entity implements EntityFeatures {
             die();
         }
     }
+    
     
     public void heal(int heal){
         
@@ -128,23 +139,26 @@ public abstract class Entity implements EntityFeatures {
     
     public void giveDamage(double damage, Entity target)
     {
+        
         if(damage <= 0) return;
         
         target.takeDamage((int)damage); //Maybe floor cast
     }
-
+    //==========================================================================
+    // Status functions
+    //==========================================================================
     public void addStatus(Status status, int forTurns, Entity target)
     {
-            switch(status)
-            {
-                case Bleed ->           {target.statusList[BLEED_INDEX]     += forTurns;}
-                case Burn ->            {target.statusList[BURN_INDEX]      += forTurns;}
-                case Fog ->             {target.statusList[FOG_INDEX]       += forTurns;}
-                case Poison ->          {target.statusList[POISON_INDEX]    += forTurns;}
-                case Shock ->           {target.statusList[SHOCK_INDEX]     += forTurns;}
-                case Stun ->            {target.statusList[STUN_INDEX]      += forTurns;}
-                case TemporaryHealth -> {target.statusList[TEMP_H_INDEX]    += forTurns;}
-            }
+        switch(status)
+        {
+            case Bleed ->           {target.statusList[BLEED_INDEX]     += forTurns;}
+            case Burn ->            {target.statusList[BURN_INDEX]      += forTurns;}
+            case Fog ->             {target.statusList[FOG_INDEX]       += forTurns;}
+            case Poison ->          {target.statusList[POISON_INDEX]    += forTurns;}
+            case Shock ->           {target.statusList[SHOCK_INDEX]     += forTurns;}
+            case Stun ->            {target.statusList[STUN_INDEX]      += forTurns;}
+            case TemporaryHealth -> {target.statusList[TEMP_H_INDEX]    += forTurns;}
+        }
     }
     
     
@@ -174,8 +188,9 @@ public abstract class Entity implements EntityFeatures {
         }
         return false;
     }
-    
-    
+    //==========================================================================
+    //
+    //==========================================================================
     public void endTurnEffects(){
         
         

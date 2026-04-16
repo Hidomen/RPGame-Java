@@ -31,28 +31,35 @@ public class Archer extends PlayerClass {
 
     }
 
-    
+    @Override
     public void ability0(Entity target){
         dodgePossibility += 1; //-1 after attack
     }
     
+    @Override
     public void ability1(Entity target){
         attackPower *= 1.5; //fix after attack
     }
     
+    @Override
     public void ability2(Entity target){
         dodgePossibility += 3; //-1 after attack
     }
     
+    @Override
     public void ability3(Entity target){
         System.out.println("poison added");
         addStatus(Poison , (int)abilityPower , target);
     }
     
+    @Override
     public void ability4(Entity target){
+        System.err.println("Archer does not have ability4");
     }
     
+    @Override
     public void ability5(Entity target){
+        System.err.println("Archer does not have ability5");
     }
     
 }

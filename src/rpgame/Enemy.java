@@ -1,67 +1,59 @@
 package rpgame;
 
-
+import java.util.ArrayList;
 
 public class Enemy extends Entity {
     
-    private static final int constantMultiplier = 3;
+    private static final int CONST = 3;
         
     Enemy(int powerLevel){
         
         
-        maxHP           = powerLevel * constantMultiplier * Config.health;
-        attackPower     = powerLevel * constantMultiplier * Config.attack;
-        abilityPower    = powerLevel * constantMultiplier * Config.ability;
-        mana            = powerLevel * constantMultiplier * Config.mana;
+        maxHP           = powerLevel * CONST * Config.health;
+        attackPower     = powerLevel * CONST * Config.attack;
+        abilityPower    = powerLevel * CONST * Config.ability;
+        mana            = powerLevel * CONST * Config.mana;
         
         HP = maxHP;
     }
     
-    
-    public void turn(PlayerClass p){
-        //different behaviours: only attack, attack and heal etc.
+    //different behaviours: only attack, attack and heal etc.
+    //randomly attack to one player
+    public void turn(ArrayList<PlayerClass> players){
         
-        
-        try {
-            Thread.sleep(1);
-        } catch (InterruptedException e) {
-            
-        }
-
-        
-        System.out.println("Checking Status"); //debug
-        
-        boolean isStunned = checkStatus();
         System.out.println("Enemy hp after status check : " + HP); //debug
         
-     
-        if(!isStunned) {attack(p); }
-        
+        attack(players.get(0));
     }
 
-    
+    @Override
     public void ability0(Entity target){
-        
+        System.err.println("Enemy does not have ability0");
     }
-
+    
+    @Override
     public void ability1(Entity target){
-        
+        System.err.println("Enemy does not have ability1");
     }
 
+    @Override
     public void ability2(Entity target){
-        
+        System.err.println("Enemy does not have ability2");
     }
     
+    @Override
     public void ability3(Entity target){
-
+        System.err.println("Enemy does not have ability3");
     }
     
+    @Override
     public void ability4(Entity target){
-
+        System.err.println("Enemy does not have ability4");
     }
     
+    @Override
     public void ability5(Entity target){
-
+        System.err.println("Enemy does not have ability5");
     }
     
 }

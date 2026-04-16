@@ -1,40 +1,58 @@
 package rpgame;
 
+import java.util.ArrayList;
 
-
-public class Combat {
+public class Combat{
     
     private EntityType turn;
     private boolean stunned = false;
     
-    private PlayerClass[] players;
-    private Enemy[] enemies;
+    private ArrayList<PlayerClass> players;
+    private ArrayList<Enemy> enemies;
     
-    
-    Combat(PlayerClass[] players, Enemy[] enemies){ //list of entities
-        turn = EntityType.Player;
-        
+    Combat(ArrayList<PlayerClass> players, ArrayList<Enemy> enemies){
+         
         this.players = players;
         this.enemies = enemies;
+        
+        turn = EntityType.Player;
+
     }
 
-    
+    //==========================================================================
+    // Getters, Setters
+    //==========================================================================
     public EntityType getTurn(){
         return turn;
     }
     
+    public void setTurn(EntityType turn){
+        this.turn = turn;
+    }
+    //==========================================================================
+    //
+    //==========================================================================
     public void nextTurn(){
         
         turn = EntityType.values()[(turn.ordinal() + 1) % 2];
     }
-
-    
-    public void playerTurn(int playerIndex){
+    //==========================================================================
+    //
+    //==========================================================================
+    public void playerTurnStart(int playerIndex){
         System.out.println("PLAYER TURN");
                 
-        players[playerIndex].checkStatus();
-        //p.turn(e);
-        players[playerIndex].endTurnEffects();
+        
+        if(players.get(playerIndex).checkStatus()){
+            System.out.println(players.get(playerIndex).getEntityName() + "IS STUNNED");
+            nextTurn();  
+        }
+        
+        // Listen Buttons
+    }
+    
+    public void playerTurnEnd(int playerIndex){
+        players.get(playerIndex).endTurnEffects();
                 
         nextTurn();
     }
@@ -42,9 +60,12 @@ public class Combat {
     public void enemyTurn(int enemyIndex){
         System.out.println("ENEMY TURN");
                 
-        enemies[enemyIndex].checkStatus();
-        enemies[enemyIndex].turn(players[0]); 
-        enemies[enemyIndex].endTurnEffects();
+        if(enemies.get(enemyIndex).checkStatus()){
+            System.out.println(enemies.get(enemyIndex).getEntityName() + "IS STUNNED");
+            return;
+        }
+        enemies.get(enemyIndex).turn(players); 
+        enemies.get(enemyIndex).endTurnEffects();
                 
     }
 }

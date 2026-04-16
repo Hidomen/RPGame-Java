@@ -1,41 +1,42 @@
 package rpgame;
 
 import java.awt.event.*;
+import java.util.ArrayList;
 
-
-
-public class CombatPrototypeGUI extends javax.swing.JFrame {
+public class CombatGUI extends javax.swing.JFrame{
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CombatPrototypeGUI.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CombatGUI.class.getName());
 
+    private static ArrayList<PlayerClass> players;
+    private static ArrayList<Enemy> enemies;
+    
 
+    private int turnCount = 1;
     
-    PlayerClass p;
-    Enemy enemy;
+    private PlayerClass currentPlayer;
     
-    int turnCount = 1;
-    Game game = new Game(turnCount);
+    private int currentPlayerIndex;
+    private int currentEnemyIndex;
     
-    public CombatPrototypeGUI() {
+    private static CombatGUICallback callback;
+    
+    public CombatGUI(CombatGUICallback callback, ArrayList<PlayerClass> players, ArrayList<Enemy> enemies) {
+        this.callback = callback;
+        
+        currentPlayerIndex = 0;
+        currentEnemyIndex = 0;
+        
         initComponents();
 
+        this.players = players;
+        this.enemies = enemies;
 
-        game.selectClass(Classes.Mage);
         
-
-        game.confirmClassSelection();
-        
-        
-        game.initEnemy(1);
-        game.initCombat(1);
-        
-        
-        
-        p = game.getPlayer(0);
-        enemy = game.getEnemy(0);
-        
+        callback.setCombatState(CombatState.PLAYER_TURN);
     
         actionListener();
+        
+        
         updateLabels();
     }
 
@@ -50,7 +51,7 @@ public class CombatPrototypeGUI extends javax.swing.JFrame {
         enemyManaLabel = new javax.swing.JLabel();
         enemyAbilityPowerLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        playerNameLabel = new javax.swing.JLabel();
         playerAttackPowerLabel = new javax.swing.JLabel();
         playerHealthLabel = new javax.swing.JLabel();
         playerManaLabel = new javax.swing.JLabel();
@@ -117,8 +118,8 @@ public class CombatPrototypeGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jLabel2.setText("You");
+        playerNameLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        playerNameLabel.setText("Player Name");
 
         playerAttackPowerLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         playerAttackPowerLabel.setText("AttackPower");
@@ -144,14 +145,14 @@ public class CombatPrototypeGUI extends javax.swing.JFrame {
                         .addComponent(playerAttackPowerLabel)
                         .addComponent(playerManaLabel)
                         .addComponent(playerAbilityPowerLabel))
-                    .addComponent(jLabel2))
+                    .addComponent(playerNameLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(playerNameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playerHealthLabel)
                 .addGap(29, 29, 29)
@@ -334,33 +335,16 @@ public class CombatPrototypeGUI extends javax.swing.JFrame {
     
     private void playerTurnEnded(){
         //update mana
-        game.changeState(GameState.ENEMY_TURN);
+        
+        callback.setCombatState(CombatState.ENEMY_TURN);
         updateLabels();
-        enemyTurn();
+        callback.enemyTurn(currentEnemyIndex);
+        updateLabels();
     }
     
     private void abilityButtonUsed(int index){
         
-        switch(index){
-            case 0 -> {
-                p.useAbility(p.getAbility(0),enemy);
-            }
-            case 1 -> {
-                p.useAbility(p.getAbility(1),enemy);
-            }
-            case 2 -> {
-                p.useAbility(p.getAbility(2),enemy);
-            }
-            case 3 -> {
-                p.useAbility(p.getAbility(3),enemy);
-            }
-            case 4 -> {
-                p.useAbility(p.getAbility(4),enemy);
-            }
-            case 5 -> {
-                p.useAbility(p.getAbility(5),enemy);
-            }
-        }
+        callback.useAbility(players.get(currentPlayerIndex), index, enemies.get(0)); //select target before this func
         
         
         abilitySelectionPanel.setVisible(false);
@@ -370,7 +354,7 @@ public class CombatPrototypeGUI extends javax.swing.JFrame {
     
     private void actionListener(){
         
-        if(GameState.PLAYER_TURN == game.getState()){
+        if(CombatState.PLAYER_TURN == callback.getCombatState()){
             
             abilityButton.addActionListener((ActionEvent e) -> {
 
@@ -379,7 +363,7 @@ public class CombatPrototypeGUI extends javax.swing.JFrame {
 
             attackButton.addActionListener((ActionEvent e) -> {
 
-                p.attack(enemy);
+                players.get(currentPlayerIndex).attack(enemies.get(currentEnemyIndex));
                 playerTurnEnded();
             });
 
@@ -428,77 +412,44 @@ public class CombatPrototypeGUI extends javax.swing.JFrame {
     
     
     private void updateLabels(){
-        
         abilitySelectionPanel.setVisible(false);
+
+        currentPlayer = players.get(currentPlayerIndex);
+        playerNameLabel.setText(currentPlayer.getEntityName());
+
+        javax.swing.JButton[] abilityButtons = {useAbility0, useAbility1, useAbility2, useAbility3, useAbility4 /*useAbility5*/};
         
-        useAbility0.setText(p.getAbility(0).name);
-        useAbility1.setText(p.getAbility(1).name);
-        useAbility2.setText(p.getAbility(2).name);
-        useAbility3.setText(p.getAbility(3).name);
-        useAbility4.setText(p.getAbility(4).name);
+        for(int i = 0; i < abilityButtons.length; i++){
+
+            if(i < currentPlayer.abilityCap){
+                abilityButtons[i].setVisible(true);
+                abilityButtons[i].setText(currentPlayer.getAbility(i).getName());
+            } else {
+                abilityButtons[i].setVisible(false);
+            }
+        }
+
+
+        enemyAbilityPowerLabel.setText  ("AbilityPower: "   + enemies.get(currentEnemyIndex).abilityPower);
+        enemyAttackPowerLabel.setText   ("AttackPower: "    + enemies.get(currentEnemyIndex).attackPower);
+        enemyHealthLabel.setText        ("Health: "         + enemies.get(currentEnemyIndex).HP + " / " + enemies.get(currentEnemyIndex).maxHP);
+        enemyManaLabel.setText          ("Mana: "           + enemies.get(currentEnemyIndex).mana);
         
-        enemyAbilityPowerLabel.setText("AbilityPower: " + enemy.abilityPower);
-        enemyAttackPowerLabel.setText("AttackPower: " + enemy.attackPower);
-        enemyHealthLabel.setText("Health: " + enemy.HP + " / " + enemy.maxHP);
-        enemyManaLabel.setText("Mana: " + enemy.mana);
-        
-        
-        playerAbilityPowerLabel.setText("AbilityPower: " + p.abilityPower);
-        playerAttackPowerLabel.setText("AttackPower: " + p.attackPower);
-        playerHealthLabel.setText("Health: " + p.HP + " / " + p.maxHP);
-        playerManaLabel.setText("Mana: " + p.mana);
+        playerAbilityPowerLabel.setText ("AbilityPower: "   + currentPlayer.abilityPower);
+        playerAttackPowerLabel.setText  ("AttackPower: "    + currentPlayer.attackPower);
+        playerHealthLabel.setText       ("Health: "         + currentPlayer.HP + " / " + currentPlayer.maxHP);
+        playerManaLabel.setText         ("Mana: "           + currentPlayer.mana);
         
         
         jLabel3.setText("TurnCount: " + turnCount);
-        turnLabel.setText("Turn:"); //gonna fixed
-
+        turnLabel.setText("Turn:"); //gonna fixed 
     }
-    
-    
-    private void enemyTurn(){
-        game.enemyTurn();
-        updateLabels();
-        
-    }
-    
-    private void combatTracker(){
-    
-        updateLabels();        
 
-        //while(p.HP > 0 && enemy.HP > 0){
-        
-            
-            
-            if(GameState.PLAYER_TURN == game.getState()){
-                abilityButton.setEnabled(true);
-                attackButton.setEnabled(true);
-                defenceButton.setEnabled(true);
-            } else {
-                
-                abilityButton.setEnabled(false);
-                attackButton.setEnabled(false);
-                defenceButton.setEnabled(false);
-                
-                
-                //e.checkStatus();
-                enemy.turn(p); 
-                enemy.endTurnEffects();
-                
-                //combat.nextTurn();
-                
-                combatTracker();
-            }
-
-            turnCount++;
-        
-    }
-    
     
     public static void main(String args[]) {
 
         
-        java.awt.EventQueue.invokeLater(() -> new CombatPrototypeGUI().setVisible(true));
-        
+        java.awt.EventQueue.invokeLater(() -> new CombatGUI(callback, players, enemies).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -511,7 +462,6 @@ public class CombatPrototypeGUI extends javax.swing.JFrame {
     private javax.swing.JLabel enemyHealthLabel;
     private javax.swing.JLabel enemyManaLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -523,6 +473,7 @@ public class CombatPrototypeGUI extends javax.swing.JFrame {
     private javax.swing.JLabel playerAttackPowerLabel;
     private javax.swing.JLabel playerHealthLabel;
     private javax.swing.JLabel playerManaLabel;
+    private javax.swing.JLabel playerNameLabel;
     private javax.swing.JLabel turnLabel;
     private javax.swing.JButton useAbility0;
     private javax.swing.JButton useAbility1;

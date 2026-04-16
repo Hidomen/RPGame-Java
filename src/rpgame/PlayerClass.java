@@ -4,6 +4,8 @@ package rpgame;
 
 public abstract class PlayerClass extends Entity{
 
+    protected String className;
+    
     protected int money;
     
     protected int level;
