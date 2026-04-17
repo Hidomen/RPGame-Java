@@ -28,19 +28,6 @@ public class main implements PlayerSelectGUICallback, CombatGUICallback{
 
     
     public static void main(){
-        Shop merchant = new Shop();
-        PlayerClass p1 = new Mage();
-        Inventory inv = new Inventory();
-        
-        new ShopGUI(merchant.goodies, p1, inv).setVisible(true);
-        
-        while(true)
-        {
-            inv.showInventory();
-        }
-    }
-
-    public static void oldTest() {
         System.out.println("constructor");
         
         main m = new main();
@@ -59,6 +46,20 @@ public class main implements PlayerSelectGUICallback, CombatGUICallback{
         players = new ArrayList<PlayerClass>();
         enemies = new ArrayList<Enemy>();
     }
+    
+    public static void shopGUItest() {
+        Shop merchant = new Shop();
+        PlayerClass p1 = new Mage();
+        Inventory inv = new Inventory();
+        
+        new ShopGUI(merchant.goodies, p1, inv).setVisible(true);
+        
+        while(true)
+        {
+            inv.showInventory();
+        }
+    }
+
     
     //==========================================================================
     //  Ability Functions
