@@ -1,7 +1,7 @@
 package rpgame;
 
 enum Classes {Archer , Healer , Mage , Warrior};
-enum Status {Bleed , Burn , Fog , Poison , Shock , Stun , TemporaryHealth};
+enum Status {Bleed , Burn , Dodge , Fog , Poison , Shock , Stun , TemporaryHealth};
 enum EntityType {Player , Enemy};
 
 

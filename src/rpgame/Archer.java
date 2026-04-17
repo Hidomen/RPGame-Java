@@ -11,8 +11,6 @@ public class Archer extends PlayerClass {
             new Ability(2,"ShadowMode", "For three turns you are completely invisible", 10), //meeh
             new Ability(3,"Infuse Poison", "Make your enemy take 2 damage for turns equal to your ability power" , 4),//Working
     };
-      
-    double dodgePossibility;
 
     Archer()
     {
@@ -26,24 +24,24 @@ public class Archer extends PlayerClass {
         HP = maxHP;
 
         
-        dodgePossibility = 0.1;
+        statusList[DODGE_INDEX] = 0.1;
         abilityPower = Config.ability * 5;
 
     }
 
     @Override
     public void ability0(Entity target){
-        dodgePossibility += 1; //-1 after attack
+        addStatus(Dodge , 1 , this);
     }
     
     @Override
-    public void ability1(Entity target){
+    public void ability1(Entity target){ //Look for this.
         attackPower *= 1.5; //fix after attack
     }
     
     @Override
     public void ability2(Entity target){
-        dodgePossibility += 3; //-1 after attack
+        addStatus(Dodge , 3 , this); 
     }
     
     @Override
