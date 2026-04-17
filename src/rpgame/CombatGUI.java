@@ -397,7 +397,7 @@ public class CombatGUI extends javax.swing.JFrame{
         
         abilitySelectionPanel.setVisible(false);
         
-        abilityButton.setBackground(new java.awt.Color(51, 51, 51)); // Eski haline dön
+        abilityButton.setBackground(new java.awt.Color(51, 51, 51));
         abilityButton.setForeground(java.awt.Color.YELLOW);        
         playerTurnEnded();
     }
@@ -410,8 +410,8 @@ public class CombatGUI extends javax.swing.JFrame{
             abilityButton.addActionListener((ActionEvent e) -> {
                 abilityButton.setFocusPainted(false);
                 abilitySelectionPanel.setVisible(true);
-                abilityButton.setBackground(new java.awt.Color(255, 255, 0)); // Sarı
-                abilityButton.setForeground(new java.awt.Color(0, 0, 0));     // Siyah yazı                
+                abilityButton.setBackground(new java.awt.Color(255, 255, 0));
+                abilityButton.setForeground(new java.awt.Color(0, 0, 0));              
             });
 
             attackButton.addActionListener((ActionEvent e) -> {
@@ -422,7 +422,6 @@ public class CombatGUI extends javax.swing.JFrame{
 
             defenceButton.addActionListener((ActionEvent e) -> {
                 defenceButton.setFocusPainted(false); 
-                //
                 playerTurnEnded();
             });
 
