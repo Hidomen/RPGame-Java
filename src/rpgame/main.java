@@ -2,7 +2,7 @@ package rpgame;
 //import rpgame.PlayerClass.*;
 import java.util.ArrayList;
 
-enum CombatState {PLAYER_TURN, ENEMY_TURN, ANIMATING, GAME_OVER};
+enum CombatState {PLAYER_TURN, ENEMY_TURN, GAME_OVER};
 enum GUIState {PLAYER_SELECTION, COMBAT, SHOP, WIN};
 
 public class main implements PlayerSelectGUICallback, CombatGUICallback{

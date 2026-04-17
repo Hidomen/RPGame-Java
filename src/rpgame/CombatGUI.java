@@ -333,13 +333,31 @@ public class CombatGUI extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     
+    private void stateManager(){
+        
+        updateLabels();
+        //animation maybe
+        
+        switch(callback.getCombatState()){
+            
+            case CombatState.PLAYER_TURN -> {
+                
+                
+            }
+            case CombatState.ENEMY_TURN -> {
+                callback.enemyTurn(currentEnemyIndex);
+                callback.setCombatState(CombatState.PLAYER_TURN);
+                stateManager();
+            }
+            
+        }
+    }
+    
     private void playerTurnEnded(){
         //update mana
         
         callback.setCombatState(CombatState.ENEMY_TURN);
-        updateLabels();
-        callback.enemyTurn(currentEnemyIndex);
-        updateLabels();
+        stateManager();
     }
     
     private void abilityButtonUsed(int index){

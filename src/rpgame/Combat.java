@@ -2,7 +2,7 @@ package rpgame;
 
 import java.util.ArrayList;
 
-public class Combat{
+public class Combat{ //move this into combatGUI
     
     private EntityType turn;
     private boolean stunned = false;
