@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package rpgame;
+import javax.swing.*;
+import java.awt.*;
+import static rpgame.Classes.*;
+
 
 /**
  *
@@ -15,8 +19,102 @@ public class ShopGUI extends javax.swing.JFrame {
     /**
      * Creates new form ShopGUI
      */
-    public ShopGUI() {
+    static PlayerClass player;
+    static Inventory invent;
+    public ShopGUI(Item [] goodies , PlayerClass p , Inventory invent) {
         initComponents();
+        setupItems(goodies);
+        player = p;
+        this.invent = invent;
+    }
+    
+    private void setupItems(Item[] goodies)
+{
+    JPanel itemsPanel = new JPanel();
+    itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
+    itemsPanel.setBackground(Color.BLACK);
+
+    for (Item i : goodies) {
+
+        JPanel card = new JPanel(new BorderLayout());
+        card.setBackground(new Color(20, 20, 20)); 
+        card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 110)); 
+        card.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JLabel label = new JLabel(i.name + " - " + i.price + " Gold");
+        label.setForeground(Color.YELLOW);
+        label.setFont(new Font("Arial", Font.BOLD, 16));
+
+        JLabel compLabel = new JLabel("Compatibility: " + getCompability(i));
+        compLabel.setForeground(new Color(200, 200, 200));
+        compLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        
+        JButton buyButton = new JButton("Buy");
+        buyButton.setBackground(Color.YELLOW);
+        buyButton.setForeground(Color.BLACK);        
+        buyButton.setFont(new Font("Arial", Font.BOLD, 13));
+        
+        JPanel wrapper = new JPanel(new BorderLayout());
+        
+        buyButton.addActionListener(e -> 
+        {
+            boolean Compatible = false;
+            boolean CanAfford = false;
+            for (Classes c : i.compability) {
+                if (c.toString() == player.className) {
+                    Compatible = true;
+                    break;
+                }
+            }
+            if (!Compatible) {
+                JOptionPane.showMessageDialog(this, "Your class is not compatible with this item. Your class: " + player.className , "Non-Compatible Item" , JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if (player.money >= i.price) {
+                CanAfford = true;
+            }
+            if (!CanAfford) {
+                JOptionPane.showMessageDialog(this, "Insufficient balance to buy this item. Your gold: " + player.money , "Insufficient Balance" , JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
+            if (CanAfford && Compatible) {
+                invent.addToInventory(i);
+                player.money -= i.price;
+                JOptionPane.showMessageDialog(this, "Item: " + i.name + " is bought successfully. Remaining gold: " + player.money , "Success!" , JOptionPane.WARNING_MESSAGE);
+                wrapper.setVisible(false);
+                itemsPanel.revalidate();
+                itemsPanel.repaint();
+            }
+            
+        });
+        
+        
+        card.add(label, BorderLayout.NORTH);
+        card.add(compLabel, BorderLayout.CENTER);
+        card.add(buyButton , BorderLayout.EAST);
+
+
+        wrapper.setBackground(Color.BLACK);
+        wrapper.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        wrapper.add(card);
+
+        itemsPanel.add(wrapper);
+    }
+
+    jScrollPane1.setViewportView(itemsPanel);
+
+    jScrollPane1.getViewport().setBackground(Color.BLACK);
+}
+    
+    
+    private String getCompability(Item i)
+    {
+        String a = "";
+        for (Classes c : i.compability) {
+            a += c + " ";
+        }
+        return a;
     }
 
     /**
@@ -32,59 +130,11 @@ public class ShopGUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel23 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jPanel17 = new javax.swing.JPanel();
-        jLabel45 = new javax.swing.JLabel();
-        jButton15 = new javax.swing.JButton();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        jPanel18 = new javax.swing.JPanel();
-        jLabel48 = new javax.swing.JLabel();
-        jButton16 = new javax.swing.JButton();
-        jLabel49 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
 
         jLabel6.setText("Item Description");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1250, 600));
         setMinimumSize(new java.awt.Dimension(1250, 600));
-        setPreferredSize(new java.awt.Dimension(1250, 600));
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
@@ -112,309 +162,44 @@ public class ShopGUI extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
-
-        jPanel1.setPreferredSize(new java.awt.Dimension(0, 600));
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
-
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel3.setMaximumSize(new java.awt.Dimension(2147483647, 80));
-        jPanel3.setPreferredSize(new java.awt.Dimension(0, 80));
-        jPanel3.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel1.setText("Sword - 85 Gold");
-        jPanel3.add(jLabel1, java.awt.BorderLayout.LINE_START);
-
-        jButton1.setText("BUY");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        jPanel3.add(jButton1, java.awt.BorderLayout.LINE_END);
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 0));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel3.setText("Compability : Warrior - Healer");
-        jPanel3.add(jLabel3, java.awt.BorderLayout.PAGE_END);
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel7.setText("                                       Item Description");
-        jPanel3.add(jLabel7, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel3);
-
-        jPanel5.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel5.setMaximumSize(new java.awt.Dimension(2147483647, 80));
-        jPanel5.setPreferredSize(new java.awt.Dimension(0, 80));
-        jPanel5.setLayout(new java.awt.BorderLayout());
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel8.setText("Sword - 85 Gold");
-        jPanel5.add(jLabel8, java.awt.BorderLayout.LINE_START);
-
-        jButton3.setText("BUY");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
-        jPanel5.add(jButton3, java.awt.BorderLayout.LINE_END);
-
-        jLabel9.setBackground(new java.awt.Color(255, 255, 0));
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel9.setText("Compability : Warrior - Healer");
-        jPanel5.add(jLabel9, java.awt.BorderLayout.PAGE_END);
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel10.setText("                                       Item Description");
-        jPanel5.add(jLabel10, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel5);
-
-        jPanel6.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel6.setMaximumSize(new java.awt.Dimension(2147483647, 80));
-        jPanel6.setPreferredSize(new java.awt.Dimension(0, 80));
-        jPanel6.setLayout(new java.awt.BorderLayout());
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel11.setText("Sword - 85 Gold");
-        jPanel6.add(jLabel11, java.awt.BorderLayout.LINE_START);
-
-        jButton4.setText("BUY");
-        jButton4.addActionListener(this::jButton4ActionPerformed);
-        jPanel6.add(jButton4, java.awt.BorderLayout.LINE_END);
-
-        jLabel12.setBackground(new java.awt.Color(255, 255, 0));
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel12.setText("Compability : Warrior - Healer");
-        jPanel6.add(jLabel12, java.awt.BorderLayout.PAGE_END);
-
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel13.setText("                                       Item Description");
-        jPanel6.add(jLabel13, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel6);
-
-        jPanel7.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel7.setMaximumSize(new java.awt.Dimension(2147483647, 80));
-        jPanel7.setPreferredSize(new java.awt.Dimension(0, 80));
-        jPanel7.setLayout(new java.awt.BorderLayout());
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel14.setText("Sword - 85 Gold");
-        jPanel7.add(jLabel14, java.awt.BorderLayout.LINE_START);
-
-        jButton5.setText("BUY");
-        jButton5.addActionListener(this::jButton5ActionPerformed);
-        jPanel7.add(jButton5, java.awt.BorderLayout.LINE_END);
-
-        jLabel15.setBackground(new java.awt.Color(255, 255, 0));
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel15.setText("Compability : Warrior - Healer");
-        jPanel7.add(jLabel15, java.awt.BorderLayout.PAGE_END);
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel16.setText("                                       Item Description");
-        jPanel7.add(jLabel16, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel7);
-
-        jPanel8.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel8.setMaximumSize(new java.awt.Dimension(2147483647, 80));
-        jPanel8.setPreferredSize(new java.awt.Dimension(0, 80));
-        jPanel8.setLayout(new java.awt.BorderLayout());
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel17.setText("Sword - 85 Gold");
-        jPanel8.add(jLabel17, java.awt.BorderLayout.LINE_START);
-
-        jButton6.setText("BUY");
-        jButton6.addActionListener(this::jButton6ActionPerformed);
-        jPanel8.add(jButton6, java.awt.BorderLayout.LINE_END);
-
-        jLabel18.setBackground(new java.awt.Color(255, 255, 0));
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel18.setText("Compability : Warrior - Healer");
-        jPanel8.add(jLabel18, java.awt.BorderLayout.PAGE_END);
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel19.setText("                                       Item Description");
-        jPanel8.add(jLabel19, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel8);
-
-        jPanel9.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel9.setMaximumSize(new java.awt.Dimension(2147483647, 80));
-        jPanel9.setPreferredSize(new java.awt.Dimension(0, 80));
-        jPanel9.setLayout(new java.awt.BorderLayout());
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel20.setText("Sword - 85 Gold");
-        jPanel9.add(jLabel20, java.awt.BorderLayout.LINE_START);
-
-        jButton7.setText("BUY");
-        jButton7.addActionListener(this::jButton7ActionPerformed);
-        jPanel9.add(jButton7, java.awt.BorderLayout.LINE_END);
-
-        jLabel21.setBackground(new java.awt.Color(255, 255, 0));
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel21.setText("Compability : Warrior - Healer");
-        jPanel9.add(jLabel21, java.awt.BorderLayout.PAGE_END);
-
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel22.setText("                                       Item Description");
-        jPanel9.add(jLabel22, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel9);
-
-        jPanel10.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel10.setMaximumSize(new java.awt.Dimension(2147483647, 80));
-        jPanel10.setPreferredSize(new java.awt.Dimension(0, 80));
-        jPanel10.setLayout(new java.awt.BorderLayout());
-
-        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel23.setText("Sword - 85 Gold");
-        jPanel10.add(jLabel23, java.awt.BorderLayout.LINE_START);
-
-        jButton8.setText("BUY");
-        jButton8.addActionListener(this::jButton8ActionPerformed);
-        jPanel10.add(jButton8, java.awt.BorderLayout.LINE_END);
-
-        jLabel24.setBackground(new java.awt.Color(255, 255, 0));
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel24.setText("Compability : Warrior - Healer");
-        jPanel10.add(jLabel24, java.awt.BorderLayout.PAGE_END);
-
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel25.setText("                                       Item Description");
-        jPanel10.add(jLabel25, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel10);
-
-        jPanel17.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel17.setMaximumSize(new java.awt.Dimension(2147483647, 80));
-        jPanel17.setPreferredSize(new java.awt.Dimension(0, 80));
-        jPanel17.setLayout(new java.awt.BorderLayout());
-
-        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel45.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel45.setText("Sword - 85 Gold");
-        jPanel17.add(jLabel45, java.awt.BorderLayout.LINE_START);
-
-        jButton15.setText("BUY");
-        jButton15.addActionListener(this::jButton15ActionPerformed);
-        jPanel17.add(jButton15, java.awt.BorderLayout.LINE_END);
-
-        jLabel46.setBackground(new java.awt.Color(255, 255, 0));
-        jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel46.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel46.setText("Compability : Warrior - Healer");
-        jPanel17.add(jLabel46, java.awt.BorderLayout.PAGE_END);
-
-        jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel47.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel47.setText("                                       Item Description");
-        jPanel17.add(jLabel47, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel17);
-
-        jPanel18.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel18.setMaximumSize(new java.awt.Dimension(2147483647, 80));
-        jPanel18.setPreferredSize(new java.awt.Dimension(0, 80));
-        jPanel18.setLayout(new java.awt.BorderLayout());
-
-        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel48.setText("Sword - 85 Gold");
-        jPanel18.add(jLabel48, java.awt.BorderLayout.LINE_START);
-
-        jButton16.setText("BUY");
-        jButton16.addActionListener(this::jButton16ActionPerformed);
-        jPanel18.add(jButton16, java.awt.BorderLayout.LINE_END);
-
-        jLabel49.setBackground(new java.awt.Color(255, 255, 0));
-        jLabel49.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel49.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel49.setText("Compability : Warrior - Healer");
-        jPanel18.add(jLabel49, java.awt.BorderLayout.PAGE_END);
-
-        jLabel50.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel50.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel50.setText("                                       Item Description");
-        jPanel18.add(jLabel50, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel18);
-
-        jScrollPane1.setViewportView(jPanel1);
-
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton16ActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+            
+Item[] goodies = {
+
+    // WEAPONS
+    new WeaponItem(1.3 , 1.0 , "Long Sword" , 90 , new Classes[] {Warrior}),
+    new WeaponItem(1.1 , 1.2 , "Blessed Mace" , 95 , new Classes[] {Healer}),
+    new WeaponItem(0.9 , 1.6 , "Arcane Wand" , 100 , new Classes[] {Mage}),
+    new WeaponItem(1.4 , 0.8 , "Crossbow" , 85 , new Classes[] {Archer}),
+    new WeaponItem(1.2 , 1.1 , "Battle Axe" , 110 , new Classes[] {Warrior}),
+    new WeaponItem(1.0 , 1.3 , "Divine Staff" , 105 , new Classes[] {Healer , Mage}),
+    new WeaponItem(1.5 , 0.7 , "Dual Daggers" , 80 , new Classes[] {Archer}),
+    new WeaponItem(0.8 , 1.7 , "Crystal Orb" , 120 , new Classes[] {Mage}),
+    new WeaponItem(1.3 , 0.9 , "War Hammer" , 115 , new Classes[] {Warrior , Healer}),
+    new WeaponItem(1.2 , 1.0 , "Hunter Bow" , 95 , new Classes[] {Archer}),
+
+    // ARMORS
+    new ArmorItem(1.2 , "Iron Armor" , 100 , new Classes[] {Warrior}),
+    new ArmorItem(1.05 , "Cloth Robe" , 60 , new Classes[] {Mage}),
+    new ArmorItem(1.1 , "Holy Vestments" , 75 , new Classes[] {Healer}),
+    new ArmorItem(1.1 , "Leather Armor" , 70 , new Classes[] {Archer}),
+    new ArmorItem(1.4 , "Dragon Scale Armor" , 150 , new Classes[] {Warrior}),
+    new ArmorItem(1.2 , "Mystic Robe" , 110 , new Classes[] {Mage , Healer}),
+    new ArmorItem(1.1 , "Shadow Cloak" , 95 , new Classes[] {Archer , Mage}),
+    new ArmorItem(1.3 , "Knight Plate" , 130 , new Classes[] {Warrior , Healer}),
+    new ArmorItem(1.2 , "Ranger Vest" , 85 , new Classes[] {Archer}),
+    new ArmorItem(1.3 , "Enchanted Armor" , 140 , new Classes[] {Warrior , Mage , Healer , Archer})
+};
+    
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -433,59 +218,13 @@ public class ShopGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ShopGUI().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ShopGUI(goodies , player , invent).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
