@@ -17,15 +17,16 @@ public abstract class Entity implements EntityFeatures {
     protected AbilityManager abilityManager;
 
     
-    protected int [] statusList = {0,0,0,0,0,0,0};
+    protected double [] statusList = {0,0,0,0,0,0,0,0};
     
     public static final int BLEED_INDEX     = 0; //At the start of the enemy's turn take damage equal to bleed. Then decrease bleed by one. (Working)
     public static final int BURN_INDEX      = 1; //Take damage equal to burn at the start of your turn.                                     (Working)
     public static final int FOG_INDEX       = 2; //Enemy strikes half of the damage to itself with the chance of %50                        (Working)
-    public static final int POISON_INDEX    = 3; //Make your enemy take 2 damage for turns equal to your ability power                      (Working)
-    public static final int SHOCK_INDEX     = 4; //Deal half damage                                                                         (Working)
-    public static final int STUN_INDEX      = 5; //Pass turn                                                                                (Working)
-    public static final int TEMP_H_INDEX    = 6; //TemporaryHealth : Lasts until enemy's turn end                                           (Working)
+    public static final int DODGE_INDEX     = 3;
+    public static final int POISON_INDEX    = 4; //Make your enemy take 2 damage for turns equal to your ability power                      (Working)
+    public static final int SHOCK_INDEX     = 5; //Deal half damage                                                                         (Working)
+    public static final int STUN_INDEX      = 6; //Pass turn                                                                                (Working)
+    public static final int TEMP_H_INDEX    = 7; //TemporaryHealth : Lasts until enemy's turn end                                           (Working)
 
     
     protected static int attackScale;
@@ -99,12 +100,20 @@ public abstract class Entity implements EntityFeatures {
             damage /= 2;
         }
         
-        int targetTempHealth = target.statusList[TEMP_H_INDEX];
+        double targetTempHealth = target.statusList[TEMP_H_INDEX];
         if(targetTempHealth > 0){
             //target.statusList[TEMP_H_INDEX] -= damage; //if its gonna reset after one turn doesn't necessary
             damage -= targetTempHealth;
         }
         
+        if (target.statusList[DODGE_INDEX] > 0) {
+            Random rand = new Random();
+            double chance = rand.nextDouble();
+            if (target.statusList[DODGE_INDEX] >= chance) {
+                System.out.println("Enemy dodged the attack.");
+                return;
+            }
+        }
         
         giveDamage(damage,target);
     }
@@ -153,6 +162,7 @@ public abstract class Entity implements EntityFeatures {
         {
             case Bleed ->           {target.statusList[BLEED_INDEX]     += forTurns;}
             case Burn ->            {target.statusList[BURN_INDEX]      += forTurns;}
+            case Dodge ->           {target.statusList[DODGE_INDEX]     += forTurns;}
             case Fog ->             {target.statusList[FOG_INDEX]       += forTurns;}
             case Poison ->          {target.statusList[POISON_INDEX]    += forTurns;}
             case Shock ->           {target.statusList[SHOCK_INDEX]     += forTurns;}
@@ -176,6 +186,7 @@ public abstract class Entity implements EntityFeatures {
                 {
                     case BLEED_INDEX -> {this.takeDamage(statusList[i]);}
                     case BURN_INDEX -> {this.takeDamage(statusList[i]);}
+                    case DODGE_INDEX -> {}
                     case FOG_INDEX -> {}
                     case POISON_INDEX -> {this.takeDamage(2);}
                     case SHOCK_INDEX -> {}
@@ -204,6 +215,7 @@ public abstract class Entity implements EntityFeatures {
                 case BLEED_INDEX -> {}
                 case BURN_INDEX -> {statusList[i] = 0;}
                 case FOG_INDEX -> {}
+                case DODGE_INDEX -> {if(statusList[i] != 0.1) {statusList[i]--;}}
                 case POISON_INDEX -> {}
                 case SHOCK_INDEX -> {}
                 case STUN_INDEX -> {}

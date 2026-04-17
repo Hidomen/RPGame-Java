@@ -27,7 +27,8 @@ public class CombatGUI extends javax.swing.JFrame{
         currentEnemyIndex = 0;
         
         initComponents();
-
+        abilitySelectionPanel.setBackground(new java.awt.Color(51, 51, 51));
+        getContentPane().setBackground(new java.awt.Color(51, 51, 51));
         this.players = players;
         this.enemies = enemies;
 
@@ -36,7 +37,7 @@ public class CombatGUI extends javax.swing.JFrame{
     
         actionListener();
         
-        
+        attackButton.setFocusPainted(false); 
         updateLabels();
     }
 
@@ -73,20 +74,30 @@ public class CombatGUI extends javax.swing.JFrame{
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 51, 51));
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 0));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setText("Enemy");
 
         enemyHealthLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        enemyHealthLabel.setForeground(new java.awt.Color(255, 255, 0));
         enemyHealthLabel.setText("Health");
 
         enemyAttackPowerLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        enemyAttackPowerLabel.setForeground(new java.awt.Color(255, 255, 0));
         enemyAttackPowerLabel.setText("AttackPower");
 
         enemyManaLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        enemyManaLabel.setForeground(new java.awt.Color(255, 255, 0));
         enemyManaLabel.setText("Mana");
 
         enemyAbilityPowerLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        enemyAbilityPowerLabel.setForeground(new java.awt.Color(255, 255, 0));
         enemyAbilityPowerLabel.setText("AbilityPower");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -101,7 +112,7 @@ public class CombatGUI extends javax.swing.JFrame{
                     .addComponent(enemyManaLabel)
                     .addComponent(enemyAbilityPowerLabel)
                     .addComponent(jLabel1))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,19 +129,28 @@ public class CombatGUI extends javax.swing.JFrame{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 0));
+
         playerNameLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        playerNameLabel.setForeground(new java.awt.Color(255, 255, 0));
         playerNameLabel.setText("Player Name");
 
         playerAttackPowerLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        playerAttackPowerLabel.setForeground(new java.awt.Color(255, 255, 0));
         playerAttackPowerLabel.setText("AttackPower");
 
         playerHealthLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        playerHealthLabel.setForeground(new java.awt.Color(255, 255, 0));
         playerHealthLabel.setText("Health");
 
         playerManaLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        playerManaLabel.setForeground(new java.awt.Color(255, 255, 0));
         playerManaLabel.setText("Mana");
 
         playerAbilityPowerLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        playerAbilityPowerLabel.setForeground(new java.awt.Color(255, 255, 0));
         playerAbilityPowerLabel.setText("AbilityPower");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -164,34 +184,59 @@ public class CombatGUI extends javax.swing.JFrame{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 0));
+
         turnLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        turnLabel.setForeground(new java.awt.Color(255, 255, 0));
         turnLabel.setText("Turn");
 
+        attackButton.setBackground(new java.awt.Color(255, 255, 0));
         attackButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        attackButton.setForeground(new java.awt.Color(51, 51, 51));
         attackButton.setText("Attack");
 
+        abilityButton.setBackground(new java.awt.Color(51, 51, 51));
         abilityButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        abilityButton.setForeground(new java.awt.Color(255, 255, 0));
         abilityButton.setText("Ability");
 
+        defenceButton.setBackground(new java.awt.Color(255, 255, 0));
         defenceButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        defenceButton.setForeground(new java.awt.Color(51, 51, 51));
         defenceButton.setText("Defence");
 
+        abilitySelectionPanel.setBackground(new java.awt.Color(51, 51, 51));
+        abilitySelectionPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+
         jLabel4.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 0));
         jLabel4.setText("Player Abilities");
 
+        useAbility0.setBackground(new java.awt.Color(255, 255, 0));
         useAbility0.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        useAbility0.setForeground(new java.awt.Color(51, 51, 51));
         useAbility0.setText("Ability0");
 
+        useAbility1.setBackground(new java.awt.Color(255, 255, 0));
         useAbility1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        useAbility1.setForeground(new java.awt.Color(51, 51, 51));
         useAbility1.setText("Ability1");
 
+        useAbility2.setBackground(new java.awt.Color(255, 255, 0));
         useAbility2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        useAbility2.setForeground(new java.awt.Color(51, 51, 51));
         useAbility2.setText("Ability2");
 
+        useAbility3.setBackground(new java.awt.Color(255, 255, 0));
         useAbility3.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        useAbility3.setForeground(new java.awt.Color(51, 51, 51));
         useAbility3.setText("Ability3");
 
+        useAbility4.setBackground(new java.awt.Color(255, 255, 0));
         useAbility4.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        useAbility4.setForeground(new java.awt.Color(51, 51, 51));
         useAbility4.setText("Ability4");
         useAbility4.setToolTipText("");
 
@@ -245,7 +290,7 @@ public class CombatGUI extends javax.swing.JFrame{
                         .addComponent(abilityButton)
                         .addComponent(defenceButton))
                     .addComponent(turnLabel))
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(abilitySelectionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -267,10 +312,16 @@ public class CombatGUI extends javax.swing.JFrame{
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        jPanel4.setForeground(new java.awt.Color(255, 255, 0));
+
         jLabel5.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 0));
         jLabel5.setText("Log");
 
         jLabel3.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 0));
         jLabel3.setText("PLAYER used ...");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -278,7 +329,7 @@ public class CombatGUI extends javax.swing.JFrame{
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(70, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -294,7 +345,7 @@ public class CombatGUI extends javax.swing.JFrame{
                 .addComponent(jLabel5)
                 .addGap(36, 36, 36)
                 .addComponent(jLabel3)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -304,15 +355,11 @@ public class CombatGUI extends javax.swing.JFrame{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 53, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -323,9 +370,9 @@ public class CombatGUI extends javax.swing.JFrame{
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -361,11 +408,15 @@ public class CombatGUI extends javax.swing.JFrame{
     }
     
     private void abilityButtonUsed(int index){
+        abilityButton.setFocusPainted(false);
         
         callback.useAbility(players.get(currentPlayerIndex), index, enemies.get(0)); //select target before this func
         
         
         abilitySelectionPanel.setVisible(false);
+        
+        abilityButton.setBackground(new java.awt.Color(51, 51, 51));
+        abilityButton.setForeground(java.awt.Color.YELLOW);        
         playerTurnEnded();
     }
     
@@ -375,19 +426,20 @@ public class CombatGUI extends javax.swing.JFrame{
         if(CombatState.PLAYER_TURN == callback.getCombatState()){
             
             abilityButton.addActionListener((ActionEvent e) -> {
-
+                abilityButton.setFocusPainted(false);
                 abilitySelectionPanel.setVisible(true);
+                abilityButton.setBackground(new java.awt.Color(255, 255, 0));
+                abilityButton.setForeground(new java.awt.Color(0, 0, 0));              
             });
 
             attackButton.addActionListener((ActionEvent e) -> {
-
+                attackButton.setFocusPainted(false); 
                 players.get(currentPlayerIndex).attack(enemies.get(currentEnemyIndex));
                 playerTurnEnded();
             });
 
             defenceButton.addActionListener((ActionEvent e) -> {
-
-                //
+                defenceButton.setFocusPainted(false); 
                 playerTurnEnded();
             });
 
@@ -428,6 +480,7 @@ public class CombatGUI extends javax.swing.JFrame{
 
     }
     
+
     
     private void updateLabels(){
         abilitySelectionPanel.setVisible(false);

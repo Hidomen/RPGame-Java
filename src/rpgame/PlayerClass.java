@@ -6,13 +6,15 @@ public abstract class PlayerClass extends Entity{
 
     protected String className;
     
-    protected int money;
+    protected int money; 
     
     protected int level;
     protected int XP;
     protected final int xpCap;
 
     protected int abilityCap;
+    
+    
     
     
     PlayerClass(Ability[] abilityList, int abilityCap){
@@ -22,7 +24,7 @@ public abstract class PlayerClass extends Entity{
         xpCap = 100;
         level = 1;
         XP = 0;
-        money = 0;
+        money = 100; //Inited for test;
         
         this.abilityCap = abilityCap;
         

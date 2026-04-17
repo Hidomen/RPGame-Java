@@ -19,6 +19,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         initComponents();
         
         //game = new Game(playerCount);
+        mageButton.setFocusPainted(false); 
         
         InfoPanel.setVisible(false);        
     }
@@ -28,6 +29,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         mageButton = new javax.swing.JButton();
         archerButton = new javax.swing.JButton();
@@ -50,9 +52,28 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         continueButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 51, 51));
+        setMaximumSize(new java.awt.Dimension(990, 735));
+        setMinimumSize(new java.awt.Dimension(990, 735));
+        setPreferredSize(new java.awt.Dimension(990, 735));
+        setResizable(false);
 
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setMaximumSize(new java.awt.Dimension(1000, 700));
+        jPanel2.setMinimumSize(new java.awt.Dimension(1000, 700));
+        jPanel2.setName(""); // NOI18N
+        jPanel2.setPreferredSize(new java.awt.Dimension(1000, 700));
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        mageButton.setBackground(new java.awt.Color(51, 51, 51));
         mageButton.setFont(new java.awt.Font("Perpetua", 1, 18)); // NOI18N
+        mageButton.setForeground(new java.awt.Color(255, 255, 0));
         mageButton.setText("Mage");
+        mageButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        mageButton.setMaximumSize(new java.awt.Dimension(92, 28));
+        mageButton.setMinimumSize(new java.awt.Dimension(92, 28));
+        mageButton.setPreferredSize(new java.awt.Dimension(92, 28));
         mageButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 mageButtonMouseEntered(evt);
@@ -60,8 +81,14 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         });
         mageButton.addActionListener(this::mageButtonActionPerformed);
 
+        archerButton.setBackground(new java.awt.Color(51, 51, 51));
         archerButton.setFont(new java.awt.Font("Perpetua", 1, 18)); // NOI18N
+        archerButton.setForeground(new java.awt.Color(255, 255, 0));
         archerButton.setText("Archer");
+        archerButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        archerButton.setMaximumSize(new java.awt.Dimension(92, 28));
+        archerButton.setMinimumSize(new java.awt.Dimension(92, 28));
+        archerButton.setPreferredSize(new java.awt.Dimension(92, 28));
         archerButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 archerButtonMouseEntered(evt);
@@ -69,8 +96,14 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         });
         archerButton.addActionListener(this::archerButtonActionPerformed);
 
+        healerButton.setBackground(new java.awt.Color(51, 51, 51));
         healerButton.setFont(new java.awt.Font("Perpetua", 1, 18)); // NOI18N
+        healerButton.setForeground(new java.awt.Color(255, 255, 0));
         healerButton.setText("Healer");
+        healerButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        healerButton.setMaximumSize(new java.awt.Dimension(92, 28));
+        healerButton.setMinimumSize(new java.awt.Dimension(92, 28));
+        healerButton.setPreferredSize(new java.awt.Dimension(92, 28));
         healerButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 healerButtonMouseEntered(evt);
@@ -78,8 +111,11 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         });
         healerButton.addActionListener(this::healerButtonActionPerformed);
 
+        warriorButton.setBackground(new java.awt.Color(51, 51, 51));
         warriorButton.setFont(new java.awt.Font("Perpetua", 1, 18)); // NOI18N
+        warriorButton.setForeground(new java.awt.Color(255, 255, 0));
         warriorButton.setText("Warrior");
+        warriorButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         warriorButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 warriorButtonMouseEntered(evt);
@@ -97,67 +133,86 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
                     .addComponent(warriorButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(healerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(archerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mageButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addComponent(mageButton)
+                .addComponent(mageButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(archerButton)
+                .addComponent(archerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(healerButton)
+                .addComponent(healerButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(warriorButton)
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
+        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setText("Pick your Class");
 
+        InfoPanel.setBackground(new java.awt.Color(51, 51, 51));
+        InfoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 5));
+        InfoPanel.setForeground(new java.awt.Color(255, 255, 0));
         InfoPanel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        InfoPanel.setMaximumSize(new java.awt.Dimension(523, 580));
+        InfoPanel.setMinimumSize(new java.awt.Dimension(523, 580));
+        InfoPanel.setPreferredSize(new java.awt.Dimension(503, 580));
 
         classIndicator.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        classIndicator.setForeground(new java.awt.Color(255, 255, 0));
         classIndicator.setText("No Class Hovered");
 
-        ability1_name.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ability1_name.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        ability1_name.setForeground(new java.awt.Color(255, 255, 0));
         ability1_name.setText("Ability1_name");
         ability1_name.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
-        ability2_name.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ability2_name.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        ability2_name.setForeground(new java.awt.Color(255, 255, 0));
         ability2_name.setText("Ability2_name");
         ability2_name.setFocusable(false);
         ability2_name.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
-        ability3_name.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ability3_name.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        ability3_name.setForeground(new java.awt.Color(255, 255, 0));
         ability3_name.setText("Ability3_name");
 
         ability1_desc.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        ability1_desc.setForeground(new java.awt.Color(255, 255, 0));
         ability1_desc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ability1_desc.setText("Ability1_desc");
         ability1_desc.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         ability2_desc.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        ability2_desc.setForeground(new java.awt.Color(255, 255, 0));
         ability2_desc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ability2_desc.setText("Ability2_desc");
         ability2_desc.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         ability3_desc.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        ability3_desc.setForeground(new java.awt.Color(255, 255, 0));
         ability3_desc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ability3_desc.setText("Ability3_desc");
 
         healthLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        healthLabel.setForeground(new java.awt.Color(255, 255, 0));
         healthLabel.setText("Health:");
 
         attackLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        attackLabel.setForeground(new java.awt.Color(255, 255, 0));
         attackLabel.setText("Attack:");
 
         manaLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        manaLabel.setForeground(new java.awt.Color(255, 255, 0));
         manaLabel.setText("Mana:");
 
         abilityPowerLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        abilityPowerLabel.setForeground(new java.awt.Color(255, 255, 0));
         abilityPowerLabel.setText("AbilityPower:");
 
         javax.swing.GroupLayout InfoPanelLayout = new javax.swing.GroupLayout(InfoPanel);
@@ -200,7 +255,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
                 .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(healthLabel)
                     .addComponent(abilityPowerLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addComponent(ability1_name)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ability1_desc)
@@ -221,53 +276,76 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         manaLabel.getAccessibleContext().setAccessibleName("Mana");
         abilityPowerLabel.getAccessibleContext().setAccessibleName("AbilityPower");
 
+        addPlayerButton.setBackground(new java.awt.Color(255, 255, 0));
         addPlayerButton.setFont(new java.awt.Font("Arial", 3, 20)); // NOI18N
+        addPlayerButton.setForeground(new java.awt.Color(51, 51, 51));
         addPlayerButton.setText("Add Player");
         addPlayerButton.addActionListener(this::addPlayerButtonActionPerformed);
 
+        continueButton.setBackground(new java.awt.Color(255, 255, 0));
         continueButton.setFont(new java.awt.Font("Arial", 3, 20)); // NOI18N
+        continueButton.setForeground(new java.awt.Color(51, 51, 51));
         continueButton.setText("Continue");
         continueButton.setToolTipText("");
         continueButton.addActionListener(this::continueButtonActionPerformed);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(continueButton)
+                    .addComponent(addPlayerButton))
+                .addContainerGap(809, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                    .addComponent(InfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(472, 472, 472)
+                .addComponent(addPlayerButton)
+                .addGap(18, 18, 18)
+                .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel1)
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(InfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(79, 365, Short.MAX_VALUE)))
+                    .addContainerGap()))
+        );
+
+        InfoPanel.getAccessibleContext().setAccessibleName("InfoPanel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addPlayerButton)
-                            .addComponent(continueButton))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                .addComponent(InfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(InfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addPlayerButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(continueButton)
-                        .addGap(85, 85, 85))))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(100, Short.MAX_VALUE))
         );
-
-        InfoPanel.getAccessibleContext().setAccessibleName("InfoPanel");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -275,23 +353,41 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
     private void mageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mageButtonActionPerformed
         
         selectedClass = new Mage();
+        highlightSelected(mageButton);
     }//GEN-LAST:event_mageButtonActionPerformed
 
     private void archerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archerButtonActionPerformed
         
         selectedClass = new Archer();
+        highlightSelected(archerButton);
     }//GEN-LAST:event_archerButtonActionPerformed
 
     private void healerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_healerButtonActionPerformed
         
         selectedClass = new Healer();
+        highlightSelected(healerButton);
     }//GEN-LAST:event_healerButtonActionPerformed
 
     private void warriorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warriorButtonActionPerformed
         
         selectedClass = new Warrior();
+        highlightSelected(warriorButton);
     }//GEN-LAST:event_warriorButtonActionPerformed
 
+    private void highlightSelected(javax.swing.JButton selected) {
+    javax.swing.JButton[] buttons = {mageButton, archerButton, healerButton, warriorButton};
+    
+    for (javax.swing.JButton b : buttons) {
+        b.setBackground(new java.awt.Color(51, 51, 51));
+        b.setForeground(new java.awt.Color(255, 255, 0));
+        b.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        b.setFocusPainted(false); 
+    }
+    
+    selected.setBackground(new java.awt.Color(255, 255, 0));
+    selected.setForeground(new java.awt.Color(0, 0, 0));
+    selected.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 4));
+}
     
     private void infoPanel(PlayerClass hoveredClass){
         
@@ -364,11 +460,12 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         
         
         callback.addPlayer(selectedClass);
+        addPlayerButton.setFocusPainted(false);
     }//GEN-LAST:event_addPlayerButtonActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
         System.out.println("continue button clicked");
-        
+        continueButton.setFocusPainted(false);
         if(callback.getPlayerCount() < playerCount){
             
             System.err.println("INSUFFICIENT PLAYER ADDED");
@@ -419,6 +516,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
     private javax.swing.JLabel healthLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton mageButton;
     private javax.swing.JLabel manaLabel;
     private javax.swing.JButton warriorButton;
