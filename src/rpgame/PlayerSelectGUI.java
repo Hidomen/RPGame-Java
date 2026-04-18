@@ -5,16 +5,19 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PlayerSelectGUI.class.getName());
 
-    private int playerCount = 2;
+    private int addedPlayerCount;
+    private static int playerCount;
+    private static GUICallback callback;
     
-    
-    private static PlayerSelectGUICallback callback;
     
     private PlayerClass selectedClass;
     
-    public PlayerSelectGUI(PlayerSelectGUICallback callback) {
+    public PlayerSelectGUI(GUICallback callback, int playerCount) {
         
         this.callback = callback;
+        this.playerCount = playerCount;
+        
+        addedPlayerCount = 0;
         
         initComponents();
         
@@ -48,8 +51,15 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         attackLabel = new javax.swing.JLabel();
         manaLabel = new javax.swing.JLabel();
         abilityPowerLabel = new javax.swing.JLabel();
+        ability4_name = new javax.swing.JLabel();
+        ability4_desc = new javax.swing.JLabel();
+        ability5_name = new javax.swing.JLabel();
+        ability5_desc = new javax.swing.JLabel();
+        ability6_name = new javax.swing.JLabel();
+        ability6_desc = new javax.swing.JLabel();
         addPlayerButton = new javax.swing.JButton();
         continueButton = new javax.swing.JButton();
+        playerNameField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -215,6 +225,33 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         abilityPowerLabel.setForeground(new java.awt.Color(255, 255, 0));
         abilityPowerLabel.setText("AbilityPower:");
 
+        ability4_name.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        ability4_name.setForeground(new java.awt.Color(255, 255, 0));
+        ability4_name.setText("Ability4_name");
+
+        ability4_desc.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        ability4_desc.setForeground(new java.awt.Color(255, 255, 0));
+        ability4_desc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ability4_desc.setText("Ability4_desc");
+
+        ability5_name.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        ability5_name.setForeground(new java.awt.Color(255, 255, 0));
+        ability5_name.setText("Ability5_name");
+
+        ability5_desc.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        ability5_desc.setForeground(new java.awt.Color(255, 255, 0));
+        ability5_desc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ability5_desc.setText("Ability5_desc");
+
+        ability6_name.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        ability6_name.setForeground(new java.awt.Color(255, 255, 0));
+        ability6_name.setText("Ability6_name");
+
+        ability6_desc.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        ability6_desc.setForeground(new java.awt.Color(255, 255, 0));
+        ability6_desc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ability6_desc.setText("Ability6_desc");
+
         javax.swing.GroupLayout InfoPanelLayout = new javax.swing.GroupLayout(InfoPanel);
         InfoPanel.setLayout(InfoPanelLayout);
         InfoPanelLayout.setHorizontalGroup(
@@ -222,16 +259,13 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
             .addGroup(InfoPanelLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ability6_name)
+                    .addComponent(ability5_name)
+                    .addComponent(ability4_name)
                     .addComponent(ability1_name)
                     .addComponent(ability2_name)
                     .addComponent(classIndicator)
                     .addComponent(ability3_name)
-                    .addGroup(InfoPanelLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ability1_desc)
-                            .addComponent(ability2_desc)
-                            .addComponent(ability3_desc)))
                     .addGroup(InfoPanelLayout.createSequentialGroup()
                         .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(attackLabel)
@@ -239,8 +273,17 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
                         .addGap(141, 141, 141)
                         .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(abilityPowerLabel)
-                            .addComponent(manaLabel))))
-                .addContainerGap(168, Short.MAX_VALUE))
+                            .addComponent(manaLabel)))
+                    .addGroup(InfoPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ability6_desc)
+                            .addComponent(ability5_desc)
+                            .addComponent(ability4_desc)
+                            .addComponent(ability1_desc)
+                            .addComponent(ability2_desc)
+                            .addComponent(ability3_desc))))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         InfoPanelLayout.setVerticalGroup(
             InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +298,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
                 .addGroup(InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(healthLabel)
                     .addComponent(abilityPowerLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addComponent(ability1_name)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ability1_desc)
@@ -267,7 +310,19 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
                 .addComponent(ability3_name)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ability3_desc)
-                .addGap(138, 138, 138))
+                .addGap(18, 18, 18)
+                .addComponent(ability4_name)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ability4_desc)
+                .addGap(18, 18, 18)
+                .addComponent(ability5_name)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ability5_desc)
+                .addGap(18, 18, 18)
+                .addComponent(ability6_name)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ability6_desc)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         classIndicator.getAccessibleContext().setAccessibleName("ClassIndicator");
@@ -289,16 +344,21 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         continueButton.setToolTipText("");
         continueButton.addActionListener(this::continueButtonActionPerformed);
 
+        playerNameField.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        playerNameField.setText("name");
+        playerNameField.addActionListener(this::playerNameFieldActionPerformed);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(continueButton)
-                    .addComponent(addPlayerButton))
-                .addContainerGap(809, Short.MAX_VALUE))
+                    .addComponent(addPlayerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(playerNameField))
+                .addContainerGap(806, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -312,7 +372,9 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(472, 472, 472)
+                .addGap(339, 339, 339)
+                .addComponent(playerNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
                 .addComponent(addPlayerButton)
                 .addGap(18, 18, 18)
                 .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,8 +399,9 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,25 +438,25 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
     }//GEN-LAST:event_warriorButtonActionPerformed
 
     private void highlightSelected(javax.swing.JButton selected) {
-    javax.swing.JButton[] buttons = {mageButton, archerButton, healerButton, warriorButton};
+        javax.swing.JButton[] buttons = {mageButton, archerButton, healerButton, warriorButton};
     
-    for (javax.swing.JButton b : buttons) {
-        b.setBackground(new java.awt.Color(51, 51, 51));
-        b.setForeground(new java.awt.Color(255, 255, 0));
-        b.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
-        b.setFocusPainted(false); 
+        for (javax.swing.JButton b : buttons) {
+            b.setBackground(new java.awt.Color(51, 51, 51));
+            b.setForeground(new java.awt.Color(255, 255, 0));
+            b.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+            b.setFocusPainted(false); 
+        }
+    
+        selected.setBackground(new java.awt.Color(255, 255, 0));
+        selected.setForeground(new java.awt.Color(0, 0, 0));
+        selected.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 4));
     }
-    
-    selected.setBackground(new java.awt.Color(255, 255, 0));
-    selected.setForeground(new java.awt.Color(0, 0, 0));
-    selected.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 4));
-}
     
     private void infoPanel(PlayerClass hoveredClass){
         
         if(!InfoPanel.isVisible()) InfoPanel.setVisible(true);
         
-        classIndicator.setText(hoveredClass.className);
+        classIndicator.setText(hoveredClass.className.toString());
 
         Ability infoPanelAbilityLister; //used for list ability features
         
@@ -401,6 +464,9 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
             {ability1_name, ability1_desc},
             {ability2_name, ability2_desc},
             {ability3_name, ability3_desc},
+            {ability4_name, ability4_desc},
+            {ability5_name, ability5_desc},
+            {ability6_name, ability6_desc},
         };
         
         for(int i = 0; i < abilityLabels.length; i++){
@@ -460,20 +526,32 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         
         
         callback.addPlayer(selectedClass);
+        addedPlayerCount++;
+        
         addPlayerButton.setFocusPainted(false);
     }//GEN-LAST:event_addPlayerButtonActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
         System.out.println("continue button clicked");
+        
         continueButton.setFocusPainted(false);
-        if(callback.getPlayerCount() < playerCount){
+        if(addedPlayerCount < playerCount){
             
             System.err.println("INSUFFICIENT PLAYER ADDED");
             return;
         }
         
-        callback.combatGUI();
+        System.out.println("continue button clicked");
+
+        
+        callback.playerSelectGUIEnded();
     }//GEN-LAST:event_continueButtonActionPerformed
+
+    private void playerNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerNameFieldActionPerformed
+        
+        
+        
+    }//GEN-LAST:event_playerNameFieldActionPerformed
 
 
     public static void main(String args[]) {
@@ -495,7 +573,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         //</editor-fold>
         
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new PlayerSelectGUI(callback).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new PlayerSelectGUI(callback, playerCount).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -506,6 +584,12 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
     private javax.swing.JLabel ability2_name;
     private javax.swing.JLabel ability3_desc;
     private javax.swing.JLabel ability3_name;
+    private javax.swing.JLabel ability4_desc;
+    private javax.swing.JLabel ability4_name;
+    private javax.swing.JLabel ability5_desc;
+    private javax.swing.JLabel ability5_name;
+    private javax.swing.JLabel ability6_desc;
+    private javax.swing.JLabel ability6_name;
     private javax.swing.JLabel abilityPowerLabel;
     private javax.swing.JButton addPlayerButton;
     private javax.swing.JButton archerButton;
@@ -519,6 +603,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton mageButton;
     private javax.swing.JLabel manaLabel;
+    private javax.swing.JTextField playerNameField;
     private javax.swing.JButton warriorButton;
     // End of variables declaration//GEN-END:variables
 }

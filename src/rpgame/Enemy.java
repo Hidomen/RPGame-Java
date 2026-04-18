@@ -6,13 +6,13 @@ public class Enemy extends Entity {
     
     private static final int CONST = 3;
         
-    Enemy(int powerLevel){
+    Enemy(int powerLevel, int playerCount){
         
         
-        maxHP           = powerLevel * CONST * Config.health;
-        attackPower     = powerLevel * CONST * Config.attack;
-        abilityPower    = powerLevel * CONST * Config.ability;
-        mana            = powerLevel * CONST * Config.mana;
+        maxHP           = powerLevel * playerCount * CONST * Config.health;
+        attackPower     = powerLevel * playerCount * CONST * Config.attack;
+        abilityPower    = powerLevel * playerCount * CONST * Config.ability;
+        mana            = powerLevel * playerCount * CONST * Config.mana;
         
         HP = maxHP;
     }

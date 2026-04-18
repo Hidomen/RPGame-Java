@@ -119,8 +119,8 @@ public abstract class Entity implements EntityFeatures {
     }
     
     
-    private void die(){
-        System.out.println(entityName + "IS DIED");
+    public boolean isDead(){
+        return (HP <= 0);
     }
     
     
@@ -129,10 +129,6 @@ public abstract class Entity implements EntityFeatures {
         if(damage <= 0) return;
         
         HP -= damage;
-        
-        if(HP <= 0){
-            die();
-        }
     }
     
     

@@ -15,7 +15,7 @@ public class Archer extends PlayerClass {
     Archer()
     {
         super(abilityList,4);
-        className = "Archer";
+        className = Classes.Archer;
         
         maxHP = Config.health * 14;
         mana = Config.mana * 5;

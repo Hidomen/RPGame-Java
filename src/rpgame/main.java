@@ -2,16 +2,13 @@ package rpgame;
 //import rpgame.PlayerClass.*;
 import java.util.ArrayList;
 
-enum CombatState {PLAYER_TURN, ENEMY_TURN, GAME_OVER};
+
 enum GUIState {PLAYER_SELECTION, COMBAT, SHOP, WIN};
 
-public class main implements PlayerSelectGUICallback, CombatGUICallback{
-
-    private static CombatState combatState;
-    
-    
+public class main implements GUICallback{
+        
     private static ArrayList<PlayerClass> players;
-    private static ArrayList<Enemy> enemies;
+    private Enemy enemy;
     
     private static int maxEnemySize;
     private static int playerCount;
@@ -20,97 +17,63 @@ public class main implements PlayerSelectGUICallback, CombatGUICallback{
     
     private static int difficulty;
     
-    private Combat combat;
+    private Group group;
     
-    
-    private static PlayerSelectGUI gui;
-    private static CombatGUI gui2;
+    //==========================================================================
+    // GUIs
+    //==========================================================================
+    private static PlayerSelectGUI playerSelectGUI;
+    private static CombatGUI combatGUI;
+    private static ShopGUI shopGUI;
 
     
-    public static void main(){
-        System.out.println("constructor");
-        
+    public static void main(){    
         main m = new main();
         
-        gui = new PlayerSelectGUI(m);
-        
-        
-        
-        gui.setVisible(true);
+        players = new ArrayList<PlayerClass>();
         
         difficulty = 1;
         maxEnemySize = 5; 
-        playerCount = 2; //modifyable
+        playerCount = 1; //modifyable
 
+        playerSelectGUI = new PlayerSelectGUI(m,playerCount);
+        playerSelectGUI.setVisible(true);
         
-        players = new ArrayList<PlayerClass>();
-        enemies = new ArrayList<Enemy>();
-    }
-    
-    public static void shopGUItest() {
-        Shop merchant = new Shop();
-        PlayerClass p1 = new Mage();
-        Inventory inv = new Inventory();
         
-        new ShopGUI(merchant.goodies, p1, inv).setVisible(true);
-        
-        while(true)
-        {
-            inv.showInventory();
-        }
-    }
-
-    
-    //==========================================================================
-    //  Ability Functions
-    //==========================================================================
-    @Override
-    public void useAbility(PlayerClass player, int abilityIndex, Entity target){
-        
-        player.useAbility(player.getAbility(abilityIndex), target);
-    }
-    //==========================================================================
-    //  Getters, Setters
-    //==========================================================================
-    @Override
-    public CombatState getCombatState(){
-        return combatState;
-    }
-    
-    @Override
-    public void setCombatState(CombatState combatState){
-        this.combatState = combatState;
-    }
-    
-    @Override
-    public int getPlayerCount(){
-        return players.size();
     }
     //==========================================================================
     //  GUI Callbacks
     //==========================================================================
     @Override
-    public void combatGUI(){
-        
-        initEnemy(3);
+    public void playerSelectGUIEnded(){
         main m = new main();
-
-        gui2 = new CombatGUI(m, players, enemies);
         
-        gui.setVisible(false);
-        gui2.setVisible(true);
+        shopGUI = new ShopGUI(m, group);
+        
+        initCombat();
+        
+        playerSelectGUI.setVisible(false);
+        combatGUI.setVisible(true);
     }
     
     @Override
-    public void enemyTurn(int index){ //cbb
+    public void combatGUIEnded(){
+        System.out.println("combat is over");
         
-        if(combatState != CombatState.ENEMY_TURN){
-            System.err.println("Combat State is not in enemy turn");
-            return;
-        }
+        difficulty++;
         
-        combat.enemyTurn(index);
-        combatState = CombatState.PLAYER_TURN;
+        shopGUI.setVisible(true);
+        combatGUI.setVisible(false);
+
+    }
+    
+    @Override
+    public void shopGUIEnded(){
+        
+        initCombat();
+        
+        combatGUI.setVisible(true);
+        shopGUI.setVisible(false);
     }
     
     @Override
@@ -123,20 +86,42 @@ public class main implements PlayerSelectGUICallback, CombatGUICallback{
         }
         
         
-        player.setEntityName("PLAYER1");
+        player.setEntityName("PLAYER1"); //fix
         
         System.out.println("Player added");
         players.add(player);
+        
+        System.out.println(players.getLast().getEntityName());
+    }
+    
+    @Override
+    public void gameOver(){
+        System.out.println("game over :(. Lasted 'till " + difficulty + ". Difficulty");
     }
     //==========================================================================
     //  Combat Functions
     //==========================================================================
-    public void initEnemy(int enemySize){
+    public void initEnemy(){
         
-        for(int i = 0; i < enemySize; i++){
-            
-            enemies.add(i, new Enemy(difficulty));
+        enemy = new Enemy(difficulty, players.size());        
+    }
+    
+    public void initCombat(){
+        main m = new main();
+        
+        initEnemy();
+        combatGUI = new CombatGUI(m, players, enemy);
+    }
+    
+    public void initGroup(){
+        
+        ArrayList<Classes> c = new ArrayList<Classes>();
+        
+        for(PlayerClass p : players){
+            c.add(p.className);
         }
+        
+        group = new Group(100, c);
     }
 
 }

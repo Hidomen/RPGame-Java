@@ -19,7 +19,7 @@ public class Mage extends PlayerClass {
     Mage()
     {
         super(abilityList,6);
-        className = "Mage";
+        className = Classes.Mage;
 
         maxHP = Config.health * 10;
         mana = Config.mana * 10;
