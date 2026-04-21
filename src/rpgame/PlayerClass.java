@@ -10,17 +10,14 @@ public abstract class PlayerClass extends Entity{
     protected int XP;
     protected final int xpCap;
 
-    protected int abilityCap;
-    
+    protected Ability[] abilityList;
 
-    PlayerClass(Ability[] abilityList, int abilityCap){
+    PlayerClass(Ability[] abilityList){
         xpCap = 100;
         level = 1;
         XP = 0;
         
-        this.abilityCap = abilityCap;
-        
-        abilityManager = new AbilityManager(abilityList, abilityCap);
+        this.abilityList = abilityList;
     }
 
 
@@ -38,6 +35,25 @@ public abstract class PlayerClass extends Entity{
             this.XP -= xpCap;
         }
         
+    }
+    
+    
+    public boolean isManaEnough(Ability a){
+        
+        if(mana < a.getCost()){
+            return false;
+        }
+        return true;
+    }
+    
+    public Ability getAbility(int index)
+    {
+        if (index >= abilityList.length){
+            System.err.println("Given index is out of limit");
+            return null;
+        }
+
+        return abilityList[index];
     }
 
 }

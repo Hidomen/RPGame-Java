@@ -446,7 +446,7 @@ public class CombatGUI extends javax.swing.JFrame{
     private void stateManager(){
         
         if (enemy.isDead()){
-            callback.combatGUIEnded();
+            callback.setGUIState(GUIState.LOBBY);
         }
         
         
@@ -492,7 +492,11 @@ public class CombatGUI extends javax.swing.JFrame{
         
         Ability usedAbility = currentPlayer.getAbility(index);
         
-        //mana control
+        
+        if(!currentPlayer.isManaEnough(usedAbility)){
+            System.err.println("Player's mana is not enough to perform ability");
+            return;
+        }
         
         abilityButton.setFocusPainted(false);
         
@@ -578,7 +582,7 @@ public class CombatGUI extends javax.swing.JFrame{
         
         for(int i = 0; i < abilityButtons.length; i++){
 
-            if(i < currentPlayer.abilityCap){
+            if(i < currentPlayer.abilityList.length){ //should do it with getter
                 abilityButtons[i].setVisible(true);
                 abilityButtons[i].setText(currentPlayer.getAbility(i).getName());
             } else {

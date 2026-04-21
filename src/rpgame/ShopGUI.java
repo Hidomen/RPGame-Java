@@ -234,7 +234,7 @@ public class ShopGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
-        callback.shopGUIEnded();
+        callback.setGUIState(GUIState.LOBBY);
     }//GEN-LAST:event_continueButtonActionPerformed
 
     

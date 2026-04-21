@@ -15,7 +15,7 @@ public class Healer extends PlayerClass{
     
     Healer()
     {
-        super(abilityList,5);
+        super(abilityList);
         className = Classes.Healer;
         
         maxHP = Config.health * 15;

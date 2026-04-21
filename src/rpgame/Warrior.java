@@ -14,7 +14,7 @@ public class Warrior extends PlayerClass {
     
     Warrior()
     {
-        super(abilityList,3);
+        super(abilityList);
         className = Classes.Warrior;
 
         maxHP = Config.health * 20;

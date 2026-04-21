@@ -52,9 +52,6 @@ public abstract class Entity implements EntityFeatures {
         this.entityName = entityName;
     }
 
-    public Ability getAbility(int index){
-        return abilityManager.getAbilityList(index);
-    }
     //==========================================================================
     // Ability function
     //==========================================================================

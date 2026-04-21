@@ -544,7 +544,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         System.out.println("continue button clicked");
 
         
-        callback.playerSelectGUIEnded();
+        callback.setGUIState(GUIState.COMBAT);
     }//GEN-LAST:event_continueButtonActionPerformed
 
     private void playerNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerNameFieldActionPerformed
