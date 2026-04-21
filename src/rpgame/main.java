@@ -35,7 +35,7 @@ public class main implements GUICallback{
         
         difficulty = 1;
         maxEnemySize = 5; 
-        playerCount = 1; //modifyable
+        playerCount = 2; //modifyable
 
         playerSelectGUI = new PlayerSelectGUI(m,playerCount);
         playerSelectGUI.setVisible(true);
@@ -90,7 +90,7 @@ public class main implements GUICallback{
     }
     
     @Override
-    public void addPlayer(PlayerClass player){
+    public void addPlayer(PlayerClass player , String playerName){
 
         
         if(playerCount <= players.size()){
@@ -99,7 +99,7 @@ public class main implements GUICallback{
         }
         
         
-        player.setEntityName("PLAYER1"); //fix
+        player.setEntityName(playerName);
         
         System.out.println("Player added");
         players.add(player);
