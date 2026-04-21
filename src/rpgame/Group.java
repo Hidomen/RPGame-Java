@@ -28,6 +28,7 @@ public class Group {
     }
     
     public int getMoney(){
+        System.out.println(money + "MONEY");
         return money;
     }
     

@@ -26,6 +26,7 @@ public class main implements GUICallback{
     private static CombatGUI combatGUI;
     private static ShopGUI shopGUI;
 
+    private GUIState state;
     
     public static void main(){    
         main m = new main();
@@ -44,9 +45,21 @@ public class main implements GUICallback{
     //==========================================================================
     //  GUI Callbacks
     //==========================================================================
+    
+    public void setGUIState(GUIState state){
+        
+        this.state = state;
+        
+        switch(state){
+            
+        }
+    }
+    
     @Override
     public void playerSelectGUIEnded(){
         main m = new main();
+        
+        initGroup();
         
         shopGUI = new ShopGUI(m, group);
         

@@ -60,6 +60,7 @@ public class ShopGUI extends javax.swing.JFrame {
         }
     }
     
+    //debug
         public void ListItems()
     {
         for (Item il : goodies) {
@@ -82,6 +83,7 @@ public class ShopGUI extends javax.swing.JFrame {
     private void setupItems()
 {
     
+        moneyLabel.setText(group.getMoney() + "$");
     
         JPanel itemsPanel = new JPanel();
         itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
@@ -133,6 +135,7 @@ public class ShopGUI extends javax.swing.JFrame {
 
                 if (CanAfford && Compatible) {
                     group.addToInventory(i);
+                    System.out.println("purchased");
                     group.setMoney(group.getMoney() - i.price);
                     
                     JOptionPane.showMessageDialog(this, "Item: " + i.name + " is bought successfully. Remaining gold: " + group.getMoney() , "Success!" , JOptionPane.WARNING_MESSAGE);
@@ -177,6 +180,7 @@ public class ShopGUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         continueButton = new javax.swing.JButton();
+        moneyLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
 
         jLabel6.setText("Item Description");
@@ -193,6 +197,11 @@ public class ShopGUI extends javax.swing.JFrame {
         jLabel2.setText("Welcome to the shop traveler");
 
         continueButton.setText("Continue");
+        continueButton.addActionListener(this::continueButtonActionPerformed);
+
+        moneyLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        moneyLabel.setForeground(new java.awt.Color(255, 255, 0));
+        moneyLabel.setText("money");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -200,8 +209,10 @@ public class ShopGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addGap(120, 120, 120)
+                .addComponent(moneyLabel)
+                .addGap(18, 18, 18)
                 .addComponent(continueButton)
                 .addGap(40, 40, 40))
         );
@@ -211,7 +222,8 @@ public class ShopGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addComponent(continueButton))
+                    .addComponent(continueButton)
+                    .addComponent(moneyLabel))
                 .addContainerGap())
         );
 
@@ -220,6 +232,10 @@ public class ShopGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
+        callback.shopGUIEnded();
+    }//GEN-LAST:event_continueButtonActionPerformed
 
     
 
@@ -236,5 +252,6 @@ public class ShopGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel moneyLabel;
     // End of variables declaration//GEN-END:variables
 }

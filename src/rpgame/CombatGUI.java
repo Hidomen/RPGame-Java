@@ -409,6 +409,7 @@ public class CombatGUI extends javax.swing.JFrame{
         }
         
         state = CombatState.values()[(state.ordinal() + 1) % 2];
+        stateManager();
     }
 
     private void playerTurnStart(){
@@ -485,25 +486,25 @@ public class CombatGUI extends javax.swing.JFrame{
         updateLabels();
     }
     
-    private void playerTurnEnded(){
-        //update mana
-        
-        nextTurn();
-        stateManager();
-    }
+    
     
     private void abilityButtonUsed(int index){
+        
+        Ability usedAbility = currentPlayer.getAbility(index);
+        
+        //mana control
+        
         abilityButton.setFocusPainted(false);
         
 
-        players.get(currentPlayerIndex).useAbility(currentPlayer.getAbility(index), enemy);
+        players.get(currentPlayerIndex).useAbility(usedAbility, enemy);
         
         abilitySelectionPanel.setVisible(false);
         
         abilityButton.setBackground(new java.awt.Color(51, 51, 51));
         abilityButton.setForeground(java.awt.Color.YELLOW); 
         
-        playerTurnEnded();
+        playerTurnEnd();
     }
     
     
@@ -523,12 +524,12 @@ public class CombatGUI extends javax.swing.JFrame{
             attackButton.addActionListener((ActionEvent e) -> {
                 attackButton.setFocusPainted(false); 
                 players.get(currentPlayerIndex).attack(enemy);
-                playerTurnEnded();
+                playerTurnEnd();
             });
 
             defenceButton.addActionListener((ActionEvent e) -> {
                 defenceButton.setFocusPainted(false); 
-                playerTurnEnded();
+                playerTurnEnd();
             });
             //==================================================================
             // Ability Listeners
