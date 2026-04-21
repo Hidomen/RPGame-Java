@@ -6,13 +6,7 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="33" green="33" red="33" type="rgb"/>
     </Property>
-    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[990, 735]"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[990, 735]"/>
-    </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[990, 735]"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
@@ -80,7 +74,7 @@
                       <Component id="addPlayerButton" max="32767" attributes="0"/>
                       <Component id="playerNameField" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="806" max="32767" attributes="0"/>
+                  <EmptySpace pref="809" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">

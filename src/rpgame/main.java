@@ -2,8 +2,8 @@ package rpgame;
 //import rpgame.PlayerClass.*;
 import java.util.ArrayList;
 
-
-enum GUIState {PLAYER_SELECTION, START_GAME, LOBBY, COMBAT, SHOP, GAME_OVER};
+            
+enum GUIState {MAIN_SCREEN, PLAY, PLAYER_SELECTION, START_GAME, LOBBY, COMBAT, SHOP, GAME_OVER, EXIT};
 
 public class main implements GUICallback{
         
@@ -22,10 +22,12 @@ public class main implements GUICallback{
     //==========================================================================
     // GUIs
     //==========================================================================
-    private static PlayerSelectGUI playerSelectGUI;
-    private static CombatGUI combatGUI;
-    private static ShopGUI shopGUI;
-    //private static LobbyGUI lobbyGUI;
+    private static MainScreenGUI    mainScreenGUI;
+    private static GameOverGUI      gameOverGUI;
+    private static PlayerSelectGUI  playerSelectGUI;
+    private static CombatGUI        combatGUI;
+    private static ShopGUI          shopGUI;
+    private static LobbyGUI         lobbyGUI;
 
     private static GUIState state;
     
@@ -36,11 +38,12 @@ public class main implements GUICallback{
         
         difficulty = 1;
         maxEnemySize = 5; 
-        playerCount = 1; //modifyable
+        playerCount = 2; //modifyable
 
-        playerSelectGUI = new PlayerSelectGUI(m,playerCount);
-        playerSelectGUI.setVisible(true);
         
+        
+        mainScreenGUI = new MainScreenGUI(m);
+        mainScreenGUI.setVisible(true);
         
     }
     //==========================================================================
@@ -52,46 +55,75 @@ public class main implements GUICallback{
         this.state = state;
         
         if(shopGUI != null){
+            
             shopGUI.setVisible(false);
-
         }
         if(combatGUI != null){
+            
             combatGUI.setVisible(false);
         }
         if(playerSelectGUI != null){
+            
             playerSelectGUI.setVisible(false);
 
         }
         
         switch(state){
-            case GUIState.START_GAME -> {
+            
+            case GUIState.PLAY -> { 
                 
-                initGroup();
-                shopGUI = new ShopGUI(m, group);
+                
+                //deciding player count
+                //if its decided in main screen delete this
+                
+            }
+            
+            case GUIState.START_GAME -> { //changed things on replay?
+
+
             }
             case GUIState.COMBAT -> {
                 
-                
+                difficulty++;
                 initCombat();
+                if(null == combatGUI){
+                    combatGUI = new CombatGUI(m, players, enemy);
+                }
                 
                 combatGUI.setVisible(true);
             }
             case GUIState.LOBBY -> {
                 
-                difficulty++;
-                System.out.println("LOBBY");
-                //lobbyGUI.setVisible(true);
+                if(null == lobbyGUI){
+                    lobbyGUI = new LobbyGUI(m);
+                }
+                
+                
+                lobbyGUI.setVisible(true);
             }
             case GUIState.PLAYER_SELECTION -> {
+                
+                if(null == playerSelectGUI){
+                    playerSelectGUI = new PlayerSelectGUI(m, playerCount);
+                }
                 
                 playerSelectGUI.setVisible(true);
             }
             case GUIState.SHOP -> {
                 
+                if(null == shopGUI){
+                    shopGUI = new ShopGUI(m, group);
+                }
+                
                 shopGUI.setVisible(true);
             }
             case GUIState.GAME_OVER -> {
                 System.out.println("YOU ARE DEAD BUDDY.");
+            }
+            
+            case GUIState.EXIT -> {
+                
+                System.out.println("Exitting game");
             }
         }
     }
@@ -107,7 +139,6 @@ public class main implements GUICallback{
         }
         
         
-        player.setEntityName("PLAYER1"); //fix
         
         System.out.println("Player added");
         players.add(player);
@@ -118,6 +149,11 @@ public class main implements GUICallback{
     @Override
     public void gameOver(){
         System.out.println("game over :(. Lasted 'till " + difficulty + ". Difficulty");
+    }
+    
+    @Override
+    public void setPlayerCount(int playerCount){
+        this.playerCount = playerCount;
     }
     //==========================================================================
     //  Combat Functions

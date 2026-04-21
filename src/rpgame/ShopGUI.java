@@ -137,7 +137,7 @@ public class ShopGUI extends javax.swing.JFrame {
                     group.addToInventory(i);
                     System.out.println("purchased");
                     group.setMoney(group.getMoney() - i.price);
-                    
+                    moneyLabel.setText(group.getMoney() + "$");
                     JOptionPane.showMessageDialog(this, "Item: " + i.name + " is bought successfully. Remaining gold: " + group.getMoney() , "Success!" , JOptionPane.WARNING_MESSAGE);
                     wrapper.setVisible(false);
                     itemsPanel.revalidate();

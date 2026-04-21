@@ -523,8 +523,12 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
             System.err.println("None of Classes Selected");
             return;
         }
-        
-        
+        String namePlayer = playerNameField.getText().trim();
+        if (namePlayer.equals("name") || namePlayer.isEmpty() || namePlayer == null ) {
+            System.err.println("PLAYER NAME IS INVALID");
+            return;
+        }
+        selectedClass.setEntityName(namePlayer);
         callback.addPlayer(selectedClass);
         addedPlayerCount++;
         
@@ -533,14 +537,14 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
         System.out.println("continue button clicked");
-        
+
         continueButton.setFocusPainted(false);
         if(addedPlayerCount < playerCount){
             
             System.err.println("INSUFFICIENT PLAYER ADDED");
             return;
         }
-        
+
         System.out.println("continue button clicked");
 
         
