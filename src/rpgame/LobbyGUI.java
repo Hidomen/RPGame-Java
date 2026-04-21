@@ -191,20 +191,22 @@ public class LobbyGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void fightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fightButtonActionPerformed
+        fightButton.setFocusPainted(false);
         callback.setGUIState(GUIState.COMBAT);
-        
     }//GEN-LAST:event_fightButtonActionPerformed
 
     private void shopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopButtonActionPerformed
+        shopButton.setFocusPainted(false);
         callback.setGUIState(GUIState.SHOP);
-        
     }//GEN-LAST:event_shopButtonActionPerformed
 
     private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
+        inventoryButton.setFocusPainted(false);
         //callback.setGUIState(GUIState.INVENTORY);
     }//GEN-LAST:event_inventoryButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        quitButton.setFocusPainted(false);
         //idk
     }//GEN-LAST:event_quitButtonActionPerformed
 
