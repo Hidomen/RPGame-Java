@@ -32,6 +32,9 @@ public class MainScreenGUI extends javax.swing.JFrame {
         playerCountField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 51, 51));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel1.setFont(new java.awt.Font("Arial", 2, 48)); // NOI18N
         jLabel1.setText("JAVENTURE");
@@ -86,8 +89,8 @@ public class MainScreenGUI extends javax.swing.JFrame {
         
         playerCountField.setVisible(true);
         
-        callback.setPlayerCount(playerCount);
-        //callback.setGUIState(GUIState.PLAYER_SELECTION);
+        callback.setPlayerCount(2);
+        callback.setGUIState(GUIState.PLAYER_SELECTION);
     }//GEN-LAST:event_playButtonActionPerformed
 
     

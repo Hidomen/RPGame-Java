@@ -95,7 +95,7 @@ public class main implements GUICallback{
             case GUIState.LOBBY -> {
                 
                 if(null == lobbyGUI){
-                    lobbyGUI = new LobbyGUI(m);
+                    lobbyGUI = new LobbyGUI(m , players);
                 }
                 
                 
