@@ -397,6 +397,7 @@ public class CombatGUI extends javax.swing.JFrame{
 
     
     private void nextPlayer(){
+        if(players.size() <= 0) return;
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
     }
     
@@ -413,7 +414,7 @@ public class CombatGUI extends javax.swing.JFrame{
     }
 
     private void playerTurnStart(){
-        System.out.println("PLAYER TURN");
+        System.out.println("PLAYER TURN"); //debug
                 
         
         if(players.get(currentPlayerIndex).checkStatus()){
@@ -438,7 +439,7 @@ public class CombatGUI extends javax.swing.JFrame{
             return;
         }
         
-        enemy.turn(players); 
+        enemy.turn(players, currentPlayerIndex); 
         enemy.endTurnEffects();
     }
 
@@ -446,7 +447,7 @@ public class CombatGUI extends javax.swing.JFrame{
     private void stateManager(){
         
         if (enemy.isDead()){
-            callback.setGUIState(GUIState.LOBBY);
+            callback.combatWin();
         }
         
         
@@ -460,11 +461,13 @@ public class CombatGUI extends javax.swing.JFrame{
                     
                     if(players.size() <= 1){
                         callback.gameOver();
+                        callback.setGUIState(GUIState.GAME_OVER);
+                    }
+                    else{
+                        players.remove(currentPlayerIndex);
+                        stateManager();
                     }
                     
-                    players.remove(currentPlayerIndex);
-                    nextPlayer();
-                    stateManager();
                 }
                 
                 playerTurnStart();

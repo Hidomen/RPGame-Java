@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Enemy extends Entity {
     
-    private static final int CONST = 3;
+    private static final int CONST = 1;
         
     Enemy(int powerLevel, int playerCount){
         
@@ -19,11 +19,11 @@ public class Enemy extends Entity {
     
     //different behaviours: only attack, attack and heal etc.
     //randomly attack to one player
-    public void turn(ArrayList<PlayerClass> players){
+    public void turn(ArrayList<PlayerClass> players, int currentPlayerIndex){
         
         System.out.println("Enemy hp after status check : " + HP); //debug
         
-        attack(players.get(0));
+        attack(players.get(currentPlayerIndex));
     }
 
     @Override

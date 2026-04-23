@@ -536,19 +536,16 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
     }//GEN-LAST:event_addPlayerButtonActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
-        System.out.println("continue button clicked");
-
         continueButton.setFocusPainted(false);
+        
         if(addedPlayerCount < playerCount){
             
-            System.err.println("INSUFFICIENT PLAYER ADDED");
+            System.err.println("INSUFFICIENT PLAYER ADDED"); //popup
             return;
         }
 
-        System.out.println("continue button clicked");
-
         
-        callback.setGUIState(GUIState.COMBAT);
+        callback.setGUIState(GUIState.START_GAME);
     }//GEN-LAST:event_continueButtonActionPerformed
 
     private void playerNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerNameFieldActionPerformed

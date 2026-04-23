@@ -156,7 +156,6 @@ public class ShopGUI extends javax.swing.JFrame {
 
             itemsPanel.add(wrapper);
         }
-
         jScrollPane1.setViewportView(itemsPanel);
 
         jScrollPane1.getViewport().setBackground(Color.BLACK);

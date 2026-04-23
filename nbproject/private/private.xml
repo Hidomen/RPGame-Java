@@ -12,16 +12,27 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/ShopGUI.java</file>
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/main.java</file>
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Group.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/CombatGUI.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/EntityFeatures.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Ability.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/AbilityManager.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Archer.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/WeaponItem.java</file>
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/GUICallback.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/PlayerSelectGUI.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Entity.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/AbilityManager.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/PlayerClass.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Archer.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Healer.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Mage.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Warrior.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/CombatGUI.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/LobbyGUI.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/GameOverGUI.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/MainScreenGUI.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/ShopGUI.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/manifest.mf</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/build.xml</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/nbproject/project.xml</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Enemy.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Item.java</file>
         </group>
     </open-files>
 </project-private>

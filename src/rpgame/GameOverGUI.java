@@ -7,10 +7,12 @@ public class GameOverGUI extends javax.swing.JFrame {
 
     
     private static GUICallback callback;
+    private static int difficulty;
     
-    public GameOverGUI(GUICallback callback) {
+    public GameOverGUI(GUICallback callback, int difficulty) {
         
         this.callback = callback;
+        this.difficulty = difficulty;
         
         initComponents();
     }
@@ -67,7 +69,7 @@ public class GameOverGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playAgainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainButtonActionPerformed
-        callback.setGUIState(GUIState.PLAY);
+        callback.setGUIState(GUIState.START_GAME);
     }//GEN-LAST:event_playAgainButtonActionPerformed
 
    
@@ -90,7 +92,7 @@ public class GameOverGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new GameOverGUI(callback).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new GameOverGUI(callback, difficulty).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

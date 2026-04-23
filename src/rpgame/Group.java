@@ -12,15 +12,41 @@ public class Group {
     private ArrayList<Item> inventory;
     private int invLimit;
     
-    public Group(int money, ArrayList<Classes> classes){
+    
+    private int level;
+    private int XP;
+    private final int xpCap;
+    
+    public Group(ArrayList<Classes> classes){
         
-        this.money = money;
+        
         this.size = classes.size();
         this.classes = classes;
+        
+        money = 100;
+        xpCap = 100;
+        level = 1;
+        XP = 0;
         
         
         inventory = new ArrayList<Item>();
         invLimit = size * 4;
+    }
+    
+    private void levelUp(){
+        level++;
+    }
+
+    
+    public void gainXP(int xp){
+        this.XP += xp;
+        
+        if(this.XP >= xpCap){
+            levelUp();
+            
+            this.XP -= xpCap;
+        }
+        
     }
     
     public void setMoney(int money){

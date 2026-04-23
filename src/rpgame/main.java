@@ -3,20 +3,18 @@ package rpgame;
 import java.util.ArrayList;
 
             
-enum GUIState {MAIN_SCREEN, PLAY, PLAYER_SELECTION, START_GAME, LOBBY, COMBAT, SHOP, GAME_OVER, EXIT};
+enum GUIState {MAIN_SCREEN, PLAYER_SELECTION, START_GAME, LOBBY, COMBAT, SHOP, GAME_OVER, EXIT};
 
 public class main implements GUICallback{
         
     private static ArrayList<PlayerClass> players;
     private Enemy enemy;
     
-    private static int maxEnemySize;
-    private static int playerCount;
     
     private PlayerClass selectedClass;
     
     private static int difficulty;
-    
+    private static int playerCount;
     private Group group;
     
     //==========================================================================
@@ -36,11 +34,6 @@ public class main implements GUICallback{
         
         players = new ArrayList<PlayerClass>();
         
-        difficulty = 1;
-        maxEnemySize = 5; 
-        playerCount = 2; //modifyable
-
-        
         
         mainScreenGUI = new MainScreenGUI(m);
         mainScreenGUI.setVisible(true);
@@ -54,43 +47,38 @@ public class main implements GUICallback{
         
         this.state = state;
         
+        
+        if(mainScreenGUI != null){
+            mainScreenGUI.setVisible(false);
+        }
+        if(lobbyGUI != null){
+            lobbyGUI.setVisible(false);
+        }
         if(shopGUI != null){
-            
             shopGUI.setVisible(false);
         }
         if(combatGUI != null){
-            
             combatGUI.setVisible(false);
         }
         if(playerSelectGUI != null){
-            
             playerSelectGUI.setVisible(false);
-
         }
         
         switch(state){
-            
-            case GUIState.PLAY -> { 
+            case GUIState.PLAYER_SELECTION -> {
                 
-                
-                //deciding player count
-                //if its decided in main screen delete this
-                
-            }
-            
-            case GUIState.START_GAME -> { //changed things on replay?
-
-
-            }
-            case GUIState.COMBAT -> {
-                
-                difficulty++;
-                initCombat();
-                if(null == combatGUI){
-                    combatGUI = new CombatGUI(m, players, enemy);
+                if(null == playerSelectGUI){
+                    playerSelectGUI = new PlayerSelectGUI(m, playerCount);
                 }
                 
-                combatGUI.setVisible(true);
+                playerSelectGUI.setVisible(true);
+            }
+            case GUIState.START_GAME -> {
+                
+                initGroup();
+                difficulty = 1;
+                setGUIState(GUIState.LOBBY);
+
             }
             case GUIState.LOBBY -> {
                 
@@ -101,29 +89,35 @@ public class main implements GUICallback{
                 
                 lobbyGUI.setVisible(true);
             }
-            case GUIState.PLAYER_SELECTION -> {
+            case GUIState.COMBAT -> {
                 
-                if(null == playerSelectGUI){
-                    playerSelectGUI = new PlayerSelectGUI(m, playerCount);
-                }
+                difficulty++;
+                initEnemy();
                 
-                playerSelectGUI.setVisible(true);
+                restoreHealth();
+                combatGUI = new CombatGUI(m, players, enemy);
+                
+                combatGUI.setVisible(true);
             }
             case GUIState.SHOP -> {
                 
                 if(null == shopGUI){
+                    initGroup();
                     shopGUI = new ShopGUI(m, group);
                 }
                 
                 shopGUI.setVisible(true);
             }
             case GUIState.GAME_OVER -> {
-                System.out.println("YOU ARE DEAD BUDDY.");
+                
+                
+                gameOverGUI = new GameOverGUI(m, difficulty);
+                gameOverGUI.setVisible(true);
             }
-            
             case GUIState.EXIT -> {
                 
                 System.out.println("Exitting game");
+                
             }
         }
     }
@@ -155,6 +149,12 @@ public class main implements GUICallback{
     public void setPlayerCount(int playerCount){
         this.playerCount = playerCount;
     }
+    
+    @Override
+    public void combatWin(){
+        group.setMoney(group.getMoney() + 100);
+        group.gainXP(difficulty * 75);
+    }
     //==========================================================================
     //  Combat Functions
     //==========================================================================
@@ -162,15 +162,15 @@ public class main implements GUICallback{
         
         enemy = new Enemy(difficulty, players.size());        
     }
-    
-    public void initCombat(){
-        main m = new main();
-        
-        initEnemy();
-        combatGUI = new CombatGUI(m, players, enemy);
-    }
-    
+
     public void initGroup(){
+        
+        System.out.println("initted group");
+        
+        if(group != null){
+            System.err.println("there is a group");
+            return;
+        }
         
         ArrayList<Classes> c = new ArrayList<Classes>();
         
@@ -178,7 +178,14 @@ public class main implements GUICallback{
             c.add(p.className);
         }
         
-        group = new Group(100, c);
+        group = new Group(c);
+    }
+    
+    public void restoreHealth(){
+        
+        for(PlayerClass p : players){
+            p.HP = p.maxHP;
+        }
     }
 
 }

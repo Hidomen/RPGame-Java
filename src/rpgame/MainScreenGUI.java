@@ -112,11 +112,14 @@ public class MainScreenGUI extends javax.swing.JFrame {
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         //if text field is empty return
         
-        playerCountField.setVisible(true);
+        System.out.println("play button");
         
-        callback.setPlayerCount(2);
+        playerCountField.setVisible(true); //doesnt work
+        
+        callback.setPlayerCount(2); //fix
+       
         callback.setGUIState(GUIState.PLAYER_SELECTION);
-        playButton.setFocusPainted(false);
+        playButton.setFocusPainted(false); //not necessary 
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void playerCountFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerCountFieldActionPerformed
