@@ -195,7 +195,7 @@ public class LobbyGUI extends javax.swing.JFrame {
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         quitButton.setFocusPainted(false);
-        //idk
+        callback.setGUIState(GUIState.GAME_OVER);
     }//GEN-LAST:event_quitButtonActionPerformed
 
 

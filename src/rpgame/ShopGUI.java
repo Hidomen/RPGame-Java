@@ -46,7 +46,17 @@ public class ShopGUI extends javax.swing.JFrame {
         this.group = group;
         
         initComponents();
+        moneyLabel.setText(group.getMoney() + "$");
         setupItems();
+    }
+    
+    @Override
+    public void setVisible(boolean visible)
+    {
+        super.setVisible(visible);
+        if (visible) {
+            moneyLabel.setText(group.getMoney() + "$");
+        }
     }
     
     public void AddItem(Item item)
@@ -116,13 +126,13 @@ public class ShopGUI extends javax.swing.JFrame {
                 boolean Compatible = false;
                 boolean CanAfford = false;
                 for (Classes c : i.compability) {
-                    if (true /*c.toString() == player.className*/) {
+                    if (group.isInGroup(c)) {
                         Compatible = true;
                         break;
                     }
                 }
                 if (!Compatible) {
-                    JOptionPane.showMessageDialog(this, "Your group does not have any member compatible with this item. Your class: ", "Non-Compatible Item" , JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Your group does not have any member compatible with this item." , "Non-Compatible Item" , JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 if (group.getMoney() >= i.price) {

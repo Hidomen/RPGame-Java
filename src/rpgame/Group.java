@@ -10,9 +10,7 @@ public class Group {
     private ArrayList<Classes> classes;
     
     private ArrayList<Item> inventory;
-    private int invLimit;
-    
-    
+
     private int level;
     private int XP;
     private final int xpCap;
@@ -30,7 +28,6 @@ public class Group {
         
         
         inventory = new ArrayList<Item>();
-        invLimit = size * 4;
     }
     
     private void levelUp(){
@@ -74,10 +71,6 @@ public class Group {
     // INVENTORY
     public void addToInventory(Item i)
     {
-        if (inventory.size() >= invLimit) {
-            System.out.println("Inventory is full. You can't add another item");
-            return;
-        }
         inventory.add(i);
     }
     
@@ -88,13 +81,6 @@ public class Group {
             return;
         }
         inventory.remove(ind);
-        /*
-        for (;  ind < inventory.size()-1; ind++) {
-            inventory[ind] = inventory[ind+1];
-        }
-        inventory[ind] = null;
-        itemCount--;
-        */
     }
     
     public void showInventory()

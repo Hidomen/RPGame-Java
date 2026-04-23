@@ -43,7 +43,7 @@ public class main implements GUICallback{
     //  GUI Callbacks
     //==========================================================================
     public void setGUIState(GUIState state){
-        main m = new main();
+        //main m = new main();
         
         this.state = state;
         
@@ -68,7 +68,7 @@ public class main implements GUICallback{
             case GUIState.PLAYER_SELECTION -> {
                 
                 if(null == playerSelectGUI){
-                    playerSelectGUI = new PlayerSelectGUI(m, playerCount);
+                    playerSelectGUI = new PlayerSelectGUI(this, playerCount);
                 }
                 
                 playerSelectGUI.setVisible(true);
@@ -76,14 +76,14 @@ public class main implements GUICallback{
             case GUIState.START_GAME -> {
                 
                 initGroup();
-                difficulty = 1;
+                difficulty = 0;
                 setGUIState(GUIState.LOBBY);
 
             }
             case GUIState.LOBBY -> {
-                
+                initGroup();
                 if(null == lobbyGUI){
-                    lobbyGUI = new LobbyGUI(m , players);
+                    lobbyGUI = new LobbyGUI(this , players);
                 }
                 
                 
@@ -95,7 +95,7 @@ public class main implements GUICallback{
                 initEnemy();
                 
                 restoreHealth();
-                combatGUI = new CombatGUI(m, players, enemy);
+                combatGUI = new CombatGUI(this, players, enemy);
                 
                 combatGUI.setVisible(true);
             }
@@ -103,7 +103,7 @@ public class main implements GUICallback{
                 
                 if(null == shopGUI){
                     initGroup();
-                    shopGUI = new ShopGUI(m, group);
+                    shopGUI = new ShopGUI(this, group);
                 }
                 
                 shopGUI.setVisible(true);
@@ -111,7 +111,7 @@ public class main implements GUICallback{
             case GUIState.GAME_OVER -> {
                 
                 
-                gameOverGUI = new GameOverGUI(m, difficulty);
+                gameOverGUI = new GameOverGUI(this, difficulty);
                 gameOverGUI.setVisible(true);
             }
             case GUIState.EXIT -> {

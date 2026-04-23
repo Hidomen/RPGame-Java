@@ -16,12 +16,13 @@ public class CombatGUI extends javax.swing.JFrame{
 
     private int turnCount = 1;
     private CombatState state;
-
+    boolean combatEnded = false;
     
     private PlayerClass currentPlayer;  //used for checking things
     private int currentPlayerIndex;     //used if an action affects player
     
     private static GUICallback callback;
+
     
     public CombatGUI(GUICallback callback, ArrayList<PlayerClass> players, Enemy enemy) {
         
@@ -446,8 +447,11 @@ public class CombatGUI extends javax.swing.JFrame{
     
     private void stateManager(){
         
-        if (enemy.isDead()){
+        if (enemy.isDead() && !combatEnded){
+            combatEnded = true;
             callback.combatWin();
+            callback.setGUIState(GUIState.LOBBY);
+            return;
         }
         
         
@@ -462,9 +466,14 @@ public class CombatGUI extends javax.swing.JFrame{
                     if(players.size() <= 1){
                         callback.gameOver();
                         callback.setGUIState(GUIState.GAME_OVER);
+                        return;
                     }
                     else{
                         players.remove(currentPlayerIndex);
+                        if (currentPlayerIndex >= players.size()) {
+                            currentPlayerIndex = 0;
+                        }
+                        
                         stateManager();
                     }
                     

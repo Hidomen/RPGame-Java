@@ -1,5 +1,7 @@
 package rpgame;
 
+import javax.swing.JOptionPane;
+
 
 public class PlayerSelectGUI extends javax.swing.JFrame{
     
@@ -437,6 +439,18 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         highlightSelected(warriorButton);
     }//GEN-LAST:event_warriorButtonActionPerformed
 
+    private void unhighlightAll()
+    {
+        javax.swing.JButton[] buttons = {mageButton , archerButton , healerButton , warriorButton};
+        
+        for (javax.swing.JButton b : buttons) {
+            b.setBackground(new java.awt.Color(51, 51, 51));
+            b.setForeground(new java.awt.Color(255, 255, 0));
+            b.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+            b.setFocusPainted(false);             
+        }
+    }
+    
     private void highlightSelected(javax.swing.JButton selected) {
         javax.swing.JButton[] buttons = {mageButton, archerButton, healerButton, warriorButton};
     
@@ -520,18 +534,19 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         
         if(null == selectedClass){
             
-            System.err.println("None of Classes Selected");
+        JOptionPane.showMessageDialog(this, "Please select a class before creating a class." , "CLASS IS NOT SELECTED", JOptionPane.WARNING_MESSAGE);
             return;
         }
         String namePlayer = playerNameField.getText().trim();
         if (namePlayer.equals("name") || namePlayer.isEmpty() || namePlayer == null ) {
-            System.err.println("PLAYER NAME IS INVALID");
+            JOptionPane.showMessageDialog(this, "Player name is invalid. Please enter a proper name." ,"INVALID PLAYER NAME" , JOptionPane.WARNING_MESSAGE);
             return;
         }
         selectedClass.setEntityName(namePlayer);
         callback.addPlayer(selectedClass);
         addedPlayerCount++;
-        
+        selectedClass = null; 
+        unhighlightAll();
         addPlayerButton.setFocusPainted(false);
     }//GEN-LAST:event_addPlayerButtonActionPerformed
 
@@ -539,8 +554,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         continueButton.setFocusPainted(false);
         
         if(addedPlayerCount < playerCount){
-            
-            System.err.println("INSUFFICIENT PLAYER ADDED"); //popup
+            JOptionPane.showMessageDialog(this, "Insufficient player added please fill up the group."  ,"INSUFFICIENT PLAYER", JOptionPane.WARNING_MESSAGE);
             return;
         }
 

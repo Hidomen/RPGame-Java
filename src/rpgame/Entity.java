@@ -21,8 +21,8 @@ public abstract class Entity implements EntityFeatures {
     
     public static final int BLEED_INDEX     = 0; //At the start of the enemy's turn take damage equal to bleed. Then decrease bleed by one. (Working)
     public static final int BURN_INDEX      = 1; //Take damage equal to burn at the start of your turn.                                     (Working)
-    public static final int FOG_INDEX       = 2; //Enemy strikes half of the damage to itself with the chance of %50                        (Working)
-    public static final int DODGE_INDEX     = 3;
+    public static final int DODGE_INDEX     = 2; 
+    public static final int FOG_INDEX       = 3; //Enemy strikes half of the damage to itself with the chance of %50                        (Working)
     public static final int POISON_INDEX    = 4; //Make your enemy take 2 damage for turns equal to your ability power                      (Working)
     public static final int SHOCK_INDEX     = 5; //Deal half damage                                                                         (Working)
     public static final int STUN_INDEX      = 6; //Pass turn                                                                                (Working)
@@ -99,7 +99,6 @@ public abstract class Entity implements EntityFeatures {
         
         double targetTempHealth = target.statusList[TEMP_H_INDEX];
         if(targetTempHealth > 0){
-            //target.statusList[TEMP_H_INDEX] -= damage; //if its gonna reset after one turn doesn't necessary
             damage -= targetTempHealth;
         }
         
@@ -107,11 +106,16 @@ public abstract class Entity implements EntityFeatures {
             Random rand = new Random();
             double chance = rand.nextDouble();
             if (target.statusList[DODGE_INDEX] >= chance) {
-                System.out.println("Enemy dodged the attack.");
+                System.out.println("The attack got dodged !.");
+                if (target.statusList[DODGE_INDEX] >= 1) {
+                    target.statusList[DODGE_INDEX] -= 1;
+                }
                 return;
             }
         }
-        
+        if (target.statusList[DODGE_INDEX] >= 1) {
+            target.statusList[DODGE_INDEX] -= 1;
+        }        
         giveDamage(damage,target);
     }
     
@@ -208,7 +212,7 @@ public abstract class Entity implements EntityFeatures {
                 case BLEED_INDEX -> {}
                 case BURN_INDEX -> {statusList[i] = 0;}
                 case FOG_INDEX -> {}
-                case DODGE_INDEX -> {if(statusList[i] != 0.1) {statusList[i]--;}}
+                case DODGE_INDEX -> {}
                 case POISON_INDEX -> {}
                 case SHOCK_INDEX -> {}
                 case STUN_INDEX -> {}
@@ -217,7 +221,7 @@ public abstract class Entity implements EntityFeatures {
                 
             }
             
-            if(statusList[i] > 0){
+            if(statusList[i] > 0 && i != DODGE_INDEX){
                 statusList[i]--;
             }
         }
