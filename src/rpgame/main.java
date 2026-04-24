@@ -1,15 +1,13 @@
 package rpgame;
-//import rpgame.PlayerClass.*;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
             
-enum GUIState {MAIN_SCREEN, PLAYER_SELECTION, START_GAME, LOBBY, COMBAT, SHOP, GAME_OVER, EXIT};
+enum GUIState {MAIN_SCREEN, PLAYER_SELECTION, START_GAME, LOBBY, COMBAT, SHOP, INVENTORY, GAME_OVER, EXIT};
 
 public class main implements GUICallback{
         
     private static ArrayList<PlayerClass> players;
     private Enemy enemy;
-    
     
     private PlayerClass selectedClass;
     
@@ -30,21 +28,18 @@ public class main implements GUICallback{
     private static GUIState state;
     
     public static void main(){    
-        main m = new main();
         
         players = new ArrayList<PlayerClass>();
         
+        main m = new main();
         
         mainScreenGUI = new MainScreenGUI(m);
         mainScreenGUI.setVisible(true);
-        
     }
     //==========================================================================
     //  GUI Callbacks
     //==========================================================================
     public void setGUIState(GUIState state){
-        //main m = new main();
-        
         this.state = state;
         
         
@@ -65,6 +60,10 @@ public class main implements GUICallback{
         }
         
         switch(state){
+            case GUIState.MAIN_SCREEN -> {
+                mainScreenGUI = new MainScreenGUI(this);
+                mainScreenGUI.setVisible(true);
+            }
             case GUIState.PLAYER_SELECTION -> {
                 
                 if(null == playerSelectGUI){
@@ -108,16 +107,19 @@ public class main implements GUICallback{
                 
                 shopGUI.setVisible(true);
             }
+            case GUIState.INVENTORY -> {
+                
+            }
             case GUIState.GAME_OVER -> {
                 
-                
+                System.out.println("entered");
                 gameOverGUI = new GameOverGUI(this, difficulty);
                 gameOverGUI.setVisible(true);
             }
             case GUIState.EXIT -> {
                 
                 System.out.println("Exitting game");
-                
+                System.exit(0);
             }
         }
     }

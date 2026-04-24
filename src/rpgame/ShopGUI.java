@@ -246,12 +246,9 @@ public class ShopGUI extends javax.swing.JFrame {
         callback.setGUIState(GUIState.LOBBY);
     }//GEN-LAST:event_continueButtonActionPerformed
 
-    
 
     public static void main(String args[]) {
             
-    
-        
         java.awt.EventQueue.invokeLater(() -> new ShopGUI(callback, group).setVisible(true));
     }
 

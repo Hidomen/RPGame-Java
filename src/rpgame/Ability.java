@@ -6,6 +6,7 @@ public final class Ability {
     private String name;
     private String description;
     private int cost;
+    
 
     public Ability(int ID, String name, String description, int cost) {
         this.ID = ID;

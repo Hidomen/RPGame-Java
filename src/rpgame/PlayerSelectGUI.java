@@ -11,7 +11,6 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
     private static int playerCount;
     private static GUICallback callback;
     
-    
     private PlayerClass selectedClass;
     
     public PlayerSelectGUI(GUICallback callback, int playerCount) {
@@ -528,7 +527,6 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         infoPanel(new Warrior());
     }//GEN-LAST:event_warriorButtonMouseEntered
 
-    
 
     private void addPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPlayerButtonActionPerformed
         

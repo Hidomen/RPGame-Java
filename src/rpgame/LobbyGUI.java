@@ -190,12 +190,12 @@ public class LobbyGUI extends javax.swing.JFrame {
 
     private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
         inventoryButton.setFocusPainted(false);
-        //callback.setGUIState(GUIState.INVENTORY);
+        callback.setGUIState(GUIState.INVENTORY);
     }//GEN-LAST:event_inventoryButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         quitButton.setFocusPainted(false);
-        callback.setGUIState(GUIState.GAME_OVER);
+        callback.setGUIState(GUIState.EXIT);
     }//GEN-LAST:event_quitButtonActionPerformed
 
 

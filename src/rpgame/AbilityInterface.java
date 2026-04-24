@@ -1,10 +1,7 @@
 package rpgame;
 
 
-public interface EntityFeatures {
-    
-    
-    public void attack(Entity target);
+public interface AbilityInterface {
     
     public void ability0(Entity target);
     public void ability1(Entity target);

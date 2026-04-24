@@ -1,23 +1,45 @@
 package rpgame;
 
-//import java.util.Scanner;
 
-public abstract class PlayerClass extends Entity{
+public abstract class PlayerClass extends Entity implements AbilityInterface {
 
     protected Classes className;
         
-    
+    protected int mana;
+    private int maxMana;
+    protected int abilityPower;
 
     protected Ability[] abilityList;
 
     PlayerClass(Ability[] abilityList){
         
         this.abilityList = abilityList;
+        maxMana = 20;
     }
+    //==========================================================================
+    // Ability function
+    //==========================================================================
+    public void useAbility(Ability a , Entity target){
+        
+        //System.out.println(a.name);
+        
+        if(mana < a.getCost()){
+            System.out.println("Your mana is not enough for the " + a.getName());
+            return;
+        }
 
-
-    
-    
+        mana -= a.getCost();
+        
+        
+        switch(a.getID()){
+            case 0 -> ability0(target);
+            case 1 -> ability1(target);
+            case 2 -> ability2(target);
+            case 3 -> ability3(target);
+            case 4 -> ability4(target);
+            case 5 -> ability5(target);
+        }
+    }
     
     public boolean isManaEnough(Ability a){
         
@@ -37,4 +59,9 @@ public abstract class PlayerClass extends Entity{
         return abilityList[index];
     }
 
+    public void addMana(){
+        if(mana >= maxMana) return;
+        
+        mana++;
+    }
 }

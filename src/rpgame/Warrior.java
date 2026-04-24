@@ -2,7 +2,6 @@ package rpgame;
 import static rpgame.Status.*;
 
 public class Warrior extends PlayerClass {
-    //More health and basic attack power
     
     static Ability[] abilityList = {
             
@@ -10,7 +9,6 @@ public class Warrior extends PlayerClass {
             new Ability(1,"Bleeding Cut","Apply 6 bleed", 4), //Working
             new Ability(2,"Stand Proud","Gain 4 * ability power temporary health",2) 
     };
-    
     
     Warrior()
     {

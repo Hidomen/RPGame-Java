@@ -8,5 +8,4 @@ public class ArmorItem extends Item{
         this.protectionModify = protectionModify;
     }
     
-
 }

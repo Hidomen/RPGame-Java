@@ -10,11 +10,4 @@ class Config{
     static int mana = 2;
     static int attack = 1;
     static int ability = 1;
-
-    static final int MAX_ABILITY_SIZE = 6;
-
 }    
-    
-    
-    
-    

@@ -9,6 +9,4 @@ public class WeaponItem extends Item{
         this.attackModify = attackModify;
         this.abilityModfiy = abilityModfiy;
     }
-    
-
 }

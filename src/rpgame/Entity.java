@@ -2,7 +2,7 @@ package rpgame;
 
 import java.util.Random;
 
-public abstract class Entity implements EntityFeatures {
+public abstract class Entity {
     
     
     private String entityName;
@@ -10,12 +10,8 @@ public abstract class Entity implements EntityFeatures {
     protected double HP;
     protected double maxHP;
     
-    protected int mana;
-    protected double attackPower;
-    protected double abilityPower;
     
-    protected AbilityManager abilityManager;
-
+    protected double attackPower;
     
     protected double [] statusList = {0,0,0,0,0,0,0,0};
     
@@ -52,34 +48,10 @@ public abstract class Entity implements EntityFeatures {
         this.entityName = entityName;
     }
 
-    //==========================================================================
-    // Ability function
-    //==========================================================================
-    public void useAbility(Ability a , Entity target){
-        
-        //System.out.println(a.name);
-        
-        if(mana < a.getCost()){
-            System.out.println("Your mana is not enough for the " + a.getName());
-            return;
-        }
-
-        mana -= a.getCost();
-        
-        
-        switch(a.getID()){
-            case 0 -> ability0(target);
-            case 1 -> ability1(target);
-            case 2 -> ability2(target);
-            case 3 -> ability3(target);
-            case 4 -> ability4(target);
-            case 5 -> ability5(target);
-        }
-    }
+    
     //==========================================================================
     // Combat functions
     //==========================================================================
-    @Override
     public void attack(Entity target){
 
         double damage = attackPower;
@@ -227,8 +199,6 @@ public abstract class Entity implements EntityFeatures {
         }
         
         
-        mana++;
     }
-
+    
 }
-

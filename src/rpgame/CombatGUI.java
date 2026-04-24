@@ -9,14 +9,11 @@ public class CombatGUI extends javax.swing.JFrame{
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CombatGUI.class.getName());
     
-    
     private static ArrayList<PlayerClass> players;
     private static Enemy enemy;
-    
 
     private int turnCount = 1;
     private CombatState state;
-    boolean combatEnded = false;
     
     private PlayerClass currentPlayer;  //used for checking things
     private int currentPlayerIndex;     //used if an action affects player
@@ -56,8 +53,6 @@ public class CombatGUI extends javax.swing.JFrame{
         jLabel1 = new javax.swing.JLabel();
         enemyHealthLabel = new javax.swing.JLabel();
         enemyAttackPowerLabel = new javax.swing.JLabel();
-        enemyManaLabel = new javax.swing.JLabel();
-        enemyAbilityPowerLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         playerNameLabel = new javax.swing.JLabel();
         playerAttackPowerLabel = new javax.swing.JLabel();
@@ -100,14 +95,6 @@ public class CombatGUI extends javax.swing.JFrame{
         enemyAttackPowerLabel.setForeground(new java.awt.Color(255, 255, 0));
         enemyAttackPowerLabel.setText("AttackPower");
 
-        enemyManaLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        enemyManaLabel.setForeground(new java.awt.Color(255, 255, 0));
-        enemyManaLabel.setText("Mana");
-
-        enemyAbilityPowerLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        enemyAbilityPowerLabel.setForeground(new java.awt.Color(255, 255, 0));
-        enemyAbilityPowerLabel.setText("AbilityPower");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -117,23 +104,17 @@ public class CombatGUI extends javax.swing.JFrame{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(enemyHealthLabel)
                     .addComponent(enemyAttackPowerLabel)
-                    .addComponent(enemyManaLabel)
-                    .addComponent(enemyAbilityPowerLabel)
                     .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(47, 47, 47)
                 .addComponent(enemyHealthLabel)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(enemyAttackPowerLabel)
-                .addGap(29, 29, 29)
-                .addComponent(enemyManaLabel)
-                .addGap(29, 29, 29)
-                .addComponent(enemyAbilityPowerLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -414,12 +395,11 @@ public class CombatGUI extends javax.swing.JFrame{
         stateManager();
     }
 
+    //remove
     private void playerTurnStart(){
-        System.out.println("PLAYER TURN"); //debug
-                
         
         if(players.get(currentPlayerIndex).checkStatus()){
-            System.out.println(currentPlayer.getEntityName() + "IS STUNNED");
+            System.out.println(currentPlayer.getEntityName() + "IS STUNNED"); //debug
             nextTurn();  
         }
         
@@ -427,14 +407,15 @@ public class CombatGUI extends javax.swing.JFrame{
     }
     
     private void playerTurnEnd(){
+        
         players.get(currentPlayerIndex).endTurnEffects();
-                
+        currentPlayer.addMana();
+        
         nextTurn();
     }
     
     private void enemyTurn(){
-        System.out.println("ENEMY TURN");
-                
+        
         if(enemy.checkStatus()){
             System.out.println(enemy.getEntityName() + "IS STUNNED");
             return;
@@ -447,14 +428,11 @@ public class CombatGUI extends javax.swing.JFrame{
     
     private void stateManager(){
         
-        if (enemy.isDead() && !combatEnded){
-            combatEnded = true;
+        if (enemy.isDead()){
             callback.combatWin();
             callback.setGUIState(GUIState.LOBBY);
             return;
         }
-        
-        
         
         //animation maybe
         
@@ -464,15 +442,12 @@ public class CombatGUI extends javax.swing.JFrame{
                 if(currentPlayer.isDead()){
                     
                     if(players.size() <= 1){
-                        callback.gameOver();
                         callback.setGUIState(GUIState.GAME_OVER);
                         return;
                     }
                     else{
                         players.remove(currentPlayerIndex);
-                        if (currentPlayerIndex >= players.size()) {
-                            currentPlayerIndex = 0;
-                        }
+                        nextPlayer();
                         
                         stateManager();
                     }
@@ -497,7 +472,6 @@ public class CombatGUI extends javax.swing.JFrame{
         
         updateLabels();
     }
-    
     
     
     private void abilityButtonUsed(int index){
@@ -583,7 +557,6 @@ public class CombatGUI extends javax.swing.JFrame{
 
        }
     }
-    
 
     private void updateLabels(){
         abilitySelectionPanel.setVisible(false);
@@ -602,10 +575,8 @@ public class CombatGUI extends javax.swing.JFrame{
             }
         }
 
-        enemyAbilityPowerLabel.setText  ("AbilityPower: "   + enemy.abilityPower);
         enemyAttackPowerLabel.setText   ("AttackPower: "    + enemy.attackPower);
         enemyHealthLabel.setText        ("Health: "         + enemy.HP + " / " + enemy.maxHP);
-        enemyManaLabel.setText          ("Mana: "           + enemy.mana);
         
         playerAbilityPowerLabel.setText ("AbilityPower: "   + currentPlayer.abilityPower);
         playerAttackPowerLabel.setText  ("AttackPower: "    + currentPlayer.attackPower);
@@ -628,10 +599,8 @@ public class CombatGUI extends javax.swing.JFrame{
     private javax.swing.JPanel abilitySelectionPanel;
     private javax.swing.JButton attackButton;
     private javax.swing.JButton defenceButton;
-    private javax.swing.JLabel enemyAbilityPowerLabel;
     private javax.swing.JLabel enemyAttackPowerLabel;
     private javax.swing.JLabel enemyHealthLabel;
-    private javax.swing.JLabel enemyManaLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

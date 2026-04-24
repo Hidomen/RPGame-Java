@@ -2,7 +2,6 @@ package rpgame;
 import static rpgame.Status.*;
 
 public class Healer extends PlayerClass{
-    //Passively heal urself/urgroup every turn.
     
     static Ability[] abilityList = {
             

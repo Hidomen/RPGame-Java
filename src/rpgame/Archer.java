@@ -2,7 +2,6 @@ package rpgame;
 import static rpgame.Status.*;
 
 public class Archer extends PlayerClass {
-    //Dodge ability, have a chance to dodge attack
     
     static Ability[] abilityList = {
             

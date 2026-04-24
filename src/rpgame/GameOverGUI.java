@@ -14,7 +14,11 @@ public class GameOverGUI extends javax.swing.JFrame {
         this.callback = callback;
         this.difficulty = difficulty;
         
+        
+        
         initComponents();
+        
+        difficultyLabel.setText("Difficulty: " + difficulty);
     }
 
    
@@ -23,18 +27,22 @@ public class GameOverGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        difficultyLabel = new javax.swing.JLabel();
         playAgainButton = new javax.swing.JButton();
+        mainScreen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setText("YOU DIED");
 
-        jLabel2.setText("Difficulty:");
+        difficultyLabel.setText("Difficulty:");
 
         playAgainButton.setText("One More");
         playAgainButton.addActionListener(this::playAgainButtonActionPerformed);
+
+        mainScreen.setText("Main Screen");
+        mainScreen.addActionListener(this::mainScreenActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -47,11 +55,14 @@ public class GameOverGUI extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(playAgainButton)))
-                .addContainerGap(117, Short.MAX_VALUE))
+                        .addComponent(difficultyLabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(playAgainButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(mainScreen)
+                .addGap(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,10 +70,12 @@ public class GameOverGUI extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addGap(41, 41, 41)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(playAgainButton)
-                .addGap(59, 59, 59))
+                .addComponent(difficultyLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(playAgainButton)
+                    .addComponent(mainScreen))
+                .addGap(58, 58, 58))
         );
 
         pack();
@@ -71,6 +84,11 @@ public class GameOverGUI extends javax.swing.JFrame {
     private void playAgainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainButtonActionPerformed
         callback.setGUIState(GUIState.START_GAME);
     }//GEN-LAST:event_playAgainButtonActionPerformed
+
+    private void mainScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainScreenActionPerformed
+        
+        callback.setGUIState(GUIState.MAIN_SCREEN);
+    }//GEN-LAST:event_mainScreenActionPerformed
 
    
     public static void main(String args[]) {
@@ -96,8 +114,9 @@ public class GameOverGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel difficultyLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton mainScreen;
     private javax.swing.JButton playAgainButton;
     // End of variables declaration//GEN-END:variables
 }
