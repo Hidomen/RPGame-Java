@@ -3,7 +3,7 @@ import static rpgame.Status.*;
 
 public class Healer extends PlayerClass{
     
-    static Ability[] abilityList = {
+    private static Ability[] abilityList = {
             
             new Ability(0,"Massive Heal" , "Gain health equal to your ability power * 1.5 " , 5),
             new Ability(1,"Holy Sword" , "Increase your attack power by quarter of your ability power" , 3),
@@ -18,7 +18,7 @@ public class Healer extends PlayerClass{
         className = Classes.Healer;
         
         maxHP = Config.health * 15;
-        mana = Config.mana * 7;
+        maxMana = Config.mana * 7;
         attackPower = Config.attack * 6;
         HP = maxHP;
         abilityPower = Config.ability * 6;

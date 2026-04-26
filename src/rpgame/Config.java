@@ -6,8 +6,8 @@ enum EntityType {Player , Enemy};
 
 
 class Config{
-    static int health = 3;
-    static int mana = 2;
-    static int attack = 1;
-    static int ability = 1;
+    public static int health = 3;
+    public static int mana = 2;
+    public static int attack = 1;
+    public static int ability = 1;
 }    

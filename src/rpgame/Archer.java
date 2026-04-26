@@ -3,7 +3,7 @@ import static rpgame.Status.*;
 
 public class Archer extends PlayerClass {
     
-    static Ability[] abilityList = {
+    private static Ability[] abilityList = {
             
             new Ability(0,"Ultimate Dodge","Next Attack will be definitely dodged",3),
             new Ability(1,"Headshot", "Next attack will be critic damage (%150)",5),
@@ -17,7 +17,7 @@ public class Archer extends PlayerClass {
         className = Classes.Archer;
         
         maxHP = Config.health * 14;
-        mana = Config.mana * 5;
+        maxMana = Config.mana * 5;
         attackPower = Config.attack * 10;
         
         HP = maxHP;

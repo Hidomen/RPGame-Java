@@ -5,7 +5,7 @@ import static rpgame.Status.*;
 public class Mage extends PlayerClass {
     //Bigger mana and skill pool.
     
-    static Ability[] abilityList = {
+    private static Ability[] abilityList = {
             
             new Ability(0, "Fireball" , "Deal ability power * 1.5 damage and apply 3 burn to enemy" , 8), //Working
             new Ability(1, "Electrify" , "Make your enemy shocked for turns equal to ability power * 0.25" , 3), 
@@ -22,7 +22,7 @@ public class Mage extends PlayerClass {
         className = Classes.Mage;
 
         maxHP = Config.health * 10;
-        mana = Config.mana * 10;
+        maxMana = Config.mana * 10;
         attackPower = Config.attack * 5;
         HP = maxHP;
         abilityPower = Config.ability * 8;

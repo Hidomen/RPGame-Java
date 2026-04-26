@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class LobbyGUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LobbyGUI.class.getName());
+    
     private static ArrayList<PlayerClass> playerList;
     private static GUICallback callback;    
   

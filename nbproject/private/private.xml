@@ -17,7 +17,6 @@
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/GUICallback.java</file>
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/PlayerSelectGUI.java</file>
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Entity.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/AbilityManager.java</file>
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/PlayerClass.java</file>
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Archer.java</file>
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Healer.java</file>
@@ -30,6 +29,11 @@
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/ShopGUI.java</file>
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Enemy.java</file>
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Item.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/AbilityInterface.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Ability.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/ArmorItem.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Config.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/WeaponItem.java</file>
         </group>
     </open-files>
 </project-private>

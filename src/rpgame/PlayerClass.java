@@ -5,8 +5,8 @@ public abstract class PlayerClass extends Entity implements AbilityInterface {
 
     protected Classes className;
         
-    protected int mana;
-    private int maxMana;
+    private int mana;
+    protected int maxMana;
     protected int abilityPower;
 
     protected Ability[] abilityList;
@@ -14,7 +14,6 @@ public abstract class PlayerClass extends Entity implements AbilityInterface {
     PlayerClass(Ability[] abilityList){
         
         this.abilityList = abilityList;
-        maxMana = 20;
     }
     //==========================================================================
     // Ability function
@@ -59,6 +58,10 @@ public abstract class PlayerClass extends Entity implements AbilityInterface {
         return abilityList[index];
     }
 
+    public int getMana(){
+        return mana;
+    }
+    
     public void addMana(){
         if(mana >= maxMana) return;
         

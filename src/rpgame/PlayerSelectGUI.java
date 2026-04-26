@@ -502,7 +502,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
 
         attackLabel.setText("Attack: " + hoveredClass.attackPower);
         healthLabel.setText("Health: " + hoveredClass.HP);
-        manaLabel.setText("Mana: " + hoveredClass.mana);
+        manaLabel.setText("Mana: " + hoveredClass.getMana());
         abilityPowerLabel.setText("AbilityPower: " + hoveredClass.abilityPower);
     }
     

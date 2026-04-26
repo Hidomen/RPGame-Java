@@ -581,7 +581,7 @@ public class CombatGUI extends javax.swing.JFrame{
         playerAbilityPowerLabel.setText ("AbilityPower: "   + currentPlayer.abilityPower);
         playerAttackPowerLabel.setText  ("AttackPower: "    + currentPlayer.attackPower);
         playerHealthLabel.setText       ("Health: "         + currentPlayer.HP + " / " + currentPlayer.maxHP);
-        playerManaLabel.setText         ("Mana: "           + currentPlayer.mana);
+        playerManaLabel.setText         ("Mana: "           + currentPlayer.getMana());
         
         
         jLabel3.setText("TurnCount: " + turnCount);

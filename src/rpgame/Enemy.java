@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Enemy extends Entity {
     
-    private static final int CONST = 1;
+    private static final int CONST = 2;
         
     Enemy(int powerLevel, int playerCount){
         

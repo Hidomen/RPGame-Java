@@ -25,17 +25,8 @@ public abstract class Entity {
     public static final int TEMP_H_INDEX    = 7; //TemporaryHealth : Lasts until enemy's turn end                                           (Working)
 
     
-    protected static int attackScale;
-    protected static int healthScale;
-    protected static int manaScale;
-    protected static int abilityScale;
-
     public Entity(){
-        
-        attackScale = 1;
-        healthScale = 1;
-        manaScale = 1;
-        abilityScale = 1;
+
     }
     //==========================================================================
     // Getters, Setters
@@ -48,7 +39,6 @@ public abstract class Entity {
         this.entityName = entityName;
     }
 
-    
     //==========================================================================
     // Combat functions
     //==========================================================================
