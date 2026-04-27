@@ -6,8 +6,14 @@ enum EntityType {Player , Enemy};
 
 
 class Config{
-    public static int health = 3;
-    public static int mana = 2;
-    public static int attack = 1;
-    public static int ability = 1;
+    //refactor
+    public static final int HEALTH_MULTIPLIER = 3;
+    public static final int MANA_MULTIPLIER = 2;
+    public static final int ATTACK_MULTIPLIER = 1;
+    public static final int ABILITY_MULTIPLIER = 1;
+
+    public static final int HEALTH_M_INDEX = 0;
+    public static final int ATTACK_M_INDEX = 1;
+    public static final int ABILITY_M_INDEX = 2;
+    public static final int MAXMANA_M_INDEX = 3;
 }    
