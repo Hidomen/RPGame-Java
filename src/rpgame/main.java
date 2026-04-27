@@ -38,10 +38,7 @@ public class main implements GUICallback{
     //==========================================================================
     //  GUI Callbacks
     //==========================================================================
-    public void setGUIState(GUIState state){
-        this.state = state;
-        
-        
+    public void setVisibility(){
         if(mainScreenGUI != null){
             mainScreenGUI.setVisible(false);
         }
@@ -60,33 +57,39 @@ public class main implements GUICallback{
         if (invGUI != null) {
             invGUI.setVisible(false);
         }
+    }
+    
+    public void setGUIState(GUIState state){
+        this.state = state;
+        
+        setVisibility();
+        
         
         switch(state){
             case GUIState.MAIN_SCREEN -> {
+                
                 mainScreenGUI = new MainScreenGUI(this);
                 mainScreenGUI.setVisible(true);
             }
             case GUIState.PLAYER_SELECTION -> {
                 
-                if(null == playerSelectGUI){
-                    playerSelectGUI = new PlayerSelectGUI(this, playerCount);
-                }
-                
+                playerSelectGUI = new PlayerSelectGUI(this, playerCount);
                 playerSelectGUI.setVisible(true);
             }
             case GUIState.START_GAME -> {
                 
-                initGroup();
                 difficulty = 0;
+                
+                group = new Group(players);
+                
                 setGUIState(GUIState.LOBBY);
 
             }
             case GUIState.LOBBY -> {
-                initGroup();
+                
                 if(null == lobbyGUI){
                     lobbyGUI = new LobbyGUI(this , players);
                 }
-                
                 
                 lobbyGUI.setVisible(true);
             }
@@ -95,22 +98,22 @@ public class main implements GUICallback{
                 difficulty++;
                 initEnemy();
                 
-                restoreHealth();
-                combatGUI = new CombatGUI(this, players, enemy);
+                refreshPlayers();
                 
+                combatGUI = new CombatGUI(this, players, enemy);
                 combatGUI.setVisible(true);
             }
             case GUIState.SHOP -> {
                 
                 if(null == shopGUI){
-                    initGroup();
                     shopGUI = new ShopGUI(this, group);
                 }
                 
                 shopGUI.setVisible(true);
             }
             case GUIState.INVENTORY -> {
-                if (null == invGUI) {
+                
+                if(null == invGUI) {
                     invGUI = new InventoryGUI(this, group);
                 }
                 
@@ -118,13 +121,13 @@ public class main implements GUICallback{
             }
             case GUIState.GAME_OVER -> {
                 
-                System.out.println("entered");
-                gameOverGUI = new GameOverGUI(this, difficulty);
+                if(null == gameOverGUI){
+                    gameOverGUI = new GameOverGUI(this, difficulty);
+                }
+                
                 gameOverGUI.setVisible(true);
             }
             case GUIState.EXIT -> {
-                
-                System.out.println("Exitting game");
                 System.exit(0);
             }
         }
@@ -134,15 +137,11 @@ public class main implements GUICallback{
     @Override
     public void addPlayer(PlayerClass player){
 
-        
         if(playerCount <= players.size()){
             System.err.println("PLAYERS ARE FULL");
             return;
         }
         
-        
-        
-        System.out.println("Player added");
         players.add(player);
         
         System.out.println(players.getLast().getEntityName());
@@ -170,29 +169,14 @@ public class main implements GUICallback{
         
         enemy = new Enemy(difficulty, players.size());        
     }
-
-    public void initGroup(){
-        
-        System.out.println("initted group");
-        
-        if(group != null){
-            System.err.println("there is a group");
-            return;
-        }
-        
-        ArrayList<Classes> c = new ArrayList<Classes>();
-        
-        for(PlayerClass p : players){
-            c.add(p.className);
-        }
-        
-        group = new Group(c);
-    }
     
-    public void restoreHealth(){
+    public void refreshPlayers(){
+        
+        
         
         for(PlayerClass p : players){
             p.HP = p.maxHP;
+            p.mana = p.maxMana;
         }
     }
 

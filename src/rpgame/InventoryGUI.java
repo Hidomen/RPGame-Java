@@ -1,14 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package rpgame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import static rpgame.Classes.*;
-
 
 
 public class InventoryGUI extends javax.swing.JFrame {
@@ -19,12 +13,19 @@ public class InventoryGUI extends javax.swing.JFrame {
     private static Group group;
     private static ArrayList<Item> invItems;
     
-    public InventoryGUI(GUICallback callback , Group group ) {
+    JPanel itemsPanel;
+    
+    public InventoryGUI(GUICallback callback, Group group ) {
         this.callback = callback;
         this.group = group;
+        
         invItems = group.getInventory();
+        
         initComponents();
         continueButton1.setFocusPainted(false);
+        
+        itemsPanel = new JPanel();
+        
         setupItems();
     }
     
@@ -38,38 +39,46 @@ public class InventoryGUI extends javax.swing.JFrame {
     }
     
     private void setupItems() {
-        invItems = group.getInventory();
-
-        JPanel itemsPanel = new JPanel();
+        
+        
         itemsPanel.setBackground(new java.awt.Color(51, 51, 51));
         itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
 
+        
         for (Item item : invItems) {
             JPanel itemRow = new JPanel();
-            itemRow.setBackground(new java.awt.Color(70, 70, 70));
+            
+            itemRow.setBackground(Config.colors[Config.COLOR_BLACK]);
+            
             itemRow.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
             itemRow.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
             itemRow.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 0)));
 
             JLabel itemLabel = new JLabel(item.getName());
-            itemLabel.setForeground(new java.awt.Color(255, 255, 0));
+            
+            itemLabel.setForeground(Config.colors[Config.COLOR_YELLOW]);
+            
             itemLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
 
             StringBuilder modText = new StringBuilder(" Modifiers :");
-            if (item.getHealthModifier() != 1)
-                modText.append(String.format("  HP: %.2f", item.getHealthModifier()));
-            if (item.getAttackModifier() != 1)
-                modText.append(String.format("  ATK: %.2f", item.getAttackModifier()));
-            if (item.getAbilityModifier() != 1)
-                modText.append(String.format("  ABL: %.2f", item.getAbilityModifier()));
-            if (item.getMaxManaModifier() != 1)
-                modText.append(String.format("  MANA: %.2f", item.getMaxManaModifier()));
+            
+            if (item.getHealthModifier() != 0){
+                modText.append(String.format("  HP: ", item.getHealthModifier()));
+            }
+            if (item.getAttackModifier() != 0){
+                modText.append(String.format("  ATK: ", item.getAttackModifier()));
+            }
+            if (item.getAbilityModifier() != 0){
+                modText.append(String.format("  ABL: ", item.getAbilityModifier()));
+            }
+            if (item.getMaxManaModifier() != 0){
+                modText.append(String.format("  MANA: ", item.getMaxManaModifier()));
+            }
             
 
             JLabel modLabel = new JLabel(modText.toString());
             modLabel.setForeground(new java.awt.Color(180, 255, 180));
             modLabel.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));
-
 
             itemRow.add(itemLabel);
             itemRow.add(modLabel);
@@ -78,6 +87,7 @@ public class InventoryGUI extends javax.swing.JFrame {
 
         if (invItems.isEmpty()) {
             JLabel emptyLabel = new JLabel("Inventory is empty!");
+            
             emptyLabel.setForeground(new java.awt.Color(255, 255, 0));
             emptyLabel.setFont(new java.awt.Font("Segoe UI", Font.ITALIC, 14));
             emptyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -219,28 +229,10 @@ public class InventoryGUI extends javax.swing.JFrame {
         callback.setGUIState(GUIState.LOBBY);
     }//GEN-LAST:event_continueButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
+    public static void main(String args[]) {
+
+        
         java.awt.EventQueue.invokeLater(() -> new InventoryGUI(callback , group).setVisible(true));
     }
 

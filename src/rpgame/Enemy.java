@@ -17,8 +17,6 @@ public class Enemy extends Entity {
     
     public void turn(ArrayList<PlayerClass> players, int currentPlayerIndex){
         
-        System.out.println("Enemy hp after status check : " + HP); //debug
-        
         attack(players.get(currentPlayerIndex));
     }
 }

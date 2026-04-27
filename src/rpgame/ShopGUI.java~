@@ -15,30 +15,30 @@ public class ShopGUI extends javax.swing.JFrame {
     
     private static final Item[] goodies = {
 
-        //WEAPONS                                                                        	   HEALTH, ATTACK, ABILITY, MANA
-        new Item("Dual Daggers" 	, 80 , new Classes[] {Archer},             		new int[] { 0 , 9 , 7 , 0 }),
-        new Item("Crossbow" 		, 85 , new Classes[] {Archer},                 		new int[] { 0 , 14, 8 , 0 }),
-        new Item("Long Sword" 		, 90 , new Classes[] {Warrior},              		new int[] { 0 , 8 , 0 , 0 }),
-        new Item("Blessed Mace" 	, 95 , new Classes[] {Healer},             		new int[] { 0 , 2 , 7 , 0 }),
-        new Item("Hunter Bow" 		, 95 , new Classes[] {Archer},               		new int[] { 0 , 12, 0 , 0 }),
-        new Item("Arcane Wand" 		, 100, new Classes[] {Mage},               		new int[] { 0 , -5, 10, 1 }),
-        new Item("Divine Staff" 	, 105, new Classes[] {Healer, Mage},     		new int[] { 0 , 0 , 10, 2 }),
-        new Item("Battle Axe" 		, 110, new Classes[] {Warrior},             		new int[] { 0 , 12, 3 , 0 }),
-        new Item("War Hammer" 		, 115, new Classes[] {Warrior, Healer},    		new int[] { 8 , 10, 8 , 0 }),
-        new Item("Crystal Orb" 		, 120, new Classes[] {Mage},               		new int[] { 0 , 8 , 7 , 1 }),
-        
+        //WEAPONS                                                   HEALTH, ATTACK, ABILITY, MANA
+        new Item("Long Sword" , 90 , new Classes[] {Warrior} ,              new int[] { 0 , 1.3 , 0, 0}),
+        new Item("Blessed Mace" , 95 , new Classes[] {Healer} ,             new int[] { 0, 1.3 , 0, 0}),
+        new Item("Arcane Wand" , 100 , new Classes[] {Mage} ,               new int[] { 1 , 0.9 , 1.6 , 1.1}),
+        new Item("Crossbow" , 85 , new Classes[] {Archer} ,                 new int[] { 1 , 1.4 , 0.8 , 1}),
+        new Item("Battle Axe" , 110 , new Classes[] {Warrior} ,             new int[] { 1 , 1.2 , 1.1 , 1}),
+        new Item("Divine Staff" , 105 , new Classes[] {Healer , Mage} ,     new int[] { 1 , 1 , 1.3 , 1.2}),
+        new Item("Dual Daggers" , 80 , new Classes[] {Archer} ,             new int[] { 1 , 1.5 , 0.7 , 1}),
+        new Item("Crystal Orb" , 120 , new Classes[] {Mage} ,               new int[] { 1 , 0.8 , 1.7 , 1.5}),
+        new Item("War Hammer" , 115 , new Classes[] {Warrior , Healer} ,    new int[] { 1.1 , 1.3 , 0.9 , 0.9}),
+        new Item("Hunter Bow" , 95 , new Classes[] {Archer} ,               new int[] { 1 , 1.2 , 1 , 1}),
 
         // ARMORS
-        new Item("Cloth Robe"		, 60 , new Classes[] {Mage},				new int[] { 5 , 0 , 0 , 3 }),
-        new Item("Leather Armor"	, 70 , new Classes[] {Archer},				new int[] { 6 , 0 , 0 , 0 }),
-        new Item("Holy Vestments"	, 75 , new Classes[] {Healer},				new int[] { 8 , 0 , 0 , 3 }),
-        new Item("Ranger Vest"		, 85 , new Classes[] {Archer},				new int[] { 9 , 0 , 0 , 0 }),
-        new Item("Shadow Cloak"		, 95 , new Classes[] {Archer, Mage},			new int[] { 9 , 0 , 0 , 1 }),
-        new Item("Iron Armor"		, 100, new Classes[] {Warrior},				new int[] { 10, 0 , 0 , 0 }),
-        new Item("Mystic Robe"		, 110, new Classes[] {Mage, Healer},			new int[] { 12, 0 , 0 , 4 }),
-        new Item("Knight Plate"		, 130, new Classes[] {Warrior, Healer},			new int[] { 13, 0 , 0 , 0 }),
-        new Item("Enchanted Armor"	, 140, new Classes[] {Warrior, Mage, Healer, Archer},	new int[] { 15, 0 , 0 , 2 }),
-        new Item("Dragon Scale Armor"	, 150, new Classes[] {Warrior},				new int[] { 20, 0 , 0 , 0 })
+        new Item("Iron Armor" , 100 , new Classes[] {Warrior} ,             new int[] {1.2 , 1 , 1 , 1 } ),
+        new Item("Cloth Robe" , 60 , new Classes[] {Mage} ,                 new int[] {1.05 , 1 , 1 , 1.2 }),
+        new Item("Holy Vestments" , 75 , new Classes[] {Healer} ,           new int[] { 1 , 1 , 1 , 1.5 }),
+        new Item("Leather Armor" , 70 , new Classes[] {Archer} ,            new int[] { 1.1 , 1 , 1 , 1 }),
+        new Item("Dragon Scale Armor" , 150 , new Classes[] {Warrior} ,     new int[] { 1 , 1 , 1 , 1 }),
+        new Item("Mystic Robe" , 110 , new Classes[] {Mage , Healer} ,      new int[] { 1.2 , 1 , 1 , 1.4 }),
+        new Item("Shadow Cloak" , 95 , new Classes[] {Archer , Mage} ,      new int[] { 1.1 , 1 , 1 , 1.1 }),
+        new Item("Knight Plate" , 130 , new Classes[] {Warrior , Healer} , new int[] { 1.3 , 1 , 1 , 1 }),
+        new Item("Ranger Vest" , 85 , new Classes[] {Archer} , new int[] { 1.2 , 1 , 1 , 1 }),
+        new Item("Enchanted Armor" , 140 , new Classes[] {Warrior , Mage , Healer , Archer} , new int[] { 1.5 , 1 , 1 , 1.5 })
+        
     };
     
     public ShopGUI(GUICallback callback, Group group) {
@@ -60,7 +60,37 @@ public class ShopGUI extends javax.swing.JFrame {
             moneyLabel.setText(group.getMoney() + "$");
         }
     }
-
+    
+    public void AddItem(Item item)
+    {
+        if (itemCount < goodies.length) {
+            goodies[itemCount] = item;
+            itemCount++;
+        }
+        else {
+            System.err.println("Shop is full. Can not add another item.");
+        }
+    }
+    
+    //debug
+        public void ListItems()
+    {
+        for (Item il : goodies) {
+            
+            
+            if (null == goodies){
+                System.out.println("1");
+                return;
+            }
+            
+            System.out.println("=====================");
+            System.out.println("Item Name");
+            System.out.println(il.getName() + "\n");
+            System.out.println("Item Price : " + il.getPrice());
+            System.out.println("=====================\n");
+        }
+    }
+    
     
     private void setupItems()
 {
@@ -82,7 +112,6 @@ public class ShopGUI extends javax.swing.JFrame {
             label.setForeground(Color.YELLOW);
             label.setFont(new Font("Arial", Font.BOLD, 16));
 
-            //concatenate this part with inventory part
             JLabel compLabel = new JLabel("Compatibility: " + getCompability(i) + "  ||  Modifiers => Health: " + i.getHealthModifier() + "  Attack: " + i.getAttackModifier() + "  Ability: " + i.getAbilityModifier() + "  Mana: " + i.getMaxManaModifier());
             compLabel.setForeground(new Color(200, 200, 200));
             compLabel.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -99,7 +128,6 @@ public class ShopGUI extends javax.swing.JFrame {
             {
                 boolean Compatible = false;
                 boolean CanAfford = false;
-                
                 for (Classes c : i.getCompabilities()) {
                     if (group.isInGroup(c)) {
                         Compatible = true;

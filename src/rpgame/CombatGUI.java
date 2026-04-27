@@ -393,16 +393,6 @@ public class CombatGUI extends javax.swing.JFrame{
         stateManager();
     }
 
-    //remove
-    private void playerTurnStart(){
-        
-        if(players.get(currentPlayerIndex).checkStatus()){
-            System.out.println(currentPlayer.getEntityName() + "IS STUNNED"); //debug
-            nextTurn();  
-        }
-        
-        // Listen Buttons
-    }
     
     private void playerTurnEnd(){
         
@@ -451,8 +441,6 @@ public class CombatGUI extends javax.swing.JFrame{
                     }
                     
                 }
-                
-                playerTurnStart();
                 
                 
             }

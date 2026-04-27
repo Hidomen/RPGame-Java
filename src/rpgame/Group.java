@@ -7,7 +7,7 @@ public class Group {
     private int money;
     private int size;
     
-    private ArrayList<Classes> classes;
+    private ArrayList<PlayerClass> players;
     
     private ArrayList<Item> inventory;
 
@@ -15,23 +15,28 @@ public class Group {
     private int XP;
     private final int xpCap;
     
-    public Group(ArrayList<Classes> classes){
+    public Group(ArrayList<PlayerClass> players){
         
-        
-        this.size = classes.size();
-        this.classes = classes;
+        this.players = players;
         
         money = 100;
         xpCap = 100;
         level = 1;
         XP = 0;
         
-        
         inventory = new ArrayList<Item>();
     }
     
     private void levelUp(){
         level++;
+        
+        for(PlayerClass p : players){
+            
+            p.HP            *= Config.LEVEL_UP_HP_MULTIPLIER;
+            p.abilityPower  *= Config.LEVEL_UP_ABILITY_MULTIPLIER;
+            p.attackPower   *= Config.LEVEL_UP_ATTACK_MULTIPLIER;
+            
+        }
     }
 
     
@@ -60,53 +65,33 @@ public class Group {
     }
     
     public boolean isInGroup(Classes c){
-        for(int i = 0; i < size; i++){
-            if(c == classes.get(i)){
+        
+        for(PlayerClass p : players){
+            if(c == p.className){
                 return true;
             }
         }
         
         return false;
     }
+    
     // INVENTORY
     public void addToInventory(Item i)
     {
         inventory.add(i);
-    }
-    
-    public void deleteFromInventory(int ind)
-    {
-        if (ind >= inventory.size() || ind < 0) {
-            System.out.println("Invalid item index");
-            return;
+        
+        for(PlayerClass p : players){
+            
+            p.maxHP         += i.getHealthModifier();
+            p.abilityPower  += i.getAbilityModifier();
+            p.attackPower   += i.getAttackModifier();
+            p.maxMana       += i.getMaxManaModifier();
         }
-        inventory.remove(ind);
-    }
-    
-    public void showInventory()
-    {
-        if (inventory.size() <= 0) {
-            System.out.println("Inv is empty!");
-            return;
-        }
-        for (int i = 0 ; i < inventory.size() ; i++) {
-            System.out.println("Item name : " + inventory.get(i).getName());
-            System.out.println("Item compability : " + getCompability(inventory.get(i)));
-            System.out.println("---------------------------------");
-        }
+        
     }
     
     public ArrayList<Item> getInventory()
     {
         return inventory;
-    }
-    
-    private String getCompability(Item i)
-    {
-        String a = "";
-        for (Classes c : i.getCompabilities()) {
-            a += c + " ";
-        }
-        return a;
     }
 }

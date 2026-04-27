@@ -4,10 +4,10 @@ public class Item {
     private String name;
     private int price;
     private Classes [] compability;
-    private double[] modifiers = {0, 0, 0, 0};
+    private int[] modifiers = {0, 0, 0, 0};
 
     
-    public Item(String name, int price, Classes[] compability, double[] modifiers) {
+    public Item(String name, int price, Classes[] compability, int[] modifiers) {
         this.name = name;
         this.price = price;
         this.compability = compability;

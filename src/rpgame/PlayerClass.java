@@ -5,7 +5,7 @@ public abstract class PlayerClass extends Entity implements AbilityInterface {
 
     protected Classes className;
         
-    private int mana;
+    protected int mana;
     protected int maxMana;
     protected int abilityPower;
 

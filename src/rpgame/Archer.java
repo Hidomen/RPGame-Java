@@ -21,9 +21,8 @@ public class Archer extends PlayerClass {
         attackPower = Config.ATTACK_MULTIPLIER * 10;
         
         HP = maxHP;
-
         
-        statusList[DODGE_INDEX] = 0.1;
+        //statusList[Config.DODGE_INDEX] = 0.1;
         abilityPower = Config.ABILITY_MULTIPLIER * 5;
 
     }
