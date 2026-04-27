@@ -90,16 +90,21 @@ public class Group {
             return;
         }
         for (int i = 0 ; i < inventory.size() ; i++) {
-            System.out.println("Item name : " + inventory.get(i).name);
+            System.out.println("Item name : " + inventory.get(i).getName());
             System.out.println("Item compability : " + getCompability(inventory.get(i)));
             System.out.println("---------------------------------");
         }
     }
     
+    public ArrayList<Item> getInventory()
+    {
+        return inventory;
+    }
+    
     private String getCompability(Item i)
     {
         String a = "";
-        for (Classes c : i.compability) {
+        for (Classes c : i.getCompabilities()) {
             a += c + " ";
         }
         return a;

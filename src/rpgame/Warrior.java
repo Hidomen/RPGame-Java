@@ -15,11 +15,11 @@ public class Warrior extends PlayerClass {
         super(abilityList);
         className = Classes.Warrior;
 
-        maxHP = Config.health * 20;
-        maxMana = Config.mana * 3;
-        attackPower = Config.attack * 12;
+        maxHP = Config.HEALTH_MULTIPLIER * 20;
+        maxMana = Config.MANA_MULTIPLIER * 3;
+        attackPower = Config.ATTACK_MULTIPLIER * 12;
         HP = maxHP;
-        abilityPower = Config.ability * 3;
+        abilityPower = Config.ABILITY_MULTIPLIER * 3;
 
     }
     

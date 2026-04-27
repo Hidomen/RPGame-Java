@@ -16,15 +16,15 @@ public class Archer extends PlayerClass {
         super(abilityList);
         className = Classes.Archer;
         
-        maxHP = Config.health * 14;
-        maxMana = Config.mana * 5;
-        attackPower = Config.attack * 10;
+        maxHP = Config.HEALTH_MULTIPLIER * 14;
+        maxMana = Config.MANA_MULTIPLIER * 5;
+        attackPower = Config.ATTACK_MULTIPLIER * 10;
         
         HP = maxHP;
 
         
         statusList[DODGE_INDEX] = 0.1;
-        abilityPower = Config.ability * 5;
+        abilityPower = Config.ABILITY_MULTIPLIER * 5;
 
     }
 

@@ -4,7 +4,6 @@ public class Item {
     private String name;
     private int price;
     private Classes [] compability;
-
     private double[] modifiers = {0, 0, 0, 0};
 
     
@@ -13,6 +12,21 @@ public class Item {
         this.price = price;
         this.compability = compability;
         this.modifiers = modifiers;
+    }
+    
+    public String getName()
+    {
+        return name;
+    }
+    
+    public int getPrice()
+    {
+        return price;
+    }
+    
+    public Classes[] getCompabilities()
+    {
+        return compability;
     }
 
     public double getHealthModifier(){

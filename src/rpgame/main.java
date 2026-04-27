@@ -1,8 +1,6 @@
 package rpgame;
 
 import java.util.ArrayList;
-            
-enum GUIState {MAIN_SCREEN, PLAYER_SELECTION, START_GAME, LOBBY, COMBAT, SHOP, INVENTORY, GAME_OVER, EXIT};
 
 public class main implements GUICallback{
         
@@ -24,6 +22,7 @@ public class main implements GUICallback{
     private static CombatGUI        combatGUI;
     private static ShopGUI          shopGUI;
     private static LobbyGUI         lobbyGUI;
+    private static InventoryGUI     invGUI;
 
     private static GUIState state;
     
@@ -57,6 +56,9 @@ public class main implements GUICallback{
         }
         if(playerSelectGUI != null){
             playerSelectGUI.setVisible(false);
+        }
+        if (invGUI != null) {
+            invGUI.setVisible(false);
         }
         
         switch(state){
@@ -108,7 +110,11 @@ public class main implements GUICallback{
                 shopGUI.setVisible(true);
             }
             case GUIState.INVENTORY -> {
+                if (null == invGUI) {
+                    invGUI = new InventoryGUI(this, group);
+                }
                 
+                invGUI.setVisible(true);
             }
             case GUIState.GAME_OVER -> {
                 

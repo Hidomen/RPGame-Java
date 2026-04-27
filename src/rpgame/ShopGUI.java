@@ -15,29 +15,30 @@ public class ShopGUI extends javax.swing.JFrame {
     
     private static final Item[] goodies = {
 
-        // WEAPONS
-        new WeaponItem(1.3 , 1.0 , "Long Sword" , 90 , new Classes[] {Warrior}),
-        new WeaponItem(1.1 , 1.2 , "Blessed Mace" , 95 , new Classes[] {Healer}),
-        new WeaponItem(0.9 , 1.6 , "Arcane Wand" , 100 , new Classes[] {Mage}),
-        new WeaponItem(1.4 , 0.8 , "Crossbow" , 85 , new Classes[] {Archer}),
-        new WeaponItem(1.2 , 1.1 , "Battle Axe" , 110 , new Classes[] {Warrior}),
-        new WeaponItem(1.0 , 1.3 , "Divine Staff" , 105 , new Classes[] {Healer , Mage}),
-        new WeaponItem(1.5 , 0.7 , "Dual Daggers" , 80 , new Classes[] {Archer}),
-        new WeaponItem(0.8 , 1.7 , "Crystal Orb" , 120 , new Classes[] {Mage}),
-        new WeaponItem(1.3 , 0.9 , "War Hammer" , 115 , new Classes[] {Warrior , Healer}),
-        new WeaponItem(1.2 , 1.0 , "Hunter Bow" , 95 , new Classes[] {Archer}),
+        //WEAPONS
+        new Item("Long Sword" , 90 , new Classes[] {Warrior} , new double[] { 1 , 1.3 , 1 , 1}),
+        new Item("Blessed Mace" , 95 , new Classes[] {Healer} , new double[] { 1 , 1.3 , 1 , 1}),
+        new Item("Arcane Wand" , 100 , new Classes[] {Mage} , new double[] { 1 , 0.9 , 1.6 , 1.1}),
+        new Item("Crossbow" , 85 , new Classes[] {Archer} , new double[] { 1 , 1.4 , 0.8 , 1}),
+        new Item("Battle Axe" , 110 , new Classes[] {Warrior} , new double[] { 1 , 1.2 , 1.1 , 1}),
+        new Item("Divine Staff" , 105 , new Classes[] {Healer , Mage} , new double[] { 1 , 1 , 1.3 , 1.2}),
+        new Item("Dual Daggers" , 80 , new Classes[] {Archer} , new double[] { 1 , 1.5 , 0.7 , 1}),
+        new Item("Crystal Orb" , 120 , new Classes[] {Mage} , new double[] { 1 , 0.8 , 1.7 , 1.5}),
+        new Item("War Hammer" , 115 , new Classes[] {Warrior , Healer} , new double[] { 1.1 , 1.3 , 0.9 , 0.9}),
+        new Item("Hunter Bow" , 95 , new Classes[] {Archer} , new double[] { 1 , 1.2 , 1 , 1}),
 
         // ARMORS
-        new ArmorItem(1.2 , "Iron Armor" , 100 , new Classes[] {Warrior}),
-        new ArmorItem(1.05 , "Cloth Robe" , 60 , new Classes[] {Mage}),
-        new ArmorItem(1.1 , "Holy Vestments" , 75 , new Classes[] {Healer}),
-        new ArmorItem(1.1 , "Leather Armor" , 70 , new Classes[] {Archer}),
-        new ArmorItem(1.4 , "Dragon Scale Armor" , 150 , new Classes[] {Warrior}),
-        new ArmorItem(1.2 , "Mystic Robe" , 110 , new Classes[] {Mage , Healer}),
-        new ArmorItem(1.1 , "Shadow Cloak" , 95 , new Classes[] {Archer , Mage}),
-        new ArmorItem(1.3 , "Knight Plate" , 130 , new Classes[] {Warrior , Healer}),
-        new ArmorItem(1.2 , "Ranger Vest" , 85 , new Classes[] {Archer}),
-        new ArmorItem(1.3 , "Enchanted Armor" , 140 , new Classes[] {Warrior , Mage , Healer , Archer})
+        new Item("Iron Armor" , 100 , new Classes[] {Warrior} , new double[] {1.2 , 1 , 1 , 1 } ),
+        new Item("Cloth Robe" , 60 , new Classes[] {Mage} , new double[] {1.05 , 1 , 1 , 1.2 }),
+        new Item("Holy Vestments" , 75 , new Classes[] {Healer} , new double[] { 1 , 1 , 1 , 1.5 }),
+        new Item("Leather Armor" , 70 , new Classes[] {Archer} , new double[] { 1.1 , 1 , 1 , 1 }),
+        new Item("Dragon Scale Armor" , 150 , new Classes[] {Warrior} , new double[] { 1 , 1 , 1 , 1 }),
+        new Item("Mystic Robe" , 110 , new Classes[] {Mage , Healer} , new double[] { 1.2 , 1 , 1 , 1.4 }),
+        new Item("Shadow Cloak" , 95 , new Classes[] {Archer , Mage} , new double[] { 1.1 , 1 , 1 , 1.1 }),
+        new Item("Knight Plate" , 130 , new Classes[] {Warrior , Healer} , new double[] { 1.3 , 1 , 1 , 1 }),
+        new Item("Ranger Vest" , 85 , new Classes[] {Archer} , new double[] { 1.2 , 1 , 1 , 1 }),
+        new Item("Enchanted Armor" , 140 , new Classes[] {Warrior , Mage , Healer , Archer} , new double[] { 1.5 , 1 , 1 , 1.5 })
+        
     };
     
     public ShopGUI(GUICallback callback, Group group) {
@@ -48,6 +49,7 @@ public class ShopGUI extends javax.swing.JFrame {
         initComponents();
         moneyLabel.setText(group.getMoney() + "$");
         setupItems();
+        continueButton.setFocusPainted(false);
     }
     
     @Override
@@ -83,8 +85,8 @@ public class ShopGUI extends javax.swing.JFrame {
             
             System.out.println("=====================");
             System.out.println("Item Name");
-            System.out.println(il.name + "\n");
-            System.out.println("Item Price : " + il.price);
+            System.out.println(il.getName() + "\n");
+            System.out.println("Item Price : " + il.getPrice());
             System.out.println("=====================\n");
         }
     }
@@ -106,11 +108,11 @@ public class ShopGUI extends javax.swing.JFrame {
             card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 110)); 
             card.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-            JLabel label = new JLabel(i.name + " - " + i.price + " Gold");
+            JLabel label = new JLabel(i.getName() + " - " + i.getPrice() + " Gold");
             label.setForeground(Color.YELLOW);
             label.setFont(new Font("Arial", Font.BOLD, 16));
 
-            JLabel compLabel = new JLabel("Compatibility: " + getCompability(i));
+            JLabel compLabel = new JLabel("Compatibility: " + getCompability(i) + "  ||  Modifiers => Health: " + i.getHealthModifier() + "  Attack: " + i.getAttackModifier() + "  Ability: " + i.getAbilityModifier() + "  Mana: " + i.getMaxManaModifier());
             compLabel.setForeground(new Color(200, 200, 200));
             compLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 
@@ -125,7 +127,7 @@ public class ShopGUI extends javax.swing.JFrame {
             {
                 boolean Compatible = false;
                 boolean CanAfford = false;
-                for (Classes c : i.compability) {
+                for (Classes c : i.getCompabilities()) {
                     if (group.isInGroup(c)) {
                         Compatible = true;
                         break;
@@ -135,7 +137,7 @@ public class ShopGUI extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Your group does not have any member compatible with this item." , "Non-Compatible Item" , JOptionPane.WARNING_MESSAGE);
                     return;
                 }
-                if (group.getMoney() >= i.price) {
+                if (group.getMoney() >= i.getPrice()) {
                     CanAfford = true;
                 }
                 if (!CanAfford) {
@@ -146,9 +148,9 @@ public class ShopGUI extends javax.swing.JFrame {
                 if (CanAfford && Compatible) {
                     group.addToInventory(i);
                     System.out.println("purchased");
-                    group.setMoney(group.getMoney() - i.price);
+                    group.setMoney(group.getMoney() - i.getPrice());
                     moneyLabel.setText(group.getMoney() + "$");
-                    JOptionPane.showMessageDialog(this, "Item: " + i.name + " is bought successfully. Remaining gold: " + group.getMoney() , "Success!" , JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Item: " + i.getName() + " is bought successfully. Remaining gold: " + group.getMoney() , "Success!" , JOptionPane.WARNING_MESSAGE);
                     wrapper.setVisible(false);
                     itemsPanel.revalidate();
                     itemsPanel.repaint();
@@ -175,7 +177,7 @@ public class ShopGUI extends javax.swing.JFrame {
     private String getCompability(Item i)
     {
         String a = "";
-        for (Classes c : i.compability) {
+        for (Classes c : i.getCompabilities()) {
             a += c + " ";
         }
         return a;

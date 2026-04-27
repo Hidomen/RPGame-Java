@@ -17,11 +17,11 @@ public class Healer extends PlayerClass{
         super(abilityList);
         className = Classes.Healer;
         
-        maxHP = Config.health * 15;
-        maxMana = Config.mana * 7;
-        attackPower = Config.attack * 6;
+        maxHP = Config.HEALTH_MULTIPLIER * 15;
+        maxMana = Config.MANA_MULTIPLIER * 7;
+        attackPower = Config.ATTACK_MULTIPLIER * 6;
         HP = maxHP;
-        abilityPower = Config.ability * 6;
+        abilityPower = Config.ABILITY_MULTIPLIER * 6;
         
     }
     

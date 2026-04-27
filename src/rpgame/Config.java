@@ -2,7 +2,10 @@ package rpgame;
 
 enum Classes {Archer , Healer , Mage , Warrior};
 enum Status {Bleed , Burn , Dodge , Fog , Poison , Shock , Stun , TemporaryHealth};
-enum EntityType {Player , Enemy};
+enum EntityType {Player , Enemy};    
+enum GUIState {MAIN_SCREEN, PLAYER_SELECTION, START_GAME, LOBBY, COMBAT, SHOP, INVENTORY, GAME_OVER, EXIT};
+enum CombatState {PLAYER_TURN, ENEMY_TURN};
+
 
 
 class Config{

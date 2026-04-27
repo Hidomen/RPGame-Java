@@ -3,8 +3,6 @@ package rpgame;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-enum CombatState {PLAYER_TURN, ENEMY_TURN};
-
 public class CombatGUI extends javax.swing.JFrame{
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CombatGUI.class.getName());
