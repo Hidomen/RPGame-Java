@@ -61,102 +61,98 @@ public class ShopGUI extends javax.swing.JFrame {
         }
     }
 
+    private boolean itemControl(Item item){
+        
+        for (Classes c : item.getCompabilities()) {
+            if (!group.isInGroup(c)) {
+                    JOptionPane.showMessageDialog(this, "Your group does not have any member compatible with this item." , "Non-Compatible Item" , JOptionPane.WARNING_MESSAGE);
+                    return false;
+            }
+        }
+
+        if (group.getMoney() < item.getPrice()) {
+            JOptionPane.showMessageDialog(this, "Insufficient balance to buy this item. Your gold: " + group.getMoney() , "Insufficient Balance" , JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private void buyActionListener(Item item){
+ 
+        buyButton.addActionListener(e -> 
+            {
+                if(!itemControl(item)) return;
+                
+                group.addToInventory(item);
+                System.out.println("purchased");
+                group.setMoney(group.getMoney() - item.getPrice());
+
+                moneyLabel.setText(group.getMoney() + "$");
+
+                JOptionPane.showMessageDialog(this, "Item: " + item.getName() + " is bought successfully. Remaining gold: " + group.getMoney() , "Success!" , JOptionPane.WARNING_MESSAGE);
+                wrapper.setVisible(false);
+
+                itemsPanel.revalidate();
+                itemsPanel.repaint();
+
+            });
+    }
     
     private void setupItems()
 {
-    
-        moneyLabel.setText(group.getMoney() + "$");
-    
-        JPanel itemsPanel = new JPanel();
+        itemsPanel = new JPanel();
         itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
         itemsPanel.setBackground(Color.BLACK);
-
-        for (Item i : goodies) {
-
-            JPanel card = new JPanel(new BorderLayout());
-            card.setBackground(new Color(20, 20, 20)); 
+    
+        moneyLabel.setText(group.getMoney() + "$");
+        
+        for (Item item : goodies) {
+            
+            wrapper     = new JPanel(new BorderLayout());
+            card        = new JPanel(new BorderLayout());
+            buyButton   = new JButton("Buy");
+            
+            card.setBackground(new Color(20, 20, 20)); //magic
             card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 110)); 
             card.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-            JLabel label = new JLabel(i.getName() + " - " + i.getPrice() + " Gold");
-            label.setForeground(Color.YELLOW);
-            label.setFont(new Font("Arial", Font.BOLD, 16));
-
-            //concatenate this part with inventory part
-            JLabel compLabel = new JLabel("Compatibility: " + getCompability(i) + "  ||  Modifiers => Health: " + i.getHealthModifier() + "  Attack: " + i.getAttackModifier() + "  Ability: " + i.getAbilityModifier() + "  Mana: " + i.getMaxManaModifier());
-            compLabel.setForeground(new Color(200, 200, 200));
-            compLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-
-            JButton buyButton = new JButton("Buy");
-            buyButton.setBackground(Color.YELLOW);
-            buyButton.setForeground(Color.BLACK);        
-            buyButton.setFont(new Font("Arial", Font.BOLD, 13));
-
-            JPanel wrapper = new JPanel(new BorderLayout());
-
-            //buy
-            buyButton.addActionListener(e -> 
-            {
-                boolean Compatible = false;
-                boolean CanAfford = false;
-                
-                for (Classes c : i.getCompabilities()) {
-                    if (group.isInGroup(c)) {
-                        Compatible = true;
-                        break;
-                    }
-                }
-                if (!Compatible) {
-                    JOptionPane.showMessageDialog(this, "Your group does not have any member compatible with this item." , "Non-Compatible Item" , JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-                if (group.getMoney() >= i.getPrice()) {
-                    CanAfford = true;
-                }
-                if (!CanAfford) {
-                    JOptionPane.showMessageDialog(this, "Insufficient balance to buy this item. Your gold: " + group.getMoney() , "Insufficient Balance" , JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-                
-                //bought
-                if (CanAfford && Compatible) {
-                    group.addToInventory(i);
-                    System.out.println("purchased");
-                    group.setMoney(group.getMoney() - i.getPrice());
-                    moneyLabel.setText(group.getMoney() + "$");
-                    JOptionPane.showMessageDialog(this, "Item: " + i.getName() + " is bought successfully. Remaining gold: " + group.getMoney() , "Success!" , JOptionPane.WARNING_MESSAGE);
-                    wrapper.setVisible(false);
-                    itemsPanel.revalidate();
-                    itemsPanel.repaint();
-                }
-
-            });
             
-            card.add(label, BorderLayout.NORTH);
-            card.add(compLabel, BorderLayout.CENTER);
-            card.add(buyButton , BorderLayout.EAST);
-
-
+            buyButton.setBackground(Color.YELLOW); //magic
+            buyButton.setForeground(Color.BLACK); 
+            buyButton.setFont(Config.getFont(13, true));
+            
             wrapper.setBackground(Color.BLACK);
             wrapper.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
             wrapper.add(card);
+            
+            buyActionListener(item);
 
+            JLabel itemNameLabel = new JLabel(item.getName() + " - " + item.getPrice() + " Gold");
+            itemNameLabel.setForeground(Color.YELLOW); //magic
+            itemNameLabel.setFont(Config.getFont(16, true));
+
+            
+            JLabel compLabel = new JLabel(item.toString());
+            compLabel.setForeground(new Color(200, 200, 200));
+            compLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+
+
+            card.add(itemNameLabel, BorderLayout.NORTH);
+            card.add(compLabel, BorderLayout.CENTER);
+            card.add(buyButton , BorderLayout.EAST);
+            
             itemsPanel.add(wrapper);
         }
+        
+        
+        
         jScrollPane1.setViewportView(itemsPanel);
 
         jScrollPane1.getViewport().setBackground(Color.BLACK);
 }
     
     
-    private String getCompability(Item i)
-    {
-        String a = "";
-        for (Classes c : i.getCompabilities()) {
-            a += c + " ";
-        }
-        return a;
-    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -229,6 +225,10 @@ public class ShopGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new ShopGUI(callback, group).setVisible(true));
     }
 
+    private javax.swing.JButton buyButton;
+    private javax.swing.JPanel card;
+    private javax.swing.JPanel itemsPanel;
+    private javax.swing.JPanel wrapper;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton continueButton;
     private javax.swing.JLabel jLabel2;

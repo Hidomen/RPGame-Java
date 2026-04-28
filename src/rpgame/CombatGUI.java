@@ -10,11 +10,13 @@ public class CombatGUI extends javax.swing.JFrame{
     private static ArrayList<PlayerClass> players;
     private static Enemy enemy;
 
-    private int turnCount = 1;
+    private int turnCount;
     private CombatState state;
     
     private PlayerClass currentPlayer;  //used for checking things
     private int currentPlayerIndex;     //used if an action affects player
+    
+    private int alivePlayerCount;
     
     private static GUICallback callback;
 
@@ -25,16 +27,18 @@ public class CombatGUI extends javax.swing.JFrame{
         this.players = players;
         this.enemy = enemy;
         
+        turnCount = 1;
+        
         state = CombatState.PLAYER_TURN;
         
         currentPlayerIndex = 0;
         currentPlayer = players.get(0);
+        alivePlayerCount = players.size();
         
         initComponents();
         
         abilitySelectionPanel.setBackground(new java.awt.Color(51, 51, 51));
         getContentPane().setBackground(new java.awt.Color(51, 51, 51));
-        
         
         
         actionListener();
@@ -58,7 +62,6 @@ public class CombatGUI extends javax.swing.JFrame{
         playerManaLabel = new javax.swing.JLabel();
         playerAbilityPowerLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        turnLabel = new javax.swing.JLabel();
         attackButton = new javax.swing.JButton();
         abilityButton = new javax.swing.JButton();
         defenceButton = new javax.swing.JButton();
@@ -72,7 +75,8 @@ public class CombatGUI extends javax.swing.JFrame{
         useAbility5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        logLabel = new javax.swing.JLabel();
+        turnLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -98,20 +102,24 @@ public class CombatGUI extends javax.swing.JFrame{
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(enemyHealthLabel)
-                    .addComponent(enemyAttackPowerLabel)
-                    .addComponent(jLabel1))
-                .addContainerGap(163, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enemyAttackPowerLabel)
+                            .addComponent(enemyHealthLabel))))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(47, 47, 47)
-                .addComponent(enemyHealthLabel)
                 .addGap(18, 18, 18)
+                .addComponent(enemyHealthLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(enemyAttackPowerLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -145,39 +153,38 @@ public class CombatGUI extends javax.swing.JFrame{
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(playerHealthLabel)
-                        .addComponent(playerAttackPowerLabel)
-                        .addComponent(playerManaLabel)
-                        .addComponent(playerAbilityPowerLabel))
-                    .addComponent(playerNameLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(playerNameLabel))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(playerAttackPowerLabel)
+                            .addComponent(playerHealthLabel)
+                            .addComponent(playerManaLabel)
+                            .addComponent(playerAbilityPowerLabel))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(playerNameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(playerHealthLabel)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playerAttackPowerLabel)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playerManaLabel)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playerAbilityPowerLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
         jPanel3.setForeground(new java.awt.Color(255, 255, 0));
-
-        turnLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        turnLabel.setForeground(new java.awt.Color(255, 255, 0));
-        turnLabel.setText("Turn");
 
         attackButton.setBackground(new java.awt.Color(255, 255, 0));
         attackButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
@@ -202,33 +209,33 @@ public class CombatGUI extends javax.swing.JFrame{
         jLabel4.setText("Player Abilities");
 
         useAbility0.setBackground(new java.awt.Color(255, 255, 0));
-        useAbility0.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        useAbility0.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility0.setForeground(new java.awt.Color(51, 51, 51));
         useAbility0.setText("Ability0");
 
         useAbility1.setBackground(new java.awt.Color(255, 255, 0));
-        useAbility1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        useAbility1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility1.setForeground(new java.awt.Color(51, 51, 51));
         useAbility1.setText("Ability1");
 
         useAbility2.setBackground(new java.awt.Color(255, 255, 0));
-        useAbility2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        useAbility2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility2.setForeground(new java.awt.Color(51, 51, 51));
         useAbility2.setText("Ability2");
 
         useAbility3.setBackground(new java.awt.Color(255, 255, 0));
-        useAbility3.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        useAbility3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility3.setForeground(new java.awt.Color(51, 51, 51));
         useAbility3.setText("Ability3");
 
         useAbility4.setBackground(new java.awt.Color(255, 255, 0));
-        useAbility4.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        useAbility4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility4.setForeground(new java.awt.Color(51, 51, 51));
         useAbility4.setText("Ability4");
         useAbility4.setToolTipText("");
 
         useAbility5.setBackground(new java.awt.Color(255, 255, 0));
-        useAbility5.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        useAbility5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility5.setForeground(new java.awt.Color(51, 51, 51));
         useAbility5.setText("Ability5");
         useAbility5.setToolTipText("");
@@ -238,21 +245,25 @@ public class CombatGUI extends javax.swing.JFrame{
         abilitySelectionPanelLayout.setHorizontalGroup(
             abilitySelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(abilitySelectionPanelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
                 .addGroup(abilitySelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(abilitySelectionPanelLayout.createSequentialGroup()
-                        .addComponent(useAbility4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(useAbility5))
-                    .addComponent(jLabel4)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel4))
                     .addGroup(abilitySelectionPanelLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(useAbility0)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(useAbility1))
                     .addGroup(abilitySelectionPanelLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(useAbility2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(useAbility3)))
+                        .addComponent(useAbility3))
+                    .addGroup(abilitySelectionPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(useAbility4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(useAbility5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         abilitySelectionPanelLayout.setVerticalGroup(
@@ -271,7 +282,7 @@ public class CombatGUI extends javax.swing.JFrame{
                 .addGroup(abilitySelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(useAbility4)
                     .addComponent(useAbility5))
-                .addGap(61, 61, 61))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -279,33 +290,30 @@ public class CombatGUI extends javax.swing.JFrame{
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(attackButton)
-                        .addComponent(abilityButton)
-                        .addComponent(defenceButton))
-                    .addComponent(turnLabel))
-                .addContainerGap(193, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(abilitySelectionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(attackButton)
+                    .addComponent(abilityButton)
+                    .addComponent(defenceButton))
+                .addGap(18, 18, 18)
+                .addComponent(abilitySelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(turnLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(attackButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(abilityButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(defenceButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(abilitySelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(attackButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(abilityButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(defenceButton))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(abilitySelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
@@ -314,33 +322,40 @@ public class CombatGUI extends javax.swing.JFrame{
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel5.setText("Log");
+        jLabel5.setText("ICON");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel3.setText("PLAYER used ...");
+        logLabel.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        logLabel.setForeground(new java.awt.Color(255, 255, 0));
+        logLabel.setText("a");
+
+        turnLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        turnLabel.setForeground(new java.awt.Color(255, 255, 0));
+        turnLabel.setText("Turn");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(171, 171, 171))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(135, 135, 135))))
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(logLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(turnLabel)
+                .addGap(133, 133, 133))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel3)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(logLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(turnLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -349,27 +364,25 @@ public class CombatGUI extends javax.swing.JFrame{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -422,19 +435,18 @@ public class CombatGUI extends javax.swing.JFrame{
             return;
         }
         
-        //animation maybe
         
         switch(state){
             
             case CombatState.PLAYER_TURN -> {
                 if(currentPlayer.isDead()){
                     
-                    if(players.size() <= 1){
+                    if(alivePlayerCount <= 1){
+                        
                         callback.setGUIState(GUIState.GAME_OVER);
-                        return;
                     }
                     else{
-                        players.remove(currentPlayerIndex);
+                        alivePlayerCount--;
                         nextPlayer();
                         
                         stateManager();
@@ -446,16 +458,14 @@ public class CombatGUI extends javax.swing.JFrame{
             }
             case CombatState.ENEMY_TURN -> {
 
-                 
                 enemyTurn();
-                //enemyTurnFinished
+                
+                logLabel.setText("Enemy attacked" + currentPlayer.getEntityName() + ". Dealt " + enemy.attackPower +  " damage.\n Current health: " + currentPlayer.HP);
                 
                 nextTurn();
-                stateManager();
             }
             
         }
-        
         updateLabels();
     }
     
@@ -540,7 +550,6 @@ public class CombatGUI extends javax.swing.JFrame{
                 abilityButtonUsed(5);
             });
             
-
        }
     }
 
@@ -567,10 +576,9 @@ public class CombatGUI extends javax.swing.JFrame{
         playerAbilityPowerLabel.setText ("AbilityPower: "   + currentPlayer.abilityPower);
         playerAttackPowerLabel.setText  ("AttackPower: "    + currentPlayer.attackPower);
         playerHealthLabel.setText       ("Health: "         + currentPlayer.HP + " / " + currentPlayer.maxHP);
-        playerManaLabel.setText         ("Mana: "           + currentPlayer.getMana());
+        playerManaLabel.setText         ("Mana: "           + currentPlayer.mana);
         
         
-        jLabel3.setText("TurnCount: " + turnCount);
         turnLabel.setText("Turn:"); //gonna fixed 
     }
 
@@ -588,13 +596,13 @@ public class CombatGUI extends javax.swing.JFrame{
     private javax.swing.JLabel enemyAttackPowerLabel;
     private javax.swing.JLabel enemyHealthLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel logLabel;
     private javax.swing.JLabel playerAbilityPowerLabel;
     private javax.swing.JLabel playerAttackPowerLabel;
     private javax.swing.JLabel playerHealthLabel;

@@ -1,5 +1,6 @@
 package rpgame;
 
+import java.awt.Font;
 import javax.swing.*;
 
 enum Classes {Archer, Healer, Mage, Warrior};
@@ -12,6 +13,9 @@ enum Colors {YELLOW, BLACK};
 
 
 public class Config {
+    
+    public static final int WINDOW_WIDTH = 800;
+    public static final int WINDOW_HEIGHT = 600;
     
     public static final double LEVEL_UP_HP_MULTIPLIER       = 1.3;
     public static final double LEVEL_UP_ATTACK_MULTIPLIER   = 1.5;
@@ -46,8 +50,12 @@ public class Config {
         new java.awt.Color(51, 51, 51) //other black
     };
     
+    
     public static final int COLOR_YELLOW = 0;
     public static final int COLOR_BLACK = 1;
     
-    
+    public static Font getFont(int size, boolean isBold){
+        
+        return (isBold ? new Font("Arial", Font.BOLD, size) : new Font("Arial", Font.PLAIN, size) );
+    }
 }    

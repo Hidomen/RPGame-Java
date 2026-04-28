@@ -52,31 +52,16 @@ public class InventoryGUI extends javax.swing.JFrame {
             
             itemRow.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
             itemRow.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-            itemRow.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 0)));
+            itemRow.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 0))); //magic
 
             JLabel itemLabel = new JLabel(item.getName());
             
             itemLabel.setForeground(Config.colors[Config.COLOR_YELLOW]);
             
-            itemLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14));
+            itemLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); //magic
 
-            StringBuilder modText = new StringBuilder(" Modifiers :");
-            
-            if (item.getHealthModifier() != 0){
-                modText.append(String.format("  HP: ", item.getHealthModifier()));
-            }
-            if (item.getAttackModifier() != 0){
-                modText.append(String.format("  ATK: ", item.getAttackModifier()));
-            }
-            if (item.getAbilityModifier() != 0){
-                modText.append(String.format("  ABL: ", item.getAbilityModifier()));
-            }
-            if (item.getMaxManaModifier() != 0){
-                modText.append(String.format("  MANA: ", item.getMaxManaModifier()));
-            }
-            
 
-            JLabel modLabel = new JLabel(modText.toString());
+            JLabel modLabel = new JLabel(item.toString());
             modLabel.setForeground(new java.awt.Color(180, 255, 180));
             modLabel.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));
 

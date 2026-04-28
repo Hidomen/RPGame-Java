@@ -25,6 +25,7 @@ public class main implements GUICallback{
     private static InventoryGUI     invGUI;
 
     private static GUIState state;
+    //==========================================================================
     
     public static void main(){    
         
@@ -83,7 +84,6 @@ public class main implements GUICallback{
                 group = new Group(players);
                 
                 setGUIState(GUIState.LOBBY);
-
             }
             case GUIState.LOBBY -> {
                 
