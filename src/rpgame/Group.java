@@ -81,7 +81,6 @@ public class Group {
         inventory.add(i);
         
         for(PlayerClass p : players){
-            
             p.maxHP         += i.getHealthModifier();
             p.abilityPower  += i.getAbilityModifier();
             p.attackPower   += i.getAttackModifier();

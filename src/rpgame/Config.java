@@ -18,7 +18,7 @@ public class Config {
     public static final int WINDOW_HEIGHT = 600;
     
     public static final double LEVEL_UP_HP_MULTIPLIER       = 1.3;
-    public static final double LEVEL_UP_ATTACK_MULTIPLIER   = 1.5;
+    public static final double LEVEL_UP_ATTACK_MULTIPLIER   = 1.4;
     public static final double LEVEL_UP_ABILITY_MULTIPLIER  = 1.4;
 
     public static final int HEALTH_MULTIPLIER   = 3;

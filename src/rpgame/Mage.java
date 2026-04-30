@@ -10,7 +10,7 @@ public class Mage extends PlayerClass {
             new Ability(1, "Electrify" , "Make your enemy shocked for turns equal to ability power * 0.25" , 3), 
             new Ability(2, "Channel" , "Improve your ability power by 1" , 15), //Working
             new Ability(3, "Blinding Fog" , "Enemy strikes half of the damage to itself with the chance of %50" , 5),
-            new Ability(4, "Unlearned Beams" , "Attack with light beams that deals ability power damage , ability power/2 times , Every beam has a %25 chance to hit", 5),//Working
+            new Ability(4, "Unlearned Beams" , "Throw light beams that deals ability damage, ability/2 times, %25 chance", 5),//Working
             new Ability(5, "Blood Bending" , "Take 10 damage deal 20 damage", 10)   //Working          
         };
     

@@ -24,8 +24,6 @@ public class InventoryGUI extends javax.swing.JFrame {
         initComponents();
         continueButton1.setFocusPainted(false);
         
-        itemsPanel = new JPanel();
-        
         setupItems();
     }
     
@@ -35,12 +33,13 @@ public class InventoryGUI extends javax.swing.JFrame {
         super.setVisible(visible);
         if (visible) {
             setupItems();
+            refreshAttributes();
         }
     }
     
     private void setupItems() {
         
-        
+        itemsPanel = new JPanel();
         itemsPanel.setBackground(new java.awt.Color(51, 51, 51));
         itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
 
@@ -87,7 +86,65 @@ public class InventoryGUI extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(51, 51, 51));
         jScrollPane1.getViewport().setBackground(new java.awt.Color(51, 51, 51));
     }
+    
+    public int getTotalHealth()
+    {
+        if (invItems == null) {
+            return 0;
+        }
+        int totalHealth = 0;
+        for (Item i : invItems) {
+            totalHealth += i.getHealthModifier();
+        }
+        return totalHealth;
+    }
+    
+    public int getTotalAttack()
+    {
+        if (invItems == null) {
+            return 0;
+        }
+        int totalAttack = 0;
+        for (Item i : invItems) {
+            totalAttack += i.getAttackModifier();
+        }
+        return totalAttack;
+    }
+    
+    public int getTotalAbility()
+    {
+        if (invItems == null) {
+            return 0;
+        }
+        int totalAbility = 0;
+        for (Item i : invItems) {
+            totalAbility += i.getAbilityModifier();
+        }
+        return totalAbility;
+    }
+    
+    public int getTotalMana()
+    {
+        if (invItems == null) {
+            return 0;
+        }
+        int totalMana = 0;
+        for (Item i : invItems) {
+            totalMana += i.getMaxManaModifier();
+        }
+        return totalMana;
+    }
 
+    public void refreshAttributes() //Everytime we buy it needs to be refreshed in order to work. DO NOT İNTERVENE!
+    {
+        healthLabel.setText("Health: " + getTotalHealth());
+
+        attackLabel.setText("Attack: " + getTotalAttack());
+
+        abilityLabel.setText("Ability: " + getTotalAbility());
+
+        manaLabel.setText("Mana: " + getTotalMana());
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -106,6 +163,10 @@ public class InventoryGUI extends javax.swing.JFrame {
         continueButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1015, 700));
+        setMinimumSize(new java.awt.Dimension(1015, 700));
+        setPreferredSize(new java.awt.Dimension(1015, 700));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -120,19 +181,19 @@ public class InventoryGUI extends javax.swing.JFrame {
 
         healthLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         healthLabel.setForeground(new java.awt.Color(255, 255, 0));
-        healthLabel.setText("Health: ");
+        healthLabel.setText("Health: " + getTotalHealth());
 
         attackLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         attackLabel.setForeground(new java.awt.Color(255, 255, 0));
-        attackLabel.setText("Attack:");
+        attackLabel.setText("Attack: " + getTotalAttack());
 
         abilityLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         abilityLabel.setForeground(new java.awt.Color(255, 255, 0));
-        abilityLabel.setText("Ability:");
+        abilityLabel.setText("Ability: " + getTotalAbility());
 
         manaLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         manaLabel.setForeground(new java.awt.Color(255, 255, 0));
-        manaLabel.setText("Mana:");
+        manaLabel.setText("Mana: " + getTotalMana());
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

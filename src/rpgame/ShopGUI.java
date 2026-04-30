@@ -3,7 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import static rpgame.Classes.*;
 
-public class ShopGUI extends javax.swing.JFrame {
+public class ShopGUI extends javax.swing.JFrame { 
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ShopGUI.class.getName());
 
@@ -62,15 +63,19 @@ public class ShopGUI extends javax.swing.JFrame {
     }
 
     private boolean itemControl(Item item){
-        
-        for (Classes c : item.getCompabilities()) {
-            if (!group.isInGroup(c)) {
-                    JOptionPane.showMessageDialog(this, "Your group does not have any member compatible with this item." , "Non-Compatible Item" , JOptionPane.WARNING_MESSAGE);
-                    return false;
+        boolean check = false;
+        for (Classes c : item.getCompabilities())
+        {
+            if (group.isInGroup(c)) {
+                    check = true;
             }
         }
-
-        if (group.getMoney() < item.getPrice()) {
+        if (check == false) {
+            JOptionPane.showMessageDialog(this, "Your group does not have any member compatible with this item." , "Non-Compatible Item" , JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        if (group.getMoney() < item.getPrice())
+        {
             JOptionPane.showMessageDialog(this, "Insufficient balance to buy this item. Your gold: " + group.getMoney() , "Insufficient Balance" , JOptionPane.WARNING_MESSAGE);
             return false;
         }
@@ -78,7 +83,7 @@ public class ShopGUI extends javax.swing.JFrame {
         return true;
     }
     
-    private void buyActionListener(Item item){
+    private void buyActionListener(Item item , JPanel cWrapper){
  
         buyButton.addActionListener(e -> 
             {
@@ -91,11 +96,10 @@ public class ShopGUI extends javax.swing.JFrame {
                 moneyLabel.setText(group.getMoney() + "$");
 
                 JOptionPane.showMessageDialog(this, "Item: " + item.getName() + " is bought successfully. Remaining gold: " + group.getMoney() , "Success!" , JOptionPane.WARNING_MESSAGE);
-                wrapper.setVisible(false);
+                cWrapper.setVisible(false);
 
                 itemsPanel.revalidate();
                 itemsPanel.repaint();
-
             });
     }
     
@@ -109,7 +113,7 @@ public class ShopGUI extends javax.swing.JFrame {
         
         for (Item item : goodies) {
             
-            wrapper     = new JPanel(new BorderLayout());
+            final JPanel wrapper     = new JPanel(new BorderLayout());
             card        = new JPanel(new BorderLayout());
             buyButton   = new JButton("Buy");
             
@@ -125,7 +129,7 @@ public class ShopGUI extends javax.swing.JFrame {
             wrapper.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
             wrapper.add(card);
             
-            buyActionListener(item);
+            buyActionListener(item , wrapper);
 
             JLabel itemNameLabel = new JLabel(item.getName() + " - " + item.getPrice() + " Gold");
             itemNameLabel.setForeground(Color.YELLOW); //magic
@@ -152,7 +156,6 @@ public class ShopGUI extends javax.swing.JFrame {
 }
     
     
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -168,7 +171,9 @@ public class ShopGUI extends javax.swing.JFrame {
         jLabel6.setText("Item Description");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1250, 600));
+        setMaximumSize(new java.awt.Dimension(1015, 700));
+        setMinimumSize(new java.awt.Dimension(1015, 700));
+        setPreferredSize(new java.awt.Dimension(1015, 700));
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));

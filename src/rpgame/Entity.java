@@ -134,7 +134,7 @@ public abstract class Entity {
     public boolean checkStatus()
     {
         for (int i = 0; i < statusList.length; i++) {
-            
+            //System.out.println(this.entityName + " turn");//debug
             //System.out.println(statusList[i]); //debug
             
             if (statusList[i] != 0) {
@@ -142,7 +142,7 @@ public abstract class Entity {
                 switch(i)
                 {
                     case Config.BLEED_INDEX -> {this.takeDamage(statusList[i]);}
-                    case Config.BURN_INDEX -> {this.takeDamage(statusList[i]);}
+                    case Config.BURN_INDEX -> {this.takeDamage(statusList[i]); statusList[i] = 0;}
                     case Config.DODGE_INDEX -> {}
                     case Config.FOG_INDEX -> {}
                     case Config.POISON_INDEX -> {this.takeDamage(2);}
@@ -170,14 +170,13 @@ public abstract class Entity {
                 
                 //special conditons
                 case Config.BLEED_INDEX -> {}
-                case Config.BURN_INDEX -> {statusList[i] = 0;}
+                case Config.BURN_INDEX -> {}
                 case Config.FOG_INDEX -> {}
                 case Config.DODGE_INDEX -> {}
                 case Config.POISON_INDEX -> {}
                 case Config.SHOCK_INDEX -> {}
                 case Config.STUN_INDEX -> {}
                 case Config.TEMP_H_INDEX -> {statusList[i] = 0;}
-                
                 
             }
             

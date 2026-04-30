@@ -80,6 +80,10 @@ public class CombatGUI extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
+        setMaximumSize(new java.awt.Dimension(1015, 700));
+        setMinimumSize(new java.awt.Dimension(1015, 700));
+        setPreferredSize(new java.awt.Dimension(1015, 700));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
@@ -200,6 +204,7 @@ public class CombatGUI extends javax.swing.JFrame{
         defenceButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         defenceButton.setForeground(new java.awt.Color(51, 51, 51));
         defenceButton.setText("Defence");
+        defenceButton.addActionListener(this::defenceButtonActionPerformed);
 
         abilitySelectionPanel.setBackground(new java.awt.Color(51, 51, 51));
         abilitySelectionPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
@@ -388,6 +393,14 @@ public class CombatGUI extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void defenceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defenceButtonActionPerformed
+        for(PlayerClass p : players)
+        {
+            p.addStatus(Status.TemporaryHealth, 5, p);
+        }
+        currentPlayer.addMana(4);
+    }//GEN-LAST:event_defenceButtonActionPerformed
+
     
     private void nextPlayer(){
         if(players.size() <= 0) return;
@@ -408,7 +421,6 @@ public class CombatGUI extends javax.swing.JFrame{
 
     
     private void playerTurnEnd(){
-        
         players.get(currentPlayerIndex).endTurnEffects();
         currentPlayer.addMana();
         
@@ -416,12 +428,11 @@ public class CombatGUI extends javax.swing.JFrame{
     }
     
     private void enemyTurn(){
-        
         if(enemy.checkStatus()){
             System.out.println(enemy.getEntityName() + "IS STUNNED");
+            enemy.endTurnEffects();
             return;
         }
-        
         enemy.turn(players, currentPlayerIndex); 
         enemy.endTurnEffects();
     }
