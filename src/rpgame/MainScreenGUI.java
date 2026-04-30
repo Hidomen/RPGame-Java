@@ -1,5 +1,6 @@
 package rpgame;
 
+import java.awt.Toolkit;
 
 public class MainScreenGUI extends javax.swing.JFrame {
     
@@ -13,6 +14,9 @@ public class MainScreenGUI extends javax.swing.JFrame {
     public MainScreenGUI(GUICallback callback) {
         this.callback = callback;
         initComponents();
+        
+        playerCount = 1;
+        
         playButton.setFocusPainted(false);
         playerCountField.setVisible(false);
     }
@@ -26,19 +30,18 @@ public class MainScreenGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         playButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
         playerCountField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(1015, 700));
-        setMinimumSize(new java.awt.Dimension(1015, 700));
-        setPreferredSize(new java.awt.Dimension(1015, 700));
+        setPreferredSize(Config.WINDOW_DIMENSION);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel1.setPreferredSize(Config.WINDOW_DIMENSION);
 
         jLabel1.setFont(new java.awt.Font("Arial", 2, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
@@ -53,14 +56,13 @@ public class MainScreenGUI extends javax.swing.JFrame {
         playButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         playButton.addActionListener(this::playButtonActionPerformed);
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setForeground(new java.awt.Color(255, 255, 0));
-        jButton2.setText("Exit");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        exitButton.setBackground(new java.awt.Color(51, 51, 51));
+        exitButton.setForeground(new java.awt.Color(255, 255, 0));
+        exitButton.setText("Exit");
+        exitButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        exitButton.addActionListener(this::exitButtonActionPerformed);
 
         playerCountField.setText("1");
-        playerCountField.addActionListener(this::playerCountFieldActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,8 +77,8 @@ public class MainScreenGUI extends javax.swing.JFrame {
                         .addComponent(playerCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(373, Short.MAX_VALUE))
+                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(308, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,8 +92,8 @@ public class MainScreenGUI extends javax.swing.JFrame {
                     .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(playerCountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(301, Short.MAX_VALUE))
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -99,12 +101,14 @@ public class MainScreenGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -117,46 +121,26 @@ public class MainScreenGUI extends javax.swing.JFrame {
         
         playerCountField.setVisible(true); //doesnt work
         
-        callback.setPlayerCount(2); //fix
+        callback.setPlayerCount(playerCount); //fix
        
-        callback.setGUIState(GUIState.PLAYER_SELECTION);
+        callback.setGUIState(GUIState.PLAYER_SELECTION, this.getLocation());
         playButton.setFocusPainted(false); //not necessary 
     }//GEN-LAST:event_playButtonActionPerformed
 
-    private void playerCountFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerCountFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_playerCountFieldActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jButton2.setFocusPainted(false);
-        callback.setGUIState(GUIState.EXIT);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        exitButton.setFocusPainted(false);
+        callback.setGUIState(GUIState.EXIT, this.getLocation());
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
+        
         java.awt.EventQueue.invokeLater(() -> new MainScreenGUI(callback).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton exitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

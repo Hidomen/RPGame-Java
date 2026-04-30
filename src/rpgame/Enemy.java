@@ -1,6 +1,5 @@
 package rpgame;
 
-import java.util.ArrayList;
 
 public class Enemy extends Entity {
     
@@ -15,8 +14,4 @@ public class Enemy extends Entity {
         HP = maxHP;
     }
     
-    public void turn(ArrayList<PlayerClass> players, int currentPlayerIndex){
-        
-        attack(players.get(currentPlayerIndex));
-    }
 }

@@ -12,7 +12,6 @@ public class ShopGUI extends javax.swing.JFrame {
     
     private static Group group;
     
-    private static int itemCount = 20;
     
     private static final Item[] goodies = {
 
@@ -48,32 +47,28 @@ public class ShopGUI extends javax.swing.JFrame {
         this.group = group;
         
         initComponents();
+        
         moneyLabel.setText(group.getMoney() + "$");
         setupItems();
         continueButton.setFocusPainted(false);
     }
     
-    @Override
-    public void setVisible(boolean visible)
-    {
-        super.setVisible(visible);
-        if (visible) {
-            moneyLabel.setText(group.getMoney() + "$");
-        }
-    }
 
     private boolean itemControl(Item item){
-        boolean check = false;
-        for (Classes c : item.getCompabilities())
-        {
-            if (group.isInGroup(c)) {
-                    check = true;
+        
+        //if (check == false) {
+          //  JOptionPane.showMessageDialog(this, "Your group does not have any member compatible with this item." , "Non-Compatible Item" , JOptionPane.WARNING_MESSAGE);
+            //return false;
+        //}
+        
+        
+        for (Classes c : item.getCompabilities()){
+                if (group.isInGroup(c)) {
+                    //compability = true;
+                }
             }
-        }
-        if (check == false) {
-            JOptionPane.showMessageDialog(this, "Your group does not have any member compatible with this item." , "Non-Compatible Item" , JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
+        
+        
         if (group.getMoney() < item.getPrice())
         {
             JOptionPane.showMessageDialog(this, "Insufficient balance to buy this item. Your gold: " + group.getMoney() , "Insufficient Balance" , JOptionPane.WARNING_MESSAGE);
@@ -103,6 +98,15 @@ public class ShopGUI extends javax.swing.JFrame {
             });
     }
     
+    private boolean checkCompability(Item item){
+        
+        for(Classes c : item.getCompabilities()){
+            if(group.isInGroup(c)) return true;
+        }
+        
+        return false;
+    }
+    
     private void setupItems()
 {
         itemsPanel = new JPanel();
@@ -111,9 +115,13 @@ public class ShopGUI extends javax.swing.JFrame {
     
         moneyLabel.setText(group.getMoney() + "$");
         
+        
         for (Item item : goodies) {
             
-            final JPanel wrapper     = new JPanel(new BorderLayout());
+            //if not compatible break
+            if(!checkCompability(item)) continue;
+            
+            JPanel wrapper     = new JPanel(new BorderLayout());
             card        = new JPanel(new BorderLayout());
             buyButton   = new JButton("Buy");
             
@@ -171,9 +179,7 @@ public class ShopGUI extends javax.swing.JFrame {
         jLabel6.setText("Item Description");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1015, 700));
-        setMinimumSize(new java.awt.Dimension(1015, 700));
-        setPreferredSize(new java.awt.Dimension(1015, 700));
+        setPreferredSize(Config.WINDOW_DIMENSION);
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
@@ -221,7 +227,7 @@ public class ShopGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
-        callback.setGUIState(GUIState.LOBBY);
+        callback.setGUIState(GUIState.LOBBY, this.getLocation());
     }//GEN-LAST:event_continueButtonActionPerformed
 
 

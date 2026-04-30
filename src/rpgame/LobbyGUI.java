@@ -1,6 +1,6 @@
 package rpgame;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 
 public class LobbyGUI extends javax.swing.JFrame {
     
@@ -46,9 +46,7 @@ public class LobbyGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
         setForeground(new java.awt.Color(51, 51, 51));
-        setMaximumSize(new java.awt.Dimension(1015, 700));
-        setMinimumSize(new java.awt.Dimension(1015, 700));
-        setPreferredSize(new java.awt.Dimension(1015, 700));
+        setPreferredSize(Config.WINDOW_DIMENSION);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -185,22 +183,22 @@ public class LobbyGUI extends javax.swing.JFrame {
 
     private void fightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fightButtonActionPerformed
         fightButton.setFocusPainted(false);
-        callback.setGUIState(GUIState.COMBAT);
+        callback.setGUIState(GUIState.COMBAT, this.getLocation());
     }//GEN-LAST:event_fightButtonActionPerformed
 
     private void shopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopButtonActionPerformed
         shopButton.setFocusPainted(false);
-        callback.setGUIState(GUIState.SHOP);
+        callback.setGUIState(GUIState.SHOP, this.getLocation());
     }//GEN-LAST:event_shopButtonActionPerformed
 
     private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
         inventoryButton.setFocusPainted(false);
-        callback.setGUIState(GUIState.INVENTORY);
+        callback.setGUIState(GUIState.INVENTORY, this.getLocation());
     }//GEN-LAST:event_inventoryButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         quitButton.setFocusPainted(false);
-        callback.setGUIState(GUIState.EXIT);
+        callback.setGUIState(GUIState.EXIT, this.getLocation());
     }//GEN-LAST:event_quitButtonActionPerformed
 
 

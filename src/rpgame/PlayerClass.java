@@ -23,7 +23,7 @@ public abstract class PlayerClass extends Entity implements AbilityInterface {
         //System.out.println(a.getName()); //debug
         
         if(mana < a.getCost()){
-            System.out.println("Your mana is not enough for the " + a.getName());
+            System.out.println("Your mana is not enough for the " + a.getName()); //log or popup
             return;
         }
 
@@ -68,12 +68,43 @@ public abstract class PlayerClass extends Entity implements AbilityInterface {
         mana++;
     }
     
-    public void addMana(int manaAdd){
-        if(mana + manaAdd >= maxMana)
-        {
-            mana = maxMana;
-        }
-        else
-            mana += manaAdd;
+    public void addMana(int amount){
+        
+        mana += amount;
+        
+        if(mana >= maxMana) mana = maxMana;
+    }
+    
+    public void setMaxHP(int amount){
+        
+        int maxHPLimitMIN = Config.MaxHPLimits[0];
+        int maxHPLimitMAX = Config.MaxHPLimits[1];
+        
+        maxHP = amount;
+        
+        if(maxHP < maxHPLimitMIN) maxHP = maxHPLimitMIN;
+        if(maxHP > maxHPLimitMAX) maxHP = maxHPLimitMAX;
+    }
+    
+    public void setAttackPower(int amount){
+        
+        int attackPowerLimitMIN = Config.AttackPowerLimits[0];
+        int attackPowerLimitMAX = Config.AttackPowerLimits[1];
+        
+        attackPower = amount;
+        
+        if(attackPower < attackPowerLimitMIN) attackPower = attackPowerLimitMIN;
+        if(attackPower > attackPowerLimitMAX) attackPower = attackPowerLimitMAX;
+    }
+    
+    public void setAbilityPower(int amount){
+        
+        int abilityPowerLimitMIN = Config.AbilityPowerLimits[0];
+        int abilityPowerLimitMAX = Config.AbilityPowerLimits[1];
+        
+        abilityPower = amount;
+        
+        if(abilityPower < abilityPowerLimitMIN) abilityPower = abilityPowerLimitMIN;
+        if(abilityPower > abilityPowerLimitMAX) abilityPower = abilityPowerLimitMAX;
     }
 }

@@ -1,25 +1,24 @@
 package rpgame;
 
 import java.awt.Font;
-import javax.swing.*;
 
 enum Classes {Archer, Healer, Mage, Warrior};
 enum Status {Bleed, Burn, Dodge, Fog, Poison, Shock, Stun, TemporaryHealth};
 enum EntityType {Player, Enemy};    
 enum GUIState {MAIN_SCREEN, PLAYER_SELECTION, START_GAME, LOBBY, COMBAT, SHOP, INVENTORY, GAME_OVER, EXIT};
-enum CombatState {PLAYER_TURN, ENEMY_TURN};
-
-enum Colors {YELLOW, BLACK};
 
 
 public class Config {
     
-    public static final int WINDOW_WIDTH = 800;
-    public static final int WINDOW_HEIGHT = 600;
+    public static final java.awt.Dimension WINDOW_DIMENSION = new java.awt.Dimension(800,600);
     
-    public static final double LEVEL_UP_HP_MULTIPLIER       = 1.3;
-    public static final double LEVEL_UP_ATTACK_MULTIPLIER   = 1.4;
-    public static final double LEVEL_UP_ABILITY_MULTIPLIER  = 1.4;
+    public static final double LEVEL_UP_MAXHP_MULTIPLIER    = 0.1;
+    public static final double LEVEL_UP_ATTACK_MULTIPLIER   = 0.1;
+    public static final double LEVEL_UP_ABILITY_MULTIPLIER  = 0.1;
+    
+    public static final int[] MaxHPLimits           = {10,100};
+    public static final int[] AttackPowerLimits     = {1 ,50 };
+    public static final int[] AbilityPowerLimits    = {1 ,20 };
 
     public static final int HEALTH_MULTIPLIER   = 3;
     public static final int MANA_MULTIPLIER     = 2;
@@ -42,17 +41,10 @@ public class Config {
     public static final int TEMP_H_INDEX    = 7; //TemporaryHealth : Lasts until enemy's turn end
     
     
-    public static final java.awt.Color[] colors = {
-    
-        new java.awt.Color(255, 255, 0),
-        new java.awt.Color(70, 70, 70),
-        new java.awt.Color(180, 255, 180), //wtf is that color
-        new java.awt.Color(51, 51, 51) //other black
-    };
-    
-    
-    public static final int COLOR_YELLOW = 0;
-    public static final int COLOR_BLACK = 1;
+    //new java.awt.Color(180, 255, 180), //wtf is that color
+    //new java.awt.Color(51, 51, 51) //other black
+    public static final java.awt.Color COLOR_YELLOW = new java.awt.Color(255, 255, 0);
+    public static final java.awt.Color COLOR_BLACK  = new java.awt.Color(70, 70, 70);
     
     public static Font getFont(int size, boolean isBold){
         

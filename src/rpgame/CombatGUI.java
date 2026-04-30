@@ -10,11 +10,11 @@ public class CombatGUI extends javax.swing.JFrame{
     private static ArrayList<PlayerClass> players;
     private static Enemy enemy;
 
-    private int turnCount;
-    private CombatState state;
+    private int turnCount = 1;
+    private EntityType state = EntityType.Player;
     
     private PlayerClass currentPlayer;  //used for checking things
-    private int currentPlayerIndex;     //used if an action affects player
+    private int currentPlayerIndex = 0;     //used if an action affects player
     
     private int alivePlayerCount;
     
@@ -27,11 +27,7 @@ public class CombatGUI extends javax.swing.JFrame{
         this.players = players;
         this.enemy = enemy;
         
-        turnCount = 1;
         
-        state = CombatState.PLAYER_TURN;
-        
-        currentPlayerIndex = 0;
         currentPlayer = players.get(0);
         alivePlayerCount = players.size();
         
@@ -80,9 +76,7 @@ public class CombatGUI extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
-        setMaximumSize(new java.awt.Dimension(1015, 700));
-        setMinimumSize(new java.awt.Dimension(1015, 700));
-        setPreferredSize(new java.awt.Dimension(1015, 700));
+        setPreferredSize(Config.WINDOW_DIMENSION);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -204,7 +198,6 @@ public class CombatGUI extends javax.swing.JFrame{
         defenceButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         defenceButton.setForeground(new java.awt.Color(51, 51, 51));
         defenceButton.setText("Defence");
-        defenceButton.addActionListener(this::defenceButtonActionPerformed);
 
         abilitySelectionPanel.setBackground(new java.awt.Color(51, 51, 51));
         abilitySelectionPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
@@ -393,14 +386,6 @@ public class CombatGUI extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void defenceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defenceButtonActionPerformed
-        for(PlayerClass p : players)
-        {
-            p.addStatus(Status.TemporaryHealth, 5, p);
-        }
-        currentPlayer.addMana(4);
-    }//GEN-LAST:event_defenceButtonActionPerformed
-
     
     private void nextPlayer(){
         if(players.size() <= 0) return;
@@ -409,31 +394,38 @@ public class CombatGUI extends javax.swing.JFrame{
     
     private void nextTurn(){
         
-        if(state == CombatState.PLAYER_TURN){
+        state = EntityType.values()[(state.ordinal() + 1) % 2];
+        
+        if(state == EntityType.Player){
             
             nextPlayer();
             currentPlayer = players.get(currentPlayerIndex);
         }
         
-        state = CombatState.values()[(state.ordinal() + 1) % 2];
         stateManager();
     }
 
     
     private void playerTurnEnd(){
-        players.get(currentPlayerIndex).endTurnEffects();
+        currentPlayer.endTurnEffects();
         currentPlayer.addMana();
         
+        turnCount++;
+        
         nextTurn();
+        stateManager();
     }
     
     private void enemyTurn(){
         if(enemy.checkStatus()){
-            System.out.println(enemy.getEntityName() + "IS STUNNED");
+
+            logLabel.setText(enemy.getEntityName() + "is stunned");
             enemy.endTurnEffects();
             return;
         }
-        enemy.turn(players, currentPlayerIndex); 
+        
+        enemy.attack(currentPlayer); 
+        logLabel.setText(enemy.getEntityName() + " attacked " + currentPlayer.getEntityName() + ". Dealt " + enemy.attackPower +  " damage.\n Current health: " + currentPlayer.HP);
         enemy.endTurnEffects();
     }
 
@@ -442,19 +434,19 @@ public class CombatGUI extends javax.swing.JFrame{
         
         if (enemy.isDead()){
             callback.combatWin();
-            callback.setGUIState(GUIState.LOBBY);
+            callback.setGUIState(GUIState.LOBBY, this.getLocation());
             return;
         }
         
         
         switch(state){
             
-            case CombatState.PLAYER_TURN -> {
+            case EntityType.Player -> {
                 if(currentPlayer.isDead()){
                     
                     if(alivePlayerCount <= 1){
                         
-                        callback.setGUIState(GUIState.GAME_OVER);
+                        callback.setGUIState(GUIState.GAME_OVER, this.getLocation());
                     }
                     else{
                         alivePlayerCount--;
@@ -467,12 +459,9 @@ public class CombatGUI extends javax.swing.JFrame{
                 
                 
             }
-            case CombatState.ENEMY_TURN -> {
+            case EntityType.Enemy -> {
 
                 enemyTurn();
-                
-                logLabel.setText("Enemy attacked" + currentPlayer.getEntityName() + ". Dealt " + enemy.attackPower +  " damage.\n Current health: " + currentPlayer.HP);
-                
                 nextTurn();
             }
             
@@ -487,7 +476,7 @@ public class CombatGUI extends javax.swing.JFrame{
         
         
         if(!currentPlayer.isManaEnough(usedAbility)){
-            System.err.println("Player's mana is not enough to perform ability");
+            System.err.println("Player's mana is not enough to perform ability"); //popup
             return;
         }
         
@@ -507,7 +496,7 @@ public class CombatGUI extends javax.swing.JFrame{
     
     private void actionListener(){
         
-        if(CombatState.PLAYER_TURN == state){
+        if(EntityType.Player == state){
             //==================================================================
             // Button Listeners
             //==================================================================
@@ -526,6 +515,12 @@ public class CombatGUI extends javax.swing.JFrame{
 
             defenceButton.addActionListener((ActionEvent e) -> {
                 defenceButton.setFocusPainted(false); 
+                
+                System.out.println("DEFEND");
+                
+                currentPlayer.addStatus(Status.TemporaryHealth, 5, currentPlayer);
+                currentPlayer.addMana(4);
+                
                 playerTurnEnd();
             });
             //==================================================================
@@ -590,7 +585,7 @@ public class CombatGUI extends javax.swing.JFrame{
         playerManaLabel.setText         ("Mana: "           + currentPlayer.mana);
         
         
-        turnLabel.setText("Turn:"); //gonna fixed 
+        turnLabel.setText("Turn:" + turnCount);
     }
 
     

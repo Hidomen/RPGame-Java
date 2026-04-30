@@ -1,15 +1,15 @@
 package rpgame;
 
+import java.awt.Point;
 
 public interface GUICallback {
     
-    public void setGUIState(GUIState state);
+    public void setGUIState(GUIState state, Point location);
     
     //MAIN SCREEN GUI
     public void setPlayerCount(int playerCount);
     
     //COMBAT GUI
-    public void gameOver();
     public void combatWin();
     
     //PLAYER SELECT GUI

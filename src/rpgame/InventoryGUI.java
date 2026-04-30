@@ -27,16 +27,6 @@ public class InventoryGUI extends javax.swing.JFrame {
         setupItems();
     }
     
-    @Override
-    public void setVisible(boolean visible)
-    {
-        super.setVisible(visible);
-        if (visible) {
-            setupItems();
-            refreshAttributes();
-        }
-    }
-    
     private void setupItems() {
         
         itemsPanel = new JPanel();
@@ -47,7 +37,7 @@ public class InventoryGUI extends javax.swing.JFrame {
         for (Item item : invItems) {
             JPanel itemRow = new JPanel();
             
-            itemRow.setBackground(Config.colors[Config.COLOR_BLACK]);
+            itemRow.setBackground(Config.COLOR_BLACK);
             
             itemRow.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
             itemRow.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
@@ -55,7 +45,7 @@ public class InventoryGUI extends javax.swing.JFrame {
 
             JLabel itemLabel = new JLabel(item.getName());
             
-            itemLabel.setForeground(Config.colors[Config.COLOR_YELLOW]);
+            itemLabel.setForeground(Config.COLOR_YELLOW);
             
             itemLabel.setFont(new java.awt.Font("Segoe UI", Font.BOLD, 14)); //magic
 
@@ -87,63 +77,30 @@ public class InventoryGUI extends javax.swing.JFrame {
         jScrollPane1.getViewport().setBackground(new java.awt.Color(51, 51, 51));
     }
     
-    public int getTotalHealth()
-    {
-        if (invItems == null) {
-            return 0;
-        }
-        int totalHealth = 0;
-        for (Item i : invItems) {
-            totalHealth += i.getHealthModifier();
-        }
-        return totalHealth;
-    }
     
-    public int getTotalAttack()
-    {
-        if (invItems == null) {
-            return 0;
-        }
-        int totalAttack = 0;
-        for (Item i : invItems) {
-            totalAttack += i.getAttackModifier();
-        }
-        return totalAttack;
-    }
-    
-    public int getTotalAbility()
-    {
-        if (invItems == null) {
-            return 0;
-        }
-        int totalAbility = 0;
-        for (Item i : invItems) {
-            totalAbility += i.getAbilityModifier();
-        }
-        return totalAbility;
-    }
-    
-    public int getTotalMana()
-    {
-        if (invItems == null) {
-            return 0;
-        }
-        int totalMana = 0;
-        for (Item i : invItems) {
-            totalMana += i.getMaxManaModifier();
-        }
-        return totalMana;
-    }
 
-    public void refreshAttributes() //Everytime we buy it needs to be refreshed in order to work. DO NOT İNTERVENE!
+    public void refreshAttributes()
     {
-        healthLabel.setText("Health: " + getTotalHealth());
+        
+        int attributeHealth     = 0;
+        int attributeAttack     = 0;
+        int attributeAbility    = 0;
+        int attributeMana       = 0;
+        
+        for(Item i : invItems){
+            attributeHealth     += i.getHealthModifier();
+            attributeAttack     += i.getAttackModifier();
+            attributeAbility    += i.getAbilityModifier();
+            attributeMana       += i.getMaxManaModifier();
+        }
+        
+        healthLabel.setText("Health: " + attributeHealth);
 
-        attackLabel.setText("Attack: " + getTotalAttack());
+        attackLabel.setText("Attack: " + attributeAttack);
 
-        abilityLabel.setText("Ability: " + getTotalAbility());
+        abilityLabel.setText("Ability: " + attributeAbility);
 
-        manaLabel.setText("Mana: " + getTotalMana());
+        manaLabel.setText("Mana: " + attributeMana);
     }
 
     @SuppressWarnings("unchecked")
@@ -163,9 +120,7 @@ public class InventoryGUI extends javax.swing.JFrame {
         continueButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1015, 700));
-        setMinimumSize(new java.awt.Dimension(1015, 700));
-        setPreferredSize(new java.awt.Dimension(1015, 700));
+        setPreferredSize(Config.WINDOW_DIMENSION);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -181,19 +136,19 @@ public class InventoryGUI extends javax.swing.JFrame {
 
         healthLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         healthLabel.setForeground(new java.awt.Color(255, 255, 0));
-        healthLabel.setText("Health: " + getTotalHealth());
+        healthLabel.setText("Health:");
 
         attackLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         attackLabel.setForeground(new java.awt.Color(255, 255, 0));
-        attackLabel.setText("Attack: " + getTotalAttack());
+        attackLabel.setText("Attack:");
 
         abilityLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         abilityLabel.setForeground(new java.awt.Color(255, 255, 0));
-        abilityLabel.setText("Ability: " + getTotalAbility());
+        abilityLabel.setText("Ability:");
 
         manaLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         manaLabel.setForeground(new java.awt.Color(255, 255, 0));
-        manaLabel.setText("Mana: " + getTotalMana());
+        manaLabel.setText("Max Mana:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -272,7 +227,7 @@ public class InventoryGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void continueButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButton1ActionPerformed
-        callback.setGUIState(GUIState.LOBBY);
+        callback.setGUIState(GUIState.LOBBY, this.getLocation());
     }//GEN-LAST:event_continueButton1ActionPerformed
 
 

@@ -28,15 +28,22 @@ public class Group {
     }
     
     private void levelUp(){
+        
+        System.out.println("LEVEL");
+
+        System.out.println(players.get(0).maxHP + " PRE");
+
         level++;
         
         for(PlayerClass p : players){
             
-            p.HP            *= Config.LEVEL_UP_HP_MULTIPLIER;
-            p.abilityPower  *= Config.LEVEL_UP_ABILITY_MULTIPLIER;
-            p.attackPower   *= Config.LEVEL_UP_ATTACK_MULTIPLIER;
+            p.setMaxHP          (p.maxHP        + (int)(p.maxHP          * Config.LEVEL_UP_MAXHP_MULTIPLIER  ));
+            p.setAbilityPower   (p.abilityPower + (int)(p.abilityPower   * Config.LEVEL_UP_ABILITY_MULTIPLIER));
+            p.setAttackPower    (p.attackPower  + (int)(p.attackPower    * Config.LEVEL_UP_ATTACK_MULTIPLIER ));
             
         }
+        
+        System.out.println(players.get(0).maxHP + " POST");
     }
 
     
@@ -56,7 +63,6 @@ public class Group {
     }
     
     public int getMoney(){
-        System.out.println(money + "MONEY");
         return money;
     }
     

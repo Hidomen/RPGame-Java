@@ -1,5 +1,7 @@
 package rpgame;
 
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 
 public class main implements GUICallback{
@@ -16,13 +18,15 @@ public class main implements GUICallback{
     //==========================================================================
     // GUIs
     //==========================================================================
+    private static javax.swing.JFrame currentWindow;
+    
     private static MainScreenGUI    mainScreenGUI;
-    private static GameOverGUI      gameOverGUI;
     private static PlayerSelectGUI  playerSelectGUI;
+    private static LobbyGUI         lobbyGUI;
     private static CombatGUI        combatGUI;
     private static ShopGUI          shopGUI;
-    private static LobbyGUI         lobbyGUI;
     private static InventoryGUI     invGUI;
+    private static GameOverGUI      gameOverGUI;
 
     private static GUIState state;
     //==========================================================================
@@ -33,66 +37,58 @@ public class main implements GUICallback{
         
         main m = new main();
         
+        
+        
         mainScreenGUI = new MainScreenGUI(m);
+        
+        java.awt.Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        mainScreenGUI.setLocation(  (int)(screenSize.width/2 -  Config.WINDOW_DIMENSION.width/2),
+                                    (int)(screenSize.height/2 - Config.WINDOW_DIMENSION.height/2));
+        
+        currentWindow = mainScreenGUI;
         mainScreenGUI.setVisible(true);
     }
     //==========================================================================
     //  GUI Callbacks
     //==========================================================================
-    public void setVisibility(){
-        if(mainScreenGUI != null){
-            mainScreenGUI.setVisible(false);
-        }
-        if(lobbyGUI != null){
-            lobbyGUI.setVisible(false);
-        }
-        if(shopGUI != null){
-            shopGUI.setVisible(false);
-        }
-        if(combatGUI != null){
-            combatGUI.setVisible(false);
-        }
-        if(playerSelectGUI != null){
-            playerSelectGUI.setVisible(false);
-        }
-        if (invGUI != null) {
-            invGUI.setVisible(false);
-        }
-    }
-    
-    public void setGUIState(GUIState state){
+    public void setGUIState(GUIState state, Point location){
         this.state = state;
         
-        setVisibility();
-        
+        currentWindow.setVisible(false);
         
         switch(state){
             case GUIState.MAIN_SCREEN -> {
                 
                 mainScreenGUI = new MainScreenGUI(this);
-                mainScreenGUI.setVisible(true);
+                
+                currentWindow = mainScreenGUI;
             }
+            
             case GUIState.PLAYER_SELECTION -> {
                 
                 playerSelectGUI = new PlayerSelectGUI(this, playerCount);
-                playerSelectGUI.setVisible(true);
+                
+                currentWindow = playerSelectGUI;
             }
+            
             case GUIState.START_GAME -> {
                 
                 difficulty = 0;
                 
                 group = new Group(players);
                 
-                setGUIState(GUIState.LOBBY);
+                setGUIState(GUIState.LOBBY, location);
             }
+            
             case GUIState.LOBBY -> {
                 
                 if(null == lobbyGUI){
                     lobbyGUI = new LobbyGUI(this , players);
                 }
                 
-                lobbyGUI.setVisible(true);
+                currentWindow = lobbyGUI;
             }
+            
             case GUIState.COMBAT -> {
                 
                 difficulty++;
@@ -101,36 +97,44 @@ public class main implements GUICallback{
                 refreshPlayers();
                 
                 combatGUI = new CombatGUI(this, players, enemy);
-                combatGUI.setVisible(true);
+                
+                currentWindow = combatGUI;
             }
+            
             case GUIState.SHOP -> {
                 
-                if(null == shopGUI){
-                    shopGUI = new ShopGUI(this, group);
-                }
+                //if(null == shopGUI){
+                shopGUI = new ShopGUI(this, group);
+                //}
                 
-                shopGUI.setVisible(true);
+                currentWindow = shopGUI;
             }
+            
             case GUIState.INVENTORY -> {
                 
                 if(null == invGUI) {
                     invGUI = new InventoryGUI(this, group);
                 }
                 
-                invGUI.setVisible(true);
+                currentWindow = invGUI;
             }
+            
             case GUIState.GAME_OVER -> {
                 
                 if(null == gameOverGUI){
                     gameOverGUI = new GameOverGUI(this, difficulty);
                 }
                 
-                gameOverGUI.setVisible(true);
+                currentWindow = gameOverGUI;
             }
+            
             case GUIState.EXIT -> {
                 System.exit(0);
             }
         }
+        
+        currentWindow.setVisible(true);
+        currentWindow.setLocation(location);
     }
     
     
@@ -145,11 +149,6 @@ public class main implements GUICallback{
         players.add(player);
         
         System.out.println(players.getLast().getEntityName());
-    }
-    
-    @Override
-    public void gameOver(){
-        System.out.println("game over :(. Lasted 'till " + difficulty + ". Difficulty");
     }
     
     @Override
