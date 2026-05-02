@@ -7,7 +7,7 @@ public class Warrior extends PlayerClass {
             
             new Ability(0,"Rage","Empower your attack power by 0.25",3),
             new Ability(1,"Bleeding Cut","Apply 6 bleed", 4), //Working
-            new Ability(2,"Stand Proud","Gain 4 * ability power temporary health",2) 
+            new Ability(2,"Stand Proud","Gain 3 * ability power temporary health",2) 
     };
     
     Warrior()
@@ -35,7 +35,7 @@ public class Warrior extends PlayerClass {
     
     @Override
     public void ability2(Entity target){
-        addStatus(TemporaryHealth , (int)(4*abilityPower) , target);
+        addStatus(TemporaryHealth , (int)(3*abilityPower) , this);
     }
     
     @Override

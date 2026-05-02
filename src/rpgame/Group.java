@@ -37,9 +37,9 @@ public class Group {
         
         for(PlayerClass p : players){
             
-            p.setMaxHP          (p.maxHP        + (int)(p.maxHP          * Config.LEVEL_UP_MAXHP_MULTIPLIER  ));
-            p.setAbilityPower   (p.abilityPower + (int)(p.abilityPower   * Config.LEVEL_UP_ABILITY_MULTIPLIER));
-            p.setAttackPower    (p.attackPower  + (int)(p.attackPower    * Config.LEVEL_UP_ATTACK_MULTIPLIER ));
+            p.setMaxHP          ((int)(p.maxHP          + Config.LEVEL_UP_MAXHP_MULTIPLIER  ));
+            p.setAbilityPower   ((int)(p.abilityPower   + Config.LEVEL_UP_ABILITY_MULTIPLIER));
+            p.setAttackPower    ((int)(p.attackPower    + Config.LEVEL_UP_ATTACK_MULTIPLIER ));
             
         }
         

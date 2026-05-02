@@ -74,9 +74,9 @@ public class main implements GUICallback{
             case GUIState.START_GAME -> {
                 
                 difficulty = 0;
-                
+
                 group = new Group(players);
-                
+
                 setGUIState(GUIState.LOBBY, location);
             }
             
@@ -95,7 +95,7 @@ public class main implements GUICallback{
                 initEnemy();
                 
                 refreshPlayers();
-                
+
                 combatGUI = new CombatGUI(this, players, enemy);
                 
                 currentWindow = combatGUI;
@@ -103,9 +103,9 @@ public class main implements GUICallback{
             
             case GUIState.SHOP -> {
                 
-                //if(null == shopGUI){
+                if(null == shopGUI){ //WHY WAS İT COMMENTED PREVİOUSLY ? IF İT İS NOT HERE THEN EVERYTİME SHOP RENEW ITSELF WE DONT WANT THAT. 
                 shopGUI = new ShopGUI(this, group);
-                //}
+                }
                 
                 currentWindow = shopGUI;
             }
@@ -158,8 +158,8 @@ public class main implements GUICallback{
     
     @Override
     public void combatWin(){
-        group.setMoney(group.getMoney() + 100);
-        group.gainXP(difficulty * 75);
+        group.setMoney(group.getMoney() + 50);
+        group.gainXP(difficulty * 10);
     }
     //==========================================================================
     //  Combat Functions
@@ -168,6 +168,7 @@ public class main implements GUICallback{
         
         enemy = new Enemy(difficulty, players.size());        
     }
+
     
     public void refreshPlayers(){
         

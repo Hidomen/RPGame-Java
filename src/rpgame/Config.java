@@ -12,9 +12,9 @@ public class Config {
     
     public static final java.awt.Dimension WINDOW_DIMENSION = new java.awt.Dimension(800,600);
     
-    public static final double LEVEL_UP_MAXHP_MULTIPLIER    = 0.1;
-    public static final double LEVEL_UP_ATTACK_MULTIPLIER   = 0.1;
-    public static final double LEVEL_UP_ABILITY_MULTIPLIER  = 0.1;
+    public static final double LEVEL_UP_MAXHP_MULTIPLIER    = 2;
+    public static final double LEVEL_UP_ATTACK_MULTIPLIER   = 1;
+    public static final double LEVEL_UP_ABILITY_MULTIPLIER  = 1;
     
     public static final int[] MaxHPLimits           = {10,100};
     public static final int[] AttackPowerLimits     = {1 ,50 };
