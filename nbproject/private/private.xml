@@ -12,14 +12,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/InventoryGUI.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Config.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/CombatGUI.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/ShopGUI.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/main.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Entity.java</file>
-            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/PlayerSelectGUI.java</file>
             <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/PlayerClass.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/PlayerSelectGUI.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/ShopGUI.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Config.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Item.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/Group.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/GameOverGUI.java</file>
+            <file>file:/C:/Users/HP/Desktop/PROJECTS/CODE/Java/RPGame-Java/src/rpgame/MainScreenGUI.java</file>
         </group>
     </open-files>
 </project-private>

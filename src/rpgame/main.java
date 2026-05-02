@@ -77,6 +77,12 @@ public class main implements GUICallback{
                 
                 group = new Group(players);
                 
+                
+                if(shopGUI != null){
+                    System.out.println("RESET SHOP");
+                    shopGUI.resetShop();
+                }
+                
                 setGUIState(GUIState.LOBBY, location);
             }
             
@@ -121,9 +127,8 @@ public class main implements GUICallback{
             
             case GUIState.GAME_OVER -> {
                 
-                if(null == gameOverGUI){
-                    gameOverGUI = new GameOverGUI(this, difficulty);
-                }
+                gameOverGUI = new GameOverGUI(this, difficulty);
+                
                 
                 currentWindow = gameOverGUI;
             }

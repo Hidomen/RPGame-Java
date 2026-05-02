@@ -107,4 +107,15 @@ public abstract class PlayerClass extends Entity implements AbilityInterface {
         if(abilityPower < abilityPowerLimitMIN) abilityPower = abilityPowerLimitMIN;
         if(abilityPower > abilityPowerLimitMAX) abilityPower = abilityPowerLimitMAX;
     }
+    
+    public void setMaxMana(int amount){
+        
+        int maxManaLimitMIN = Config.MaxManaLimits[0];
+        int maxManaLimitMAX = Config.MaxManaLimits[1];
+        
+        maxMana = amount;
+        
+        if(maxMana < maxManaLimitMIN) maxMana = maxManaLimitMIN;
+        if(maxMana > maxManaLimitMAX) maxMana = maxManaLimitMAX;
+    }
 }

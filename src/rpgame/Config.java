@@ -16,9 +16,10 @@ public class Config {
     public static final double LEVEL_UP_ATTACK_MULTIPLIER   = 0.1;
     public static final double LEVEL_UP_ABILITY_MULTIPLIER  = 0.1;
     
-    public static final int[] MaxHPLimits           = {10,100};
-    public static final int[] AttackPowerLimits     = {1 ,50 };
-    public static final int[] AbilityPowerLimits    = {1 ,20 };
+    public static final int[] MaxHPLimits           = {10, 100};
+    public static final int[] AttackPowerLimits     = {1 , 50 };
+    public static final int[] AbilityPowerLimits    = {1 , 20 };
+    public static final int[] MaxManaLimits         = {0 , 30 };
 
     public static final int HEALTH_MULTIPLIER   = 3;
     public static final int MANA_MULTIPLIER     = 2;

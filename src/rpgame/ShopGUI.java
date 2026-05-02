@@ -2,6 +2,7 @@ package rpgame;
 import javax.swing.*;
 import java.awt.*;
 import static rpgame.Classes.*;
+import java.util.ArrayList;
 
 public class ShopGUI extends javax.swing.JFrame { 
     
@@ -13,92 +14,81 @@ public class ShopGUI extends javax.swing.JFrame {
     private static Group group;
     
     
-    private static final Item[] goodies = {
-
-        //WEAPONS                                                                        	   HEALTH, ATTACK, ABILITY, MANA
-        new Item("Dual Daggers" 	, 80 , new Classes[] {Archer},             		new int[] { 0 , 9 , 7 , 0 }),
-        new Item("Crossbow" 		, 85 , new Classes[] {Archer},                 		new int[] { 0 , 14, 8 , 0 }),
-        new Item("Long Sword" 		, 90 , new Classes[] {Warrior},              		new int[] { 0 , 8 , 0 , 0 }),
-        new Item("Blessed Mace" 	, 95 , new Classes[] {Healer},             		new int[] { 0 , 2 , 7 , 0 }),
-        new Item("Hunter Bow" 		, 95 , new Classes[] {Archer},               		new int[] { 0 , 12, 0 , 0 }),
-        new Item("Arcane Wand" 		, 100, new Classes[] {Mage},               		new int[] { 0 , -5, 10, 1 }),
-        new Item("Divine Staff" 	, 105, new Classes[] {Healer, Mage},     		new int[] { 0 , 0 , 10, 2 }),
-        new Item("Battle Axe" 		, 110, new Classes[] {Warrior},             		new int[] { 0 , 12, 3 , 0 }),
-        new Item("War Hammer" 		, 115, new Classes[] {Warrior, Healer},    		new int[] { 8 , 10, 8 , 0 }),
-        new Item("Crystal Orb" 		, 120, new Classes[] {Mage},               		new int[] { 0 , 8 , 7 , 1 }),
+    private static final ArrayList<Item> itemList = new ArrayList<>(){{
+    
+        //WEAPONS                                                                               HEALTH, ATTACK, ABILITY, MANA
+        add(new Item("Dual Daggers",80 , new Classes[] {Archer},                                new int[] { 0 , 9 , 7 , 0 }));
+        add(new Item("Crossbow",    85 , new Classes[] {Archer},                                new int[] { 0 , 14, 8 , 0 }));
+        add(new Item("Long Sword",  90 , new Classes[] {Warrior},                               new int[] { 0 , 8 , 0 , 0 }));
+        add(new Item("Blessed Mace",95 , new Classes[] {Healer},                                new int[] { 0 , 2 , 7 , 0 }));
+        add(new Item("Hunter Bow",  95 , new Classes[] {Archer},                                new int[] { 0 , 12, 0 , 0 }));
+        add(new Item("Arcane Wand", 100, new Classes[] {Mage},                                  new int[] { 0 , -5, 10, 1 }));
+        add(new Item("Divine Staff",105, new Classes[] {Healer, Mage},                          new int[] { 0 , 0 , 10, 2 }));
+        add(new Item("Battle Axe",  110, new Classes[] {Warrior},                               new int[] { 0 , 12, 3 , 0 }));
+        add(new Item("War Hammer",  115, new Classes[] {Warrior, Healer},                       new int[] { 8 , 10, 8 , 0 }));
+        add(new Item("Crystal Orb", 120, new Classes[] {Mage},                                  new int[] { 0 , 8 , 7 , 1 }));
         
-
         // ARMORS
-        new Item("Cloth Robe"		, 60 , new Classes[] {Mage},				new int[] { 5 , 0 , 0 , 3 }),
-        new Item("Leather Armor"	, 70 , new Classes[] {Archer},				new int[] { 6 , 0 , 0 , 0 }),
-        new Item("Holy Vestments"	, 75 , new Classes[] {Healer},				new int[] { 8 , 0 , 0 , 3 }),
-        new Item("Ranger Vest"		, 85 , new Classes[] {Archer},				new int[] { 9 , 0 , 0 , 0 }),
-        new Item("Shadow Cloak"		, 95 , new Classes[] {Archer, Mage},			new int[] { 9 , 0 , 0 , 1 }),
-        new Item("Iron Armor"		, 100, new Classes[] {Warrior},				new int[] { 10, 0 , 0 , 0 }),
-        new Item("Mystic Robe"		, 110, new Classes[] {Mage, Healer},			new int[] { 12, 0 , 0 , 4 }),
-        new Item("Knight Plate"		, 130, new Classes[] {Warrior, Healer},			new int[] { 13, 0 , 0 , 0 }),
-        new Item("Enchanted Armor"	, 140, new Classes[] {Warrior, Mage, Healer, Archer},	new int[] { 15, 0 , 0 , 2 }),
-        new Item("Dragon Scale Armor"	, 150, new Classes[] {Warrior},				new int[] { 20, 0 , 0 , 0 })
-    };
+        add(new Item("Cloth Robe",          60 , new Classes[] {Mage},                          new int[] { 5 , 0 , 0 , 3 }));
+        add(new Item("Leather Armor",       70 , new Classes[] {Archer},                        new int[] { 6 , 0 , 0 , 0 }));
+        add(new Item("Holy Vestments",      75 , new Classes[] {Healer},                        new int[] { 8 , 0 , 0 , 3 }));
+        add(new Item("Ranger Vest",         85 , new Classes[] {Archer},                        new int[] { 9 , 0 , 0 , 0 }));
+        add(new Item("Shadow Cloak",        95 , new Classes[] {Archer, Mage},                  new int[] { 9 , 0 , 0 , 1 }));
+        add(new Item("Iron Armor",          100, new Classes[] {Warrior},                       new int[] { 10, 0 , 0 , 0 }));
+        add(new Item("Mystic Robe",         110, new Classes[] {Mage, Healer},                  new int[] { 12, 0 , 0 , 4 }));
+        add(new Item("Knight Plate",        130, new Classes[] {Warrior, Healer},               new int[] { 13, 0 , 0 , 0 }));
+        add(new Item("Enchanted Armor",     140, new Classes[] {Warrior, Mage, Healer, Archer}, new int[] { 15, 0 , 0 , 2 }));
+        add(new Item("Dragon Scale Armor",  150, new Classes[] {Warrior},                       new int[] { 20, 0 , 0 , 0 }));
+
+    }};
+            
+    private static ArrayList<Item> goodies;
     
     public ShopGUI(GUICallback callback, Group group) {
         
         this.callback = callback;
         this.group = group;
         
+        resetShop();
+        
         initComponents();
         
         moneyLabel.setText(group.getMoney() + "$");
         setupItems();
         continueButton.setFocusPainted(false);
+        
+        
     }
     
+    public void resetShop(){
+        goodies = itemList;
+    }
 
-    private boolean itemControl(Item item){
-        
-        //if (check == false) {
-          //  JOptionPane.showMessageDialog(this, "Your group does not have any member compatible with this item." , "Non-Compatible Item" , JOptionPane.WARNING_MESSAGE);
-            //return false;
-        //}
-        
-        
-        for (Classes c : item.getCompabilities()){
-                if (group.isInGroup(c)) {
-                    //compability = true;
-                }
-            }
-        
-        
-        if (group.getMoney() < item.getPrice())
-        {
-            JOptionPane.showMessageDialog(this, "Insufficient balance to buy this item. Your gold: " + group.getMoney() , "Insufficient Balance" , JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-        
-        return true;
-    }
     
-    private void buyActionListener(Item item , JPanel cWrapper){
+    private void buyActionListener(Item item , JPanel wrapper){
  
         buyButton.addActionListener(e -> 
             {
-                if(!itemControl(item)) return;
+                 if (group.getMoney() < item.getPrice()) {
+                     JOptionPane.showMessageDialog(this, "Insufficient balance to buy this item. Your gold: "
+                                                + group.getMoney() , "Insufficient Balance" , JOptionPane.WARNING_MESSAGE);
+                     return;
+                 }
                 
+                //purchased
                 group.addToInventory(item);
-                System.out.println("purchased");
                 group.setMoney(group.getMoney() - item.getPrice());
-
+                goodies.remove(item);
                 moneyLabel.setText(group.getMoney() + "$");
 
-                JOptionPane.showMessageDialog(this, "Item: " + item.getName() + " is bought successfully. Remaining gold: " + group.getMoney() , "Success!" , JOptionPane.WARNING_MESSAGE);
-                cWrapper.setVisible(false);
+                wrapper.setVisible(false);
 
                 itemsPanel.revalidate();
                 itemsPanel.repaint();
             });
     }
     
-    private boolean checkCompability(Item item){
+    private boolean isCompatible(Item item){
         
         for(Classes c : item.getCompabilities()){
             if(group.isInGroup(c)) return true;
@@ -118,8 +108,7 @@ public class ShopGUI extends javax.swing.JFrame {
         
         for (Item item : goodies) {
             
-            //if not compatible break
-            if(!checkCompability(item)) continue;
+            if(!isCompatible(item)) continue;
             
             JPanel wrapper     = new JPanel(new BorderLayout());
             card        = new JPanel(new BorderLayout());
