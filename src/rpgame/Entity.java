@@ -52,6 +52,7 @@ public abstract class Entity {
         double targetTempHealth = target.statusList[Config.TEMP_H_INDEX];
         if(targetTempHealth > 0){
             damage -= targetTempHealth;
+            target.statusList[Config.TEMP_H_INDEX] = 0;
         }
         
         if (target.statusList[Config.DODGE_INDEX] > 0) { //needs to be changed
@@ -96,10 +97,16 @@ public abstract class Entity {
     public void heal(int amount){
         
         if(amount <= 0) return;
-
+        
+        if (HP + amount >= maxHP) {
+            HP = maxHP;
+            return;
+        }
         HP += amount;
+        
+        //HP += amount;
 
-        if(HP > maxHP) {HP = maxHP;}
+        //if(HP > maxHP) {HP = maxHP;}
     }
 
     

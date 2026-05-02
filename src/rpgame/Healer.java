@@ -27,7 +27,7 @@ public class Healer extends PlayerClass{
     
     @Override
     public void ability0(Entity target){
-        target.heal((int)(abilityPower * 1.5));
+        this.heal((int)(abilityPower * 1.5));
     }
     
     @Override
@@ -37,7 +37,7 @@ public class Healer extends PlayerClass{
     
     @Override
     public void ability2(Entity target){
-        target.heal((int)(abilityPower * 0.5));
+        this.heal((int)(abilityPower * 0.5));
     }
     
     @Override

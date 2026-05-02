@@ -23,9 +23,19 @@ public class InventoryGUI extends javax.swing.JFrame {
         
         initComponents();
         continueButton1.setFocusPainted(false);
-        
         setupItems();
+        refreshAttributes();
     }
+    
+    @Override
+    public void setVisible(boolean visible) {
+        super.setVisible(visible);
+        if(visible) {
+            setupItems();
+            refreshAttributes();
+        }
+    }
+    
     
     private void setupItems() {
         

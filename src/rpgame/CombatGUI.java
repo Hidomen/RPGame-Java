@@ -2,6 +2,7 @@ package rpgame;
 
 import java.awt.event.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class CombatGUI extends javax.swing.JFrame{
     
@@ -76,7 +77,6 @@ public class CombatGUI extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
-        setPreferredSize(Config.WINDOW_DIMENSION);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -198,6 +198,7 @@ public class CombatGUI extends javax.swing.JFrame{
         defenceButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         defenceButton.setForeground(new java.awt.Color(51, 51, 51));
         defenceButton.setText("Defence");
+        defenceButton.addActionListener(this::defenceButtonActionPerformed);
 
         abilitySelectionPanel.setBackground(new java.awt.Color(51, 51, 51));
         abilitySelectionPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
@@ -225,6 +226,7 @@ public class CombatGUI extends javax.swing.JFrame{
         useAbility3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility3.setForeground(new java.awt.Color(51, 51, 51));
         useAbility3.setText("Ability3");
+        useAbility3.addActionListener(this::useAbility3ActionPerformed);
 
         useAbility4.setBackground(new java.awt.Color(255, 255, 0));
         useAbility4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -386,6 +388,14 @@ public class CombatGUI extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void defenceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defenceButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_defenceButtonActionPerformed
+
+    private void useAbility3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useAbility3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_useAbility3ActionPerformed
+
     
     private void nextPlayer(){
         if(players.size() <= 0) return;
@@ -476,7 +486,7 @@ public class CombatGUI extends javax.swing.JFrame{
         
         
         if(!currentPlayer.isManaEnough(usedAbility)){
-            System.err.println("Player's mana is not enough to perform ability"); //popup
+            JOptionPane.showMessageDialog(this, "Player's mana is not enough to perform ability", "Unsufficent Mana!" , JOptionPane.WARNING_MESSAGE);
             return;
         }
         

@@ -60,10 +60,18 @@ public class ShopGUI extends javax.swing.JFrame {
         
     }
     
+
     public void resetShop(){
         goodies = itemList;
     }
 
+    @Override
+    public void setVisible(boolean visible) { // PLS DONT REMOVE IF IT IS NOT HERE THEN MONEY IS NOT REFRESHED UPON EXITING, WINNING A COMBAT THEN COMİNG AGAİN.
+        super.setVisible(visible);
+        if(visible) {
+            moneyLabel.setText(group.getMoney() + "$");
+        }
+    }    
     
     private void buyActionListener(Item item , JPanel wrapper){
  

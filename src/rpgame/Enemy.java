@@ -3,7 +3,7 @@ package rpgame;
 
 public class Enemy extends Entity {
     
-    private static final int CONST = 2;
+    private static final int CONST = 3;
         
     Enemy(int powerLevel, int playerCount){
         
