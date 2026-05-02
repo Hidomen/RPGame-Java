@@ -125,10 +125,12 @@ public class main implements GUICallback{
             }
             
             case GUIState.GAME_OVER -> {
-                
+                rebirthPlayers();
                 gameOverGUI = new GameOverGUI(this, difficulty);
-                
-                
+                group = new Group(players);
+                invGUI = null;
+                shopGUI = null;
+                lobbyGUI = null;
                 currentWindow = gameOverGUI;
             }
             
@@ -164,6 +166,50 @@ public class main implements GUICallback{
     public void combatWin(){
         group.setMoney(group.getMoney() + 50);
         group.gainXP(difficulty * 10);
+    }
+    
+    public void rebirthPlayers()
+    {
+        String name;
+        PlayerClass freshPlayer;
+        for (int i = 0; i < players.size(); i++) {
+            name = players.get(i).getEntityName();
+            switch(players.get(i).className)
+            {
+                case Archer -> 
+                {
+                    freshPlayer = new Archer();
+                    freshPlayer.setEntityName(name);
+                    players.remove(i);
+                    players.add(i, freshPlayer);
+                    break;
+                }
+                case Warrior ->
+                {
+                    freshPlayer = new Warrior();
+                    freshPlayer.setEntityName(name);
+                    players.remove(i);
+                    players.add(i, freshPlayer);            
+                    break;
+                }
+                case Mage ->
+                {
+                    freshPlayer = new Mage();
+                    freshPlayer.setEntityName(name);
+                    players.remove(i);
+                    players.add(i, freshPlayer);             
+                    break;
+                }
+                case Healer ->
+                {
+                    freshPlayer = new Healer();
+                    freshPlayer.setEntityName(name);
+                    players.remove(i);
+                    players.add(i, freshPlayer);        
+                    break;
+                }
+            }
+        }
     }
     //==========================================================================
     //  Combat Functions

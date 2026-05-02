@@ -340,8 +340,11 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         continueButton.setToolTipText("");
         continueButton.addActionListener(this::continueButtonActionPerformed);
 
+        playerNameField.setBackground(new java.awt.Color(0, 0, 0));
         playerNameField.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
+        playerNameField.setForeground(new java.awt.Color(255, 255, 0));
         playerNameField.setText("name");
+        playerNameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

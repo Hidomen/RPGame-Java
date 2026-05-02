@@ -62,7 +62,7 @@ public class ShopGUI extends javax.swing.JFrame {
     
 
     public void resetShop(){
-        goodies = itemList;
+        goodies = new ArrayList <> (itemList);
     }
 
     @Override
@@ -186,7 +186,10 @@ public class ShopGUI extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 0));
         jLabel2.setText("Welcome to the shop traveler");
 
+        continueButton.setBackground(new java.awt.Color(0, 0, 0));
+        continueButton.setForeground(new java.awt.Color(255, 255, 0));
         continueButton.setText("Continue");
+        continueButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
         continueButton.addActionListener(this::continueButtonActionPerformed);
 
         moneyLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -199,12 +202,12 @@ public class ShopGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                 .addGap(120, 120, 120)
                 .addComponent(moneyLabel)
                 .addGap(18, 18, 18)
-                .addComponent(continueButton)
-                .addGap(40, 40, 40))
+                .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

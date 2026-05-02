@@ -1,6 +1,7 @@
 package rpgame;
 
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 public class MainScreenGUI extends javax.swing.JFrame {
     
@@ -18,7 +19,6 @@ public class MainScreenGUI extends javax.swing.JFrame {
         playerCount = 1;
         
         playButton.setFocusPainted(false);
-        playerCountField.setVisible(false);
     }
 
     
@@ -50,59 +50,60 @@ public class MainScreenGUI extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 0));
         jLabel2.setText("We don't care about name");
 
-        playButton.setBackground(new java.awt.Color(51, 51, 51));
+        playButton.setBackground(new java.awt.Color(0, 0, 0));
         playButton.setForeground(new java.awt.Color(255, 255, 0));
         playButton.setText("Play");
         playButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         playButton.addActionListener(this::playButtonActionPerformed);
 
-        exitButton.setBackground(new java.awt.Color(51, 51, 51));
+        exitButton.setBackground(new java.awt.Color(0, 0, 0));
         exitButton.setForeground(new java.awt.Color(255, 255, 0));
         exitButton.setText("Exit");
         exitButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         exitButton.addActionListener(this::exitButtonActionPerformed);
 
+        playerCountField.setBackground(new java.awt.Color(0, 0, 0));
+        playerCountField.setForeground(new java.awt.Color(255, 255, 0));
         playerCountField.setText("1");
+        playerCountField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(365, 365, 365)
+                .addGap(257, 257, 257)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(playerCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(playerCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(218, 218, 218)
+                .addGap(191, 191, 191)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(playerCountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(playerCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 959, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,16 +116,24 @@ public class MainScreenGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-        //if text field is empty return
-        
-        System.out.println("play button");
-        
-        playerCountField.setVisible(true); //doesnt work
-        
-        callback.setPlayerCount(playerCount); //fix
-       
-        callback.setGUIState(GUIState.PLAYER_SELECTION, this.getLocation());
-        playButton.setFocusPainted(false); //not necessary 
+        try
+        {
+            if (playerCountField.getText() == null || Integer.parseInt(playerCountField.getText()) <= 0) {
+                JOptionPane.showMessageDialog(this, "Invalid number of players!", "Invalid Player Count", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            System.out.println("play button");
+
+            playerCount = Integer.parseInt(playerCountField.getText());
+            callback.setPlayerCount(playerCount);
+
+            callback.setGUIState(GUIState.PLAYER_SELECTION, this.getLocation());
+            playButton.setFocusPainted(false); //not necessary 
+        } catch (NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(this, "Bruh you lowkey entered strings for player count.", "String ? Really ?", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed

@@ -17,7 +17,7 @@ public class GameOverGUI extends javax.swing.JFrame {
         
         
         initComponents();
-        
+        playAgainButton.setFocusPainted(false);
         difficultyLabel.setText("Difficulty: " + difficulty);
     }
 
@@ -47,10 +47,16 @@ public class GameOverGUI extends javax.swing.JFrame {
         difficultyLabel.setForeground(new java.awt.Color(255, 255, 0));
         difficultyLabel.setText("Difficulty:");
 
+        playAgainButton.setBackground(new java.awt.Color(0, 0, 0));
+        playAgainButton.setForeground(new java.awt.Color(255, 255, 0));
         playAgainButton.setText("One More");
+        playAgainButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
         playAgainButton.addActionListener(this::playAgainButtonActionPerformed);
 
+        mainScreen.setBackground(new java.awt.Color(0, 0, 0));
+        mainScreen.setForeground(new java.awt.Color(255, 255, 0));
         mainScreen.setText("Main Screen");
+        mainScreen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
         mainScreen.addActionListener(this::mainScreenActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

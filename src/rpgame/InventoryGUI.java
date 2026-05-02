@@ -187,7 +187,7 @@ public class InventoryGUI extends javax.swing.JFrame {
                 .addComponent(abilityLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(manaLabel)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.LINE_END);
@@ -203,7 +203,10 @@ public class InventoryGUI extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setText("Inventory");
 
+        continueButton1.setBackground(new java.awt.Color(0, 0, 0));
+        continueButton1.setForeground(new java.awt.Color(255, 255, 0));
         continueButton1.setText("Continue");
+        continueButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
         continueButton1.addActionListener(this::continueButton1ActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -212,9 +215,9 @@ public class InventoryGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
-                .addGap(27, 27, 27)
-                .addComponent(continueButton1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(continueButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
