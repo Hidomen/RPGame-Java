@@ -66,7 +66,7 @@ public class ShopGUI extends javax.swing.JFrame {
     }
 
     @Override
-    public void setVisible(boolean visible) { // PLS DONT REMOVE IF IT IS NOT HERE THEN MONEY IS NOT REFRESHED UPON EXITING, WINNING A COMBAT THEN COMİNG AGAİN.
+    public void setVisible(boolean visible) {
         super.setVisible(visible);
         if(visible) {
             moneyLabel.setText(group.getMoney() + "$");
@@ -118,9 +118,9 @@ public class ShopGUI extends javax.swing.JFrame {
             
             if(!isCompatible(item)) continue;
             
-            JPanel wrapper     = new JPanel(new BorderLayout());
-            card        = new JPanel(new BorderLayout());
-            buyButton   = new JButton("Buy");
+            JPanel wrapper = new JPanel(new BorderLayout());
+            card = new JPanel(new BorderLayout());
+            buyButton = new JButton("Buy");
             
             card.setBackground(new Color(20, 20, 20)); //magic
             card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 110)); 

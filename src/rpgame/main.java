@@ -9,12 +9,9 @@ public class main implements GUICallback{
     private static ArrayList<PlayerClass> players;
     private Enemy enemy;
     
-    private PlayerClass selectedClass;
-    
     private static int difficulty;
     private static int playerCount;
     private Group group;
-    
     //==========================================================================
     // GUIs
     //==========================================================================
@@ -58,6 +55,7 @@ public class main implements GUICallback{
         
         switch(state){
             case GUIState.MAIN_SCREEN -> {
+                players = new ArrayList<>();
                 
                 mainScreenGUI = new MainScreenGUI(this);
                 

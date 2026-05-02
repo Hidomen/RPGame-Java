@@ -31,19 +31,16 @@ public class Group {
         
         System.out.println("LEVEL");
 
-        System.out.println(players.get(0).maxHP + " PRE");
-
         level++;
         
         for(PlayerClass p : players){
             
-            p.setMaxHP          ((int)(p.maxHP          + Config.LEVEL_UP_MAXHP_MULTIPLIER  ));
-            p.setAbilityPower   ((int)(p.abilityPower   + Config.LEVEL_UP_ABILITY_MULTIPLIER));
-            p.setAttackPower    ((int)(p.attackPower    + Config.LEVEL_UP_ATTACK_MULTIPLIER ));
+            p.setMaxHP          ((int)(p.maxHP          + p.maxHP * Config.LEVEL_UP_MAXHP_MULTIPLIER  ));
+            p.setAbilityPower   ((int)(p.abilityPower   + p.abilityPower * Config.LEVEL_UP_ABILITY_MULTIPLIER));
+            p.setAttackPower    ((int)(p.attackPower    + p.attackPower * Config.LEVEL_UP_ATTACK_MULTIPLIER ));
             
         }
         
-        System.out.println(players.get(0).maxHP + " POST");
     }
 
     

@@ -94,19 +94,13 @@ public abstract class Entity {
     }
     
     
-    public void heal(int amount){
+    public void heal(int amount, Entity target){
         
         if(amount <= 0) return;
         
-        if (HP + amount >= maxHP) {
-            HP = maxHP;
-            return;
-        }
-        HP += amount;
-        
-        //HP += amount;
+        target.HP += amount;
 
-        //if(HP > maxHP) {HP = maxHP;}
+        if(target.HP > target.maxHP) {target.HP = target.maxHP;}
     }
 
     
