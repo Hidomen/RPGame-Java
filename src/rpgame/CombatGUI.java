@@ -3,6 +3,7 @@ package rpgame;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 public class CombatGUI extends javax.swing.JFrame{
     
@@ -12,7 +13,7 @@ public class CombatGUI extends javax.swing.JFrame{
     private static Enemy enemy;
 
     private int turnCount = 1;
-    private EntityType state = EntityType.Player;
+    private EntityType turn = EntityType.Player;
     
     private PlayerClass currentPlayer;  //used for checking things
     private int currentPlayerIndex = 0;     //used if an action affects player
@@ -21,6 +22,7 @@ public class CombatGUI extends javax.swing.JFrame{
     
     private static GUICallback callback;
 
+    private int waitTimeAsMiliSec = 2000;
     
     public CombatGUI(GUICallback callback, ArrayList<PlayerClass> players, Enemy enemy) {
         
@@ -34,8 +36,8 @@ public class CombatGUI extends javax.swing.JFrame{
         
         initComponents();
         
-        abilitySelectionPanel.setBackground(new java.awt.Color(51, 51, 51));
-        getContentPane().setBackground(new java.awt.Color(51, 51, 51));
+        abilitySelectionPanel.setBackground(Config.COLOR_BLACK);
+        getContentPane().setBackground(Config.COLOR_BLACK);
         
         
         actionListener();
@@ -49,7 +51,7 @@ public class CombatGUI extends javax.swing.JFrame{
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        enemyNameLabel = new javax.swing.JLabel();
         enemyHealthLabel = new javax.swing.JLabel();
         enemyAttackPowerLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -73,26 +75,28 @@ public class CombatGUI extends javax.swing.JFrame{
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         logLabel = new javax.swing.JLabel();
+        turnPanel = new javax.swing.JPanel();
         turnLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
+        setPreferredSize(Config.WINDOW_DIMENSION);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(Config.COLOR_BLACK);
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 0));
+        jPanel1.setForeground(Config.COLOR_YELLOW);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel1.setText("Enemy");
+        enemyNameLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        enemyNameLabel.setForeground(Config.COLOR_YELLOW);
+        enemyNameLabel.setText("Enemy Name");
 
         enemyHealthLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        enemyHealthLabel.setForeground(new java.awt.Color(255, 255, 0));
+        enemyHealthLabel.setForeground(Config.COLOR_YELLOW);
         enemyHealthLabel.setText("Health");
 
         enemyAttackPowerLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        enemyAttackPowerLabel.setForeground(new java.awt.Color(255, 255, 0));
+        enemyAttackPowerLabel.setForeground(Config.COLOR_YELLOW);
         enemyAttackPowerLabel.setText("AttackPower");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -103,18 +107,18 @@ public class CombatGUI extends javax.swing.JFrame{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(jLabel1))
+                        .addComponent(enemyNameLabel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(enemyAttackPowerLabel)
                             .addComponent(enemyHealthLabel))))
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(enemyNameLabel)
                 .addGap(18, 18, 18)
                 .addComponent(enemyHealthLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -122,28 +126,28 @@ public class CombatGUI extends javax.swing.JFrame{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(Config.COLOR_BLACK);
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
-        jPanel2.setForeground(new java.awt.Color(255, 255, 0));
+        jPanel2.setForeground(Config.COLOR_YELLOW);
 
         playerNameLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        playerNameLabel.setForeground(new java.awt.Color(255, 255, 0));
+        playerNameLabel.setForeground(Config.COLOR_YELLOW);
         playerNameLabel.setText("Player Name");
 
         playerAttackPowerLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        playerAttackPowerLabel.setForeground(new java.awt.Color(255, 255, 0));
+        playerAttackPowerLabel.setForeground(Config.COLOR_YELLOW);
         playerAttackPowerLabel.setText("AttackPower");
 
         playerHealthLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        playerHealthLabel.setForeground(new java.awt.Color(255, 255, 0));
+        playerHealthLabel.setForeground(Config.COLOR_YELLOW);
         playerHealthLabel.setText("Health");
 
         playerManaLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        playerManaLabel.setForeground(new java.awt.Color(255, 255, 0));
+        playerManaLabel.setForeground(Config.COLOR_YELLOW);
         playerManaLabel.setText("Mana");
 
         playerAbilityPowerLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        playerAbilityPowerLabel.setForeground(new java.awt.Color(255, 255, 0));
+        playerAbilityPowerLabel.setForeground(Config.COLOR_YELLOW);
         playerAbilityPowerLabel.setText("AbilityPower");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -180,61 +184,59 @@ public class CombatGUI extends javax.swing.JFrame{
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setBackground(Config.COLOR_BLACK);
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
-        jPanel3.setForeground(new java.awt.Color(255, 255, 0));
+        jPanel3.setForeground(Config.COLOR_YELLOW);
 
-        attackButton.setBackground(new java.awt.Color(255, 255, 0));
+        attackButton.setBackground(Config.COLOR_YELLOW);
         attackButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         attackButton.setForeground(new java.awt.Color(51, 51, 51));
         attackButton.setText("Attack");
 
-        abilityButton.setBackground(new java.awt.Color(51, 51, 51));
+        abilityButton.setBackground(Config.COLOR_BLACK);
         abilityButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        abilityButton.setForeground(new java.awt.Color(255, 255, 0));
+        abilityButton.setForeground(Config.COLOR_YELLOW);
         abilityButton.setText("Ability");
 
-        defenceButton.setBackground(new java.awt.Color(255, 255, 0));
+        defenceButton.setBackground(Config.COLOR_YELLOW);
         defenceButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         defenceButton.setForeground(new java.awt.Color(51, 51, 51));
         defenceButton.setText("Defence");
-        defenceButton.addActionListener(this::defenceButtonActionPerformed);
 
-        abilitySelectionPanel.setBackground(new java.awt.Color(51, 51, 51));
+        abilitySelectionPanel.setBackground(Config.COLOR_DARK_BLACK);
         abilitySelectionPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel4.setForeground(Config.COLOR_YELLOW);
         jLabel4.setText("Player Abilities");
 
-        useAbility0.setBackground(new java.awt.Color(255, 255, 0));
+        useAbility0.setBackground(Config.COLOR_YELLOW);
         useAbility0.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility0.setForeground(new java.awt.Color(51, 51, 51));
         useAbility0.setText("Ability0");
 
-        useAbility1.setBackground(new java.awt.Color(255, 255, 0));
+        useAbility1.setBackground(Config.COLOR_YELLOW);
         useAbility1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility1.setForeground(new java.awt.Color(51, 51, 51));
         useAbility1.setText("Ability1");
 
-        useAbility2.setBackground(new java.awt.Color(255, 255, 0));
+        useAbility2.setBackground(Config.COLOR_YELLOW);
         useAbility2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility2.setForeground(new java.awt.Color(51, 51, 51));
         useAbility2.setText("Ability2");
 
-        useAbility3.setBackground(new java.awt.Color(255, 255, 0));
+        useAbility3.setBackground(Config.COLOR_YELLOW);
         useAbility3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility3.setForeground(new java.awt.Color(51, 51, 51));
         useAbility3.setText("Ability3");
-        useAbility3.addActionListener(this::useAbility3ActionPerformed);
 
-        useAbility4.setBackground(new java.awt.Color(255, 255, 0));
+        useAbility4.setBackground(Config.COLOR_YELLOW);
         useAbility4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility4.setForeground(new java.awt.Color(51, 51, 51));
         useAbility4.setText("Ability4");
         useAbility4.setToolTipText("");
 
-        useAbility5.setBackground(new java.awt.Color(255, 255, 0));
+        useAbility5.setBackground(Config.COLOR_YELLOW);
         useAbility5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         useAbility5.setForeground(new java.awt.Color(51, 51, 51));
         useAbility5.setText("Ability5");
@@ -313,65 +315,76 @@ public class CombatGUI extends javax.swing.JFrame{
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(abilitySelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel4.setBackground(Config.COLOR_BLACK);
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
-        jPanel4.setForeground(new java.awt.Color(255, 255, 0));
+        jPanel4.setForeground(Config.COLOR_YELLOW);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel5.setText("ICON");
+        jLabel5.setForeground(Config.COLOR_YELLOW);
+        jLabel5.setText("¤");
 
         logLabel.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
-        logLabel.setForeground(new java.awt.Color(255, 255, 0));
-        logLabel.setText("a");
-
-        turnLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
-        turnLabel.setForeground(new java.awt.Color(255, 255, 0));
-        turnLabel.setText("Turn");
+        logLabel.setForeground(Config.COLOR_YELLOW);
+        logLabel.setText("Your Turn");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(logLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(turnLabel)
-                .addGap(133, 133, 133))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(logLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+            .addComponent(logLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        turnPanel.setBackground(Config.COLOR_BLACK);
+        turnPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        turnPanel.setForeground(Config.COLOR_YELLOW);
+
+        turnLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        turnLabel.setForeground(Config.COLOR_YELLOW);
+        turnLabel.setText("Turn");
+
+        javax.swing.GroupLayout turnPanelLayout = new javax.swing.GroupLayout(turnPanel);
+        turnPanel.setLayout(turnPanelLayout);
+        turnPanelLayout.setHorizontalGroup(
+            turnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(turnPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(turnLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(120, 120, 120))
+        );
+        turnPanelLayout.setVerticalGroup(
+            turnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(turnLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(turnPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +393,9 @@ public class CombatGUI extends javax.swing.JFrame{
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(turnPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -388,15 +403,15 @@ public class CombatGUI extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void defenceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defenceButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_defenceButtonActionPerformed
-
-    private void useAbility3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_useAbility3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_useAbility3ActionPerformed
-
     
+    private void updateLog(Entity attacker, Entity attacked, int damage){
+        logLabel.setText(attacker.getEntityName() + " ATTACKED " + attacked.getEntityName() + " dealt " + damage + " damage. REMAINING: " + attacked.HP);
+    }
+    
+    private void updateLog(String s){
+        logLabel.setText(s);
+    }
+       
     private void nextPlayer(){
         if(players.size() <= 0) return;
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
@@ -404,15 +419,14 @@ public class CombatGUI extends javax.swing.JFrame{
     
     private void nextTurn(){
         
-        state = EntityType.values()[(state.ordinal() + 1) % 2];
+        turn = EntityType.values()[(turn.ordinal() + 1) % 2];
         
-        if(state == EntityType.Player){
+        if(turn == EntityType.Player){
             
             nextPlayer();
             currentPlayer = players.get(currentPlayerIndex);
         }
-        
-        stateManager();
+
     }
 
     
@@ -429,16 +443,32 @@ public class CombatGUI extends javax.swing.JFrame{
     private void enemyTurn(){
         if(enemy.checkStatus()){
 
-            logLabel.setText(enemy.getEntityName() + "is stunned");
+            updateLog(enemy.getEntityName() + "is stunned.");
             enemy.endTurnEffects();
             return;
         }
         
         enemy.attack(currentPlayer); 
-        logLabel.setText(enemy.getEntityName() + " attacked " + currentPlayer.getEntityName() + ". Dealt " + enemy.attackPower +  " damage.\n Current health: " + currentPlayer.HP);
+        
+        updateLabels();
+        updateLog(enemy, currentPlayer, enemy.attackPower);
+        
         enemy.endTurnEffects();
+        
+        nextTurn();
+        stateManager();
     }
 
+    private void updateButtons(){
+        boolean isActive = (EntityType.Player == turn);
+        
+        
+        System.out.println("aCTİVE " + turn);
+        
+        attackButton.setEnabled(isActive);
+        abilityButton.setEnabled(isActive);
+        defenceButton.setEnabled(isActive);
+    }
     
     private void stateManager(){
         
@@ -448,8 +478,9 @@ public class CombatGUI extends javax.swing.JFrame{
             return;
         }
         
+        updateButtons();
         
-        switch(state){
+        switch(turn){
             
             case EntityType.Player -> {
                 if(currentPlayer.isDead()){
@@ -470,9 +501,20 @@ public class CombatGUI extends javax.swing.JFrame{
                 
             }
             case EntityType.Enemy -> {
-
-                enemyTurn();
-                nextTurn();
+                //disable buttons
+                
+                Timer timer = new Timer(waitTimeAsMiliSec, e -> {
+                    
+                    enemyTurn();
+                
+                    
+                    ((Timer)e.getSource()).stop();
+                });
+        
+                timer.setRepeats(false);
+                timer.start();
+                
+                
             }
             
         }
@@ -484,7 +526,7 @@ public class CombatGUI extends javax.swing.JFrame{
         
         Ability usedAbility = currentPlayer.getAbility(index);
         
-        
+        //exception
         if(!currentPlayer.isManaEnough(usedAbility)){
             JOptionPane.showMessageDialog(this, "Player's mana is not enough to perform ability", "Unsufficent Mana!" , JOptionPane.WARNING_MESSAGE);
             return;
@@ -493,11 +535,12 @@ public class CombatGUI extends javax.swing.JFrame{
         abilityButton.setFocusPainted(false);
         
 
-        players.get(currentPlayerIndex).useAbility(usedAbility, enemy);
+        currentPlayer.useAbility(usedAbility, enemy);
+        updateLog(currentPlayer.getEntityName() + " used " + usedAbility.getName());
         
         abilitySelectionPanel.setVisible(false);
         
-        abilityButton.setBackground(new java.awt.Color(51, 51, 51));
+        abilityButton.setBackground(Config.COLOR_BLACK);
         abilityButton.setForeground(java.awt.Color.YELLOW); 
         
         playerTurnEnd();
@@ -505,74 +548,78 @@ public class CombatGUI extends javax.swing.JFrame{
     
     
     private void actionListener(){
-        
-        if(EntityType.Player == state){
-            //==================================================================
-            // Button Listeners
-            //==================================================================
-            abilityButton.addActionListener((ActionEvent e) -> {
-                abilityButton.setFocusPainted(false);
-                abilitySelectionPanel.setVisible(true);
-                abilityButton.setBackground(new java.awt.Color(255, 255, 0));
-                abilityButton.setForeground(new java.awt.Color(0, 0, 0));              
-            });
+        //==================================================================
+        // Button Listeners
+        //==================================================================
+        abilityButton.addActionListener((ActionEvent e) -> {
+            abilityButton.setFocusPainted(false);
+            abilitySelectionPanel.setVisible(true);
+            abilityButton.setBackground(Config.COLOR_YELLOW);
+            abilityButton.setForeground(Config.COLOR_BLACK);   
 
-            attackButton.addActionListener((ActionEvent e) -> {
-                attackButton.setFocusPainted(false); 
-                players.get(currentPlayerIndex).attack(enemy);
-                playerTurnEnd();
-            });
+        });
 
-            defenceButton.addActionListener((ActionEvent e) -> {
-                defenceButton.setFocusPainted(false); 
-                
-                System.out.println("DEFEND");
-                
-                currentPlayer.addStatus(Status.TemporaryHealth, 5, currentPlayer);
-                currentPlayer.addMana(4);
-                
-                playerTurnEnd();
-            });
-            //==================================================================
-            // Ability Listeners
-            //==================================================================
-            useAbility0.addActionListener((ActionEvent e) -> {
+        attackButton.addActionListener((ActionEvent e) -> {
+            attackButton.setFocusPainted(false); 
 
-                abilityButtonUsed(0);
-            });
+            players.get(currentPlayerIndex).attack(enemy);
+            updateLog(currentPlayer, enemy, currentPlayer.attackPower);
 
-            useAbility1.addActionListener((ActionEvent e) -> {
+            playerTurnEnd();
+        });
 
-                abilityButtonUsed(1);
-            });
+        defenceButton.addActionListener((ActionEvent e) -> {
+            defenceButton.setFocusPainted(false); 
 
-            useAbility2.addActionListener((ActionEvent e) -> {
+            currentPlayer.addStatus(Status.TemporaryHealth, 5, currentPlayer);
+            currentPlayer.addMana(4);
+            updateLog(currentPlayer.getEntityName() + " used defence");
 
-                abilityButtonUsed(2);
-            });
+            playerTurnEnd();
+        });
+        //==================================================================
+        // Ability Listeners
+        //==================================================================
+        useAbility0.addActionListener((ActionEvent e) -> {
 
-            useAbility3.addActionListener((ActionEvent e) -> {
+            abilityButtonUsed(0);
+        });
 
-                abilityButtonUsed(3);
-            });
+        useAbility1.addActionListener((ActionEvent e) -> {
 
-            useAbility4.addActionListener((ActionEvent e) -> {
+            abilityButtonUsed(1);
+        });
 
-                abilityButtonUsed(4);
-            });
-            
-            useAbility5.addActionListener((ActionEvent e) -> {
+        useAbility2.addActionListener((ActionEvent e) -> {
 
-                abilityButtonUsed(5);
-            });
-            
-       }
+            abilityButtonUsed(2);
+        });
+
+        useAbility3.addActionListener((ActionEvent e) -> {
+
+            abilityButtonUsed(3);
+        });
+
+        useAbility4.addActionListener((ActionEvent e) -> {
+
+            abilityButtonUsed(4);
+        });
+
+        useAbility5.addActionListener((ActionEvent e) -> {
+
+            abilityButtonUsed(5);
+        });
     }
 
+    
     private void updateLabels(){
+        
+        updateButtons();
+        
         abilitySelectionPanel.setVisible(false);
         
         playerNameLabel.setText(currentPlayer.getEntityName());
+        enemyNameLabel.setText(enemy.getEntityName());
 
         javax.swing.JButton[] abilityButtons = {useAbility0, useAbility1, useAbility2, useAbility3, useAbility4, useAbility5};
         
@@ -611,7 +658,7 @@ public class CombatGUI extends javax.swing.JFrame{
     private javax.swing.JButton defenceButton;
     private javax.swing.JLabel enemyAttackPowerLabel;
     private javax.swing.JLabel enemyHealthLabel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel enemyNameLabel;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
@@ -625,6 +672,7 @@ public class CombatGUI extends javax.swing.JFrame{
     private javax.swing.JLabel playerManaLabel;
     private javax.swing.JLabel playerNameLabel;
     private javax.swing.JLabel turnLabel;
+    private javax.swing.JPanel turnPanel;
     private javax.swing.JButton useAbility0;
     private javax.swing.JButton useAbility1;
     private javax.swing.JButton useAbility2;

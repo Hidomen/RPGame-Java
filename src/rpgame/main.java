@@ -3,6 +3,7 @@ package rpgame;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class main implements GUICallback{
         
@@ -215,8 +216,12 @@ public class main implements GUICallback{
     //  Combat Functions
     //==========================================================================
     public void initEnemy(){
+        Random rand = new Random();
         
-        enemy = new Enemy(difficulty, players.size());        
+        String enemyName = Config.enemyNames.get(rand.nextInt(Config.enemyNames.size()));
+
+        enemy = new Enemy(difficulty, players.size());
+        enemy.setEntityName(enemyName);
     }
 
     

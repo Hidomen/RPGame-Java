@@ -55,12 +55,12 @@ public class Mage extends PlayerClass {
         int chance;
         for (int i = 0; i < (int)(abilityPower / 2); i++) {
             Random rand = new Random();
-            chance = rand.nextInt(4) + 1;
+            chance = rand.nextInt(4);
             if (chance == 2) { // 1/4 şans 2yi seçtim çünkü en sevdiğim asal.
                 giveDamage(abilityPower , target);
             }
             else
-                System.out.println("Missed one of the beams!");
+                System.out.println("Missed one of the beams!"); //visual
         }
     }
     

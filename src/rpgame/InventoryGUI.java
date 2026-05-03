@@ -40,18 +40,18 @@ public class InventoryGUI extends javax.swing.JFrame {
     private void setupItems() {
         
         itemsPanel = new JPanel();
-        itemsPanel.setBackground(new java.awt.Color(51, 51, 51));
+        itemsPanel.setBackground(Config.COLOR_BLACK);
         itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
 
         
         for (Item item : invItems) {
             JPanel itemRow = new JPanel();
             
-            itemRow.setBackground(Config.COLOR_BLACK);
+            itemRow.setBackground(Config.COLOR_GRAY);
             
             itemRow.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
             itemRow.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-            itemRow.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 0))); //magic
+            itemRow.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Config.COLOR_YELLOW)); //magic
 
             JLabel itemLabel = new JLabel(item.getName());
             
@@ -61,7 +61,7 @@ public class InventoryGUI extends javax.swing.JFrame {
 
 
             JLabel modLabel = new JLabel(item.toString());
-            modLabel.setForeground(new java.awt.Color(180, 255, 180));
+            modLabel.setForeground(Config.COLOR_WHITE);
             modLabel.setFont(new java.awt.Font("Segoe UI", Font.PLAIN, 13));
 
             itemRow.add(itemLabel);
@@ -72,7 +72,7 @@ public class InventoryGUI extends javax.swing.JFrame {
         if (invItems.isEmpty()) {
             JLabel emptyLabel = new JLabel("Inventory is empty!");
             
-            emptyLabel.setForeground(new java.awt.Color(255, 255, 0));
+            emptyLabel.setForeground(Config.COLOR_YELLOW);
             emptyLabel.setFont(new java.awt.Font("Segoe UI", Font.ITALIC, 14));
             emptyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
             itemsPanel.add(Box.createVerticalStrut(20));
@@ -83,8 +83,8 @@ public class InventoryGUI extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(itemsPanel);
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        jScrollPane1.setBackground(new java.awt.Color(51, 51, 51));
-        jScrollPane1.getViewport().setBackground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setBackground(Config.COLOR_BLACK);
+        jScrollPane1.getViewport().setBackground(Config.COLOR_BLACK);
     }
     
     
@@ -215,7 +215,7 @@ public class InventoryGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(continueButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())

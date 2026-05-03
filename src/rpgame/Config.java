@@ -1,6 +1,7 @@
 package rpgame;
 
 import java.awt.Font;
+import java.util.ArrayList;
 
 enum Classes {Archer, Healer, Mage, Warrior};
 enum Status {Bleed, Burn, Dodge, Fog, Poison, Shock, Stun, TemporaryHealth};
@@ -10,7 +11,7 @@ enum GUIState {MAIN_SCREEN, PLAYER_SELECTION, START_GAME, LOBBY, COMBAT, SHOP, I
 
 public class Config {
     
-    public static final java.awt.Dimension WINDOW_DIMENSION = new java.awt.Dimension(800,600);
+    public static final java.awt.Dimension WINDOW_DIMENSION = new java.awt.Dimension(1280,720);
     
     public static final double LEVEL_UP_MAXHP_MULTIPLIER    = 0.1;
     public static final double LEVEL_UP_ATTACK_MULTIPLIER   = 0.15;
@@ -41,11 +42,17 @@ public class Config {
     public static final int STUN_INDEX      = 6; //Pass turn
     public static final int TEMP_H_INDEX    = 7; //TemporaryHealth : Lasts until enemy's turn end
     
+    public static final ArrayList<String> enemyNames = new ArrayList<>(){{
+        add("Swamp Monster");
+        add("Giant Frog");
+        add("Job Application");
+    }};
     
-    //new java.awt.Color(180, 255, 180), //wtf is that color
-    //new java.awt.Color(51, 51, 51) //other black
-    public static final java.awt.Color COLOR_YELLOW = new java.awt.Color(255, 255, 0);
+    public static final java.awt.Color COLOR_WHITE   = new java.awt.Color(255, 255, 255);
     public static final java.awt.Color COLOR_BLACK  = new java.awt.Color(70, 70, 70);
+    public static final java.awt.Color COLOR_DARK_BLACK = new java.awt.Color(0, 0, 0);
+    public static final java.awt.Color COLOR_YELLOW = new java.awt.Color(244, 206, 20);
+    public static final java.awt.Color COLOR_GRAY   = new java.awt.Color(70, 70, 70);
     
     public static Font getFont(int size, boolean isBold){
         

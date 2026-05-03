@@ -109,7 +109,7 @@ public class ShopGUI extends javax.swing.JFrame {
 {
         itemsPanel = new JPanel();
         itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
-        itemsPanel.setBackground(Color.BLACK);
+        itemsPanel.setBackground(Config.COLOR_BLACK);
     
         moneyLabel.setText(group.getMoney() + "$");
         
@@ -122,27 +122,27 @@ public class ShopGUI extends javax.swing.JFrame {
             card = new JPanel(new BorderLayout());
             buyButton = new JButton("Buy");
             
-            card.setBackground(new Color(20, 20, 20)); //magic
+            card.setBackground(Config.COLOR_DARK_BLACK); //magic
             card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 110)); 
             card.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             
-            buyButton.setBackground(Color.YELLOW); //magic
-            buyButton.setForeground(Color.BLACK); 
+            buyButton.setBackground(Config.COLOR_YELLOW);
+            buyButton.setForeground(Config.COLOR_BLACK); 
             buyButton.setFont(Config.getFont(13, true));
             
-            wrapper.setBackground(Color.BLACK);
+            wrapper.setBackground(Config.COLOR_BLACK);
             wrapper.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
             wrapper.add(card);
             
             buyActionListener(item , wrapper);
 
             JLabel itemNameLabel = new JLabel(item.getName() + " - " + item.getPrice() + " Gold");
-            itemNameLabel.setForeground(Color.YELLOW); //magic
+            itemNameLabel.setForeground(Config.COLOR_YELLOW);
             itemNameLabel.setFont(Config.getFont(16, true));
 
             
             JLabel compLabel = new JLabel(item.toString());
-            compLabel.setForeground(new Color(200, 200, 200));
+            compLabel.setForeground(Config.COLOR_GRAY);
             compLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 
 
@@ -157,7 +157,7 @@ public class ShopGUI extends javax.swing.JFrame {
         
         jScrollPane1.setViewportView(itemsPanel);
 
-        jScrollPane1.getViewport().setBackground(Color.BLACK);
+        jScrollPane1.getViewport().setBackground(Config.COLOR_BLACK);
 }
     
     
@@ -202,7 +202,7 @@ public class ShopGUI extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                 .addGap(120, 120, 120)
                 .addComponent(moneyLabel)
                 .addGap(18, 18, 18)

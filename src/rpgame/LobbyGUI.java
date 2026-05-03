@@ -57,17 +57,17 @@ public class LobbyGUI extends javax.swing.JFrame {
         jButton2.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(51, 51, 51));
-        setForeground(new java.awt.Color(51, 51, 51));
+        setBackground(Config.COLOR_BLACK);
+        setForeground(Config.COLOR_BLACK);
         setPreferredSize(Config.WINDOW_DIMENSION);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        jPanel1.setBackground(Config.COLOR_BLACK);
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel1.setBackground(Config.COLOR_BLACK);
         jLabel1.setFont(new java.awt.Font("Serif", 3, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel1.setForeground(Config.COLOR_YELLOW);
         jLabel1.setText("---------------------------------------------------------MAIN MENU----------------------------------------------------------------");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -88,19 +88,19 @@ public class LobbyGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        jPanel2.setBackground(Config.COLOR_BLACK);
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel2.setForeground(Config.COLOR_YELLOW);
         jLabel2.setText("Players :");
 
         jScrollPane1.setBorder(null);
 
-        jList1.setBackground(new java.awt.Color(51, 51, 51));
+        jList1.setBackground(Config.COLOR_BLACK);
         jList1.setBorder(null);
         jList1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jList1.setForeground(new java.awt.Color(255, 255, 0));
+        jList1.setForeground(Config.COLOR_YELLOW);
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -131,35 +131,35 @@ public class LobbyGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        jPanel3.setBackground(Config.COLOR_BLACK);
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
 
-        shopButton.setBackground(new java.awt.Color(0, 0, 0));
+        shopButton.setBackground(Config.COLOR_BLACK);
         shopButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        shopButton.setForeground(new java.awt.Color(255, 255, 0));
+        shopButton.setForeground(Config.COLOR_YELLOW);
         shopButton.setText("Shop");
-        shopButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        shopButton.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
         shopButton.addActionListener(this::shopButtonActionPerformed);
 
-        fightButton.setBackground(new java.awt.Color(0, 0, 0));
+        fightButton.setBackground(Config.COLOR_BLACK);
         fightButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        fightButton.setForeground(new java.awt.Color(255, 255, 0));
+        fightButton.setForeground(Config.COLOR_YELLOW);
         fightButton.setText("Fight");
-        fightButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        fightButton.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
         fightButton.addActionListener(this::fightButtonActionPerformed);
 
-        inventoryButton.setBackground(new java.awt.Color(0, 0, 0));
+        inventoryButton.setBackground(Config.COLOR_BLACK);
         inventoryButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        inventoryButton.setForeground(new java.awt.Color(255, 255, 0));
+        inventoryButton.setForeground(Config.COLOR_YELLOW);
         inventoryButton.setText("Inventory");
-        inventoryButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        inventoryButton.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
         inventoryButton.addActionListener(this::inventoryButtonActionPerformed);
 
-        quitButton.setBackground(new java.awt.Color(0, 0, 0));
+        quitButton.setBackground(Config.COLOR_BLACK);
         quitButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        quitButton.setForeground(new java.awt.Color(255, 255, 0));
+        quitButton.setForeground(Config.COLOR_YELLOW);
         quitButton.setText("Quit");
-        quitButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        quitButton.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
         quitButton.addActionListener(this::quitButtonActionPerformed);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
