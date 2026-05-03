@@ -31,6 +31,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -64,11 +65,11 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(Config.COLOR_BLACK);
         setPreferredSize(Config.WINDOW_DIMENSION);
-        setResizable(false);
 
         jPanel2.setBackground(Config.COLOR_BLACK);
         jPanel2.setName(""); // NOI18N
         jPanel2.setPreferredSize(Config.WINDOW_DIMENSION);
+        jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(Config.COLOR_BLACK);
 
@@ -76,7 +77,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         mageButton.setFont(new java.awt.Font("Perpetua", 1, 18)); // NOI18N
         mageButton.setForeground(Config.COLOR_YELLOW);
         mageButton.setText("Mage");
-        mageButton.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
+        mageButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         mageButton.setMaximumSize(new java.awt.Dimension(92, 28));
         mageButton.setMinimumSize(new java.awt.Dimension(92, 28));
         mageButton.setPreferredSize(new java.awt.Dimension(92, 28));
@@ -91,7 +92,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         archerButton.setFont(new java.awt.Font("Perpetua", 1, 18)); // NOI18N
         archerButton.setForeground(Config.COLOR_YELLOW);
         archerButton.setText("Archer");
-        archerButton.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
+        archerButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         archerButton.setMaximumSize(new java.awt.Dimension(92, 28));
         archerButton.setMinimumSize(new java.awt.Dimension(92, 28));
         archerButton.setPreferredSize(new java.awt.Dimension(92, 28));
@@ -106,7 +107,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         healerButton.setFont(new java.awt.Font("Perpetua", 1, 18)); // NOI18N
         healerButton.setForeground(Config.COLOR_YELLOW);
         healerButton.setText("Healer");
-        healerButton.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
+        healerButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         healerButton.setMaximumSize(new java.awt.Dimension(92, 28));
         healerButton.setMinimumSize(new java.awt.Dimension(92, 28));
         healerButton.setPreferredSize(new java.awt.Dimension(92, 28));
@@ -121,7 +122,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         warriorButton.setFont(new java.awt.Font("Perpetua", 1, 18)); // NOI18N
         warriorButton.setForeground(Config.COLOR_YELLOW);
         warriorButton.setText("Warrior");
-        warriorButton.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
+        warriorButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         warriorButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 warriorButtonMouseEntered(evt);
@@ -140,7 +141,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
                     .addComponent(healerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(archerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(mageButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,14 +157,24 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setBackground(Config.COLOR_BLACK);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 48;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 0);
+        jPanel2.add(jPanel1, gridBagConstraints);
+
+        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 36)); // NOI18N
         jLabel1.setForeground(Config.COLOR_YELLOW);
         jLabel1.setText("Pick your Class");
+        jPanel2.add(jLabel1, new java.awt.GridBagConstraints());
 
         InfoPanel.setBackground(Config.COLOR_BLACK);
-        InfoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 5));
-        InfoPanel.setForeground(Config.COLOR_YELLOW);
+        InfoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 5));
+        InfoPanel.setForeground(new java.awt.Color(255, 255, 0));
         InfoPanel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         InfoPanel.setMaximumSize(new java.awt.Dimension(523, 580));
         InfoPanel.setMinimumSize(new java.awt.Dimension(523, 580));
@@ -279,7 +290,7 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
                             .addComponent(ability1_desc)
                             .addComponent(ability2_desc)
                             .addComponent(ability3_desc))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         InfoPanelLayout.setVerticalGroup(
             InfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,81 +338,58 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
         manaLabel.getAccessibleContext().setAccessibleName("Mana");
         abilityPowerLabel.getAccessibleContext().setAccessibleName("AbilityPower");
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
+        jPanel2.add(InfoPanel, gridBagConstraints);
+        InfoPanel.getAccessibleContext().setAccessibleName("InfoPanel");
+
         addPlayerButton.setBackground(Config.COLOR_YELLOW);
         addPlayerButton.setFont(new java.awt.Font("Arial", 3, 20)); // NOI18N
-        addPlayerButton.setForeground(Config.COLOR_BLACK);
+        addPlayerButton.setForeground(Config.COLOR_DARK_BLACK);
         addPlayerButton.setText("Add Player");
         addPlayerButton.addActionListener(this::addPlayerButtonActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(36, 37, 0, 0);
+        jPanel2.add(addPlayerButton, gridBagConstraints);
 
         continueButton.setBackground(Config.COLOR_YELLOW);
         continueButton.setFont(new java.awt.Font("Arial", 3, 20)); // NOI18N
-        continueButton.setForeground(Config.COLOR_BLACK);
+        continueButton.setForeground(Config.COLOR_DARK_BLACK);
         continueButton.setText("Continue");
         continueButton.setToolTipText("");
         continueButton.addActionListener(this::continueButtonActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 37, 0, 0);
+        jPanel2.add(continueButton, gridBagConstraints);
 
-        playerNameField.setBackground(Config.COLOR_BLACK);
+        playerNameField.setBackground(Config.COLOR_DARK_BLACK);
         playerNameField.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
         playerNameField.setForeground(Config.COLOR_YELLOW);
         playerNameField.setText("name");
-        playerNameField.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 3));
+        playerNameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 71;
+        gridBagConstraints.ipady = 22;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 37, 0, 0);
+        jPanel2.add(playerNameField, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addPlayerButton)
-                            .addComponent(playerNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(continueButton))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
-                .addComponent(InfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel1)
-                    .addContainerGap(624, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(playerNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(addPlayerButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(169, 169, 169))
-            .addComponent(InfoPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addComponent(jLabel1)
-                    .addContainerGap(544, Short.MAX_VALUE)))
-        );
-
-        InfoPanel.getAccessibleContext().setAccessibleName("InfoPanel");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

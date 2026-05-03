@@ -15,8 +15,8 @@ public class CombatGUI extends javax.swing.JFrame{
     private int turnCount = 1;
     private EntityType turn = EntityType.Player;
     
-    private PlayerClass currentPlayer;  //used for checking things
-    private int currentPlayerIndex = 0;     //used if an action affects player
+    private PlayerClass currentPlayer;
+    private int currentPlayerIndex = 0;
     
     private int alivePlayerCount;
     
@@ -463,8 +463,6 @@ public class CombatGUI extends javax.swing.JFrame{
         boolean isActive = (EntityType.Player == turn);
         
         
-        System.out.println("aCTİVE " + turn);
-        
         attackButton.setEnabled(isActive);
         abilityButton.setEnabled(isActive);
         defenceButton.setEnabled(isActive);
@@ -501,7 +499,7 @@ public class CombatGUI extends javax.swing.JFrame{
                 
             }
             case EntityType.Enemy -> {
-                //disable buttons
+                
                 
                 Timer timer = new Timer(waitTimeAsMiliSec, e -> {
                     

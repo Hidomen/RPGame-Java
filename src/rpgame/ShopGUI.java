@@ -165,6 +165,7 @@ public class ShopGUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -179,46 +180,48 @@ public class ShopGUI extends javax.swing.JFrame {
         setPreferredSize(Config.WINDOW_DIMENSION);
         setResizable(false);
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(Config.COLOR_BLACK);
+        jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setBackground(new java.awt.Color(51, 51, 51));
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel2.setForeground(Config.COLOR_YELLOW);
         jLabel2.setText("Welcome to the shop traveler");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 8;
+        gridBagConstraints.ipady = 56;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 0);
+        jPanel2.add(jLabel2, gridBagConstraints);
 
-        continueButton.setBackground(new java.awt.Color(0, 0, 0));
-        continueButton.setForeground(new java.awt.Color(255, 255, 0));
+        continueButton.setBackground(Config.COLOR_DARK_BLACK);
+        continueButton.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        continueButton.setForeground(Config.COLOR_YELLOW);
         continueButton.setText("Continue");
         continueButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
         continueButton.addActionListener(this::continueButtonActionPerformed);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.ipady = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(33, 18, 0, 20);
+        jPanel2.add(continueButton, gridBagConstraints);
 
         moneyLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        moneyLabel.setForeground(new java.awt.Color(255, 255, 0));
+        moneyLabel.setForeground(Config.COLOR_YELLOW);
         moneyLabel.setText("money");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-                .addGap(120, 120, 120)
-                .addComponent(moneyLabel)
-                .addGap(18, 18, 18)
-                .addComponent(continueButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addComponent(continueButton)
-                    .addComponent(moneyLabel))
-                .addContainerGap())
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(43, 98, 0, 0);
+        jPanel2.add(moneyLabel, gridBagConstraints);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
