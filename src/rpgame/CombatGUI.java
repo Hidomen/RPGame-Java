@@ -527,27 +527,32 @@ public class CombatGUI extends javax.swing.JFrame{
     
     
     private void abilityButtonUsed(int index){
-        
-        Ability usedAbility = currentPlayer.getAbility(index);
-        
-        //exception
-        if(!currentPlayer.isManaEnough(usedAbility)){
-            JOptionPane.showMessageDialog(this, "Player's mana is not enough to perform ability", "Unsufficent Mana!" , JOptionPane.WARNING_MESSAGE);
-            return;
+        try
+        {
+            Ability usedAbility = currentPlayer.getAbility(index);
+
+            if(!currentPlayer.isManaEnough(usedAbility)){
+                throw new InsufficientManaException(this, currentPlayer.mana , usedAbility.getCost());
+            }
+
+            abilityButton.setFocusPainted(false);
+
+
+            currentPlayer.useAbility(usedAbility, enemy);
+            updateLog(currentPlayer.getEntityName() + " used " + usedAbility.getName());
+
+            abilitySelectionPanel.setVisible(false);
+
+            abilityButton.setBackground(Config.COLOR_BLACK);
+            abilityButton.setForeground(java.awt.Color.YELLOW); 
+
+            playerTurnEnd();            
+        } catch (InsufficientManaException e)
+        {
+            e.message();
         }
         
-        abilityButton.setFocusPainted(false);
-        
 
-        currentPlayer.useAbility(usedAbility, enemy);
-        updateLog(currentPlayer.getEntityName() + " used " + usedAbility.getName());
-        
-        abilitySelectionPanel.setVisible(false);
-        
-        abilityButton.setBackground(Config.COLOR_BLACK);
-        abilityButton.setForeground(java.awt.Color.YELLOW); 
-        
-        playerTurnEnd();
     }
     
     

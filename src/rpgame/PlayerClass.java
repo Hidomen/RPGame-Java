@@ -19,33 +19,33 @@ public abstract class PlayerClass extends Entity implements AbilityInterface {
     // Ability function
     //==========================================================================
     public void useAbility(Ability a , Entity target){
-        
-        //System.out.println(a.getName()); //debug
-        
-        if(mana < a.getCost()){
-            System.out.println("Your mana is not enough for the " + a.getName()); //log or popup
-            return;
+        try
+        {
+            if(!isManaEnough(a)){
+                throw new InsufficientManaException(null, mana, a.getCost());
+            }
+
+            mana -= a.getCost();
+
+
+            switch(a.getID()){
+                case 0 -> ability0(target);
+                case 1 -> ability1(target);
+                case 2 -> ability2(target);
+                case 3 -> ability3(target);
+                case 4 -> ability4(target);
+                case 5 -> ability5(target);
+            }            
+        } catch(InsufficientManaException e)
+        {
+            e.message();
         }
 
-        mana -= a.getCost();
-        
-        
-        switch(a.getID()){
-            case 0 -> ability0(target);
-            case 1 -> ability1(target);
-            case 2 -> ability2(target);
-            case 3 -> ability3(target);
-            case 4 -> ability4(target);
-            case 5 -> ability5(target);
-        }
     }
     
     public boolean isManaEnough(Ability a){
         
-        if(mana < a.getCost()){
-            return false;
-        }
-        return true;
+        return mana >= a.getCost();
     }
     
     public Ability getAbility(int index)

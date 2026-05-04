@@ -46,6 +46,11 @@ public class Config {
         add("Swamp Monster");
         add("Giant Frog");
         add("Job Application");
+        add("Algorithm Design And Analysis");
+        add("Darth Vader");
+        add("Ugly Creature");
+        add("Human");
+        add("V Himself");
     }};
     
     public static final java.awt.Color COLOR_WHITE   = new java.awt.Color(255, 255, 255);
