@@ -77,22 +77,27 @@ public class ShopGUI extends javax.swing.JFrame {
  
         buyButton.addActionListener(e -> 
             {
-                 if (group.getMoney() < item.getPrice()) {
-                     JOptionPane.showMessageDialog(this, "Insufficient balance to buy this item. Your gold: "
-                                                + group.getMoney() , "Insufficient Balance" , JOptionPane.WARNING_MESSAGE);
-                     return;
-                 }
-                
-                //purchased
-                group.addToInventory(item);
-                group.setMoney(group.getMoney() - item.getPrice());
-                goodies.remove(item);
-                moneyLabel.setText(group.getMoney() + "$");
+                try
+                {
+                    if (group.getMoney() < item.getPrice()) {
+                        throw new InsufficientBalanceException(this , item.getName());
+                    }
 
-                wrapper.setVisible(false);
+                    //purchased
+                    group.addToInventory(item);
+                    group.setMoney(group.getMoney() - item.getPrice());
+                    goodies.remove(item);
+                    moneyLabel.setText(group.getMoney() + "$");
 
-                itemsPanel.revalidate();
-                itemsPanel.repaint();
+                    wrapper.setVisible(false);
+
+                    itemsPanel.revalidate();
+                    itemsPanel.repaint();                    
+                } catch(InsufficientBalanceException ex)
+                {
+                    ex.message();
+                }
+
             });
     }
     

@@ -521,35 +521,47 @@ public class PlayerSelectGUI extends javax.swing.JFrame{
 
 
     private void addPlayerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPlayerButtonActionPerformed
-        
-        if(null == selectedClass){
-            
-        JOptionPane.showMessageDialog(this, "Please select a class before creating a class." , "CLASS IS NOT SELECTED", JOptionPane.WARNING_MESSAGE);
-            return;
+        try
+        {
+            if(null == selectedClass){
+                throw new ClassIsNotSelectedException(this);
+            }
+            String namePlayer = playerNameField.getText().trim();
+            if (namePlayer.equals("name") || namePlayer.isEmpty() || namePlayer == null ) {
+                throw new InvalidNameException(this);
+            }
+            selectedClass.setEntityName(namePlayer);
+            callback.addPlayer(selectedClass);
+            addedPlayerCount++;
+            selectedClass = null; 
+            unhighlightAll();
+            addPlayerButton.setFocusPainted(false);            
+        } catch(ClassIsNotSelectedException e1)
+        {
+            e1.message();
+        } catch(InvalidNameException e2)
+        {
+            e2.message();
         }
-        String namePlayer = playerNameField.getText().trim();
-        if (namePlayer.equals("name") || namePlayer.isEmpty() || namePlayer == null ) {
-            JOptionPane.showMessageDialog(this, "Player name is invalid. Please enter a proper name." ,"INVALID PLAYER NAME" , JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        selectedClass.setEntityName(namePlayer);
-        callback.addPlayer(selectedClass);
-        addedPlayerCount++;
-        selectedClass = null; 
-        unhighlightAll();
-        addPlayerButton.setFocusPainted(false);
+
     }//GEN-LAST:event_addPlayerButtonActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
-        continueButton.setFocusPainted(false);
-        
-        if(addedPlayerCount < playerCount){
-            JOptionPane.showMessageDialog(this, "Insufficient player added please fill up the group."  ,"INSUFFICIENT PLAYER", JOptionPane.WARNING_MESSAGE);
-            return;
+        try
+        {
+            continueButton.setFocusPainted(false);
+
+            if(addedPlayerCount < playerCount){
+                throw new InsufficientPlayersException(this , playerCount);
+            }
+
+
+            callback.setGUIState(GUIState.START_GAME, this.getLocation());            
+        } catch(InsufficientPlayersException e)
+        {
+            e.message();
         }
 
-        
-        callback.setGUIState(GUIState.START_GAME, this.getLocation());
     }//GEN-LAST:event_continueButtonActionPerformed
 
 

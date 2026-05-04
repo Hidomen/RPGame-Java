@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 public class main implements GUICallback{
         
@@ -147,15 +148,19 @@ public class main implements GUICallback{
     
     @Override
     public void addPlayer(PlayerClass player){
-
-        if(playerCount <= players.size()){
-            System.err.println("PLAYERS ARE FULL");
-            return;
+        try
+        {
+            if(playerCount <= players.size()){
+                throw new GroupIsFullException(currentWindow);
+            }
+            players.add(player);
+        
+            System.out.println(players.getLast().getEntityName());
+        } catch(GroupIsFullException e)
+        {
+            e.message();
         }
-        
-        players.add(player);
-        
-        System.out.println(players.getLast().getEntityName());
+
     }
     
     @Override

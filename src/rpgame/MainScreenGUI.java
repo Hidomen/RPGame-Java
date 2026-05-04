@@ -113,8 +113,7 @@ public class MainScreenGUI extends javax.swing.JFrame {
         try
         {
             if (playerCountField.getText() == null || Integer.parseInt(playerCountField.getText()) <= 0) {
-                JOptionPane.showMessageDialog(this, "Invalid number of players!", "Invalid Player Count", JOptionPane.WARNING_MESSAGE);
-                return;
+                throw new InvalidPlayerCountException(this);
             }
 
             System.out.println("play button");
@@ -126,7 +125,10 @@ public class MainScreenGUI extends javax.swing.JFrame {
             playButton.setFocusPainted(false); //not necessary 
         } catch (NumberFormatException e)
         {
-            JOptionPane.showMessageDialog(this, "Bruh you lowkey entered strings for player count.", "String ? Really ?", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "String entry detected. Please enter an integer.", "Number Format Exception", JOptionPane.WARNING_MESSAGE);
+        } catch (InvalidPlayerCountException e1)
+        {
+            e1.message();
         }
     }//GEN-LAST:event_playButtonActionPerformed
 
