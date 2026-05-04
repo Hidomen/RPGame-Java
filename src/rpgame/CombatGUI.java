@@ -22,7 +22,7 @@ public class CombatGUI extends javax.swing.JFrame{
     
     private static GUICallback callback;
 
-    private int waitTimeAsMiliSec = 2000;
+    private int waitTimeAsMiliSec = 1000;
     
     public CombatGUI(GUICallback callback, ArrayList<PlayerClass> players, Enemy enemy) {
         
@@ -49,17 +49,20 @@ public class CombatGUI extends javax.swing.JFrame{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         enemyNameLabel = new javax.swing.JLabel();
         enemyHealthLabel = new javax.swing.JLabel();
         enemyAttackPowerLabel = new javax.swing.JLabel();
+        enemyHealthBar = new javax.swing.JProgressBar();
         jPanel2 = new javax.swing.JPanel();
         playerNameLabel = new javax.swing.JLabel();
         playerAttackPowerLabel = new javax.swing.JLabel();
         playerHealthLabel = new javax.swing.JLabel();
         playerManaLabel = new javax.swing.JLabel();
         playerAbilityPowerLabel = new javax.swing.JLabel();
+        playerHealthBar = new javax.swing.JProgressBar();
         jPanel3 = new javax.swing.JPanel();
         attackButton = new javax.swing.JButton();
         abilityButton = new javax.swing.JButton();
@@ -74,17 +77,18 @@ public class CombatGUI extends javax.swing.JFrame{
         useAbility5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        logLabel = new javax.swing.JLabel();
-        turnPanel = new javax.swing.JPanel();
         turnLabel = new javax.swing.JLabel();
+        logScroll = new javax.swing.JScrollPane();
+        logTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
         setPreferredSize(Config.WINDOW_DIMENSION);
         setResizable(false);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(Config.COLOR_BLACK);
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 3));
         jPanel1.setForeground(Config.COLOR_YELLOW);
 
         enemyNameLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
@@ -93,41 +97,56 @@ public class CombatGUI extends javax.swing.JFrame{
 
         enemyHealthLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         enemyHealthLabel.setForeground(Config.COLOR_YELLOW);
-        enemyHealthLabel.setText("Health");
+        enemyHealthLabel.setText("HP");
 
         enemyAttackPowerLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         enemyAttackPowerLabel.setForeground(Config.COLOR_YELLOW);
         enemyAttackPowerLabel.setText("AttackPower");
+
+        enemyHealthBar.setBackground(Config.COLOR_BLACK);
+        enemyHealthBar.setForeground(Config.COLOR_YELLOW);
+        enemyHealthBar.setMaximum(Config.MaxHPLimits[1]);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(enemyNameLabel)
+                    .addComponent(enemyAttackPowerLabel)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(enemyNameLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(enemyAttackPowerLabel)
-                            .addComponent(enemyHealthLabel))))
+                        .addComponent(enemyHealthLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(enemyHealthBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addComponent(enemyNameLabel)
-                .addGap(18, 18, 18)
-                .addComponent(enemyHealthLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(enemyHealthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(enemyHealthBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(enemyAttackPowerLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.ipady = 68;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jPanel1, gridBagConstraints);
+
         jPanel2.setBackground(Config.COLOR_BLACK);
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 3));
         jPanel2.setForeground(Config.COLOR_YELLOW);
 
         playerNameLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
@@ -140,7 +159,7 @@ public class CombatGUI extends javax.swing.JFrame{
 
         playerHealthLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         playerHealthLabel.setForeground(Config.COLOR_YELLOW);
-        playerHealthLabel.setText("Health");
+        playerHealthLabel.setText("HP");
 
         playerManaLabel.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         playerManaLabel.setForeground(Config.COLOR_YELLOW);
@@ -150,61 +169,93 @@ public class CombatGUI extends javax.swing.JFrame{
         playerAbilityPowerLabel.setForeground(Config.COLOR_YELLOW);
         playerAbilityPowerLabel.setText("AbilityPower");
 
+        playerHealthBar.setBackground(Config.COLOR_BLACK);
+        playerHealthBar.setForeground(Config.COLOR_YELLOW);
+        playerHealthBar.setMaximum(Config.MaxHPLimits[1]);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(playerNameLabel)
+                    .addComponent(playerAttackPowerLabel)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(playerNameLabel))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(playerAttackPowerLabel)
-                            .addComponent(playerHealthLabel)
-                            .addComponent(playerManaLabel)
-                            .addComponent(playerAbilityPowerLabel))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addComponent(playerHealthLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(playerHealthBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(playerManaLabel)
+                    .addComponent(playerAbilityPowerLabel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(playerNameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(playerHealthLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(playerHealthLabel)
+                    .addComponent(playerHealthBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playerAttackPowerLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playerManaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(playerAbilityPowerLabel)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jPanel2, gridBagConstraints);
+
         jPanel3.setBackground(Config.COLOR_BLACK);
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 3));
         jPanel3.setForeground(Config.COLOR_YELLOW);
+        jPanel3.setLayout(new java.awt.GridBagLayout());
 
         attackButton.setBackground(Config.COLOR_YELLOW);
         attackButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         attackButton.setForeground(new java.awt.Color(51, 51, 51));
         attackButton.setText("Attack");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 7, 0, 0);
+        jPanel3.add(attackButton, gridBagConstraints);
 
         abilityButton.setBackground(Config.COLOR_BLACK);
         abilityButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         abilityButton.setForeground(Config.COLOR_YELLOW);
         abilityButton.setText("Ability");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 7, 0, 0);
+        jPanel3.add(abilityButton, gridBagConstraints);
 
         defenceButton.setBackground(Config.COLOR_YELLOW);
         defenceButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         defenceButton.setForeground(new java.awt.Color(51, 51, 51));
         defenceButton.setText("Defence");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 7, 0, 0);
+        jPanel3.add(defenceButton, gridBagConstraints);
 
         abilitySelectionPanel.setBackground(Config.COLOR_DARK_BLACK);
-        abilitySelectionPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
+        abilitySelectionPanel.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel4.setForeground(Config.COLOR_YELLOW);
@@ -287,129 +338,84 @@ public class CombatGUI extends javax.swing.JFrame{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(attackButton)
-                    .addComponent(abilityButton)
-                    .addComponent(defenceButton))
-                .addGap(18, 18, 18)
-                .addComponent(abilitySelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(attackButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(abilityButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(defenceButton))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(abilitySelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(25, 18, 31, 52);
+        jPanel3.add(abilitySelectionPanel, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.ipadx = 45;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jPanel3, gridBagConstraints);
 
         jPanel4.setBackground(Config.COLOR_BLACK);
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 3));
         jPanel4.setForeground(Config.COLOR_YELLOW);
+        jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel5.setForeground(Config.COLOR_YELLOW);
         jLabel5.setText("¤");
-
-        logLabel.setFont(new java.awt.Font("Arial", 2, 18)); // NOI18N
-        logLabel.setForeground(Config.COLOR_YELLOW);
-        logLabel.setText("Your Turn");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(logLabel)
-                .addContainerGap(327, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-            .addComponent(logLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        turnPanel.setBackground(Config.COLOR_BLACK);
-        turnPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
-        turnPanel.setForeground(Config.COLOR_YELLOW);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        jPanel4.add(jLabel5, gridBagConstraints);
 
         turnLabel.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         turnLabel.setForeground(Config.COLOR_YELLOW);
         turnLabel.setText("Turn");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        jPanel4.add(turnLabel, gridBagConstraints);
 
-        javax.swing.GroupLayout turnPanelLayout = new javax.swing.GroupLayout(turnPanel);
-        turnPanel.setLayout(turnPanelLayout);
-        turnPanelLayout.setHorizontalGroup(
-            turnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(turnPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(turnLabel)
-                .addGap(120, 120, 120))
-        );
-        turnPanelLayout.setVerticalGroup(
-            turnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(turnLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        logTextArea.setBackground(Config.COLOR_BLACK);
+        logTextArea.setColumns(20);
+        logTextArea.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        logTextArea.setForeground(Config.COLOR_YELLOW);
+        logTextArea.setLineWrap(true);
+        logTextArea.setRows(3);
+        logTextArea.setTabSize(15);
+        logTextArea.setWrapStyleWord(true);
+        logTextArea.setFocusable(false);
+        logScroll.setViewportView(logTextArea);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(turnPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(turnPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(12, 12, 12)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 19, 6, 19);
+        jPanel4.add(logScroll, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 52;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jPanel4, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     
     private void updateLog(Entity attacker, Entity attacked, int damage){
-        logLabel.setText(attacker.getEntityName() + " ATTACKED " + attacked.getEntityName() + " dealt " + damage + " damage. REMAINING: " + attacked.HP);
+        logTextArea.setText(attacker.getEntityName() + " ATTACKED " + attacked.getEntityName() + " dealt " + damage + " damage. REMAINING: " + attacked.HP);
     }
     
     private void updateLog(String s){
-        logLabel.setText(s);
+        logTextArea.setText(s);
     }
        
     private void nextPlayer(){
@@ -614,6 +620,8 @@ public class CombatGUI extends javax.swing.JFrame{
         
         updateButtons();
         
+        
+        
         abilitySelectionPanel.setVisible(false);
         
         playerNameLabel.setText(currentPlayer.getEntityName());
@@ -632,13 +640,18 @@ public class CombatGUI extends javax.swing.JFrame{
         }
 
         enemyAttackPowerLabel.setText   ("AttackPower: "    + enemy.attackPower);
-        enemyHealthLabel.setText        ("Health: "         + enemy.HP + " / " + enemy.maxHP);
+        enemyHealthLabel.setText        ("HP: "         + enemy.HP);
         
         playerAbilityPowerLabel.setText ("AbilityPower: "   + currentPlayer.abilityPower);
         playerAttackPowerLabel.setText  ("AttackPower: "    + currentPlayer.attackPower);
-        playerHealthLabel.setText       ("Health: "         + currentPlayer.HP + " / " + currentPlayer.maxHP);
+        playerHealthLabel.setText       ("HP: "         + currentPlayer.HP);
         playerManaLabel.setText         ("Mana: "           + currentPlayer.mana);
         
+        playerHealthBar.setMaximum(currentPlayer.maxHP);
+        playerHealthBar.setValue(currentPlayer.HP);
+        
+        enemyHealthBar.setMaximum(enemy.maxHP);
+        enemyHealthBar.setValue(enemy.HP);
         
         turnLabel.setText("Turn:" + turnCount);
     }
@@ -655,6 +668,7 @@ public class CombatGUI extends javax.swing.JFrame{
     private javax.swing.JButton attackButton;
     private javax.swing.JButton defenceButton;
     private javax.swing.JLabel enemyAttackPowerLabel;
+    private javax.swing.JProgressBar enemyHealthBar;
     private javax.swing.JLabel enemyHealthLabel;
     private javax.swing.JLabel enemyNameLabel;
     private javax.swing.JLabel jLabel4;
@@ -663,14 +677,15 @@ public class CombatGUI extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JLabel logLabel;
+    private javax.swing.JScrollPane logScroll;
+    private javax.swing.JTextArea logTextArea;
     private javax.swing.JLabel playerAbilityPowerLabel;
     private javax.swing.JLabel playerAttackPowerLabel;
+    private javax.swing.JProgressBar playerHealthBar;
     private javax.swing.JLabel playerHealthLabel;
     private javax.swing.JLabel playerManaLabel;
     private javax.swing.JLabel playerNameLabel;
     private javax.swing.JLabel turnLabel;
-    private javax.swing.JPanel turnPanel;
     private javax.swing.JButton useAbility0;
     private javax.swing.JButton useAbility1;
     private javax.swing.JButton useAbility2;
