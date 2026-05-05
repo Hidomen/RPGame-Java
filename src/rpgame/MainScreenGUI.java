@@ -39,7 +39,6 @@ public class MainScreenGUI extends javax.swing.JFrame {
         setBackground(new java.awt.Color(51, 51, 51));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(0, 0));
-        setPreferredSize(Config.WINDOW_DIMENSION);
 
         jPanel1.setBackground(Config.COLOR_BLACK);
         jPanel1.setForeground(Config.COLOR_BLACK);
@@ -102,6 +101,7 @@ public class MainScreenGUI extends javax.swing.JFrame {
         playerCountField.setForeground(Config.COLOR_YELLOW);
         playerCountField.setText("1");
         playerCountField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
+        playerCountField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
