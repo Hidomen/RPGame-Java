@@ -40,6 +40,7 @@ public class LobbyGUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -49,10 +50,18 @@ public class LobbyGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
+        padding = new javax.swing.JPanel();
         fightButton = new javax.swing.JButton();
+        padding2 = new javax.swing.JPanel();
+        padding3 = new javax.swing.JPanel();
         shopButton = new javax.swing.JButton();
+        padding4 = new javax.swing.JPanel();
+        padding5 = new javax.swing.JPanel();
         inventoryButton = new javax.swing.JButton();
+        padding6 = new javax.swing.JPanel();
+        padding7 = new javax.swing.JPanel();
         quitButton = new javax.swing.JButton();
+        padding8 = new javax.swing.JPanel();
 
         jButton2.setText("jButton1");
 
@@ -133,7 +142,22 @@ public class LobbyGUI extends javax.swing.JFrame {
 
         jPanel3.setBackground(Config.COLOR_BLACK);
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
-        jPanel3.setLayout(new java.awt.GridLayout(4, 5, 50, 50));
+        jPanel3.setLayout(new java.awt.GridLayout(4, 2, 0, 10));
+
+        padding.setBackground(Config.COLOR_BLACK);
+
+        javax.swing.GroupLayout paddingLayout = new javax.swing.GroupLayout(padding);
+        padding.setLayout(paddingLayout);
+        paddingLayout.setHorizontalGroup(
+            paddingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 213, Short.MAX_VALUE)
+        );
+        paddingLayout.setVerticalGroup(
+            paddingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 96, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(padding);
 
         fightButton.setBackground(Config.COLOR_DARK_BLACK);
         fightButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -143,6 +167,36 @@ public class LobbyGUI extends javax.swing.JFrame {
         fightButton.addActionListener(this::fightButtonActionPerformed);
         jPanel3.add(fightButton);
 
+        padding2.setBackground(Config.COLOR_BLACK);
+
+        javax.swing.GroupLayout padding2Layout = new javax.swing.GroupLayout(padding2);
+        padding2.setLayout(padding2Layout);
+        padding2Layout.setHorizontalGroup(
+            padding2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 213, Short.MAX_VALUE)
+        );
+        padding2Layout.setVerticalGroup(
+            padding2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 96, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(padding2);
+
+        padding3.setBackground(Config.COLOR_BLACK);
+
+        javax.swing.GroupLayout padding3Layout = new javax.swing.GroupLayout(padding3);
+        padding3.setLayout(padding3Layout);
+        padding3Layout.setHorizontalGroup(
+            padding3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 213, Short.MAX_VALUE)
+        );
+        padding3Layout.setVerticalGroup(
+            padding3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 96, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(padding3);
+
         shopButton.setBackground(Config.COLOR_DARK_BLACK);
         shopButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         shopButton.setForeground(Config.COLOR_YELLOW);
@@ -150,6 +204,36 @@ public class LobbyGUI extends javax.swing.JFrame {
         shopButton.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
         shopButton.addActionListener(this::shopButtonActionPerformed);
         jPanel3.add(shopButton);
+
+        padding4.setBackground(Config.COLOR_BLACK);
+
+        javax.swing.GroupLayout padding4Layout = new javax.swing.GroupLayout(padding4);
+        padding4.setLayout(padding4Layout);
+        padding4Layout.setHorizontalGroup(
+            padding4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 213, Short.MAX_VALUE)
+        );
+        padding4Layout.setVerticalGroup(
+            padding4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 96, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(padding4);
+
+        padding5.setBackground(Config.COLOR_BLACK);
+
+        javax.swing.GroupLayout padding5Layout = new javax.swing.GroupLayout(padding5);
+        padding5.setLayout(padding5Layout);
+        padding5Layout.setHorizontalGroup(
+            padding5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 213, Short.MAX_VALUE)
+        );
+        padding5Layout.setVerticalGroup(
+            padding5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 96, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(padding5);
 
         inventoryButton.setBackground(Config.COLOR_DARK_BLACK);
         inventoryButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -159,6 +243,36 @@ public class LobbyGUI extends javax.swing.JFrame {
         inventoryButton.addActionListener(this::inventoryButtonActionPerformed);
         jPanel3.add(inventoryButton);
 
+        padding6.setBackground(Config.COLOR_BLACK);
+
+        javax.swing.GroupLayout padding6Layout = new javax.swing.GroupLayout(padding6);
+        padding6.setLayout(padding6Layout);
+        padding6Layout.setHorizontalGroup(
+            padding6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 213, Short.MAX_VALUE)
+        );
+        padding6Layout.setVerticalGroup(
+            padding6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 96, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(padding6);
+
+        padding7.setBackground(Config.COLOR_BLACK);
+
+        javax.swing.GroupLayout padding7Layout = new javax.swing.GroupLayout(padding7);
+        padding7.setLayout(padding7Layout);
+        padding7Layout.setHorizontalGroup(
+            padding7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 213, Short.MAX_VALUE)
+        );
+        padding7Layout.setVerticalGroup(
+            padding7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 96, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(padding7);
+
         quitButton.setBackground(Config.COLOR_DARK_BLACK);
         quitButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         quitButton.setForeground(Config.COLOR_YELLOW);
@@ -166,6 +280,21 @@ public class LobbyGUI extends javax.swing.JFrame {
         quitButton.setBorder(javax.swing.BorderFactory.createLineBorder(Config.COLOR_YELLOW, 2));
         quitButton.addActionListener(this::quitButtonActionPerformed);
         jPanel3.add(quitButton);
+
+        padding8.setBackground(Config.COLOR_BLACK);
+
+        javax.swing.GroupLayout padding8Layout = new javax.swing.GroupLayout(padding8);
+        padding8.setLayout(padding8Layout);
+        padding8Layout.setHorizontalGroup(
+            padding8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 213, Short.MAX_VALUE)
+        );
+        padding8Layout.setVerticalGroup(
+            padding8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 96, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(padding8);
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
 
@@ -210,6 +339,14 @@ public class LobbyGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel padding;
+    private javax.swing.JPanel padding2;
+    private javax.swing.JPanel padding3;
+    private javax.swing.JPanel padding4;
+    private javax.swing.JPanel padding5;
+    private javax.swing.JPanel padding6;
+    private javax.swing.JPanel padding7;
+    private javax.swing.JPanel padding8;
     private javax.swing.JButton quitButton;
     private javax.swing.JButton shopButton;
     // End of variables declaration//GEN-END:variables

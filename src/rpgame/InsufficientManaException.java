@@ -1,20 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package rpgame;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ALİ EVREN
- */
 public class InsufficientManaException extends RuntimeException{
-    private javax.swing.JFrame currentWindow;
-    private int mana;
-    private int spellCost;
+    
+    private final javax.swing.JFrame currentWindow;
+    private final int mana;
+    private final int spellCost;
+    
     public InsufficientManaException(JFrame currentWindow , int mana, int spellCost) {
         this.currentWindow = currentWindow;
         this.mana = mana;

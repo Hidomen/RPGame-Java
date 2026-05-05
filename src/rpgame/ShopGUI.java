@@ -147,7 +147,7 @@ public class ShopGUI extends javax.swing.JFrame {
 
             
             JLabel compLabel = new JLabel(item.toString());
-            compLabel.setForeground(Config.COLOR_GRAY);
+            compLabel.setForeground(Config.COLOR_WHITE);
             compLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 
 

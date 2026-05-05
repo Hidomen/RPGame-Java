@@ -80,7 +80,7 @@ public class main implements GUICallback{
                 
                 
                 if(shopGUI != null){
-                    System.out.println("RESET SHOP");
+                    
                     shopGUI.resetShop();
                 }
                 
@@ -155,7 +155,7 @@ public class main implements GUICallback{
             }
             players.add(player);
         
-            System.out.println(players.getLast().getEntityName());
+            
         } catch(GroupIsFullException e)
         {
             e.message();

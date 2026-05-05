@@ -51,7 +51,6 @@ public abstract class PlayerClass extends Entity implements AbilityInterface {
     public Ability getAbility(int index)
     {
         if (index >= abilityList.length){
-            //System.err.println("Given index is out of limit"); Enough debug I guess ?
             return null;
         }
 

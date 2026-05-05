@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package rpgame;
+
 import javax.swing.JOptionPane;
-/**
- *
- * @author ALİ EVREN
- */
+
 public class InsufficientPlayersException extends RuntimeException {
-    private javax.swing.JFrame currentWindow;
-    private int playerCount;
+
+    private final javax.swing.JFrame currentWindow;
+    private final int playerCount;
+
     public InsufficientPlayersException(javax.swing.JFrame currentWindow , int playerCount)
     {
         this.playerCount = playerCount;

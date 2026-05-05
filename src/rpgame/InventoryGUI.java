@@ -137,27 +137,27 @@ public class InventoryGUI extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel3.setBackground(Config.COLOR_BLACK);
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
 
         activeAttributesLabel.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        activeAttributesLabel.setForeground(new java.awt.Color(255, 255, 0));
+        activeAttributesLabel.setForeground(Config.COLOR_YELLOW);
         activeAttributesLabel.setText("Current Attributes");
 
         healthLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        healthLabel.setForeground(new java.awt.Color(255, 255, 0));
+        healthLabel.setForeground(Config.COLOR_YELLOW);
         healthLabel.setText("Health:");
 
         attackLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        attackLabel.setForeground(new java.awt.Color(255, 255, 0));
+        attackLabel.setForeground(Config.COLOR_YELLOW);
         attackLabel.setText("Attack:");
 
         abilityLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        abilityLabel.setForeground(new java.awt.Color(255, 255, 0));
+        abilityLabel.setForeground(Config.COLOR_YELLOW);
         abilityLabel.setText("Ability:");
 
         manaLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        manaLabel.setForeground(new java.awt.Color(255, 255, 0));
+        manaLabel.setForeground(Config.COLOR_YELLOW);
         manaLabel.setText("Max Mana:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -195,16 +195,16 @@ public class InventoryGUI extends javax.swing.JFrame {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setBackground(Config.COLOR_BLACK);
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel1.setBackground(Config.COLOR_BLACK);
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel1.setForeground(Config.COLOR_YELLOW);
         jLabel1.setText("Inventory");
 
-        continueButton1.setBackground(new java.awt.Color(0, 0, 0));
-        continueButton1.setForeground(new java.awt.Color(255, 255, 0));
+        continueButton1.setBackground(Config.COLOR_DARK_BLACK);
+        continueButton1.setForeground(Config.COLOR_YELLOW);
         continueButton1.setText("Continue");
         continueButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 3));
         continueButton1.addActionListener(this::continueButton1ActionPerformed);

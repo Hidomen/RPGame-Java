@@ -35,7 +35,7 @@ public class Config {
     
     public static final int BLEED_INDEX     = 0; //At the start of the enemy's turn take damage equal to bleed. Then decrease bleed by one.
     public static final int BURN_INDEX      = 1; //Take damage equal to burn at the start of your turn.
-    public static final int DODGE_INDEX     = 2; 
+    public static final int DODGE_INDEX     = 2; // :)
     public static final int FOG_INDEX       = 3; //Enemy strikes half of the damage to itself with the chance of %50
     public static final int POISON_INDEX    = 4; //Make your enemy take 2 damage for turns equal to your ability power
     public static final int SHOCK_INDEX     = 5; //Deal half damage
@@ -54,7 +54,7 @@ public class Config {
     }};
     
     public static final java.awt.Color COLOR_WHITE   = new java.awt.Color(255, 255, 255);
-    public static final java.awt.Color COLOR_BLACK  = new java.awt.Color(70, 70, 70);
+    public static final java.awt.Color COLOR_BLACK  = new java.awt.Color(50, 50, 50);
     public static final java.awt.Color COLOR_DARK_BLACK = new java.awt.Color(0, 0, 0);
     public static final java.awt.Color COLOR_YELLOW = new java.awt.Color(244, 206, 20);
     public static final java.awt.Color COLOR_GRAY   = new java.awt.Color(70, 70, 70);

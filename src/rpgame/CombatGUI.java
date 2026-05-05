@@ -221,7 +221,7 @@ public class CombatGUI extends javax.swing.JFrame{
 
         attackButton.setBackground(Config.COLOR_YELLOW);
         attackButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        attackButton.setForeground(new java.awt.Color(51, 51, 51));
+        attackButton.setForeground(Config.COLOR_BLACK);
         attackButton.setText("Attack");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -244,7 +244,7 @@ public class CombatGUI extends javax.swing.JFrame{
 
         defenceButton.setBackground(Config.COLOR_YELLOW);
         defenceButton.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        defenceButton.setForeground(new java.awt.Color(51, 51, 51));
+        defenceButton.setForeground(Config.COLOR_BLACK);
         defenceButton.setText("Defence");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -544,7 +544,7 @@ public class CombatGUI extends javax.swing.JFrame{
             abilitySelectionPanel.setVisible(false);
 
             abilityButton.setBackground(Config.COLOR_BLACK);
-            abilityButton.setForeground(java.awt.Color.YELLOW); 
+            abilityButton.setForeground(Config.COLOR_YELLOW); 
 
             playerTurnEnd();            
         } catch (InsufficientManaException e)
@@ -636,7 +636,7 @@ public class CombatGUI extends javax.swing.JFrame{
         
         for(int i = 0; i < abilityButtons.length; i++){
 
-            if(i < currentPlayer.abilityList.length){ //should do it with getter
+            if(i < currentPlayer.abilityList.length){
                 abilityButtons[i].setVisible(true);
                 abilityButtons[i].setText(currentPlayer.getAbility(i).getName());
             } else {

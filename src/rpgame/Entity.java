@@ -40,13 +40,13 @@ public abstract class Entity {
             Random rand = new Random();
             
             if(rand.nextBoolean()){
-                System.out.println("AAAAHH!! I HIT MYSELF"); //visual?
+                
                 takeDamage(attackPower);
                 return;
             }
         }
         if(statusList[Config.SHOCK_INDEX] > 0){
-            damage /= 2; //round
+            damage = (int)(damage / 2);
         }
         
         double targetTempHealth = target.statusList[Config.TEMP_H_INDEX];
@@ -55,14 +55,14 @@ public abstract class Entity {
             target.statusList[Config.TEMP_H_INDEX] = 0;
         }
         
-        if (target.statusList[Config.DODGE_INDEX] > 0) { //needs to be changed
+        if (target.statusList[Config.DODGE_INDEX] > 0) {
             
             Random rand = new Random();
             double chance = rand.nextDouble();
             
             if (target.statusList[Config.DODGE_INDEX] >= chance) {
                 
-                System.out.println("The attack got dodged !.");
+                
                 if (target.statusList[Config.DODGE_INDEX] >= 1) {
                     target.statusList[Config.DODGE_INDEX] -= 1;
                 }
@@ -108,6 +108,7 @@ public abstract class Entity {
     {
         if(damage <= 0) return;
         
+        
         target.takeDamage(damage);
     }
     //==========================================================================
@@ -129,8 +130,7 @@ public abstract class Entity {
     }
     
     
-    //called in start of turn
-    //returns true if stunned
+    //called in start of turn, returns true if entity is stunned
     public boolean checkStatus()
     {
         for (int i = 0; i < statusList.length; i++) {

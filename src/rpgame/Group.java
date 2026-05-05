@@ -28,8 +28,6 @@ public class Group {
     }
     
     private void levelUp(){
-        
-        System.out.println("LEVEL");
 
         level++;
         
@@ -78,7 +76,9 @@ public class Group {
         return false;
     }
     
+    //==========================================================================
     // INVENTORY
+    //==========================================================================
     public void addToInventory(Item i)
     {
         inventory.add(i);

@@ -1,6 +1,5 @@
 package rpgame;
 
-import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 public class MainScreenGUI extends javax.swing.JFrame {
@@ -123,13 +122,12 @@ public class MainScreenGUI extends javax.swing.JFrame {
                 throw new InvalidPlayerCountException(this);
             }
 
-            System.out.println("play button");
 
             playerCount = Integer.parseInt(playerCountField.getText());
             callback.setPlayerCount(playerCount);
 
             callback.setGUIState(GUIState.PLAYER_SELECTION, this.getLocation());
-            playButton.setFocusPainted(false); //not necessary 
+            
         } catch (NumberFormatException e)
         {
             JOptionPane.showMessageDialog(this, "String entry detected. Please enter an integer.", "Number Format Exception", JOptionPane.WARNING_MESSAGE);
