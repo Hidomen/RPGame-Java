@@ -5,10 +5,10 @@ public class Archer extends PlayerClass {
     
     private static Ability[] abilityList = {
             
-            new Ability(0,"Ultimate Dodge","Next Attack will be definitely dodged",3),
+            new Ability(0,"Tripwire","Stun the enemy for 2 turns",6),
             new Ability(1,"Practice", "Permanently increase your attack power",5),
-            new Ability(2,"ShadowMode", "For three turns you are completely invisible", 10),
-            new Ability(3,"Infuse Poison", "Make your enemy take 2 damage for turns equal to your ability power" , 4)
+            new Ability(2,"Infuse Posion", "Infuse poison which deals 2 damage per turn for ability power turn", 1),
+            new Ability(3,"Sta-Stab", "Apply bleed for ability power * 3 turns" , 4)
     };
 
     Archer()
@@ -21,25 +21,24 @@ public class Archer extends PlayerClass {
         attackPower = Config.ATTACK_MULTIPLIER * 17;
         
         HP = maxHP;
-        
-        //statusList[Config.DODGE_INDEX] = 0.1;
+
         abilityPower = Config.ABILITY_MULTIPLIER * 6;
 
     }
 
     @Override
     public void ability0(Entity target){
-        addStatus(Dodge , 1 , this);
+        addStatus(Stun , 2 , target);
     }
     
     @Override
     public void ability1(Entity target){
-        attackPower *= 1.1;
+        attackPower *= 1.5;
     }
     
     @Override
     public void ability2(Entity target){
-        addStatus(Dodge , 3 , this); 
+        addStatus(Poison , abilityPower , target); 
     }
     
     @Override

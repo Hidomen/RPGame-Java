@@ -2,7 +2,6 @@ package rpgame;
 
 import java.awt.event.*;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class CombatGUI extends javax.swing.JFrame{
@@ -11,12 +10,13 @@ public class CombatGUI extends javax.swing.JFrame{
     
     private static ArrayList<PlayerClass> players;
     private static Enemy enemy;
-
+    
     private int turnCount = 1;
     private EntityType turn = EntityType.Player;
     
     private PlayerClass currentPlayer;
     private int currentPlayerIndex = 0;
+    private int prevHP;
     
     private int alivePlayerCount;
     
@@ -32,6 +32,7 @@ public class CombatGUI extends javax.swing.JFrame{
         
         
         currentPlayer = players.get(0);
+        prevHP = currentPlayer.HP;
         alivePlayerCount = players.size();
         
         initComponents();
@@ -411,7 +412,17 @@ public class CombatGUI extends javax.swing.JFrame{
 
     
     private void updateLog(Entity attacker, Entity attacked, int damage){
-        logTextArea.setText(attacker.getEntityName() + " ATTACKED " + attacked.getEntityName() + " dealt " + damage + " damage. REMAINING: " + attacked.HP);
+        int takenDamage = damage;
+        if (turn == EntityType.Enemy) 
+        {
+            takenDamage = prevHP - currentPlayer.HP;
+        }
+        if (attacked.HP <= 0) 
+        {
+            logTextArea.setText("ENEMY KILLED " + attacked.getEntityName() + " THIS TURN IS YOUR LAST CHANCE TO DEFEAT " + attacker.getEntityName());
+            return;
+        }
+        logTextArea.setText(attacker.getEntityName() + " ATTACKED " + attacked.getEntityName() + " dealt " + takenDamage + " damage. REMAINING: " + attacked.HP);
     }
     
     private void updateLog(String s){
@@ -431,6 +442,7 @@ public class CombatGUI extends javax.swing.JFrame{
             
             nextPlayer();
             currentPlayer = players.get(currentPlayerIndex);
+            prevHP = currentPlayer.HP;
         }
 
     }
@@ -450,15 +462,14 @@ public class CombatGUI extends javax.swing.JFrame{
         if(enemy.checkStatus()){
 
             updateLog(enemy.getEntityName() + "is stunned.");
-            enemy.endTurnEffects();
-            return;
         }
-        
-        enemy.attack(currentPlayer); 
-        
+        else
+        {
+            enemy.attack(currentPlayer); 
+            updateLog(enemy, currentPlayer, enemy.attackPower);            
+        }
         updateLabels();
-        updateLog(enemy, currentPlayer, enemy.attackPower);
-        
+
         enemy.endTurnEffects();
         
         nextTurn();

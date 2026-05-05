@@ -55,27 +55,6 @@ public abstract class Entity {
             target.statusList[Config.TEMP_H_INDEX] = 0;
         }
         
-        if (target.statusList[Config.DODGE_INDEX] > 0) {
-            
-            Random rand = new Random();
-            double chance = rand.nextDouble();
-            
-            if (target.statusList[Config.DODGE_INDEX] >= chance) {
-                
-                
-                if (target.statusList[Config.DODGE_INDEX] >= 1) {
-                    target.statusList[Config.DODGE_INDEX] -= 1;
-                }
-                return;
-            }
-        }
-        
-        
-        if (target.statusList[Config.DODGE_INDEX] >= 1) {
-            target.statusList[Config.DODGE_INDEX] -= 1;
-        }    
-        
-        
         
         giveDamage(damage,target);
     }
@@ -120,7 +99,6 @@ public abstract class Entity {
         {
             case Bleed ->           {target.statusList[Config.BLEED_INDEX]     += forTurns;}
             case Burn ->            {target.statusList[Config.BURN_INDEX]      += forTurns;}
-            case Dodge ->           {target.statusList[Config.DODGE_INDEX]     += forTurns;}
             case Fog ->             {target.statusList[Config.FOG_INDEX]       += forTurns;}
             case Poison ->          {target.statusList[Config.POISON_INDEX]    += forTurns;}
             case Shock ->           {target.statusList[Config.SHOCK_INDEX]     += forTurns;}
@@ -139,14 +117,13 @@ public abstract class Entity {
                 
                 switch(i)
                 {
-                    case Config.BLEED_INDEX -> {this.takeDamage(statusList[i]);}
-                    case Config.BURN_INDEX -> {this.takeDamage(statusList[i]);}
-                    case Config.DODGE_INDEX -> {}
-                    case Config.FOG_INDEX -> {}
-                    case Config.POISON_INDEX -> {this.takeDamage(2);}
-                    case Config.SHOCK_INDEX -> {}
-                    case Config.STUN_INDEX -> {return true;}
-                    case Config.TEMP_H_INDEX -> {statusList[i] = 0;}
+                    case Config.BLEED_INDEX ->   {this.takeDamage(statusList[i]);}
+                    case Config.BURN_INDEX ->    {this.takeDamage(statusList[i]);}
+                    case Config.FOG_INDEX ->     {}
+                    case Config.POISON_INDEX ->  {this.takeDamage(2);}
+                    case Config.SHOCK_INDEX ->   {}
+                    case Config.STUN_INDEX ->    {return true;}
+                    case Config.TEMP_H_INDEX ->  {statusList[i] = 0;}
 
                 }
                 
@@ -165,18 +142,17 @@ public abstract class Entity {
             switch(i){
                 
                 //special conditons
-                case Config.BLEED_INDEX -> {}
-                case Config.BURN_INDEX -> {statusList[i] = 0;}
-                case Config.FOG_INDEX -> {}
-                case Config.DODGE_INDEX -> {}
-                case Config.POISON_INDEX -> {}
-                case Config.SHOCK_INDEX -> {}
-                case Config.STUN_INDEX -> {}
-                case Config.TEMP_H_INDEX -> {}
+                case Config.BLEED_INDEX ->      {}
+                case Config.BURN_INDEX ->       {statusList[i] = 0;}
+                case Config.FOG_INDEX ->        {}
+                case Config.POISON_INDEX ->     {}
+                case Config.SHOCK_INDEX ->      {}
+                case Config.STUN_INDEX ->       {}
+                case Config.TEMP_H_INDEX ->     {}
                 
             }
             
-            if(statusList[i] > 0 && i != Config.DODGE_INDEX && i != Config.TEMP_H_INDEX){
+            if(statusList[i] > 0 && i != Config.TEMP_H_INDEX){
                 statusList[i]--;
             }
         }
